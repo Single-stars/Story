@@ -17,6 +17,7 @@
     "build:reader-app": "npm run build:reader-data -- --output .generated/reader/library.json && vite build --config app/mobile-reader/vite.config.ts",
     "dev:reader-app": "npm run build:reader-data -- --output .generated/reader/library.json && vite --config app/mobile-reader/vite.config.ts --host 127.0.0.1",
     "preview:reader-app": "vite preview --config app/mobile-reader/vite.config.ts --host 127.0.0.1",
+    "open:reader": "npm run build:reader-app && vite preview --config app/mobile-reader/vite.config.ts --host 127.0.0.1 --open",
     "validate:story": "tsx tools/validator/src/cli.ts",
     "verify": "npm run typecheck && npm test && npm run validate:story"
   },

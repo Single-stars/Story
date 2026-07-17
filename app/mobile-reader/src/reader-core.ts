@@ -10,7 +10,12 @@ export interface ReaderBlockLike {
 export interface ReaderChapterLike {
   id: string;
   title: string;
+  volume?: number;
+  chapter?: number;
   summary: string;
+  previousChapterId?: string | null;
+  nextChapterId?: string | null;
+  contentVersion?: string;
   blocks: ReaderBlockLike[];
 }
 
