@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/manuscript.schema.json",
+  "title": "Story OS manuscript chapter frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "document_type",
+    "novel_id",
+    "title",
+    "volume",
+    "chapter",
+    "status",
+    "visibility",
+    "summary",
+    "content_version",
+    "word_count",
+    "previous_chapter_id",
+    "next_chapter_id"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^CHAPTER-[0-9]{4}$"
+    },
+    "document_type": {
+      "type": "string",
+      "const": "chapter"
+    },
+    "novel_id": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "volume": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "chapter": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "draft", "revised", "locked", "published", "cut"]
+    },
+    "visibility": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "content_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "word_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "previous_chapter_id": {
+      "anyOf": [
+        { "type": "null" },
+        { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+      ]
+    },
+    "next_chapter_id": {
+      "anyOf": [
+        { "type": "null" },
+        { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+      ]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

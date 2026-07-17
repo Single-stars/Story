@@ -1,0 +1,27 @@
+# Story OS 读者反馈模板。反馈是输入，不具备正文或 Canon 修改权限。
+schema_version: "0.1.0"
+id: FB-0001
+record_type: reader_feedback
+owner:
+  novel_id: NOVEL-0001
+status: received
+visibility: internal
+reader_profile: fresh_reader
+submitted_at: "2026-07-16T00:00:00+08:00"
+
+scope:
+  chapter_ids: []
+  allowed_preceding_chapter_ids: []
+  source_revision: "请填写被测试正文的 Git revision 或内容哈希"
+
+observations:
+  comprehension: "请填写读者认为已经发生了什么"
+  confusion: []
+  interest_loss: []
+  expectations: []
+  emotional_landing: "请填写情绪是否具体落地，以及依据的正文位置"
+  continue_reading: "请填写是否愿意继续及其直接原因"
+
+evidence_locations: [] # 使用 CHAPTER-* 与稳定段落锚点，不引用隐藏设定。
+suggested_actions: []
+canon_effect: none # 反馈不得审批、修改或晋升 Canon。

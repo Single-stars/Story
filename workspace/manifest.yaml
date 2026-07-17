@@ -1,0 +1,62 @@
+schema_version: 0.1.0
+workspace_id: WORKSPACE-0001
+name: Story OS Workspace
+description: Multi-novel, file-first fiction development workspace.
+locale:
+  interface_language: zh-CN
+  writing_language: zh-CN
+  machine_field_language: en
+  timezone: Asia/Shanghai
+repository:
+  provider: github
+  url: https://github.com/Single-stars/Story.git
+  default_branch: main
+authority:
+  canon_approver: author
+  ai_may_promote_canon: false
+  feedback_may_edit_canon: false
+defaults:
+  visibility: internal
+  novel_status: planning
+  canon_status: proposed
+  reader_profile: internal
+  structure_lenses:
+    - snowflake
+    - want-need-wound-lie
+    - scene-sequel
+    - story-grid-five-commandments
+active_novel_id: NOVEL-0002
+novels:
+  - id: NOVEL-0001
+    title: 死亡账户
+    path: novels/NOVEL-0001-death-account
+    status: planning
+  - id: NOVEL-0002
+    title: 六百里夜驿
+    path: novels/NOVEL-0002-six-hundred-li-night-relay
+    status: planning
+universes: []
+series: []
+id_counters:
+  universe: 0
+  series: 0
+  novel: 2
+paths:
+  novels: novels
+  universes: universes
+  series: workspace/series
+  schemas: schemas
+  templates: templates
+  skills: .agents/skills
+  generated: .generated
+validation:
+  required_before_commit: true
+  required_before_publish: true
+  block_publish_on_error: true
+sharing:
+  default_posture: private
+  profiles:
+    - internal
+    - editor
+    - reader
+    - public

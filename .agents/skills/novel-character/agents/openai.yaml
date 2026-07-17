@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 人物设计"
+  short_description: "设计并审查人物动机、声音、知识边界、关系与人物弧提案"
+  default_prompt: "Use $novel-character to design or audit proposal-only characters, directional relationships, and knowledge boundaries for an explicitly selected novel."

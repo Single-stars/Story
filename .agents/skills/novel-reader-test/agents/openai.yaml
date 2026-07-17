@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说新读者测试"
+  short_description: "隔离隐藏 Canon 与未来剧透，输出可定位的新读者盲测报告"
+  default_prompt: "Use $novel-reader-test to run a spoiler-isolated fresh-reader test on an explicitly authorized novel_id and chapter allowlist."

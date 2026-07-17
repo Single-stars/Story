@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说 Premise 设计"
+  short_description: "生成并比较小说 premise 候选，等待作者选择后再进入大纲"
+  default_prompt: "Use $novel-premise to develop 3-5 proposal-only story premises for the selected novel and compare them before author selection."

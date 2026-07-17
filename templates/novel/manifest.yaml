@@ -1,0 +1,81 @@
+# Story OS 小说清单模板
+# 复制到 novels/NOVEL-xxxx-slug/manifest.yaml 后使用。
+# 复制后的第一步：分配未使用的永久 novel_id，并让目录名、slug 与
+# workspace/manifest.yaml 中的小说注册项保持一致。
+
+# 数据契约版本；必须符合 schemas/novel-manifest.schema.json。
+schema_version: "0.1.0"
+
+# 小说自身的永久 ID 同时表达本清单的作品归属；不要因改名或移动目录而更换。
+novel_id: NOVEL-0001
+title: "请填写小说标题"
+
+# 仅使用小写英文字母、数字和连字符；建议与小说目录后缀一致。
+slug: example-novel
+
+# 生命周期：idea | planning | drafting | revision | paused | complete | archived
+status: planning
+language: zh-CN
+
+genre:
+  primary: "请填写主要类型"
+  secondary: []
+  target_readers: "请填写目标读者、阅读偏好与年龄段等必要信息"
+  # 至少保留一条明确的类型承诺；不要把一般性的“好看”当作承诺。
+  promises:
+    - "请填写读者在本书中应稳定获得的核心体验"
+  # 可记录需要提前提示的敏感内容；没有时保持空数组。
+  content_notes: []
+
+premise:
+  # premise 状态：idea | proposed | approved；只有作者可以批准 approved。
+  status: proposed
+  logline: "请填写一句话故事 premise：主角、目标、阻力与高风险后果"
+  theme_question: "请填写故事持续追问、但不预先替读者回答的主题问题"
+  core_conflict: "请填写外部冲突、内部冲突及二者如何互相加压"
+
+structure:
+  # 方法论只作为诊断镜头，不要求机械套用固定节拍。
+  lenses:
+    - snowflake
+    - want-need-wound-lie
+    - scene-sequel
+    - story-grid-five-commandments
+  intended_length_words: 100000
+  volumes: 1
+
+dependencies:
+  # 只有真实依赖共享世界时才添加，并锁定明确版本。
+  # 示例：
+  # - universe_id: UNIV-0001
+  #   version: "0.1.0"
+  universe_refs: []
+  # 独立作品保持 null；系列作品填写已注册的 SERIES-* ID。
+  series_id: null
+
+current_focus:
+  volume: 1
+  chapter: 1
+  # 尚未分配场景时保持 null；不得填写尚不存在的 SCN-* 引用。
+  scene_id: null
+  note: "项目初始化：尚未开始正式章节写作"
+
+# 以下路径均相对于本小说目录；目录可按工作流需要逐步创建。
+paths:
+  canon: canon
+  narrative: narrative
+  manuscript: manuscript
+  research: research
+  decisions: decisions
+  feedback: feedback
+  reports: reports
+
+sharing:
+  # 本字段承担小说级默认可见性；新项目应从 internal 开始。
+  # 可选值：internal | editor | reader | public
+  default_profile: internal
+  allow_offline_reader: false
+
+# 注意：当前 novel manifest Schema 没有独立 owner 或 provenance 字段，且禁止
+# 额外属性。作品归属由 novel_id 表达；来源和批准记录应放入 decisions/research，
+# 不要自行添加 Schema 未定义的字段。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说世界构建设计"
+  short_description: "按故事需求设计世界规则、制度、地点与可验证因果 proposal"
+  default_prompt: "Use $novel-worldbuilding to design proposal-only world rules, systems, locations, consequences, and stress tests for the selected novel."

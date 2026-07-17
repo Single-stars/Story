@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 小说研究"
+  short_description: "为指定小说检索、核验并记录可追溯资料与冲突，严格隔离 Canon"
+  default_prompt: "Use $novel-research to research a bounded question for an explicitly selected novel and return a sourced research ledger without promoting claims to Canon."

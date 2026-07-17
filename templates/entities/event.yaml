@@ -1,0 +1,40 @@
+# Story OS 事件模板（对应 schemas/narrative-entity.schema.json 的 event 定义）
+# 复制后先替换所有示例 ID；事件记录“世界内实际发生了什么”，不要在这里填写读者看到它的顺序。
+
+schema_version: "0.1.0"
+id: EVT-0002 # 永久事件 ID；创建后不得因改名、重排或 retcon 复用。
+entity_type: event
+owner:
+  novel_id: NOVEL-0001 # 必须与目标小说目录及 manifest 一致。
+status: proposed # AI/模板默认 proposed；仅作者批准后才能改为 canon。
+visibility: internal
+name: 在这里填写事件名称
+summary: >-
+  用一至三句说明谁因为什么采取了什么行动，以及这次行动造成的可观察结果。
+  若事件包含关键物品转移、伤势、资源消耗或关系变化，也在这里概括，并由对应实体记录承接。
+tags:
+  - main-plot # 可替换；同一数组中不要重复。
+
+# 世界内时间必须与场景的 narrative_order 分开记录。
+# value 使用 RFC 3339 date-time；precision 表示故事实际能确定到的精度，而不是随意舍入。
+story_time:
+  value: "2041-05-13T22:10:00+08:00"
+  precision: minute # year | month | day | hour | minute | second
+
+# 只列实际参与本事件的人物；“被提及但不在场”的人物不要放入此数组。
+participants:
+  - CHAR-0001
+  - CHAR-0002
+
+location_id: LOC-0001 # 事件实际发生地点，不是叙述者回忆此事时所在地点。
+
+# 因果必须引用事件 ID，而不是用时间相邻代替因果。
+# 无明确前因或尚无后果时可使用 []；不要制造占位引用。
+caused_by_event_ids:
+  - EVT-0001
+consequence_event_ids:
+  - EVT-0003
+
+# 只列本事件建立或确认的原子事实；未核实推测应先留在 research/proposal。
+facts_established:
+  - FACT-0001

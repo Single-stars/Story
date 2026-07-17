@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 场景设计"
+  short_description: "设计因果完整、连续性可验证并经作者门禁的场景契约提案"
+  default_prompt: "Use $novel-scene to design a continuity-checked, author-gated scene contract proposal for an explicitly selected novel."

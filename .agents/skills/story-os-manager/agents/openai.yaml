@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 项目总控"
+  short_description: "选择小说并安全管理启动、恢复、路由、验证与会话收尾"
+  default_prompt: "Use $story-os-manager to select a novel and safely start, resume, validate, or close a scoped Story OS session."

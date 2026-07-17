@@ -1,0 +1,21 @@
+# Story OS 地点实体模板。复制到目标小说 canon/locations/ 后替换占位值。
+schema_version: "0.1.0"
+id: LOC-0001
+entity_type: location
+owner:
+  novel_id: NOVEL-0001
+status: proposed # 只有作者批准后才能改为 canon。
+visibility: internal
+name: "请填写地点名称"
+summary: "请说明地点的叙事作用、空间关系和当前状态"
+tags: []
+source_refs: []
+supersedes: null
+superseded_by: null
+
+aliases: []
+parent_location_id: null # 若为子地点，填写已存在的 LOC-*。
+sensory_palette:
+  - "请填写进入该地点时最先可感知的具体细节"
+constraints:
+  - "请填写会限制人物行动、时间或资源的空间条件"

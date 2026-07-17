@@ -1,0 +1,66 @@
+# Story OS 场景契约模板（对应 schemas/narrative-entity.schema.json 的 scene 定义）
+# 先设计、再写正文。场景记录“读者如何看到事件”；世界内时间由 event_ids 指向的 EVT-* 记录。
+
+schema_version: "0.1.0"
+id: SCN-0001 # 永久场景 ID；拆章或调整叙事顺序时不要更换。
+entity_type: scene
+owner:
+  novel_id: NOVEL-0001 # 必须与目标小说目录及 manifest 一致。
+status: planned # idea | proposed | planned | drafted | revised | locked | cut | canon | deprecated
+visibility: internal
+name: 在这里填写场景名称
+summary: >-
+  概括本场的核心变化及读者体验。倒叙、梦境、传闻、伪造记录或不可靠叙述应在这里明确说明，
+  并在 tags 中加入对应标记；不要把叙事呈现误记成世界内事实。
+tags:
+  - main-plot # 可按需替换为 flashback、dream、rumor、forged-record、unreliable-narration 等。
+
+# 这是读者阅读顺序，不是故事时间。故事时间、参与者和事件因果在 event_ids 对应事件中记录。
+narrative_order:
+  volume: 1
+  chapter: 1
+  scene: 1
+
+pov_character_id: CHAR-0001
+location_id: LOC-0001 # 场景主要呈现地点；跨地点行动应拆场或由多个事件明确承接。
+
+# 列出本场呈现、回忆、转述或揭露的世界内事件；具体呈现方式写入 summary。
+event_ids:
+  - EVT-0002
+
+# 至少包含 POV 人物；只列实际在场并参与场面的人物。
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0002
+
+# 连续性入口：明确承接上一场的身体、精神、资源、物品位置、知识、关系和未完成动作。
+entry_state: >-
+  POV 人物带着上一场造成的目标和压力入场；列明关键伤势、疲劳、能力消耗、持有物、
+  已知/误信信息、对在场人物的关系状态，以及本场必须承接的时间或地点约束。
+
+# 触发、升级、选择、行动和结果必须属于同一条因果链，避免只有“然后发生”。
+structure:
+  goal: POV 人物此刻想取得的具体、可验证结果。
+  conflict: 阻止目标达成的人、环境、规则或内部压力，以及阻力为何此刻生效。
+  turning_point: 新事实、行动或代价如何改变原计划并加重局势。
+  crisis: 两个都带真实代价的选择；写清不选择或拖延的后果。
+  climax: POV 人物基于其 Want、Need、Wound、Lie 或当前压力采取的不可撤销行动。
+  resolution: 高潮行动直接造成的成功、失败或代价，以及场景价值如何变化。
+  exit_hook: 由本场结果产生、会迫使下一场行动的具体问题、威胁、承诺或决定。
+
+# 连续性出口必须能成为下一场的 entry_state；不要只写“人物离开”。
+exit_state: >-
+  列出目标结果、人物所在地点、身体/精神/资源状态、关键物品的新持有人或位置、
+  新增事实与错误认知、关系变化、未履行承诺，以及下一场不能忽略的后果。
+
+# 引用独立 KNOW-* 记录；其中应包含人物、FACT-*、知识状态、来源事件/场景和置信度。
+knowledge_changes:
+  - KNOW-0001
+
+# 关系有方向且可不对称；引用本场生效或结束的 REL-* 记录，并以相关 EVT-* 作为变化原因。
+relationship_changes:
+  - REL-0001
+
+# 只引用本场种植、推进、回收或放弃的伏笔；具体状态保存在 FORESH-* 实体中。
+foreshadowing_ids:
+  - FORESH-0001

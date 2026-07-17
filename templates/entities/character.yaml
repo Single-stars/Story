@@ -1,0 +1,59 @@
+# Story OS 人物实体模板
+# 复制到目标小说的 canon/characters/ 目录后使用。
+# 所有新人物默认是 proposed；只有作者批准后才能变为 canon。
+
+schema_version: "0.1.0"
+
+# 复制后替换为工作区内未使用的永久 ID，改名、移动或 retcon 都不得复用。
+id: CHAR-0001
+entity_type: character
+
+# 必须且只能选择一个正式所有者。小说人物使用 novel_id；若要创建共享世界
+# 人物，应把整个 owner 改为 universe_id: UNIV-xxxx，不能同时保留两个字段。
+owner:
+  novel_id: NOVEL-0001
+
+# Canon 生命周期：idea | proposed | canon | rejected | deprecated | retconned
+status: proposed
+
+# 可见性：internal | editor | reader | public。含秘密的人物卡默认 internal。
+visibility: internal
+
+name: "请填写人物正式名称"
+summary: "请用一至三句话说明人物身份、当前处境及其在故事中的作用"
+tags: []
+
+# 当前 Schema 用 source_refs 承担来源/溯源信息。可填写 research、decisions、
+# 访谈或其他可复核来源的路径/引用；原创且尚无记录时保持空数组。
+source_refs: []
+
+# 仅在正式替代或被替代时填写对应实体 ID；普通修订保持 null。
+supersedes: null
+superseded_by: null
+
+aliases: []
+
+psychology:
+  want: "请填写人物主动追求、能在情节中观察到的外部目标"
+  need: "请填写人物真正需要理解、接受或改变的内部需要"
+  wound: "请填写塑造其防御方式与选择模式的旧伤或关键经历"
+  lie: "请填写人物当前深信、但会限制其成长的错误信念"
+
+voice:
+  # 记录常用词、职业词、口头禅等；没有定案时可保持空数组。
+  vocabulary: []
+  syntax: "请填写句子长短、停顿、修辞和表达节奏"
+  notices_first: "请填写人物进入场景时最先注意的信息及其感知过滤器"
+  avoids: []
+
+capabilities: []
+
+# 至少填写一项真实限制或代价，避免人物能力无边界。
+limits:
+  - "请填写一项能力限制、资源限制或使用代价"
+
+# 秘密内容应与 visibility 相容；没有秘密时保持空数组。
+secrets: []
+
+# 人物尚未进入已规划场景时保持 null；分配后填写存在的 SCN-* ID。
+first_scene_id: null

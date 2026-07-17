@@ -1,0 +1,23 @@
+# Story OS 人物知识状态模板。一份记录只绑定一个人物与一个事实。
+schema_version: "0.1.0"
+id: KNOW-0001
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0001
+status: proposed # 只有作者批准后才能改为 canon。
+visibility: internal
+name: "请填写人物对事实的认知短名"
+summary: "请说明该认知如何影响人物判断或行动"
+tags: []
+source_refs: []
+supersedes: null
+superseded_by: null
+
+character_id: CHAR-0001
+fact_id: FACT-0001
+# unknown | suspects | believes_true | believes_false | verified
+knowledge_state: suspects
+learned_at_event_id: null
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0.50

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 小说行文精修"
+  short_description: "保留事实、POV 与人物声音，诊断并局部精修章节行文"
+  default_prompt: "Use $novel-line-edit to diagnose and locally polish an explicitly selected chapter while preserving facts, POV, character voice, and Canon."

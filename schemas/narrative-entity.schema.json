@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/narrative-entity.schema.json",
+  "title": "Story OS narrative entity",
+  "oneOf": [
+    { "$ref": "#/$defs/event" },
+    { "$ref": "#/$defs/scene" },
+    { "$ref": "#/$defs/thread" },
+    { "$ref": "#/$defs/foreshadowing" }
+  ],
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "id",
+        "entity_type",
+        "owner",
+        "status",
+        "visibility",
+        "name",
+        "summary",
+        "tags"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(EVT|SCN|THREAD|FORESH)-[0-9]{4}$"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": ["event", "scene", "thread", "foreshadowing"]
+        },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["novel_id"],
+          "properties": {
+            "novel_id": {
+              "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "idea",
+            "proposed",
+            "planned",
+            "drafted",
+            "revised",
+            "locked",
+            "cut",
+            "canon",
+            "deprecated"
+          ]
+        },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": [
+            "story_time",
+            "participants",
+            "location_id",
+            "caused_by_event_ids",
+            "consequence_event_ids",
+            "facts_established"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^EVT-[0-9]{4}$" },
+            "entity_type": { "const": "event" },
+            "story_time": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value", "precision"],
+              "properties": {
+                "value": { "type": "string", "format": "date-time" },
+                "precision": {
+                  "type": "string",
+                  "enum": ["year", "month", "day", "hour", "minute", "second"]
+                }
+              }
+            },
+            "participants": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" }
+            },
+            "location_id": { "type": "string", "pattern": "^LOC-[0-9]{4}$" },
+            "caused_by_event_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^EVT-[0-9]{4}$" }
+            },
+            "consequence_event_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^EVT-[0-9]{4}$" }
+            },
+            "facts_established": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^FACT-[0-9]{4}$" }
+            },
+            "item_changes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "item_id",
+                  "from_holder_id",
+                  "to_holder_id",
+                  "from_location_id",
+                  "to_location_id",
+                  "state_after"
+                ],
+                "properties": {
+                  "item_id": { "type": "string", "pattern": "^ITEM-[0-9]{4}$" },
+                  "from_holder_id": {
+                    "type": ["string", "null"],
+                    "pattern": "^CHAR-[0-9]{4}$"
+                  },
+                  "to_holder_id": {
+                    "type": ["string", "null"],
+                    "pattern": "^CHAR-[0-9]{4}$"
+                  },
+                  "from_location_id": {
+                    "type": ["string", "null"],
+                    "pattern": "^LOC-[0-9]{4}$"
+                  },
+                  "to_location_id": {
+                    "type": ["string", "null"],
+                    "pattern": "^LOC-[0-9]{4}$"
+                  },
+                  "state_after": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "scene": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": [
+            "narrative_order",
+            "pov_character_id",
+            "location_id",
+            "event_ids",
+            "cast_character_ids",
+            "entry_state",
+            "structure",
+            "exit_state",
+            "knowledge_changes",
+            "relationship_changes",
+            "foreshadowing_ids"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^SCN-[0-9]{4}$" },
+            "entity_type": { "const": "scene" },
+            "narrative_order": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["volume", "chapter", "scene"],
+              "properties": {
+                "volume": { "type": "integer", "minimum": 1 },
+                "chapter": { "type": "integer", "minimum": 1 },
+                "scene": { "type": "integer", "minimum": 1 }
+              }
+            },
+            "pov_character_id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "location_id": { "type": "string", "pattern": "^LOC-[0-9]{4}$" },
+            "event_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^EVT-[0-9]{4}$" }
+            },
+            "cast_character_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" }
+            },
+            "entry_state": { "type": "string", "minLength": 1 },
+            "structure": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "goal",
+                "conflict",
+                "turning_point",
+                "crisis",
+                "climax",
+                "resolution",
+                "exit_hook"
+              ],
+              "properties": {
+                "goal": { "type": "string", "minLength": 1 },
+                "conflict": { "type": "string", "minLength": 1 },
+                "turning_point": { "type": "string", "minLength": 1 },
+                "crisis": { "type": "string", "minLength": 1 },
+                "climax": { "type": "string", "minLength": 1 },
+                "resolution": { "type": "string", "minLength": 1 },
+                "exit_hook": { "type": "string", "minLength": 1 }
+              }
+            },
+            "exit_state": { "type": "string", "minLength": 1 },
+            "knowledge_changes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^KNOW-[0-9]{4}$" }
+            },
+            "knowledge_used_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^KNOW-[0-9]{4}$" }
+            },
+            "relationship_changes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^REL-[0-9]{4}$" }
+            },
+            "foreshadowing_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^FORESH-[0-9]{4}$" }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "thread": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["thread_type", "dramatic_question", "scene_ids", "event_ids", "resolution_state"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^THREAD-[0-9]{4}$" },
+            "entity_type": { "const": "thread" },
+            "thread_type": { "type": "string", "enum": ["main", "subplot", "character", "mystery", "relationship"] },
+            "dramatic_question": { "type": "string", "minLength": 1 },
+            "scene_ids": { "type": "array", "items": { "type": "string", "pattern": "^SCN-[0-9]{4}$" } },
+            "event_ids": { "type": "array", "items": { "type": "string", "pattern": "^EVT-[0-9]{4}$" } },
+            "resolution_state": { "type": "string", "enum": ["open", "escalating", "resolved", "abandoned"] }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "foreshadowing": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["foreshadow_state", "planted_scene_id", "reader_sees", "true_meaning", "intended_payoff", "actual_payoff_scene_id"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^FORESH-[0-9]{4}$" },
+            "entity_type": { "const": "foreshadowing" },
+            "foreshadow_state": { "type": "string", "enum": ["planted", "advanced", "paid_off", "abandoned"] },
+            "planted_scene_id": { "type": "string", "pattern": "^SCN-[0-9]{4}$" },
+            "reader_sees": { "type": "string", "minLength": 1 },
+            "true_meaning": { "type": "string", "minLength": 1 },
+            "intended_payoff": { "type": "string", "minLength": 1 },
+            "actual_payoff_scene_id": {
+              "type": ["string", "null"],
+              "pattern": "^SCN-[0-9]{4}$"
+            },
+            "abandon_reason": { "type": ["string", "null"] }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    }
+  }
+}

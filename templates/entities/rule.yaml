@@ -1,0 +1,49 @@
+# Story OS 世界规则实体模板
+# 复制到目标小说的 canon/rules/ 目录后使用。
+# 新规则默认是 proposed，不得因写入模板而自动成为 Canon。
+
+schema_version: "0.1.0"
+
+# 复制后替换为工作区内未使用的永久 ID。
+id: RULE-0001
+entity_type: rule
+
+# 必须且只能选择一个正式所有者。小说本地规则使用 novel_id；共享世界规则
+# 应把整个 owner 改为 universe_id: UNIV-xxxx，不能在小说内复制后分别维护。
+owner:
+  novel_id: NOVEL-0001
+
+# Canon 生命周期：idea | proposed | canon | rejected | deprecated | retconned
+status: proposed
+
+# 可见性：internal | editor | reader | public。涉及后续揭示时保持 internal。
+visibility: internal
+
+name: "请填写规则名称"
+summary: "请概括规则如何约束人物行动、冲突或资源"
+tags: []
+
+# 当前 Schema 用 source_refs 承担来源/溯源信息。现实研究规则应引用 research
+# 记录；原创规则可引用作者决策记录；尚无记录时保持空数组。
+source_refs: []
+
+# 仅在正式替代或被替代时填写对应实体 ID；普通修订保持 null。
+supersedes: null
+superseded_by: null
+
+# 用可验证、无歧义的陈述说明“通常情况下必然如何”。
+statement: "请填写规则的核心陈述"
+
+# 说明规则适用于哪些地点、人物、时期、系统或条件。
+scope: "请填写规则的适用范围和生效条件"
+
+# 至少一项能力边界；不要只写规则能做什么。
+limitations:
+  - "请填写规则不能做到什么，或在什么条件下失效"
+
+# 至少一项触发、维持或违反规则的代价。
+costs:
+  - "请填写资源、时间、身体、社会或叙事代价"
+
+# 例外必须具体且可追踪；没有已批准例外时保持空数组。
+exceptions: []

@@ -1,0 +1,20 @@
+# Story OS 伏笔模板。复制到目标小说 narrative/foreshadowing/ 后替换占位值。
+schema_version: "0.1.0"
+id: FORESH-0001
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0001
+status: proposed
+visibility: internal # true_meaning 通常含剧透，不应直接进入阅读包。
+name: "请填写伏笔名称"
+summary: "请说明伏笔服务的悬念、人物选择或主题压力"
+tags: []
+
+# planted | advanced | paid_off | abandoned
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "请填写读者在种植场景中实际能观察到的信息"
+true_meaning: "请填写不可提前泄露的真实含义"
+intended_payoff: "请填写预计回收范围、触发条件和读者应获得的重新理解"
+actual_payoff_scene_id: null
+abandon_reason: null # 仅在 abandoned 时填写具体原因。

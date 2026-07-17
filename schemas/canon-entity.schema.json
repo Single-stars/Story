@@ -1,0 +1,374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/canon-entity.schema.json",
+  "title": "Story OS canon entity",
+  "oneOf": [
+    { "$ref": "#/$defs/character" },
+    { "$ref": "#/$defs/location" },
+    { "$ref": "#/$defs/faction" },
+    { "$ref": "#/$defs/item" },
+    { "$ref": "#/$defs/rule" },
+    { "$ref": "#/$defs/fact" },
+    { "$ref": "#/$defs/relationship" },
+    { "$ref": "#/$defs/knowledge" }
+  ],
+  "$defs": {
+    "owner": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["novel_id"],
+          "properties": {
+            "novel_id": {
+              "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["universe_id"],
+          "properties": {
+            "universe_id": {
+              "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/universeId"
+            }
+          }
+        }
+      ]
+    },
+    "base": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "id",
+        "entity_type",
+        "owner",
+        "status",
+        "visibility",
+        "name",
+        "summary",
+        "tags"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": [
+            "character",
+            "location",
+            "faction",
+            "item",
+            "rule",
+            "fact",
+            "relationship",
+            "knowledge"
+          ]
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "status": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/canonStatus"
+        },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "source_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "supersedes": {
+          "type": ["string", "null"],
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+        },
+        "superseded_by": {
+          "type": ["string", "null"],
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+        }
+      }
+    },
+    "character": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": [
+            "aliases",
+            "psychology",
+            "voice",
+            "capabilities",
+            "limits",
+            "secrets",
+            "first_scene_id"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "entity_type": { "const": "character" },
+            "aliases": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 120 }
+            },
+            "psychology": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["want", "need", "wound", "lie"],
+              "properties": {
+                "want": { "type": "string", "minLength": 1 },
+                "need": { "type": "string", "minLength": 1 },
+                "wound": { "type": "string", "minLength": 1 },
+                "lie": { "type": "string", "minLength": 1 }
+              }
+            },
+            "voice": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["vocabulary", "syntax", "notices_first", "avoids"],
+              "properties": {
+                "vocabulary": {
+                  "type": "array",
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "syntax": { "type": "string", "minLength": 1 },
+                "notices_first": { "type": "string", "minLength": 1 },
+                "avoids": {
+                  "type": "array",
+                  "items": { "type": "string", "minLength": 1 }
+                }
+              }
+            },
+            "capabilities": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "limits": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "secrets": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "first_scene_id": {
+              "type": ["string", "null"],
+              "pattern": "^SCN-[0-9]{4}$"
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "location": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["aliases", "parent_location_id", "sensory_palette", "constraints"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^LOC-[0-9]{4}$" },
+            "entity_type": { "const": "location" },
+            "aliases": { "type": "array", "items": { "type": "string" } },
+            "parent_location_id": {
+              "type": ["string", "null"],
+              "pattern": "^LOC-[0-9]{4}$"
+            },
+            "sensory_palette": { "type": "array", "items": { "type": "string" } },
+            "constraints": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "faction": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["goal", "methods", "resources", "constraints"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^FACTION-[0-9]{4}$" },
+            "entity_type": { "const": "faction" },
+            "goal": { "type": "string", "minLength": 1 },
+            "methods": { "type": "array", "items": { "type": "string" } },
+            "resources": { "type": "array", "items": { "type": "string" } },
+            "constraints": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "item": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["current_holder_id", "current_location_id", "state", "significance"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^ITEM-[0-9]{4}$" },
+            "entity_type": { "const": "item" },
+            "current_holder_id": {
+              "type": ["string", "null"],
+              "pattern": "^CHAR-[0-9]{4}$"
+            },
+            "current_location_id": {
+              "type": ["string", "null"],
+              "pattern": "^LOC-[0-9]{4}$"
+            },
+            "state": { "type": "string", "minLength": 1 },
+            "significance": { "type": "string", "minLength": 1 }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "rule": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["statement", "scope", "limitations", "costs", "exceptions"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^RULE-[0-9]{4}$" },
+            "entity_type": { "const": "rule" },
+            "statement": { "type": "string", "minLength": 1 },
+            "scope": { "type": "string", "minLength": 1 },
+            "limitations": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "costs": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "exceptions": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "fact": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": ["statement", "confidence", "evidence"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^FACT-[0-9]{4}$" },
+            "entity_type": { "const": "fact" },
+            "statement": { "type": "string", "minLength": 1 },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+            "evidence": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": [
+            "from_character_id",
+            "to_character_id",
+            "dimensions",
+            "public_label",
+            "private_reality",
+            "valid_from_event_id",
+            "caused_by_event_ids"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^REL-[0-9]{4}$" },
+            "entity_type": { "const": "relationship" },
+            "from_character_id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "to_character_id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "dimensions": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["trust", "affection", "fear", "obligation", "leverage"],
+              "properties": {
+                "trust": { "type": "number", "minimum": 0, "maximum": 1 },
+                "affection": { "type": "number", "minimum": 0, "maximum": 1 },
+                "fear": { "type": "number", "minimum": 0, "maximum": 1 },
+                "obligation": { "type": "number", "minimum": 0, "maximum": 1 },
+                "leverage": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "public_label": { "type": "string", "minLength": 1 },
+            "private_reality": { "type": "string", "minLength": 1 },
+            "valid_from_event_id": { "type": "string", "pattern": "^EVT-[0-9]{4}$" },
+            "valid_to_event_id": {
+              "type": ["string", "null"],
+              "pattern": "^EVT-[0-9]{4}$"
+            },
+            "caused_by_event_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^EVT-[0-9]{4}$" }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "knowledge": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": [
+            "character_id",
+            "fact_id",
+            "knowledge_state",
+            "learned_at_event_id",
+            "learned_in_scene_id",
+            "source_character_id",
+            "confidence"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^KNOW-[0-9]{4}$" },
+            "entity_type": { "const": "knowledge" },
+            "character_id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "fact_id": { "type": "string", "pattern": "^FACT-[0-9]{4}$" },
+            "knowledge_state": {
+              "type": "string",
+              "enum": ["unknown", "suspects", "believes_true", "believes_false", "verified"]
+            },
+            "learned_at_event_id": {
+              "type": ["string", "null"],
+              "pattern": "^EVT-[0-9]{4}$"
+            },
+            "learned_in_scene_id": {
+              "type": ["string", "null"],
+              "pattern": "^SCN-[0-9]{4}$"
+            },
+            "source_character_id": {
+              "type": ["string", "null"],
+              "pattern": "^CHAR-[0-9]{4}$"
+            },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+# Generated Story OS artifacts
+.generated/
+
+# Node and test output
+node_modules/
+dist/
+coverage/
+.vitest/
+
+# Reader app output
+app/mobile-reader/dist/
+app/mobile-reader/.astro/
+app/mobile-reader/.vercel/
+app/mobile-reader/.netlify/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+

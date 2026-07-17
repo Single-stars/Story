@@ -1,0 +1,19 @@
+# Story OS 原子事实模板。研究结论先留在 research；这里只保存待作者审批的事实提案。
+schema_version: "0.1.0"
+id: FACT-0001
+entity_type: fact
+owner:
+  novel_id: NOVEL-0001
+status: proposed # 只有作者批准后才能改为 canon。
+visibility: internal
+name: "请填写便于引用的事实短名"
+summary: "请说明该事实为何重要，以及哪些连续性判断依赖它"
+tags: []
+source_refs: []
+supersedes: null
+superseded_by: null
+
+statement: "请填写一个可独立判断真假的最小陈述"
+confidence: 0.50 # 0 到 1；不确定性不能靠措辞隐藏。
+evidence:
+  - "请填写可复核的 research、decision、event 或 manuscript 引用"

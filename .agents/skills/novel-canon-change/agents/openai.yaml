@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS Canon 变更"
+  short_description: "建立可审计、可迁移、可验证且仅由作者批准的 Canon 变更请求"
+  default_prompt: "Use $novel-canon-change to prepare and gate a Canon change request for an explicitly selected novel without applying it before author approval."

@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/workspace-manifest.schema.json",
+  "title": "Story OS workspace manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "name",
+    "description",
+    "locale",
+    "repository",
+    "authority",
+    "defaults",
+    "active_novel_id",
+    "novels",
+    "universes",
+    "series",
+    "id_counters",
+    "paths",
+    "validation",
+    "sharing"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "workspace_id": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/workspaceId"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "locale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interface_language",
+        "writing_language",
+        "machine_field_language",
+        "timezone"
+      ],
+      "properties": {
+        "interface_language": { "type": "string", "minLength": 2 },
+        "writing_language": { "type": "string", "minLength": 2 },
+        "machine_field_language": { "type": "string", "minLength": 2 },
+        "timezone": { "type": "string", "minLength": 3 }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "url", "default_branch"],
+      "properties": {
+        "provider": { "type": "string", "enum": ["github", "gitlab", "local"] },
+        "url": { "type": "string", "format": "uri" },
+        "default_branch": { "type": "string", "minLength": 1 }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canon_approver",
+        "ai_may_promote_canon",
+        "feedback_may_edit_canon"
+      ],
+      "properties": {
+        "canon_approver": { "type": "string", "const": "author" },
+        "ai_may_promote_canon": { "type": "boolean", "const": false },
+        "feedback_may_edit_canon": { "type": "boolean", "const": false }
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visibility",
+        "novel_status",
+        "canon_status",
+        "reader_profile",
+        "structure_lenses"
+      ],
+      "properties": {
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "novel_status": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelStatus"
+        },
+        "canon_status": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/canonStatus"
+        },
+        "reader_profile": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "structure_lenses": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "active_novel_id": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+        }
+      ]
+    },
+    "novels": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/novelRegistration" }
+    },
+    "universes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/universeRegistration" }
+    },
+    "series": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/seriesRegistration" }
+    },
+    "id_counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["universe", "series", "novel"],
+      "properties": {
+        "universe": { "type": "integer", "minimum": 0 },
+        "series": { "type": "integer", "minimum": 0 },
+        "novel": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "novels",
+        "universes",
+        "series",
+        "schemas",
+        "templates",
+        "skills",
+        "generated"
+      ],
+      "properties": {
+        "novels": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "universes": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "series": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "schemas": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "templates": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "skills": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" },
+        "generated": { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/relativePath" }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_before_commit",
+        "required_before_publish",
+        "block_publish_on_error"
+      ],
+      "properties": {
+        "required_before_commit": { "type": "boolean" },
+        "required_before_publish": { "type": "boolean" },
+        "block_publish_on_error": { "type": "boolean", "const": true }
+      }
+    },
+    "sharing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default_posture", "profiles"],
+      "properties": {
+        "default_posture": { "type": "string", "enum": ["private", "public"] },
+        "profiles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "novelRegistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "path", "status"],
+      "properties": {
+        "id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+        },
+        "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "path": {
+          "type": "string",
+          "pattern": "^novels/NOVEL-[0-9]{4}-[a-z0-9-]+$"
+        },
+        "status": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelStatus"
+        }
+      }
+    },
+    "universeRegistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "path", "version"],
+      "properties": {
+        "id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/universeId"
+        },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "path": {
+          "type": "string",
+          "pattern": "^universes/UNIV-[0-9]{4}-[a-z0-9-]+$"
+        },
+        "version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        }
+      }
+    },
+    "seriesRegistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "path", "novel_ids"],
+      "properties": {
+        "id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/seriesId"
+        },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "path": {
+          "type": "string",
+          "pattern": "^workspace/series/SERIES-[0-9]{4}-[a-z0-9-]+\\.yaml$"
+        },
+        "novel_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+          }
+        }
+      }
+    }
+  }
+}
+

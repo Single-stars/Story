@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/common.schema.json",
+  "title": "Story OS common definitions",
+  "$defs": {
+    "semanticVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "workspaceId": {
+      "type": "string",
+      "pattern": "^WORKSPACE-[0-9]{4}$"
+    },
+    "universeId": {
+      "type": "string",
+      "pattern": "^UNIV-[0-9]{4}$"
+    },
+    "seriesId": {
+      "type": "string",
+      "pattern": "^SERIES-[0-9]{4}$"
+    },
+    "novelId": {
+      "type": "string",
+      "pattern": "^NOVEL-[0-9]{4}$"
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._/-]+$"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["internal", "editor", "reader", "public"]
+    },
+    "novelStatus": {
+      "type": "string",
+      "enum": [
+        "idea",
+        "planning",
+        "drafting",
+        "revision",
+        "paused",
+        "complete",
+        "archived"
+      ]
+    },
+    "canonStatus": {
+      "type": "string",
+      "enum": [
+        "idea",
+        "proposed",
+        "canon",
+        "rejected",
+        "deprecated",
+        "retconned"
+      ]
+    }
+  }
+}
+

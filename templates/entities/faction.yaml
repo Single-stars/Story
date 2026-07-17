@@ -1,0 +1,22 @@
+# Story OS 阵营实体模板。复制到目标小说 canon/factions/ 后替换占位值。
+schema_version: "0.1.0"
+id: FACTION-0001
+entity_type: faction
+owner:
+  novel_id: NOVEL-0001
+status: proposed # 只有作者批准后才能改为 canon。
+visibility: internal
+name: "请填写阵营名称"
+summary: "请说明阵营的公开身份、真实诉求和故事压力"
+tags: []
+source_refs: []
+supersedes: null
+superseded_by: null
+
+goal: "请填写阵营当前可观察、可被阻挠的目标"
+methods:
+  - "请填写阵营惯用的行动方式"
+resources:
+  - "请填写阵营可实际调动的人力、制度、物资或信息"
+constraints:
+  - "请填写阵营不能越过的边界或行动代价"

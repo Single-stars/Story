@@ -1,0 +1,45 @@
+schema_version: 0.1.0
+novel_id: NOVEL-0002
+title: 六百里夜驿
+slug: six-hundred-li-night-relay
+status: planning
+language: zh-CN
+genre:
+  primary: 请填写主要类型
+  secondary: []
+  target_readers: 请填写目标读者、阅读偏好与年龄段等必要信息
+  promises:
+    - 请填写读者在本书中应稳定获得的核心体验
+  content_notes: []
+premise:
+  status: proposed
+  logline: 请填写一句话故事 premise：主角、目标、阻力与高风险后果
+  theme_question: 请填写故事持续追问、但不预先替读者回答的主题问题
+  core_conflict: 请填写外部冲突、内部冲突及二者如何互相加压
+structure:
+  lenses:
+    - snowflake
+    - want-need-wound-lie
+    - scene-sequel
+    - story-grid-five-commandments
+  intended_length_words: 100000
+  volumes: 1
+dependencies:
+  universe_refs: []
+  series_id: null
+current_focus:
+  volume: 1
+  chapter: 1
+  scene_id: null
+  note: 项目初始化：尚未开始正式章节写作
+paths:
+  canon: canon
+  narrative: narrative
+  manuscript: manuscript
+  research: research
+  decisions: decisions
+  feedback: feedback
+  reports: reports
+sharing:
+  default_profile: internal
+  allow_offline_reader: false

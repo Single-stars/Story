@@ -1,0 +1,19 @@
+# Story OS 情节线模板。复制到目标小说 narrative/threads/ 后替换占位值。
+schema_version: "0.1.0"
+id: THREAD-0001
+entity_type: thread
+owner:
+  novel_id: NOVEL-0001
+status: proposed
+visibility: internal
+name: "请填写情节线名称"
+summary: "请概括起因、升级压力和预期改变，不要只列事件顺序"
+tags: []
+
+# main | subplot | character | mystery | relationship
+thread_type: main
+dramatic_question: "请填写读者持续追踪、最终能得到具体答案的问题"
+scene_ids: []
+event_ids: []
+# open | escalating | resolved | abandoned
+resolution_state: open

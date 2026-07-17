@@ -1,0 +1,45 @@
+# Story OS 关系模板（对应 schemas/canon-entity.schema.json 的 relationship 定义）
+# 一份文件记录“from -> to”在一个有效事件区间内的关系状态；反向关系必须另建 REL-*，不能假设对称。
+
+schema_version: "0.1.0"
+id: REL-0001 # 永久关系状态 ID；关系发生重大阶段变化时关闭本区间，再创建新的 REL-*。
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0001 # 若属于共享世界，可改用 universe_id: UNIV-0001；二者只能保留一个。
+status: proposed # AI/模板默认 proposed；仅作者批准后才能改为 canon。
+visibility: internal
+name: 人物甲对人物乙的关系
+summary: >-
+  说明这段有方向的关系目前如何影响双方行动，并点明本阶段相较上一阶段发生了什么变化。
+tags:
+  - relationship
+
+# 可引用研究、决策或正文位置；不要把来源说明复制成另一份正式事实。
+source_refs: []
+supersedes: null # 若本记录替代旧关系状态，填写旧 REL-*；否则保留 null。
+superseded_by: null # 创建后继关系状态时再填写；不要预填不存在的 ID。
+
+from_character_id: CHAR-0001 # 关系感受、义务与筹码的持有方。
+to_character_id: CHAR-0002 # 关系所指向的人；反向状态另建记录。
+
+# 0 表示当前维度几乎不存在，1 表示当前维度极强；数值不是道德评分。
+# 秘密、误解和权力结构无法只靠数值表达，必须在 private_reality 中写清。
+dimensions:
+  trust: 0.50
+  affection: 0.50
+  fear: 0.00
+  obligation: 0.25
+  leverage: 0.00
+
+public_label: 两人对外公开使用的关系称谓
+private_reality: >-
+  写清真实信任/情感、未公开义务、秘密、误解、权力差和可被利用的筹码；
+  同时说明这些因素怎样影响 from_character_id 对 to_character_id 的下一步行动。
+
+# 有效区间使用世界内事件 ID，不使用章节号；场景重排不应改变关系生效时间。
+valid_from_event_id: EVT-0001
+valid_to_event_id: null # 关系仍有效时保留 null；结束时填写造成区间终止的 EVT-*。
+
+# 至少一个事件；只列真正造成当前关系状态的事件，不要列仅仅同场出现的事件。
+caused_by_event_ids:
+  - EVT-0001

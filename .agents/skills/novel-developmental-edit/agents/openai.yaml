@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 结构编辑"
+  short_description: "从宏观到章节诊断结构问题并给出有证据的修订方案与顺序"
+  default_prompt: "Use $novel-developmental-edit to audit an explicitly scoped novel from macro structure to chapters and propose evidence-based revision options without editing prose or Canon."

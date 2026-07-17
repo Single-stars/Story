@@ -1,0 +1,140 @@
+# Copy this file into one novel's narrative directory before filling it.
+# owner.novel_id is mandatory; do not infer it from the file path or active novel.
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: outline
+
+owner:
+  novel_id: null
+
+status: proposed
+visibility: internal
+title: ""
+
+scope:
+  level: novel
+  volume: null
+  act: null
+  chapter: null
+  summary: ""
+
+dependencies:
+  series_id: null
+  universe_refs: []
+  # - universe_id: UNIV-0001
+  #   version: "0.1.0"
+
+source_refs:
+  premise_refs: []
+  canon_ids: []
+  decision_ids: []
+  research_refs: []
+
+objective:
+  story_goal: ""
+  reader_promise: ""
+  theme_question: ""
+  core_conflict: ""
+  ending_cost: ""
+  success_criteria: []
+
+structure:
+  lenses: []
+  opening_promise: ""
+  first_major_turn: ""
+  midpoint_change: ""
+  lowest_point: ""
+  climax_choice: ""
+  resolution: ""
+
+# Each beat must state why it happens, what changes, and what pressure causes the next beat.
+causal_spine:
+  - beat_key: beat-001
+    narrative_position: ""
+    trigger:
+      source_ids: []
+      pressure: ""
+    character_drive:
+      character_ids: []
+      goal: ""
+      motivation: ""
+    opposition: ""
+    choice_or_action: ""
+    turning_point: ""
+    consequence:
+      state_change: ""
+      fact_ids: []
+      event_ids: []
+    next_pressure: ""
+    scene_ids: []
+
+character_arcs:
+  - character_id: null
+    starting_state: ""
+    want: ""
+    need: ""
+    wound_or_lie_pressure: ""
+    irreversible_choice: ""
+    ending_state: ""
+    beat_keys: []
+
+thread_plan:
+  - thread_id: null
+    dramatic_question: ""
+    opening_state: ""
+    escalation_beat_keys: []
+    resolution_beat_key: null
+    intended_resolution: ""
+
+foreshadowing_plan:
+  - foreshadowing_id: null
+    plant_beat_key: null
+    reader_sees: ""
+    true_meaning: ""
+    advance_beat_keys: []
+    payoff_beat_key: null
+
+chapter_plan:
+  - volume: 1
+    chapter: 1
+    title: ""
+    entry_state: ""
+    causal_trigger: ""
+    purpose: ""
+    conflict: ""
+    decisive_change: ""
+    exit_hook: ""
+    scene_ids: []
+    advances:
+      thread_ids: []
+      character_ids: []
+      relationship_ids: []
+      foreshadowing_ids: []
+
+risks:
+  continuity: []
+  pacing: []
+  genre_promise: []
+  dependency: []
+
+open_questions:
+  - question: ""
+    why_it_matters: ""
+    blocking: false
+    owner: author
+    decision_needed_by: ""
+
+approval:
+  required_approver: author
+  status: pending
+  decision_record_id: null
+  decided_at: null
+  notes: ""
+
+validation:
+  checks:
+    - all causal beats have a trigger, change, and next pressure
+    - referenced IDs belong to owner.novel_id or an explicit dependency
+    - character choices follow established goals, values, wounds, or pressure
+    - climax resolves the core causal chain and charges the stated ending cost
+  evidence: []

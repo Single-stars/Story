@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story OS 小说大纲"
+  short_description: "把 premise 展开为可审查的因果大纲、人物弧与章节计划"
+  default_prompt: "Use $novel-outline to expand an approved premise into an author-gated causal outline proposal for an explicitly selected novel."

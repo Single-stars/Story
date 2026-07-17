@@ -1,0 +1,20 @@
+# Story OS 关键物品模板。复制到目标小说 canon/items/ 后替换占位值。
+schema_version: "0.1.0"
+id: ITEM-0001
+entity_type: item
+owner:
+  novel_id: NOVEL-0001
+status: proposed # 只有作者批准后才能改为 canon。
+visibility: internal
+name: "请填写物品名称"
+summary: "请说明物品外观、来源线索及其当前叙事作用"
+tags: []
+source_refs: []
+supersedes: null
+superseded_by: null
+
+# holder 与 location 可有一个为 null，但状态变化后必须由事件 item_changes 承接。
+current_holder_id: null
+current_location_id: null
+state: "请填写物品当前完整性、可用性或异常状态"
+significance: "请填写人物为何争夺、保护、隐藏或误解该物品"

@@ -1,0 +1,114 @@
+# Create one note per work session. Always set novel_id explicitly.
+# Cross-novel context remains forbidden unless every dependency is listed below.
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: session_note
+
+workspace_id: WORKSPACE-0001
+novel_id: null
+
+session:
+  session_id: ""
+  task_type: ""
+  started_at: null
+  ended_at: null
+  actor: ""
+
+isolation:
+  allowed_novel_ids: []
+  allowed_universe_refs: []
+  # - universe_id: UNIV-0001
+  #   version: "0.1.0"
+  allowed_series_id: null
+  cross_novel_access: false
+  explicit_cross_novel_refs: []
+
+scope:
+  goal: ""
+  success_criteria: []
+  allowed_paths: []
+  allowed_ids: []
+  prohibited_actions: []
+
+context_loaded:
+  manifest_paths: []
+  canon_ids: []
+  narrative_ids: []
+  manuscript_paths: []
+  decision_ids: []
+  research_refs: []
+
+starting_state:
+  novel_status: null
+  current_focus:
+    volume: null
+    chapter: null
+    scene_id: null
+    note: ""
+  known_warnings: []
+  validation_before:
+    commands: []
+    results: []
+    evidence: []
+
+work_completed:
+  summary: ""
+  files_changed: []
+  outputs: []
+  stopped_because: ""
+
+author_decisions:
+  - decision_id: null
+    summary: ""
+    rationale: ""
+    affected_ids: []
+    confirmed_at: null
+
+proposals_not_approved:
+  - summary: ""
+    affected_ids: []
+    change_request_id: null
+    next_author_action: ""
+
+extracted_state_proposals:
+  fact_ids: []
+  knowledge_ids: []
+  relationship_ids: []
+  item_ids: []
+  event_ids: []
+  foreshadowing_ids: []
+  notes: []
+
+unresolved_questions:
+  - question: ""
+    why_it_matters: ""
+    blocking: false
+    owner: author
+    next_review: ""
+
+stop_point:
+  exact_location: ""
+  last_completed_step: ""
+  partial_work: ""
+  resume_from: ""
+  do_not_assume: []
+
+next_steps:
+  - order: 1
+    action: ""
+    owner: ""
+    dependencies: []
+    expected_output: ""
+    validation_needed: []
+
+validation_after:
+  commands: []
+  results: []
+  evidence: []
+  passed: false
+
+handoff:
+  minimum_context_for_next_session: []
+  warnings: []
+  safe_to_commit: false
+  commit_reason_if_false: ""

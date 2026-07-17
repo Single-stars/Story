@@ -1,0 +1,4 @@
+interface:
+  display_name: "小说章节写作"
+  short_description: "按场景契约完成章节草稿、自审、状态提取与作者门禁验证"
+  default_prompt: "Use $novel-chapter to draft and review one scoped chapter from approved scene contracts without changing Canon."

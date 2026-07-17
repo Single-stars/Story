@@ -1,0 +1,130 @@
+# A change request is a proposal. It cannot modify Canon until author approval.
+# For a shared-universe request, replace owner.novel_id with owner.universe_id.
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: canon_change_request
+
+id: null
+owner:
+  novel_id: null
+
+status: proposed
+visibility: internal
+title: ""
+summary: ""
+reason: ""
+requested_by: ""
+requested_at: null
+
+scope:
+  change_type: modify
+  # Allowed intent examples: add, modify, deprecate, retcon.
+  affected_projects:
+    novel_ids: []
+    universe_ids: []
+    series_ids: []
+  cross_project_reason: null
+
+current_state:
+  entity_ids: []
+  canon_status: canon
+  statement: ""
+  source_refs: []
+
+proposed_state:
+  proposal_status: proposed
+  requested_final_status: canon
+  entity_ids: []
+  statement: ""
+  supersedes_ids: []
+  replacement_ids: []
+  assumptions: []
+
+alternatives:
+  - option: keep_current
+    description: ""
+    benefits: []
+    costs: []
+    rejected_reason: null
+  - option: ""
+    description: ""
+    benefits: []
+    costs: []
+    rejected_reason: null
+
+impact:
+  canon_ids: []
+  event_ids: []
+  scene_ids: []
+  thread_ids: []
+  foreshadowing_ids: []
+  character_knowledge_ids: []
+  relationship_ids: []
+  item_ids: []
+  manuscript_paths: []
+  decision_ids: []
+  timeline:
+    affected: false
+    analysis: ""
+  knowledge:
+    affected: false
+    analysis: ""
+  relationships:
+    affected: false
+    analysis: ""
+  foreshadowing:
+    affected: false
+    analysis: ""
+  sharing:
+    affected: false
+    highest_visibility_reviewed: internal
+    analysis: ""
+
+migration:
+  prerequisites: []
+  steps:
+    - order: 1
+      action: ""
+      target_paths: []
+      expected_result: ""
+  reference_updates: []
+  compatibility_notes: []
+
+validation:
+  required_checks:
+    - YAML and Markdown parse successfully
+    - IDs, ownership, and references remain valid
+    - Canon lifecycle transition is legal
+    - timeline, knowledge, relationship, item, and foreshadowing impacts are reviewed
+    - visibility builds contain no unauthorized data
+  commands: []
+  expected_results: []
+  evidence: []
+
+rollback:
+  triggers: []
+  restore_refs: []
+  steps:
+    - order: 1
+      action: ""
+      expected_result: ""
+  validation_commands: []
+  evidence: []
+
+approval:
+  required_approver: author
+  status: pending
+  decision: null
+  decision_record_id: null
+  decided_by: null
+  decided_at: null
+  rationale: ""
+
+application:
+  may_apply_before_approval: false
+  applied: false
+  applied_by: null
+  applied_at: null
+  source_commit: null
+  resulting_entity_ids: []
+  verification_evidence: []

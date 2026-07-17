@@ -1,0 +1,28 @@
+# Story OS 研究来源记录。复制到目标小说 research/ 后使用，不得直接写入 Canon。
+schema_version: "0.1.0"
+record_type: research_note
+owner:
+  novel_id: NOVEL-0001
+status: research
+visibility: internal
+topic: "请填写研究主题"
+research_question: "请填写本次需要回答、可限定范围的问题"
+
+sources:
+  - title: "请填写来源标题"
+    author_or_organization: "请填写作者或发布机构"
+    url_or_citation: "请填写 URL、书目信息或访谈记录路径"
+    published_at: null
+    accessed_at: "2026-07-16"
+    source_quality: secondary # primary | secondary | tertiary | anecdotal
+    confidence: 0.50
+    relevant_excerpt_or_summary: "请填写与问题直接相关的证据摘要"
+
+findings:
+  - classification: unresolved # verified_fact | disputed_fact | assumption | invention | unresolved
+    claim: "请填写研究所得陈述"
+    supporting_source_indexes: [0]
+applicability: "请说明结论适用于哪个时代、地区、群体或技术条件"
+conflicts: []
+unresolved_questions: []
+canon_effect: proposal_only # 即使核实，也必须另走作者审批与 Canon 变更流程。
