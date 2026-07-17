@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "雾里的白天"
 volume: 1
 chapter: 6
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良从融合后的昏沉里醒来，第一次面对真实界的荒芜与时间差，也第一次意识到自己回不去梦境了。"
 content_version: "0.1.0"
 word_count: 2400
@@ -130,4 +130,3 @@ next_chapter_id: CHAPTER-0007
 荒草、废墟、黑雾、风里偶尔闪一下的火光。
 
 他忽然意识到，自己从那个病房醒来的这一刻开始，人生已经彻底换了一条轨。
-

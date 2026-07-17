@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "黑雾里有脚步声"
 volume: 1
 chapter: 1
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良在黑雾梦境里第一次听见脚步声，白天回到校园后，那份不安仍然跟着他。"
 content_version: "0.1.0"
 word_count: 2100

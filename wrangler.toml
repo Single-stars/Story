@@ -1,0 +1,8 @@
+name = "story-reader"
+compatibility_date = "2026-07-17"
+
+assets = { directory = ".generated/mobile-reader", not_found_handling = "single-page-application" }
+
+routes = [
+  { pattern = "208849.xyz/*", zone_name = "208849.xyz" }
+]

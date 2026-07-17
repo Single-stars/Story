@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "她为什么不信"
 volume: 1
 chapter: 2
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良想把黑雾梦境告诉南宫芸儿，却先被她半信半疑地挡了回去，关系也因此多出了一层试探。"
 content_version: "0.1.0"
 word_count: 2000

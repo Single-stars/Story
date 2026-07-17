@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "别急着相信"
 volume: 1
 chapter: 8
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良接触聚落规则、试图询问信息，却发现普通幸存者只愿先讲生存，真相必须靠他自己拼出来。"
 content_version: "0.1.0"
 word_count: 2200
@@ -126,4 +126,3 @@ next_chapter_id: CHAPTER-0009
 温良不在乎。
 
 他现在更在乎的是，自己是不是正在摸到一扇真正的门。
-

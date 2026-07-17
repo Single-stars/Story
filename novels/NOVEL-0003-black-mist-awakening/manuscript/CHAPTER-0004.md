@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "忘掉的童年"
 volume: 1
 chapter: 4
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "南宫芸儿开始逼近那段被温良忘掉的共同童年，而“家”这个词让温良第一次明显感到记忆空白。"
 content_version: "0.1.0"
 word_count: 1900
@@ -188,4 +188,3 @@ next_chapter_id: CHAPTER-0005
 他忽然很想知道，自己到底忘掉了什么。
 
 而比这更糟的是，他开始意识到，南宫芸儿知道的，可能比他想象中多得多。
-

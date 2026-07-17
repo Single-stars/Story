@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "回到梦里"
 volume: 1
 chapter: 11
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良借组织和设施把自己重新送回梦境，在真实与虚假的拉扯里，看见两边正在相互重叠。"
 content_version: "0.1.0"
 word_count: 2100
@@ -116,4 +116,3 @@ next_chapter_id: CHAPTER-0012
 好像他真的回来了。
 
 又好像，某种更大的东西，才刚刚开始。
-

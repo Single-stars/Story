@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "最后一场梦"
 volume: 1
 chapter: 5
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "黑雾梦境最后一次袭来，温良在脚步声与真实触感之间做出靠近的选择，灵魂与真实界肉身终于合并。"
 content_version: "0.1.0"
 word_count: 2600
@@ -144,4 +144,3 @@ next_chapter_id: CHAPTER-0006
 也不是废墟。
 
 而是一间陌生的病房。
-

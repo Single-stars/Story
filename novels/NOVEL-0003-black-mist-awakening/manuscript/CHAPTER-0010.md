@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "找回通道"
 volume: 1
 chapter: 10
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良顺着井口和聚落里的旧痕迹找到返梦线索，意识到通道背后存在不止一种权限结构。"
 content_version: "0.1.0"
 word_count: 2100
@@ -104,4 +104,3 @@ next_chapter_id: CHAPTER-0011
 温良盯着那张证件，没说话。
 
 他知道，这一下，后面的门真的要开了。
-

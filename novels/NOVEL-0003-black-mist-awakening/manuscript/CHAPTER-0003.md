@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "情绪会不会骗人"
 volume: 1
 chapter: 3
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良在校园里的一个小异常上第一次试出自己的下意识反应会改变结果，也开始怀疑梦境权限和现实之间是否有联动。"
 content_version: "0.1.0"
 word_count: 2200

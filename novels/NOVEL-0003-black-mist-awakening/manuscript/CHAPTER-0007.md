@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "火光聚落"
 volume: 1
 chapter: 7
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良循着火光接近普通幸存者聚落，第一次确认真实界并非空无一人，也第一次学会先观察再接触。"
 content_version: "0.1.0"
 word_count: 2300
@@ -108,4 +108,3 @@ next_chapter_id: CHAPTER-0008
 这里的人并非什么都不知道，他们只是习惯了不问。
 
 而他要找的答案，不会从这间屋子里直接掉下来。
-

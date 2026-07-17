@@ -6,8 +6,8 @@ novel_id: NOVEL-0003
 title: "权限的影子"
 volume: 1
 chapter: 9
-status: draft
-visibility: internal
+status: revised
+visibility: reader
 summary: "温良在真实界第一次明确驱雾和显形的能力边界，也确认这不是无脑战斗力，而是带条件的现实操作。"
 content_version: "0.1.0"
 word_count: 2200
@@ -120,4 +120,3 @@ next_chapter_id: CHAPTER-0010
 他要找。
 
 而真实界给他的回应，也终于开始像回应了。
-
