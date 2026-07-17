@@ -1,0 +1,318 @@
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: creative_intake
+
+workspace_id: WORKSPACE-0001
+novel_id: NOVEL-0003
+
+intake:
+  intake_id: "NOVEL-0003-INTAKE-01"
+  status: draft
+  started_at: "2026-07-17T15:40:00+08:00"
+  updated_at: "2026-07-17T15:40:00+08:00"
+  actor: author
+  facilitator: ai
+
+author_context:
+  experience_level: beginner
+  working_style: guided_questions
+  time_budget:
+    hours_per_week: null
+    preferred_session_length_minutes: null
+    update_cadence: "按阶段推进，先结构后正文"
+  decision_style:
+    wants_recommendations: true
+    wants_options_before_deciding: true
+    max_open_questions_per_turn: 1
+  boundaries:
+    content_to_avoid: []
+    themes_to_handle_carefully:
+      - 失忆与童年创伤
+      - 双界真假与认知错位
+      - 朋友关系中的背叛与保护
+    hard_requirements:
+      - 第三人称贴近温良
+      - 校园前期渐进，不直接深揭真相
+      - 黑雾是核心意象，不改回白雾
+      - 第一卷结尾必须落到医院醒来
+
+inspiration:
+  raw_notes: "温良原本优秀，因十年间持续梦境逐渐虚弱；最后一次梦中与真实界肉身融合后留在真实界；梦里强烈情绪会让下意识反应成真；真实界黑雾、火光聚落、普通幸存者、后来才显现的组织；女主南宫芸儿与温良有共同童年但温良遗忘；想要轻松一点的第三人称校园开篇，逐步收拢到真实界冒险，最后回到梦境并在医院醒来。"
+  must_keep_elements:
+    images:
+      - 黑雾
+      - 脚步声
+      - 火光聚落
+      - 医院醒来
+    emotions:
+      - 轻松日常
+      - 不安与悬疑
+      - 失而复得的牵引
+    scenes:
+      - 校园碎片化日常
+      - 梦境间断出现异常
+      - 真实界黑雾中看到火光
+      - 警惕接触聚落居民
+      - 回到梦境后在医院醒来
+    lines_or_titles:
+      - "世人沉睡于美梦，唯我独醒于人间"
+    character_seeds:
+      - 温良
+      - 南宫芸儿
+    world_seeds:
+      - 双界重叠
+      - 黑雾梦境
+      - 真实界废墟与原始地形
+      - 权限体系
+  unknowns:
+    - question: "温良的权限成长到底是怎样从无到有、再从弱到强的"
+      why_it_matters: "决定能力体系是否稳定、是否有趣、是否能支撑长期剧情"
+    - question: "真实界普通聚落居民与后期组织之间的衔接方式"
+      why_it_matters: "决定第一卷后半段信息披露与主线推进的可信度"
+
+project_shape:
+  intended_form: standalone
+  series_intent: ""
+  shared_universe_intent: ""
+  target_length:
+    words: 300000
+    chapters: null
+    volumes: 1
+  publishing_goal: "长篇连载感强，但在 Story OS 中按单本超长小说管理"
+
+reader_experience:
+  target_readers: 喜欢校园感开篇、轻松对白、黑雾悬疑、双世界反转和长线成长的中文网文读者
+  genre_primary: 都市奇幻悬疑
+  genre_secondary:
+    - 校园成长
+    - 双界解谜
+    - 轻冒险
+  genre_promises:
+    - 开局有钩子但不爆设定
+    - 真相逐层推进
+    - 能力有规则、有边界、有代价
+    - 情绪与关系推动剧情
+  emotional_promises:
+    - 从轻松到不安再到确认真相的落差
+    - 失去与找回的牵引
+    - 重要关系的误解、相信与回收
+  pacing_preference: 前期慢热、信息渐进、章末有继续阅读动力
+  content_notes: []
+  anti_promises:
+    - "不要一上来把双界真相讲完"
+    - "不要把能力写成纯粹无脑战斗外挂"
+    - "不要把南宫芸儿写成只负责提供信息的工具人"
+    - "不要把真实界聚落写成一问就百科全书式讲解"
+
+reference_works:
+  positive:
+    - title: 你好世界
+      creator: 山田尚子
+      why_it_matters: "可借鉴认知错位、现实与虚假层的渐进揭示，以及情绪推动真相的方式"
+      elements_to_learn_from:
+        - 真假层关系的揭露节奏
+        - 情感和认知变化先于解释
+        - 规则感比战斗感更重要
+  negative:
+    - title: 无
+      creator: ""
+      why_to_avoid: ""
+      elements_to_avoid: []
+  benchmark_research_needed:
+    - question: "校园开篇的章末钩子与章节平均字数应如何匹配网文阅读习惯"
+      source_type_needed: "写作方法论/平台阅读体验"
+      priority: medium
+
+premise_workspace:
+  theme_questions:
+    - "当真实世界比梦更像噩梦时，人到底该相信哪一层"
+  core_conflict_options:
+    - "温良想回梦境拯救重要的人，但真实界正在逼他接受新的生存法则"
+  logline_candidates:
+    - id: PREMISE-A
+      status: proposed
+      logline: "高三生温良十年间被黑雾梦境削弱，直到灵魂与真实界肉身融合后被迫留在荒芜的地球；他要先活下去，再想办法回到梦境拯救重要之人，而每一次情绪波动都可能让梦境倾向于把想象变成现实。"
+      strengths:
+        - "主角目标清晰"
+        - "双界冲突直接"
+        - "能力和情绪联动，适合长期展开"
+      risks:
+        - "如果能力边界不清，会失去张力"
+        - "如果前期太快揭底，会削弱校园段吸引力"
+      author_response: undecided
+  selected_premise_id: null
+  author_selection_rationale: ""
+
+character_workspace:
+  protagonist_candidates:
+    - temporary_name: 温良
+      role: protagonist
+      external_want: "回到梦境，找到并拯救重要的人，恢复被夺走的正常生活"
+      internal_need: "接受自己不是被动受害者，而是能主动选择、承担代价的人"
+      wound: "十年持续做梦带来的虚弱、失去感和自我放弃"
+      lie: "自己已经普通、没家、没资格再去争取什么"
+      values:
+        - 责任
+        - 克制
+        - 保护重要的人
+      fears:
+        - 再次失去亲近的人
+        - 自己的选择带来不可逆后果
+        - 被真相证明一切都无意义
+      capabilities:
+        - 天生灵魂坚韧
+        - 现实感知细腻
+        - 压力下会出现不稳定的梦境反应
+      limits_and_costs:
+        - "开局没有稳定权限"
+        - "梦中情绪成真并不精确，代价高，且会随着状态波动"
+        - "真实界能力必须后续逐步形成，不能开局无敌"
+      voice_fingerprint:
+        diction: "偏日常、简短、带一点自嘲和麻木感"
+        syntax: "以贴近第三人称的自然描述为主，少做说教式解释"
+        perception_filter: "先观察异常，再判断异常是否值得相信"
+        avoided_topics:
+          - "空泛宣言"
+          - "模板式热血台词"
+          - "一眼看穿世界真相的神棍感"
+      agency_test: "在情绪和行动上都要做出选择，不能只是被事件拖着走"
+  opposition_candidates:
+    - temporary_name: 黑雾与现实法则
+      pressure_function: "持续压缩温良的生存空间与认知余地"
+      external_power: "雾、荒芜、时间差和信息断裂"
+      moral_position: "并非邪恶人格，而是无情规则"
+      escalation_path: "从梦中异常到真实界生存压力再到更大组织与权限冲突"
+  relationship_map:
+    - from: 温良
+      to: 南宫芸儿
+      direction: 双向
+      visible_relationship: "高中同学，表面熟，实际有未明说的童年连接"
+      hidden_truth: "两人共同被同一人抚养过，温良遗忘了大部分"
+      tension: "她先不信他关于真实界的说法，后来逐步相信；他一开始相信，后续又在正常生活里怀疑自己"
+      expected_arc: "误解 -> 观察 -> 相信 -> 一起寻找真相"
+  secrets_and_knowledge:
+    - holder: 温良
+      secret_or_belief: "自己以前很优秀，但十年做梦后以为自己只剩平庸"
+      who_knows: []
+      who_misunderstands:
+        - 南宫芸儿
+      reveal_timing: "前期逐渐揭示"
+    - holder: 南宫芸儿
+      secret_or_belief: "她对童年共同抚养和温良的过去记得比他更多"
+      who_knows: []
+      who_misunderstands:
+        - 温良
+      reveal_timing: "中前期"
+
+world_workspace:
+  setting_summary: "双界重叠共存：现代校园的梦境世界与被黑雾覆盖、废墟化的真实界并行；梦境前期只以黑雾、脚步声和小异常间断渗出。"
+  rules:
+    - rule: "梦境具有意识影响现实的倾向"
+      scope: "梦境侧"
+      limitation: "温良开局没有稳定权限，强烈情绪只会产生不稳定、局部、代价高的反应"
+      cost: "精神与体力波动，且未必可控"
+      exception: "后期权限成长后可在有限边界内更稳定地调用"
+      story_use: "制造钩子与误判，给成长和试探留下空间"
+    - rule: "真实界能力与梦境权限分开"
+      scope: "真实界侧"
+      limitation: "驱雾、显形、稳定空间、连接真实信息等能力只能逐步形成，不能一开始全开"
+      cost: "与灵魂强度、认知负担和现实稳定性有关"
+      exception: "后续待定"
+      story_use: "把能力写成规则和权限，不写成硬砸输出"
+    - rule: "黑雾不是装饰，而是世界遮蔽层"
+      scope: "双界"
+      limitation: "不能直接一次性驱散全部真相"
+      cost: "驱散、显形和连接信息都会暴露代价"
+      exception: "待后续 proposal"
+      story_use: "作为压迫、探索和真相揭示的统一媒介"
+  institutions: []
+  resources_and_constraints:
+    - "真实界火光聚落只知道生存，不知道完整真相"
+    - "后期组织与更高权限层才会显现"
+  research_questions:
+    - question: "章节节奏与每章字数如何更贴近中文网文阅读习惯"
+      impact_if_wrong: "会影响留存、钩子和长篇推进效率"
+      priority: medium
+
+structure_workspace:
+  macro_structure_options:
+    - id: STRUCTURE-A
+      lens: "校园慢热 -> 梦境异常 -> 真实界探索 -> 回梦境 -> 医院醒来"
+      reader_experience: "先让读者以为是校园轻悬疑，再逐步把双界真相和失落感压上来"
+      major_turns:
+        - "黑雾梦境中第一次出现脚步声"
+        - "与真实界肉身融合，永久留在真实界"
+        - "黑雾中看到火光聚落并接触普通幸存者"
+        - "通过组织或诡异方法回到梦境"
+        - "医院醒来，第一卷闭环"
+      strengths:
+        - "渐进式强"
+        - "真相层层回收"
+        - "适合长期连载"
+      risks:
+        - "前期节奏如果不稳会显慢"
+        - "能力解释必须控制得很严"
+  selected_structure_id: null
+  causal_spine: []
+  act_or_volume_notes:
+    - "第一卷建议把校园、真实界、返梦和医院醒来都放进去，形成完整闭环"
+  chapter_architecture_notes:
+    - "前几章先稳定人物关系与钩子，再切梦境异常，不要直接讲设定"
+    - "每章都要有现实推进和章末拉力"
+  foreshadowing_strategy:
+    planted:
+      - "黑雾"
+      - "脚步声"
+      - "温良的失忆与不对劲"
+    advanced: []
+    payoff_candidates:
+      - "真实界肉身"
+      - "南宫芸儿与童年"
+      - "医院醒来"
+
+quality_gates:
+  genre_promise_checked: false
+  causal_chain_checked: false
+  protagonist_agency_checked: false
+  cost_and_consequence_checked: false
+  opposition_escalation_checked: false
+  suspense_surprise_curiosity_checked: false
+  emotional_curve_checked: false
+  fair_foreshadowing_checked: false
+  world_rule_limits_checked: false
+  pov_and_voice_checked: false
+  fresh_reader_plan_checked: false
+
+conversation_state:
+  confirmed:
+    - "单本超长小说"
+    - "男主温良"
+    - "女主南宫芸儿"
+    - "黑雾为核心意象"
+    - "第一卷结尾为医院醒来"
+  ai_inferences:
+    - inference: "第一卷应采用校园慢热开局并逐步切入真实界"
+      confidence: medium
+      needs_author_confirmation: true
+  unresolved_questions:
+    - question: "第一卷章节总数要不要先锁成 12-16 章区间"
+      why_it_matters: "决定每章承载的事件密度与节奏分配"
+      blocking: false
+  next_best_question: "第一卷是否先按 12 章骨架推进"
+  facilitator_recommendation: "先锁第一卷章节区间，再进入逐章场景契约"
+
+author_decisions:
+  - decision_id: null
+    summary: "确认新小说按单本超长小说处理"
+    rationale: "便于持续创作和统一管理"
+    confirmed_at: "2026-07-17T15:38:00+08:00"
+
+handoff:
+  ready_to_register_novel: true
+  proposed_title: "雾醒时分"
+  proposed_slug: "black-mist-awakening"
+  creation_brief: "校园慢热、黑雾双界、真实界探索、返梦与医院醒来闭环"
+  next_workflow: novel-premise
+  do_not_assume:
+    - "权限体系已完全定稿"
+    - "所有人物已进入 Canon"

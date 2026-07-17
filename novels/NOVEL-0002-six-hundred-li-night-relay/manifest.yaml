@@ -2,20 +2,24 @@ schema_version: 0.1.0
 novel_id: NOVEL-0002
 title: 六百里夜驿
 slug: six-hundred-li-night-relay
-status: planning
+status: drafting
 language: zh-CN
 genre:
-  primary: 请填写主要类型
-  secondary: []
-  target_readers: 请填写目标读者、阅读偏好与年龄段等必要信息
+  primary: 东方历史幻想
+  secondary:
+    - 民俗志怪
+    - 规则怪谈
+    - 公路悬疑
+  target_readers: 喜欢中式民俗悬疑、规则代价、驿路冒险和强情节单元谜案的中文类型读者。
   promises:
-    - 请填写读者在本书中应稳定获得的核心体验
+    - 女驿卒七夜递送死者急件，每站以傩面规则解开一个具体困局。
+    - 每次破局都留下身体、记忆、关系或道德债。
   content_notes: []
 premise:
   status: proposed
-  logline: 请填写一句话故事 premise：主角、目标、阻力与高风险后果
-  theme_question: 请填写故事持续追问、但不预先替读者回答的主题问题
-  core_conflict: 请填写外部冲突、内部冲突及二者如何互相加压
+  logline: 一个冒用亡兄身份的女驿卒顾青禾，必须在七夜内送完一封由死去九年的父亲发出的六百里急递；每过一站，她都要戴上一张有禁令、有代价的傩面，直到发现自己才是被递送的活傩。
+  theme_question: 一个人的身份与责任，究竟由官册、亲缘和别人给的脚色决定，还是由她愿意公开承担的选择决定？
+  core_conflict: 顾青禾必须按时送递以避免驿站被遗忘，却逐渐发现急递正在把无名者的死亡债转移到她身上；她要在完成差事、救具体的人和保住自己的名字之间选择。
 structure:
   lenses:
     - snowflake
@@ -31,7 +35,7 @@ current_focus:
   volume: 1
   chapter: 1
   scene_id: null
-  note: 项目初始化：尚未开始正式章节写作
+  note: 示例前三章已作为 reader 试读稿进入 manuscript；正文事实仍待作者审查，不自动晋升 Canon。
 paths:
   canon: canon
   narrative: narrative

@@ -1,0 +1,210 @@
+# Use this template before registering a new novel when the author starts from
+# inspiration and needs guided development. Keep all entries as draft/proposed
+# until the author explicitly confirms them.
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: creative_intake
+
+workspace_id: WORKSPACE-0001
+novel_id: null
+
+intake:
+  intake_id: ""
+  status: draft
+  started_at: null
+  updated_at: null
+  actor: author
+  facilitator: ai
+
+author_context:
+  experience_level: beginner
+  working_style: "guided_questions"
+  time_budget:
+    hours_per_week: null
+    preferred_session_length_minutes: null
+    update_cadence: ""
+  decision_style:
+    wants_recommendations: true
+    wants_options_before_deciding: true
+    max_open_questions_per_turn: 1
+  boundaries:
+    content_to_avoid: []
+    themes_to_handle_carefully: []
+    hard_requirements: []
+
+inspiration:
+  raw_notes: ""
+  must_keep_elements:
+    images: []
+    emotions: []
+    scenes: []
+    lines_or_titles: []
+    character_seeds: []
+    world_seeds: []
+  unknowns:
+    - question: ""
+      why_it_matters: ""
+
+project_shape:
+  intended_form: undecided
+  # standalone | series | shared_universe | undecided
+  series_intent: ""
+  shared_universe_intent: ""
+  target_length:
+    words: null
+    chapters: null
+    volumes: null
+  publishing_goal: ""
+
+reader_experience:
+  target_readers: ""
+  genre_primary: ""
+  genre_secondary: []
+  genre_promises: []
+  emotional_promises: []
+  pacing_preference: ""
+  content_notes: []
+  anti_promises:
+    - "What the story should not make readers expect"
+
+reference_works:
+  positive:
+    - title: ""
+      creator: ""
+      why_it_matters: ""
+      elements_to_learn_from: []
+  negative:
+    - title: ""
+      creator: ""
+      why_to_avoid: ""
+      elements_to_avoid: []
+  benchmark_research_needed:
+    - question: ""
+      source_type_needed: ""
+      priority: medium
+
+premise_workspace:
+  theme_questions: []
+  core_conflict_options: []
+  logline_candidates:
+    - id: PREMISE-A
+      status: proposed
+      logline: ""
+      strengths: []
+      risks: []
+      author_response: undecided
+  selected_premise_id: null
+  author_selection_rationale: ""
+
+character_workspace:
+  protagonist_candidates:
+    - temporary_name: ""
+      role: protagonist
+      external_want: ""
+      internal_need: ""
+      wound: ""
+      lie: ""
+      values: []
+      fears: []
+      capabilities: []
+      limits_and_costs: []
+      voice_fingerprint:
+        diction: ""
+        syntax: ""
+        perception_filter: ""
+        avoided_topics: []
+      agency_test: ""
+  opposition_candidates:
+    - temporary_name: ""
+      pressure_function: ""
+      external_power: ""
+      moral_position: ""
+      escalation_path: ""
+  relationship_map:
+    - from: ""
+      to: ""
+      direction: ""
+      visible_relationship: ""
+      hidden_truth: ""
+      tension: ""
+      expected_arc: ""
+  secrets_and_knowledge:
+    - holder: ""
+      secret_or_belief: ""
+      who_knows: []
+      who_misunderstands: []
+      reveal_timing: ""
+
+world_workspace:
+  setting_summary: ""
+  rules:
+    - rule: ""
+      scope: ""
+      limitation: ""
+      cost: ""
+      exception: ""
+      story_use: ""
+  institutions: []
+  resources_and_constraints: []
+  research_questions:
+    - question: ""
+      impact_if_wrong: ""
+      priority: medium
+
+structure_workspace:
+  macro_structure_options:
+    - id: STRUCTURE-A
+      lens: ""
+      reader_experience: ""
+      major_turns: []
+      strengths: []
+      risks: []
+  selected_structure_id: null
+  causal_spine: []
+  act_or_volume_notes: []
+  chapter_architecture_notes: []
+  foreshadowing_strategy:
+    planted: []
+    advanced: []
+    payoff_candidates: []
+
+quality_gates:
+  genre_promise_checked: false
+  causal_chain_checked: false
+  protagonist_agency_checked: false
+  cost_and_consequence_checked: false
+  opposition_escalation_checked: false
+  suspense_surprise_curiosity_checked: false
+  emotional_curve_checked: false
+  fair_foreshadowing_checked: false
+  world_rule_limits_checked: false
+  pov_and_voice_checked: false
+  fresh_reader_plan_checked: false
+
+conversation_state:
+  confirmed:
+    - ""
+  ai_inferences:
+    - inference: ""
+      confidence: low
+      needs_author_confirmation: true
+  unresolved_questions:
+    - question: ""
+      why_it_matters: ""
+      blocking: false
+  next_best_question: ""
+  facilitator_recommendation: ""
+
+author_decisions:
+  - decision_id: null
+    summary: ""
+    rationale: ""
+    confirmed_at: null
+
+handoff:
+  ready_to_register_novel: false
+  proposed_title: ""
+  proposed_slug: ""
+  creation_brief: ""
+  next_workflow: novel-premise
+  do_not_assume: []

@@ -1,0 +1,44 @@
+schema_version: "0.1.0"
+id: CHAR-0001
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良
+summary: "高三生，原本优秀，却被十年黑雾梦境逐渐削弱；他先以为自己只是普通、虚弱、没家的人，后来才一步步意识到自己仍然拥有改变现实的潜力。"
+aliases: []
+tags:
+  - protagonist
+  - student
+source_refs: []
+supersedes: null
+superseded_by: null
+psychology:
+  want: "回到梦境、找到重要的人、把失去的生活拉回正轨"
+  need: "承认自己不是废掉了，而是一直在用错误的方式活着"
+  wound: "十年间持续做梦导致的虚弱、自我放弃和记忆断层"
+  lie: "我已经普通了，没资格再去追求什么"
+voice:
+  vocabulary:
+    - 黑雾
+    - 梦
+    - 没事
+    - 算了
+  syntax: 短句居多，语气克制，偶尔带点自嘲
+  notices_first: 先看异常是否和自己有关，再看周围人有没有反应
+  avoids:
+    - 热血宣言
+    - 百科式解释
+    - 强行成熟腔
+capabilities:
+  - "情绪波动时，梦境会出现不稳定的现实倾向"
+  - "灵魂底子强，能在长期削弱后重新恢复成长"
+limits:
+  - "开局没有稳定权限"
+  - "梦中反应不精确，且有代价"
+  - "真实界能力需后续逐步形成"
+secrets:
+  - "他忘了很多童年经历"
+  - "他曾经并不普通，甚至很优秀"
+first_scene_id: null

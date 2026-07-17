@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: FACT-0001
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良能在黑雾梦境中触发现实倾向
+summary: "温良在强烈情绪下，黑雾梦境会出现不稳定的现实回应，这种回应不是稳定权限，而是初始倾向。"
+tags:
+  - dream
+  - authority
+source_refs: []
+supersedes: null
+superseded_by: null
+statement: "温良的情绪波动能够让黑雾梦境产生局部、短暂且有代价的现实倾向。"
+confidence: 0.85
+evidence:
+  - "novel premise"
+  - "creative intake"

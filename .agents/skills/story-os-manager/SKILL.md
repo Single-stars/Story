@@ -21,13 +21,54 @@ description: 管理 Story OS 工作区与小说会话。用于新建、选择或
 先把请求归入一种模式：
 
 1. workspace：列出项目、注册新小说、检查工作区状态；可在尚无 novel_id 时执行。
-2. start：选择小说并启动一个限定范围的新会话。
-3. resume：从该小说的会话记录和源文件恢复工作。
-4. route：确认范围后转交 AGENTS.md 的 Workflow Routing 所指定的专用 Skill。
-5. close：记录停止点、决定、提案、未决问题、下一步和验证证据。
-6. validate：只运行门禁并报告，不顺带修改内容。
+2. creative-intake：作者只有灵感、零基础开始新小说、要求逐步引导或固定创作陪跑时使用；可在尚无 novel_id 时执行。
+3. start：选择小说并启动一个限定范围的新会话。
+4. resume：从该小说的会话记录和源文件恢复工作。
+5. route：确认范围后转交 AGENTS.md 的 Workflow Routing 所指定的专用 Skill。
+6. close：记录停止点、决定、提案、未决问题、下一步和验证证据。
+7. validate：只运行门禁并报告，不顺带修改内容。
 
 注册新小说是唯一可在没有现成 novel_id 时进入的小说创建流程。先让作者确认单本/系列/共享世界归属，再分配并回显新的 NOVEL-* ID；从此后的每一步都使用该 ID。
+
+当作者尚未确认创作简报时，不要急于注册新小说。先执行 creative-intake，使用 templates/workflow/creative-intake.yaml 的字段逐步收集灵感、偏好、目标体验、参考作品、人物与世界的高影响约束。访谈完成并经作者确认后，再进入注册新小说流程。
+
+## 零基础作者创作启动
+
+当用户表达“我只有灵感”“我是零基础小说家”“你一步步问我”“每次都按固定流程来”时，必须进入 creative-intake 模式。
+
+执行规则：
+
+1. 一次只问一个高影响问题；不要把模板字段一次性抛给作者。
+2. 每轮回答后输出：已确认、AI 推断、仍未知、建议与取舍。
+3. AI 可以主动补充专业建议、比较方案和推荐方向，但不得替作者批准 Canon。
+4. 在 novel_id 尚未创建前，所有内容保持 workspace-level intake，novel_id 为 null。
+5. 创作简报确认前，不写正文、不写 Canon、不生成正式大纲。
+6. 创作简报确认后，注册 NOVEL-*，再把访谈结论作为 proposal/decision 输入 premise、人物、世界观和大纲流程。
+
+固定阶段：
+
+```text
+author inspiration
+-> creative preferences
+-> ownership: standalone / series / shared universe
+-> target reader and genre promise
+-> 3-5 premise proposals
+-> author selection
+-> benchmark and research needs
+-> character network and arcs
+-> world rules and constraints
+-> macro outline alternatives
+-> chapter architecture
+-> scene contracts
+-> continuity preflight
+-> draft
+-> developmental / character / continuity / line review
+-> fresh-reader test
+-> author approval
+-> Canon change proposal
+```
+
+质量检查必须覆盖：类型承诺、因果链、主角能动性、困难选择和代价、反对力量升级、悬念/惊奇/好奇、情绪曲线、转折可追溯性、伏笔种植与回收、世界规则限制、POV、人物声音、读者理解和长期连载节奏。
 
 ## 绑定小说
 
@@ -87,6 +128,7 @@ description: 管理 Story OS 工作区与小说会话。用于新建、选择或
 - 大纲：templates/narrative/outline.yaml
 - 场景契约：templates/narrative/scene-contract.yaml
 - Canon 变更请求：templates/governance/change-request.yaml
+- 创作启动访谈：templates/workflow/creative-intake.yaml
 - 会话记录：templates/workflow/session-note.yaml
 - 实体记录：按任务选择 templates/entities/*.yaml
 

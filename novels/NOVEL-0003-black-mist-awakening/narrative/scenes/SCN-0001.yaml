@@ -1,0 +1,37 @@
+schema_version: "0.1.0"
+id: SCN-0001
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+name: 黑雾里第一次有了声音
+summary: "温良在黑雾梦境中听见脚步声，第一次确定梦并非毫无变化，并把那份变化带回白天的校园生活。"
+tags:
+  - opening
+  - black-mist
+narrative_order:
+  volume: 1
+  chapter: 1
+  scene: 1
+pov_character_id: CHAR-0001
+location_id: LOC-0002
+event_ids:
+  - EVT-0001
+cast_character_ids:
+  - CHAR-0001
+entry_state: "温良仍旧以为自己只是做了一场十年没完没了的坏梦，醒来后还要按部就班去上课。"
+structure:
+  goal: "让温良熬过这一次梦，不去追问梦里的异样。"
+  conflict: "黑雾深处的脚步声正一点点靠近，逼他承认梦并不稳定。"
+  turning_point: "他听清了那脚步声不是黑雾本身，而像是另一个人正在靠近。"
+  crisis: "如果梦会变，那十年里的一切认知都可能要重写。"
+  climax: "温良停下脚步，第一次主动朝脚步声的方向看过去。"
+  resolution: "他没有得到答案，但梦已经不再是过去那个完全重复的梦。"
+  exit_hook: "那脚步声继续朝他走来。"
+exit_state: "温良带着不安醒来，白天的校园照常开始，但他心里多了一根刺。"
+knowledge_changes: []
+knowledge_used_ids: []
+relationship_changes: []
+foreshadowing_ids:
+  - FORESH-0001

@@ -1,0 +1,27 @@
+schema_version: "0.1.0"
+id: RULE-0002
+entity_type: rule
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 真实界权限的分层形成
+summary: "真实界中的驱雾、显形、稳定空间和连接真实信息等能力，不是开局直接拥有，而是随灵魂强度、认知成熟和反复试探逐步形成。"
+tags:
+  - real-world
+  - authority
+source_refs: []
+supersedes: null
+superseded_by: null
+statement: "温良在真实界的独有能力必须通过逐步试探、理解和承受代价后，才可能由无到有、由弱到强地形成。"
+scope: "真实界侧"
+limitations:
+  - "不能开局全开"
+  - "不能无代价地长期维持"
+  - "必须与温良的状态和认知进展绑定"
+costs:
+  - "精神消耗"
+  - "现实稳定性压力"
+  - "过度使用会反噬自身状态"
+exceptions:
+  - "后续可通过更高层权限结构临时放大，但仍受规则约束"

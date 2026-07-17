@@ -1,0 +1,28 @@
+schema_version: "0.1.0"
+id: LOC-0002
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾梦境
+summary: "温良十年来反复进入的黑雾梦境空间，最初只有黑暗、浓雾和虚弱感，后来开始出现脚步声和不属于黑雾的异常。"
+tags:
+  - dream
+  - black-mist
+source_refs: []
+supersedes: null
+superseded_by: null
+aliases:
+  - 黑雾
+  - 梦境
+parent_location_id: null
+sensory_palette:
+  - "无尽黑暗"
+  - "纯黑浓雾"
+  - "空旷、冰冷、没有参照物"
+  - "偶尔出现的脚步声"
+constraints:
+  - "不应一开始暴露完整真相"
+  - "只能通过异常逐步揭示"
+  - "会对温良的精神和体力造成持续消耗"

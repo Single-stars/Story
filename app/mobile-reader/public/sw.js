@@ -1,9 +1,10 @@
-const CACHE_NAME = "story-reader-v1";
+const CACHE_NAME = "story-reader-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./icon-192.png",
+  "./icon-192.png?v=4",
   "./icon-512.png"
 ];
 

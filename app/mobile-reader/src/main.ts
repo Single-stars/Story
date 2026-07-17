@@ -38,11 +38,13 @@ interface ReaderAppState {
 const root = document.querySelector<HTMLElement>("#main-content");
 const announcer = document.querySelector<HTMLElement>("#announcer");
 const storagePrefix = "story-reader";
+const appIconSrc = "./icon-192.png?v=4";
 const defaultSettings = normalizeSettings({});
 let lastPanelTrigger: HTMLElement | null = null;
 let pendingPagedPosition: "start" | "end" = "start";
 let pagedTurnInFlight = false;
-let queuedPagedDirection: -1 | 1 | null = null;
+let queuedPagedTurns: Array<-1 | 1> = [];
+let pagedTurnAnimation: number | null = null;
 
 const state: ReaderAppState = {
   library: null,
@@ -104,7 +106,7 @@ function renderLoading(): void {
   resetPanelState();
   root.innerHTML = `
     <section class="loading-state" aria-live="polite" aria-busy="true">
-      <img class="boot-mark" src="./icon-192.png" alt="" width="64" height="64" />
+      <img class="boot-mark" src="${appIconSrc}" alt="" width="64" height="64" />
       <p>${state.status}</p>
     </section>
   `;
@@ -114,7 +116,7 @@ function renderEmpty(): void {
   resetPanelState();
   root.innerHTML = `
     <section class="empty-state">
-      <img class="brand-mark" src="./icon-192.png" alt="" width="64" height="64" />
+      <img class="brand-mark" src="${appIconSrc}" alt="" width="64" height="64" />
       <h1>书架</h1>
       <p>当前没有可阅读作品。</p>
     </section>
@@ -125,7 +127,7 @@ function renderError(message: string): void {
   resetPanelState();
   root.innerHTML = `
     <section class="error-state" role="alert">
-      <img class="brand-mark" src="./icon-192.png" alt="" width="64" height="64" />
+      <img class="brand-mark" src="${appIconSrc}" alt="" width="64" height="64" />
       <h1>无法加载阅读器</h1>
       <p>${escapeHtml(message)}</p>
       <button class="action-button" data-action="retry">重试</button>
@@ -208,18 +210,24 @@ function scrollToSelection(chapter: ReaderChapterLike, anchorId: string): void {
 
 function pagedWindowContent(book: ReaderBookLike, activeChapter: ReaderChapterLike): string {
   return pagedWindowChapters(book, activeChapter)
-    .map((chapter) => {
-      const label = chapterLabel(book, chapter);
-      return `
-        <section class="paged-chapter" data-paged-chapter="${escapeHtml(chapter.id)}" data-active="${chapter.id === activeChapter.id}">
-          <span class="paged-marker" data-paged-chapter-start="${escapeHtml(chapter.id)}"></span>
-          <h2 class="paged-chapter-title">${escapeHtml(`${label} ${chapter.title}`)}</h2>
-          ${chapterBlocksContent(chapter)}
-          <span class="paged-marker" data-paged-chapter-end="${escapeHtml(chapter.id)}"></span>
-        </section>
-      `;
-    })
+    .map((chapter) => pagedChapterContent(book, chapter, chapter.id === activeChapter.id))
     .join("");
+}
+
+function pagedChapterContent(
+  book: ReaderBookLike,
+  chapter: ReaderChapterLike,
+  active = false
+): string {
+  const label = chapterLabel(book, chapter);
+  return `
+    <section class="paged-chapter" data-paged-chapter="${escapeHtml(chapter.id)}" data-active="${active}">
+      <span class="paged-marker" data-paged-chapter-start="${escapeHtml(chapter.id)}"></span>
+      <h2 class="paged-chapter-title">${escapeHtml(`${label} ${chapter.title}`)}</h2>
+      ${chapterBlocksContent(chapter)}
+      <span class="paged-marker" data-paged-chapter-end="${escapeHtml(chapter.id)}"></span>
+    </section>
+  `;
 }
 
 function pagedWindowChapters(book: ReaderBookLike, activeChapter: ReaderChapterLike): ReaderChapterLike[] {
@@ -426,7 +434,7 @@ function renderShelf(): void {
     <section class="shelf">
       <header class="app-header">
         <div class="brand">
-          <img class="brand-mark" src="./icon-192.png" alt="" width="48" height="48" />
+          <img class="brand-mark" src="${appIconSrc}" alt="" width="48" height="48" />
           <div class="brand-copy"><strong>书架</strong><span>Story OS Reader</span></div>
         </div>
         <span class="status-chip">${library.books.length} 本</span>
@@ -625,6 +633,7 @@ function syncReaderChrome(): void {
     chapterBody.querySelectorAll<HTMLElement>("[data-paged-chapter]").forEach((chapterElement) => {
       chapterElement.dataset.active = String(chapterElement.dataset.pagedChapter === chapter.id);
     });
+    ensurePagedChapterBuffer(chapterBody, book, chapter);
   }
 }
 
@@ -752,6 +761,51 @@ function animateChapterTransition(direction: "previous" | "next"): void {
   );
 }
 
+function ensurePagedChapterBuffer(
+  chapterBody: HTMLElement,
+  book: ReaderBookLike,
+  activeChapter: ReaderChapterLike
+): void {
+  const previous = activeChapter.previousChapterId
+    ? book.chapters.find((chapter) => chapter.id === activeChapter.previousChapterId)
+    : undefined;
+  const next = activeChapter.nextChapterId
+    ? book.chapters.find((chapter) => chapter.id === activeChapter.nextChapterId)
+    : undefined;
+  if (previous !== undefined && !hasPagedChapter(chapterBody, previous.id)) {
+    insertPagedChapter(chapterBody, book, previous, "before");
+  }
+  if (next !== undefined && !hasPagedChapter(chapterBody, next.id)) {
+    insertPagedChapter(chapterBody, book, next, "after");
+  }
+}
+
+function hasPagedChapter(chapterBody: HTMLElement, chapterId: string): boolean {
+  return chapterBody.querySelector(`[data-paged-chapter="${cssEscape(chapterId)}"]`) !== null;
+}
+
+function insertPagedChapter(
+  chapterBody: HTMLElement,
+  book: ReaderBookLike,
+  chapter: ReaderChapterLike,
+  position: "before" | "after"
+): void {
+  const oldScrollWidth = chapterBody.scrollWidth;
+  const html = pagedChapterContent(book, chapter);
+  if (position === "before") {
+    chapterBody.insertAdjacentHTML("afterbegin", html);
+    const delta = chapterBody.scrollWidth - oldScrollWidth;
+    if (delta > 0) {
+      const previousScrollBehavior = chapterBody.style.scrollBehavior;
+      chapterBody.style.scrollBehavior = "auto";
+      chapterBody.scrollLeft += delta;
+      chapterBody.style.scrollBehavior = previousScrollBehavior;
+    }
+    return;
+  }
+  chapterBody.insertAdjacentHTML("beforeend", html);
+}
+
 function handleReaderTap(event: MouseEvent): void {
   if (state.readingMode !== "paged" || hasOpenPanel()) {
     toggleControls();
@@ -799,22 +853,71 @@ function handleReaderKeydown(event: KeyboardEvent): void {
 
 function turnPage(direction: -1 | 1): void {
   if (pagedTurnInFlight) {
-    queuedPagedDirection = direction;
+    queuedPagedTurns.push(direction);
+    queuedPagedTurns = queuedPagedTurns.slice(-8);
     return;
   }
   const chapterBody = document.querySelector<HTMLElement>(".chapter-body");
   if (chapterBody === null) {
     return;
   }
-  const step = pageStep(chapterBody);
-  const nextLeft = snapPagedScrollLeft(chapterBody, chapterBody.scrollLeft + step * direction);
-  if (Math.abs(nextLeft - chapterBody.scrollLeft) < 2) {
-    selectAdjacentChapter(direction < 0 ? "previous" : "next");
+  const selection = state.selection;
+  const library = state.library;
+  if (selection !== null && library !== null) {
+    const book = findBook(library, selection.bookId);
+    const chapter = findChapter(book, selection.chapterId);
+    ensurePagedChapterBuffer(chapterBody, book, chapter);
+  }
+  const nextLeft = findPagedTurnTarget(chapterBody, direction);
+  if (nextLeft === null) {
+    syncPagedSelection(direction);
     return;
   }
   pagedTurnInFlight = true;
-  chapterBody.scrollTo({ left: nextLeft, top: 0, behavior: "smooth" });
-  schedulePagedSelectionSync(direction, nextLeft);
+  animatePagedScrollTo(chapterBody, nextLeft, () => schedulePagedSelectionSync(direction, nextLeft));
+}
+
+function findPagedTurnTarget(chapterBody: HTMLElement, direction: -1 | 1): number | null {
+  const step = pageStep(chapterBody);
+  const currentLeft = snapPagedScrollLeft(chapterBody, chapterBody.scrollLeft);
+  const nextLeft = snapPagedScrollLeft(chapterBody, currentLeft + step * direction);
+  if (Math.abs(nextLeft - chapterBody.scrollLeft) < 2) {
+    return null;
+  }
+  return nextLeft;
+}
+
+function animatePagedScrollTo(chapterBody: HTMLElement, targetLeft: number, done: () => void): void {
+  if (pagedTurnAnimation !== null) {
+    cancelAnimationFrame(pagedTurnAnimation);
+  }
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const startLeft = chapterBody.scrollLeft;
+  const delta = targetLeft - startLeft;
+  const previousScrollBehavior = chapterBody.style.scrollBehavior;
+  chapterBody.style.scrollBehavior = "auto";
+  if (reduceMotion || Math.abs(delta) < 2) {
+    chapterBody.scrollTo({ left: targetLeft, top: 0, behavior: "auto" });
+    chapterBody.style.scrollBehavior = previousScrollBehavior;
+    done();
+    return;
+  }
+  const duration = 220;
+  const start = performance.now();
+  const tick = (now: number) => {
+    const elapsed = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - elapsed, 3);
+    chapterBody.scrollLeft = startLeft + delta * eased;
+    if (elapsed < 1) {
+      pagedTurnAnimation = requestAnimationFrame(tick);
+      return;
+    }
+    chapterBody.scrollTo({ left: targetLeft, top: 0, behavior: "auto" });
+    chapterBody.style.scrollBehavior = previousScrollBehavior;
+    pagedTurnAnimation = null;
+    done();
+  };
+  pagedTurnAnimation = requestAnimationFrame(tick);
 }
 
 function schedulePagedSelectionSync(direction: -1 | 1, targetLeft: number): void {
@@ -835,11 +938,13 @@ function schedulePagedSelectionSync(direction: -1 | 1, targetLeft: number): void
       lastLeft = currentLeft;
     }
     const reachedTarget = Math.abs(currentLeft - targetLeft) < 1;
-    if ((reachedTarget && stableFrames >= 2) || frames > 60) {
+    if ((reachedTarget && stableFrames >= 2) || frames > 24) {
+      if (!reachedTarget) {
+        chapterBody.scrollTo({ left: targetLeft, top: 0, behavior: "auto" });
+      }
       syncPagedSelection(direction);
       pagedTurnInFlight = false;
-      const queuedDirection = queuedPagedDirection;
-      queuedPagedDirection = null;
+      const queuedDirection = queuedPagedTurns.shift() ?? null;
       if (queuedDirection !== null) {
         turnPage(queuedDirection);
       }
@@ -1187,4 +1292,10 @@ function escapeHtml(value: string): string {
         return "&#39;";
     }
   });
+}
+
+function cssEscape(value: string): string {
+  return "CSS" in window && typeof CSS.escape === "function"
+    ? CSS.escape(value)
+    : value.replace(/["\\]/g, "\\$&");
 }

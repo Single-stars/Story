@@ -6,7 +6,19 @@
 
 ## Current Phase
 
-当前实际进度为：基础地基与项目内 Skill 套件已完成，Phase 7 移动阅读器已有可构建 PWA 基础；`NOVEL-0001` 与 `NOVEL-0002` 已注册但尚未转化 workbench 设计、实体、场景或正文。
+当前实际进度为：基础地基与项目内 Skill 套件已完成，Phase 7 移动阅读器已有可构建 PWA 基础；`NOVEL-0001` 与 `NOVEL-0002` 已注册，并已各自拥有 3 章 `revised` / `reader` 示例稿用于验证阅读器切书、切章和阅读体验。两书仍没有正式 Canon 实体、正式场景契约或作者批准决策记录；示例正文事实不得自动晋升 Canon。
+
+## Sample Reader Checkpoint: 2026-07-17 09:15 +08:00
+
+- 当前分支：`codex/story-os-reader-samples`。基线提交仍为 `3ae6a04 Initialize Story OS workspace`；本轮尚未提交。
+- 已将 `NOVEL-0001`《死亡账户》和 `NOVEL-0002`《六百里夜驿》的 manifest 从占位状态更新为可起草状态，并记录前三章 reader 示例稿存在。
+- 已新增两书各三章 manuscript Markdown：`CHAPTER-0001` 至 `CHAPTER-0003`，状态为 `revised`，可见性为 `reader`，章节前后链接完整。
+- 未新增或修改 `canon/` 实体；本轮正文仅为示例阅读稿和后续审查输入，不构成作者批准 Canon。
+- Reader app 已确认样式通过 `import "./styles.css"` 接入，生产构建包含 CSS asset。
+- 当前验证证据：`npm.cmd run verify` PASS，14 files / 81 tests，`validate:story` PASS，2 novels / 0 entities / 6 chapters；`npm.cmd run build:reader-data -- --profile reader --output .generated/reader/library.json` PASS，2 books；`npm.cmd run build:reader-app` PASS；`npm.cmd audit --json` PASS，0 vulnerabilities；`git diff --check` PASS。
+- Playwright 浏览器 smoke test 已通过：移动端章节渲染、桌面书架、切书、下一章、目录跳章；测试过程中发现并修复 lucide 图标 `toSvg is not a function` 运行时问题。
+
+以下 2026-07-17 08:25 checkpoint 保留为历史记录，其中“GitHub 为空”“0 chapters”“ready_for_initial_git_push”等内容已被本 checkpoint 和实际 GitHub 状态覆盖。
 
 ## Push Checkpoint: 2026-07-17 08:25 +08:00
 

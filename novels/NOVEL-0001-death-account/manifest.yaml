@@ -2,20 +2,23 @@ schema_version: 0.1.0
 novel_id: NOVEL-0001
 title: 死亡账户
 slug: death-account
-status: planning
+status: drafting
 language: zh-CN
 genre:
-  primary: 请填写主要类型
-  secondary: []
-  target_readers: 请填写目标读者、阅读偏好与年龄段等必要信息
+  primary: 都市近未来悬疑
+  secondary:
+    - 科技惊悚
+    - 身份谜案
+  target_readers: 喜欢快节奏都市悬疑、身份反转、制度困局和轻硬核科技惊悚的中文类型读者。
   promises:
-    - 请填写读者在本书中应稳定获得的核心体验
+    - 主角被系统判定死亡后，在有限时间内追查身份被重绑定的真相。
+    - 每个技术谜面都回到可复核证据、人物选择和现实代价。
   content_notes: []
 premise:
   status: proposed
-  logline: 请填写一句话故事 premise：主角、目标、阻力与高风险后果
-  theme_question: 请填写故事持续追问、但不预先替读者回答的主题问题
-  core_conflict: 请填写外部冲突、内部冲突及二者如何互相加压
+  logline: 当城市全部可信记录都证明她昨夜已经死亡，保险死亡核验师许见微必须在被当成冒名者抓捕前，证明活着的自己不是伪造品，并找出三年前已死的妹妹为何仍在使用她的身份。
+  theme_question: 可信证据与真实之间，是否永远需要一道允许人提出异议的缝隙？
+  core_conflict: 许见微越想依靠完整证据链恢复身份，越发现证据链的身份归属层已被污染；她必须在证明自己、追查妹妹和公开亲人过错之间作出选择。
 structure:
   lenses:
     - snowflake
@@ -31,7 +34,7 @@ current_focus:
   volume: 1
   chapter: 1
   scene_id: null
-  note: 项目初始化：尚未开始正式章节写作
+  note: 示例前三章已作为 reader 试读稿进入 manuscript；正文事实仍待作者审查，不自动晋升 Canon。
 paths:
   canon: canon
   narrative: narrative

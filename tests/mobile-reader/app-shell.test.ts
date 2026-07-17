@@ -115,6 +115,12 @@ describe("mobile reader app shell", () => {
     expect(main).toContain("scrollToPagedEnd");
     expect(main).toContain("scrollToPagedAnchor");
     expect(main).toContain("snapPagedScrollLeft");
+    expect(main).toContain("findPagedTurnTarget");
+    expect(main).toContain("animatePagedScrollTo");
+    expect(main).toContain("queuedPagedTurns");
+    expect(main).toContain("ensurePagedChapterBuffer");
+    expect(main).toContain("insertPagedChapter");
+    expect(main).toContain("pagedChapterContent");
     expect(main).toContain("syncSelectionFromViewport");
     expect(main).toContain("schedulePagedSelectionSync");
     expect(main).toContain("syncReaderChrome");
@@ -126,6 +132,10 @@ describe("mobile reader app shell", () => {
     const syncPagedMatch = main.match(/function syncPagedSelection[\s\S]*?function syncSelectionFromViewport/);
     expect(syncPagedMatch?.[0]).toContain("syncReaderChrome");
     expect(syncPagedMatch?.[0]).not.toContain("renderReader()");
+    const turnPageMatch = main.match(/function turnPage[\s\S]*?function schedulePagedSelectionSync/);
+    expect(turnPageMatch?.[0]).toContain("findPagedTurnTarget");
+    expect(turnPageMatch?.[0]).toContain("animatePagedScrollTo");
+    expect(turnPageMatch?.[0]).not.toContain("selectAdjacentChapter");
     const tocMatch = main.match(/function tocContent[\s\S]*?function settingsContent/);
     expect(tocMatch?.[0]).not.toContain("chapter.summary");
     expect(tocMatch?.[0]).not.toContain("muted");

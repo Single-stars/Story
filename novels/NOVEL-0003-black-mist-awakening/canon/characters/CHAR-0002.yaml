@@ -1,0 +1,42 @@
+schema_version: "0.1.0"
+id: CHAR-0002
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿
+summary: "表面天真简单，实际上观察力很强；她和温良有共同成长的童年基础，但她比温良更能抓住异常，也更早意识到他不对劲。"
+aliases: []
+tags:
+  - heroine
+  - student
+  - observer
+source_refs: []
+supersedes: null
+superseded_by: null
+psychology:
+  want: "确认温良到底发生了什么"
+  need: "接受自己并不只是单纯‘好骗’，而是擅长看穿人"
+  wound: "她习惯把关键判断藏在轻松外壳下面"
+  lie: "只要我装作简单，很多事就能维持现状"
+voice:
+  vocabulary:
+    - 嗯
+    - 你真奇怪
+    - 要不再想想
+  syntax: 表面轻快，关键时刻短而准
+  notices_first: 先看温良的状态变化，再看他说的话是否和身体反应一致
+  avoids:
+    - 强行讲解
+    - 工具人式提问
+capabilities:
+  - "对人的情绪和细节变化非常敏感"
+  - "在不经意时会显得极聪明"
+limits:
+  - "起初不相信温良关于真实界的说法"
+  - "不会一开始就知道所有真相"
+secrets:
+  - "她记得比温良更多的童年"
+  - "她一直在怀疑温良的失忆不是普通失忆"
+first_scene_id: null

@@ -1,0 +1,27 @@
+schema_version: "0.1.0"
+id: RULE-0001
+entity_type: rule
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾梦境的现实倾向
+summary: "黑雾梦境会对强烈情绪产生回应，并把情绪倾向折射成局部的现实变化，但这种变化不稳定、有限且伴随代价。"
+tags:
+  - dream-rule
+  - black-mist
+source_refs: []
+supersedes: null
+superseded_by: null
+statement: "当温良在黑雾梦境中产生强烈、持续且明确的情绪波动时，梦境会倾向于把这份情绪映射为现实侧的小范围变化。"
+scope: "梦境侧，尤其是温良相关场景"
+limitations:
+  - "变化范围小，不能直接改写整个世界"
+  - "只能作为倾向出现，不能稳定精确控制"
+  - "并非每次都会生效"
+costs:
+  - "精神负担上升"
+  - "虚弱感会加重或反复"
+  - "越想强行控制，越容易失手"
+exceptions:
+  - "后续若形成稳定权限，可扩大可控范围，但仍需代价"

@@ -95,10 +95,19 @@ site/*        阅读器
 - [x] 研究与路线选择
 - [x] 多小说总体计划
 - [x] 工作区入口与项目宪法
-- [ ] 核心 Schema
-- [ ] 模板与示例项目
-- [ ] 验证器与 CI
-- [ ] 项目 skills
-- [ ] 两部小说的前三章完整流程
-- [ ] 手机阅读器与分享流程
+- [x] 核心 Schema
+- [x] 模板与示例项目
+- [x] 验证器基础
+- [x] 项目 skills
+- [x] 两部小说的前三章 reader 示例稿
+- [x] 手机阅读器基础构建与样式接入
+- [ ] CI、生产发布权限、Canon 决策强制门禁
+- [ ] 正式 Canon 实体、场景契约与作者批准记录
 
+## Current Sample Reader State
+
+- GitHub `main` 已完成初始提交与推送；当前工作分支为 `codex/story-os-reader-samples`。
+- `NOVEL-0001`《死亡账户》与 `NOVEL-0002`《六百里夜驿》各有 3 章 `revised` / `reader` 示例稿，可进入 reader profile。
+- 示例正文用于验证 Story OS 写作和阅读器切书、切章流程；正文事实仍属于 manuscript/proposal 层，不自动晋升 Canon。
+- `npm.cmd run validate:story` 当前应识别 `2 novels / 0 entities / 6 chapters`。
+- `npm.cmd run build:reader-app` 会生成 `.generated/mobile-reader`，其中 `library.json` 含 2 本书、每本 3 章。

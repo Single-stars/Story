@@ -178,3 +178,47 @@ After `main.ts` turns the targeted test green, add the missing PNG icons and Vit
 1. Create the first Git commit and push `main` to `origin`.
 2. Convert `workbench/novel-a-design.md` and `workbench/novel-b-design.md` into isolated proposed manifests, outlines, entities, scenes, and events.
 3. Draft and review each novel's first three chapters through the Story OS gates.
+
+## Session Continuation: 2026-07-17 09:15 +08:00
+
+### Status
+
+- **State:** sample_reader_ready_for_review
+- **Scope:** two-novel sample manuscript, reader data/profile verification, reader CSS build wiring, status sync.
+- **Branch:** `codex/story-os-reader-samples`
+- **Canon:** no Canon entity was created or promoted; all new story facts remain manuscript/proposal-level until author approval.
+
+### Work Completed This Continuation
+
+- Added 3 reader-visible sample chapters for `NOVEL-0001`《死亡账户》:
+  - `CHAPTER-0001` 死亡账户
+  - `CHAPTER-0002` 只读证据
+  - `CHAPTER-0003` 白箱窗口
+- Added 3 reader-visible sample chapters for `NOVEL-0002`《六百里夜驿》:
+  - `CHAPTER-0001` 第一章 死人发来的六百里急递
+  - `CHAPTER-0002` 第二章 戴面者不可回头
+  - `CHAPTER-0003` 第三章 封驿戏
+- Updated both novel manifests from placeholder planning text to drafting-ready proposed premise/genre metadata.
+- Confirmed `app/mobile-reader/src/main.ts` imports `./styles.css`, and app-shell test now asserts this wiring.
+- Fixed lucide runtime icon rendering after browser smoke testing exposed `toSvg is not a function`.
+- Built reader data with profile `reader`; generated library contains 2 books and 3 chapters per book.
+
+### Verification
+
+| Command | Result |
+|---|---|
+| `npm.cmd run verify` | PASS, 14 files / 81 tests; validate:story PASS |
+| `npm.cmd run validate:story` | PASS, 2 novels / 0 entities / 6 chapters |
+| `npm.cmd run build:reader-data -- --profile reader --output .generated/reader/library.json` | PASS, 2 books |
+| `npm.cmd run build:reader-app` | PASS, CSS and JS assets emitted |
+| `npm.cmd test -- tests/mobile-reader tests/reader-builder` | PASS, focused reader suites |
+| `npm.cmd audit --json` | PASS, 0 vulnerabilities |
+| `git diff --check` | PASS |
+| generated reader inspection | PASS, 2 books / 3 chapters each / stylesheet linked |
+| Playwright browser smoke test | PASS, mobile chapter render, desktop shelf, book switch, next chapter, TOC jump |
+
+### Next
+
+1. Run final full verification after the browser-runtime fix.
+2. Add formal decision/session schemas and Canon promotion gates before converting sample manuscript facts into Canon entities.
+3. If these sample chapters are kept, run the Story OS review flow next: scene contracts, continuity audit, reader test, and author approval decisions.
