@@ -10,9 +10,9 @@ status: revised
 visibility: reader
 summary: "温良回到梦境层后在医院醒来，发现普通世界仍维持表面秩序，但真实世界留下的记忆与痕迹开始推动医院线。"
 content_version: "1.0.0"
-word_count: 2450
+word_count: 2420
 previous_chapter_id: CHAPTER-0007
-next_chapter_id: null
+next_chapter_id: CHAPTER-0009
 ---
 # 第八章 医院的灯
 

@@ -1,0 +1,61 @@
+schema_version: "0.1.0"
+id: SCN-0003
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 医院醒来
+summary: >-
+  温良从跨层返回后在梦境层医院醒来，面对护士、班主任、同学和南宫芸儿的追问，却没有任何可以独立证明真实经历的证据。读者看到的是证据失败和关系压力，而不是又一次重复性的病床钩子。
+tags:
+  - dream_layer
+  - hospital
+  - evidence-failure
+
+narrative_order:
+  volume: 1
+  chapter: 7
+  scene: 2
+
+pov_character_id: CHAR-0001
+location_id: LOC-0005
+
+event_ids:
+  - EVT-0008
+
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0002
+  - CHAR-0003
+  - CHAR-0004
+  - CHAR-0010
+
+entry_state: >-
+  温良醒在医院病床上，身体有跨层留下的疲惫与疼痛，南宫芸儿、陈安、周成海和医护人员都在，纸笔和录音都不能把真实经历变成可验证证据。
+
+structure:
+  goal: 说明自己不是在胡说，同时不把周成海和同学拖入恐慌。
+  conflict: 跨层证据隔离、成人秩序和温良自身的失忆都让解释失效。
+  turning_point: 纸笔和局部试探证明“证明”并不是这条线的核心。
+  crisis: 继续强调证据会显得像发疯；退而求其次则意味着承认自己只能先承担后果。
+  climax: 温良停止追求完整证明，转向记录和承认。
+  resolution: 梦境层医院变成新的压力场，南宫芸儿开始以证据而非安慰方式观察他。
+  exit_hook: 南宫芸儿会把这件事继续带进校园关系网。
+
+exit_state: >-
+  温良在医院保留了主观记忆和局部记录，但没有独立证据；南宫芸儿、陈安和周成海都意识到他不只是普通低血糖，下一步将进入持续观察阶段。
+
+knowledge_changes:
+  - KNOW-0005
+relationship_changes:
+  - REL-0001
+  - REL-0002
+  - REL-0003
+  - REL-0004
+  - REL-0008
+  - REL-0009
+  - REL-0010
+foreshadowing_ids:
+  - FORESH-0008
+  - FORESH-0011

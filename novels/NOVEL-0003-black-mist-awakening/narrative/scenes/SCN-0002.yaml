@@ -1,0 +1,51 @@
+schema_version: "0.1.0"
+id: SCN-0002
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 旧井返程
+summary: >-
+  温良在真实界旧井前接受有限帮助，顺着火绳与井梯下行，完成一次危险返程。读者看到的是跨层动作、身体代价和无法被完整证明的返回，而不是稳定门户或解释性答案。
+tags:
+  - real_layer
+  - crossing
+  - old_well
+
+narrative_order:
+  volume: 1
+  chapter: 7
+  scene: 1
+
+pov_character_id: CHAR-0001
+location_id: LOC-0010
+
+event_ids:
+  - EVT-0007
+
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0012
+  - CHAR-0014
+
+entry_state: >-
+  温良站在旧井边，手里有火绳、身体有跨层后的疲惫和疼痛，林照只给有限经验，刘婆婆只给有限帮助，井下黑暗和回梦可能性同时压在眼前。
+
+structure:
+  goal: 从旧井安全返回梦境层医院，并尽量保住自己的跨层记忆。
+  conflict: 井下方向不明、身体代价未知、有限帮助无法保证成功。
+  turning_point: 林照只给出一段经验，火绳和井梯成为唯一可执行路径。
+  crisis: 继续下行意味着承担失控风险；退回则意味着放弃返程和确认自己经历的机会。
+  climax: 温良握住火绳，主动进入井下。
+  resolution: 他完成返程，进入梦境层医院入口，跨层无法被客观稳定保留。
+  exit_hook: 证据失败与梦境层医院的追问同时到来。
+
+exit_state: >-
+  温良已经完成一次危险跨层，身体带着疼痛和疲惫，火绳使用结束，井边的帮助者知道他真的下去了，但客观证据没有保住；他下一步必须面对梦境层医院。
+
+knowledge_changes:
+  - KNOW-0004
+relationship_changes: []
+foreshadowing_ids:
+  - FORESH-0007

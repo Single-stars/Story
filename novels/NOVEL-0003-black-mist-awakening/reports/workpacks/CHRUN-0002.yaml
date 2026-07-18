@@ -1,0 +1,110 @@
+schema_version: "0.1.0"
+id: CHRUN-0002
+record_type: chapter_workpack
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+chapter_id: CHAPTER-0007
+target_word_count:
+  min: 3000
+  target: 3800
+  max: 4800
+
+scene_ids:
+  - SCN-0002
+  - SCN-0003
+
+required_context:
+  style_profile_ids:
+    - STYLE-0001
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - CHAR-0012
+    - CHAR-0014
+    - LOC-0002
+    - LOC-0005
+    - LOC-0010
+    - RULE-0007
+    - FACT-0006
+    - FACT-0008
+    - KNOW-0004
+    - KNOW-0005
+  narrative_ids:
+    - EVT-0007
+    - EVT-0008
+    - FORESH-0007
+    - FORESH-0008
+    - THREAD-0001
+    - SCN-0002
+    - SCN-0003
+  manuscript_chapter_ids:
+    - CHAPTER-0006
+  decision_ids:
+    - RESTRUCT-0002
+    - DECISION-WORKING-023
+
+required_reviews:
+  continuity:
+    required: true
+    review_ids: []
+    notes: "Continuity review must cover CHAPTER-0007 before reviewed/accepted status."
+  developmental_edit:
+    required: true
+    review_ids: []
+    notes: "Structural review must cover CHAPTER-0007 before reviewed/accepted status."
+  reader_test:
+    required: true
+    review_ids: []
+    notes: "Fresh-reader test must use authorized manuscript scope only."
+  line_edit:
+    required: true
+    review_ids: []
+    notes: "Line edit review must cover clarity, repetition, AI residue, POV distance, action logic, and prose fidelity."
+
+continuity_contract:
+  world_state: >-
+    Chapter 7 begins in the real/main world at the old well and ends in the dream layer hospital. Keep both layers explicit.
+  capability_scope: >-
+    During this chapter, Wen Liang may traverse the old well using the established return route, but he may not stabilize cross-layer evidence or rewrite physical reality.
+  character_knowledge: >-
+    Wen Liang knows the crossing is dangerous, knows he wants to return to the dream layer, and knows that proof will likely fail. Liu Popo and Lin Zhao each know only their limited version of the well.
+  relationship_state: >-
+    Lin Zhao is cautious but not hostile; Liu Popo provides a narrow help line; Wen Liang remains dependent on their limited guidance.
+  foreshadowing_plan: >-
+    Plant the return-route danger and evidence failure. Do not reveal any organization-level truth. Do not repeat the hospital wake-up as a new hook; it is the destination, not the opening trick.
+  motivation_gate: >-
+    Wen Liang must have an immediate goal, risk, and stop condition while descending. If the route changes, he must have a visible reason.
+  concept_exposure_gate: >-
+    New concepts must appear as material traces: fire rope, well chain, the word "回梦", darkness, and body pain.
+  npc_independence_gate: >-
+    Lin Zhao and Liu Popo must each act from independent settlement goals and risks, not as convenient exposition devices.
+  cross_layer_state_gate: >-
+    Track body position, rope state, recording failure, and memory continuity across the crossing. No silent duplication of evidence.
+  reader_exposure:
+    allowed:
+      - The reader may see the old well as a dangerous route and the hospital as the return destination.
+      - The reader may see limited help from Lin Zhao and Liu Popo.
+    forbidden:
+      - Do not reveal high-level organization truth or make the well a stable public portal.
+
+quality_gates:
+  word_count_defined: true
+  scene_contracts_locked: true
+  capability_scope_checked: true
+  character_roster_named: true
+  relationship_changes_motivated: true
+  plot_causality_checked: true
+  foreshadowing_status_checked: true
+  reader_exposure_limited: true
+  prose_quality_review_planned: true
+  motivation_gate_checked: true
+  concept_exposure_checked: true
+  npc_independence_checked: true
+  cross_layer_state_checked: true
+
+resume_brief: >-
+  CHRUN-0002 is the durable entry point for CHAPTER-0007. Wen Liang descends the old well with a fire rope, crosses back toward the dream layer, and wakes in the hospital with the crossing remaining unprovable. Use this workpack only for chapter 7 drafting; keep the dream layer and real/main layer explicit, avoid repeating the chapter-6 hospital wake-up as a new trick, and carry forward only the approved evidence-failure premise.

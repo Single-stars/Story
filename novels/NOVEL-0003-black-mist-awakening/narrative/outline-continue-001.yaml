@@ -1,0 +1,792 @@
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: outline
+
+owner:
+  novel_id: NOVEL-0003
+
+status: proposed
+visibility: internal
+title: "闆鹃啋鏃跺垎 绗竴鍗凤細 7-20 绔犵户缁彁妗?"
+
+scope:
+  level: chapter
+  volume: 1
+  act: null
+  chapter: null
+  summary: "从旧井返梦、梦境层医院回流、校园日常继续受扰，到现实与梦境的双线推进、人物关系加深、组织影子低层浮现，最终把温良推到必须主动选择下一次跨层行动的门槛。"
+
+dependencies:
+  series_id: null
+  universe_refs: []
+
+source_refs:
+  premise_refs:
+    - "NOVEL-0003-INTAKE-01"
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - CHAR-0003
+    - CHAR-0004
+    - CHAR-0005
+    - CHAR-0006
+    - CHAR-0007
+    - CHAR-0008
+    - CHAR-0009
+    - CHAR-0010
+    - CHAR-0011
+    - CHAR-0012
+    - CHAR-0013
+    - CHAR-0014
+    - CHAR-0015
+    - CHAR-0016
+    - LOC-0001
+    - LOC-0002
+    - LOC-0003
+    - LOC-0004
+    - LOC-0005
+    - LOC-0006
+    - LOC-0007
+    - LOC-0008
+    - LOC-0009
+    - LOC-0010
+    - LOC-0011
+    - FACTION-0001
+    - FACTION-0002
+    - RULE-0001
+    - RULE-0002
+    - RULE-0003
+    - RULE-0004
+    - RULE-0005
+    - RULE-0006
+    - RULE-0007
+    - RULE-0008
+    - FACT-0001
+    - FACT-0002
+    - FACT-0003
+    - FACT-0004
+    - FACT-0005
+    - FACT-0006
+    - FACT-0007
+    - FACT-0008
+    - FACT-0009
+    - REL-0001
+    - REL-0002
+    - REL-0003
+    - REL-0004
+    - REL-0005
+    - REL-0006
+    - REL-0007
+    - REL-0008
+    - REL-0009
+    - REL-0010
+    - REL-0011
+    - REL-0012
+    - REL-0013
+    - REL-0014
+    - REL-0015
+    - ITEM-0001
+    - ITEM-0002
+    - ITEM-0003
+    - ITEM-0004
+    - KNOW-0001
+    - KNOW-0002
+    - KNOW-0003
+    - KNOW-0004
+    - KNOW-0005
+    - KNOW-0006
+    - CSTATE-0001
+    - CSTATE-0002
+    - CSTATE-0003
+    - CSTATE-0004
+    - CSTATE-0005
+  decision_ids:
+    - DECISION-WORKING-019
+    - DECISION-WORKING-020
+    - DECISION-WORKING-021
+    - DECISION-WORKING-022
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
+    - BASELINE-0001
+  research_refs: []
+
+objective:
+  story_goal: "把温良从“被跨层拖拽的人”推进到“主动承担两界选择的人”，同时维持校园、医院、聚落三条日常线的具体感和代价感。"
+  reader_promise: "继续给出双界反差、校园关系推进、真实界生存成本、旧井回梦代价和组织低层影子的持续悬念。"
+  theme_question: "当你不能证明自己经历过的事情时，你还要不要为它负责？"
+  core_conflict: "温良想把梦和现实重新分开并证明自己没有疯，但每次试图回避，都会把更深的代价和关系后果带回来。"
+  ending_cost: "到第 20 章时，温良必须主动为下一次跨层行动付出明确代价，且南宫芸儿、陈安与真实界聚落都不再只是旁观者。"
+  success_criteria:
+    - "第 7-8 章完成旧井返程与医院醒来，且不重复前文钩子。"
+    - "第 9-12 章保持校园群像推进，关系变化有可见压力。"
+    - "第 13-16 章把真实界劳动、旧井规矩和证据失败具体化。"
+    - "第 17-20 章把组织低层影子和主动选择门槛推出来。"
+
+structure:
+  lenses:
+    - scene-sequel
+    - want-need-wound-lie
+    - story-grid-five-commandments
+  opening_promise: "第 7 章继续从旧井进入未知下层，让返梦不再是恢复，而是新危险的开始。"
+  first_major_turn: "温良从旧井重新进入梦境层医院，确认梦境层并不等于安全。"
+  midpoint_change: "校园与医院的日常推进中，南宫芸儿、陈安与古晓雨的关系开始共同围拢温良，异常不再只是他的个人体验。"
+  lowest_point: "温良试图用证据证明自己，结果再一次失败，只能承认他需要用行动而不是证据来承担经历。"
+  climax_choice: "他决定主动准备下一次跨层行动，而不是等待异常再次把他拖过去。"
+  resolution: "第 20 章结束时，温良已经能稳定调用两界经验来做选择，但代价、限制和人际后果都已明确。"
+
+causal_spine:
+  - beat_key: beat-007
+    narrative_position: opening
+    trigger:
+      source_ids:
+        - EVT-0007
+      pressure: "旧井的返程不是恢复，而是新的坠落风险；温良必须先活着回到梦境层。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "从旧井安全返回梦境层并确认自己没有彻底失去回去的路。"
+      motivation: "他需要知道南宫芸儿和校园是否还在，也要确认自己没被真实界彻底吃掉。"
+    opposition: "井下方向、身体损伤和跨层后果都不允许他随意试错。"
+    choice_or_action: "顺着火绳与井梯下行，接受未知代价。"
+    turning_point: "返回不是回到原点，而是回到医院醒来。"
+    consequence:
+      state_change: "温良带着跨层记忆回到梦境层医院，确认世界层级重新切换。"
+      fact_ids:
+        - FACT-0006
+        - FACT-0008
+      event_ids:
+        - EVT-0008
+    next_pressure: "他要面对回到梦境层后的证据失败与关系追问。"
+    scene_ids: []
+  - beat_key: beat-008
+    narrative_position: early
+    trigger:
+      source_ids:
+        - EVT-0008
+      pressure: "醒来后，温良拥有记忆，却拿不出跨层证据。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "向南宫芸儿和现实日常说明自己不是在胡说，同时尽量不把周成海和赵砚拖进恐慌。"
+      motivation: "他需要有人相信自己至少不是单纯发疯。"
+    opposition: "梦境层证据隔离、成人秩序和他自己的失忆都在阻止他。"
+    choice_or_action: "用纸笔、录音和局部试探替代大声解释。"
+    turning_point: "他第一次正面承认：证据可能不会回来，行动才是唯一能留下的东西。"
+    consequence:
+      state_change: "校园日常不再只是背景，而是承载秘密和证据失败的压力场。"
+      fact_ids:
+        - FACT-0006
+      event_ids: []
+    next_pressure: "南宫芸儿开始和陈安、古晓雨一起观察温良。"
+    scene_ids: []
+  - beat_key: beat-009
+    narrative_position: early-mid
+    trigger:
+      source_ids:
+        - KNOW-0002
+      pressure: "南宫芸儿知道温良状态不对，但只能靠观察和证据推进。"
+    character_drive:
+      character_ids:
+        - CHAR-0002
+      goal: "确认温良到底经历了什么，并判断哪些事能问，哪些事暂时不能逼。"
+      motivation: "她需要证据，也需要保护童年熟悉的人不继续下滑。"
+    opposition: "温良的回避、南宫芸儿自己的谨慎，以及陈安与古晓雨的日常干扰。"
+    choice_or_action: "用同学、舍友和旧童年的细节切入，而不是直接逼问真相。"
+    turning_point: "她和温良的关系从单独关心，变成共同观察。"
+    consequence:
+      state_change: "校园关系线开始承接双界悬念，不再只是单对单对话。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "陈安与古晓雨被卷进观察圈，校园日常开始形成稳定三角。"
+    scene_ids: []
+  - beat_key: beat-010
+    narrative_position: mid
+    trigger:
+      source_ids:
+        - REL-0003
+        - REL-0004
+        - REL-0001
+      pressure: "温良需要现实支撑，但不想把自己变成被照顾对象。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "把日常撑住，维持上课、住处、医院和同学之间的正常表面。"
+      motivation: "他还不够强，不能让所有人都看见他塌掉。"
+    opposition: "高三节奏、失忆缺口和双界疲惫不断抢夺他的注意力。"
+    choice_or_action: "继续上课、记笔记、回消息、装作还能撑住。"
+    turning_point: "他发现自己越想装正常，异常越会从细节里冒头。"
+    consequence:
+      state_change: "校园线转为持续压力而非一次性事件。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "古晓雨开始把玩笑和安排塞进这条线里，改变互动结构。"
+    scene_ids: []
+  - beat_key: beat-011
+    narrative_position: mid
+    trigger:
+      source_ids:
+        - REL-0008
+        - REL-0009
+        - REL-0010
+      pressure: "古晓雨的轻松与安排让温良和南宫芸儿之间多出第三个视角。"
+    character_drive:
+      character_ids:
+        - CHAR-0003
+      goal: "用玩笑、撮合和观察制造温良与南宫芸儿继续接触的机会。"
+      motivation: "她想把紧张的关系变得可呼吸，但不会替任何人做决定。"
+    opposition: "南宫芸儿的判断权和温良的回避都不允许她越界。"
+    choice_or_action: "安排偶遇、插话、制造轻松场面。"
+    turning_point: "温良意识到自己不再只是一个人面对南宫芸儿的观察。"
+    consequence:
+      state_change: "校园关系从二人线变成小群体线。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "陈安也必须对温良的变化做出更具体反应。"
+    scene_ids: []
+  - beat_key: beat-012
+    narrative_position: mid-late
+    trigger:
+      source_ids:
+        - REL-0003
+      pressure: "陈安原本的照顾模式被温良变化打乱。"
+    character_drive:
+      character_ids:
+        - CHAR-0004
+      goal: "在继续照顾温良和暴露自己压力之间做选择。"
+      motivation: "他不能总把自己藏起来，也不能让温良一个人掉下去。"
+    opposition: "温良的秘密、南宫芸儿的观察、以及陈安自己的家庭压力。"
+    choice_or_action: "用日常帮忙、插科打诨和迟疑试探来维持关系。"
+    turning_point: "陈安从功能型陪伴变成有自己问题的人。"
+    consequence:
+      state_change: "校园群像开始分担主线压力。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "真实界一侧的代价仍在累积，温良不能无限留在校园。"
+    scene_ids: []
+  - beat_key: beat-013
+    narrative_position: mid-late
+    trigger:
+      source_ids:
+        - EVT-0004
+        - EVT-0005
+      pressure: "真实界的火线、燃料、巡夜和账本要求温良真正劳动。"
+    character_drive:
+      character_ids:
+        - CHAR-0012
+        - CHAR-0013
+      goal: "让温良通过干活而不是特殊待遇换取停留资格。"
+      motivation: "聚落不养闲人，接纳每个人都要有代价。"
+    opposition: "燃料短缺、黑雾压力和陌生人的不可信。"
+    choice_or_action: "筛灰、添火、搬运、守夜或交换劳动。"
+    turning_point: "温良第一次真正融入聚落运行，而不是被看作纯异常。"
+    consequence:
+      state_change: "现实世界线从求生变成合作。"
+      fact_ids:
+        - FACT-0005
+      event_ids: []
+    next_pressure: "梁渡的救命债开始变成技能交换。"
+    scene_ids: []
+  - beat_key: beat-014
+    narrative_position: mid-late
+    trigger:
+      source_ids:
+        - CHAR-0016
+      pressure: "梁渡欠了温良一条命，不能只说漂亮话。"
+    character_drive:
+      character_ids:
+        - CHAR-0016
+      goal: "把救命债变成可执行的协作。"
+      motivation: "他需要活下来，也需要保住自己的尊严。"
+    opposition: "聚落规则、黑斑风险和温良是否真的值得信任。"
+    choice_or_action: "教温良听雾、交换巡夜技能、给出具体帮助。"
+    turning_point: "温良不再只是被照顾，而是开始拥有可交换的技能。"
+    consequence:
+      state_change: "关系从感谢变成实际协作。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "旧井边的规则与风险需要被重新理解。"
+    scene_ids: []
+  - beat_key: beat-015
+    narrative_position: late
+    trigger:
+      source_ids:
+        - FACT-0008
+      pressure: "旧井已经成为既有可用性又有高风险的入口。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "确认旧井到底是什么，并判断是否值得再次使用。"
+      motivation: "他想回到梦境层，但不能再盲跳。"
+    opposition: "刘婆婆的回避、林照的防卫和规则的不完整。"
+    choice_or_action: "向老人和巡夜者收集零散经验，而不是追求完整答案。"
+    turning_point: "温良意识到：井不是答案，是选择代价的门槛。"
+    consequence:
+      state_change: "旧井从传说变成可操作风险。"
+      fact_ids:
+        - FACT-0008
+      event_ids: []
+    next_pressure: "温良必须准备下一次跨层，而不是只想回去。"
+    scene_ids: []
+  - beat_key: beat-016
+    narrative_position: late
+    trigger:
+      source_ids:
+        - KNOW-0004
+        - KNOW-0003
+      pressure: "刘婆婆和林照知道有限真相，但都不会一次说完。"
+    character_drive:
+      character_ids:
+        - CHAR-0014
+        - CHAR-0012
+      goal: "分别以伤口、规矩和有限经验回应温良。"
+      motivation: "他们要帮，但不能因帮忙而摧毁聚落风险边界。"
+    opposition: "旧井危险、代价不明、温良的急切。"
+    choice_or_action: "给出草药、火绳、禁忌和有限建议。"
+    turning_point: "温良手里开始有一套不完整但可执行的回梦工具。"
+    consequence:
+      state_change: "他对跨层的认知从猜测变成实践准备。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "他必须决定何时再进井。"
+    scene_ids: []
+  - beat_key: beat-017
+    narrative_position: late
+    trigger:
+      source_ids:
+        - RULE-0007
+      pressure: "跨层无法留下客观证据，返回后也不能靠取证证明自己。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "接受证据失败，并转而为下一次行动建立新的准备方式。"
+      motivation: "他已经被迫承认，记忆和选择比证据更重要。"
+    opposition: "梦境层规则、现实层隔离和他自己的不甘心。"
+    choice_or_action: "记录、排序、准备、训练，而不是继续徒劳取证。"
+    turning_point: "他停止把‘证明’当成唯一目标。"
+    consequence:
+      state_change: "跨层主线转入主动准备。"
+      fact_ids:
+        - FACT-0006
+      event_ids: []
+    next_pressure: "组织影子开始从低层出现。"
+    scene_ids: []
+  - beat_key: beat-018
+    narrative_position: late
+    trigger:
+      source_ids:
+        - FACT-0002
+      pressure: "双界工作真相必须以低层影子方式持续逼近，而不是高层讲解。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "分辨灰标、雨衣人、小车和旧标到底意味着什么。"
+      motivation: "他知道自己还没资格知道答案，但不能继续装瞎。"
+    opposition: "不能问名字的规则、观察者的回避和信息层级的压制。"
+    choice_or_action: "跟踪、观察、借用已有关系换取边角信息。"
+    turning_point: "温良意识到有更大的结构在看着两界。"
+    consequence:
+      state_change: "故事从个体异常扩展到低层结构线索。"
+      fact_ids:
+        - FACT-0002
+      event_ids: []
+    next_pressure: "下一次跨层可能会被外部力量注意到。"
+    scene_ids: []
+  - beat_key: beat-019
+    narrative_position: climax-build
+    trigger:
+      source_ids:
+        - KNOW-0005
+      pressure: "温良不能带回客观证据，只能带着经历和选择回到梦境层。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "设计下一次跨层行动的代价与边界。"
+      motivation: "他终于明白，真正重要的是怎么承担，而不是怎么解释。"
+    opposition: "南宫芸儿、陈安、林照、刘婆婆和聚落的各自期待互相拉扯。"
+    choice_or_action: "把两界信息重新排序，准备主动选择下一步。"
+    turning_point: "温良第一次不是被推着走，而是自己定方向。"
+    consequence:
+      state_change: "主角进入主动决策阶段。"
+      fact_ids:
+        - FACT-0006
+      event_ids: []
+    next_pressure: "必须有人真正参与到他的选择里。"
+    scene_ids: []
+  - beat_key: beat-020
+    narrative_position: finale
+    trigger:
+      source_ids:
+        - REL-0001
+        - REL-0015
+      pressure: "校园与现实的支撑都已建立，但也都要求温良承担后果。"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+        - CHAR-0002
+      goal: "在南宫芸儿和真实界聚落都看得见的前提下，主动选择下一次跨层路径。"
+      motivation: "他不再只是想活下去，而是想把两界都纳入自己的责任。"
+    opposition: "两边都不能无代价地支持他。"
+    choice_or_action: "做出明确承诺，留下新的准备和新的关系后果。"
+    turning_point: "温良不再把两界当成彼此无关的世界。"
+    consequence:
+      state_change: "第 20 章结束时，温良已经成了两界都无法忽视的人。"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "下一卷或下一批章节可以正式进入更高层级的结构。"
+    scene_ids: []
+
+character_arcs:
+  - character_id: CHAR-0001
+    starting_state: "被动、虚弱、总想把异常当没发生。"
+    want: "回到梦境、确认南宫芸儿还在、找出异常来源。"
+    need: "承认经历无法证明，但仍然需要负责。"
+    wound_or_lie_pressure: "把自己当成不该给别人添麻烦的人。"
+    irreversible_choice: "不再把跨层经历当成可以独自消化的梦。"
+    ending_state: "能主动为下一次跨层行动做准备，并承担关系后果。"
+    beat_keys: [beat-007, beat-008, beat-010, beat-013, beat-015, beat-017, beat-019, beat-020]
+  - character_id: CHAR-0002
+    starting_state: "敏锐，但还停留在观察和怀疑阶段。"
+    want: "确认温良到底经历了什么。"
+    need: "接受有些真相只能先陪着走近，而不是立刻逼出来。"
+    wound_or_lie_pressure: "她太早知道温良不对，却还不能证明。"
+    irreversible_choice: "把关心变成持续观察和共同承担。"
+    ending_state: "成为跨层主线中的稳定见证者，而不是单纯旁观者。"
+    beat_keys: [beat-008, beat-009, beat-011, beat-020]
+  - character_id: CHAR-0012
+    starting_state: "警惕、审慎，先看风险。"
+    want: "保护聚落并判断温良的价值。"
+    need: "允许事实改变判断。"
+    wound_or_lie_pressure: "长期损失让他不轻信任何外来者。"
+    irreversible_choice: "从纯防卫转为有限接纳。"
+    ending_state: "成为温良真实界技能和规则认知的限制者。"
+    beat_keys: [beat-013, beat-015, beat-016]
+  - character_id: CHAR-0013
+    starting_state: "强硬务实，先算成本。"
+    want: "让聚落资源不被拖垮。"
+    need: "承认某些成本之外也有必须承担的价值。"
+    wound_or_lie_pressure: "资源不足让她对每个外来者都先看账。"
+    irreversible_choice: "以成本为前提接纳温良。"
+    ending_state: "让温良明白，接纳永远有代价。"
+    beat_keys: [beat-013]
+  - character_id: CHAR-0014
+    starting_state: "嘴硬、手稳，背着旧井伤口。"
+    want: "守住还能救的人。"
+    need: "把过去失败转化为一次有代价的帮助。"
+    wound_or_lie_pressure: "孙女失踪使她长期回避旧井。"
+    irreversible_choice: "给出有限帮助和有限线索。"
+    ending_state: "成为跨层准备的关键但不完整支点。"
+    beat_keys: [beat-015, beat-016]
+  - character_id: CHAR-0015
+    starting_state: "把末世秩序当正常生活。"
+    want: "继续玩、笑、活下去。"
+    need: "理解温良不是玩具。"
+    wound_or_lie_pressure: "熟悉的危险被他当成理所当然。"
+    irreversible_choice: "被迫成为主线压力的一部分。"
+    ending_state: "继续承担孩子视角的日常质感。"
+    beat_keys: [beat-011, beat-013]
+  - character_id: CHAR-0016
+    starting_state: "欠债、谨慎、先看能不能活。"
+    want: "把救命债变成协作。"
+    need: "承认关系也能成为技能交换。"
+    wound_or_lie_pressure: "见过承诺失效。"
+    irreversible_choice: "用实际技能回报温良。"
+    ending_state: "成为温良在真实界的第一个可持续协作对象。"
+    beat_keys: [beat-014]
+
+thread_plan:
+  - thread_id: THREAD-0001
+    dramatic_question: "温良能否不靠证据，只靠选择和代价，确认自己经历的跨层是真实的？"
+    opening_state: "他已经从脚步声进入真实界，并在医院/校园/聚落三线间反复拉扯。"
+    escalation_beat_keys: [beat-007, beat-008, beat-015, beat-017]
+    resolution_beat_key: beat-020
+    intended_resolution: "温良接受跨层经历不能被客观证明，但可以被承担和延续。"
+  - thread_id: THREAD-0002
+    dramatic_question: "南宫芸儿会不会继续相信并参与，而不是把温良当成单纯的病人？"
+    opening_state: "她已经知道温良不对劲，但还没有真相。"
+    escalation_beat_keys: [beat-008, beat-009, beat-011, beat-020]
+    resolution_beat_key: beat-020
+    intended_resolution: "她成为稳定见证者和关系锚点。"
+  - thread_id: THREAD-0003
+    dramatic_question: "现实世界聚落会把温良视为风险、资源，还是两者兼有？"
+    opening_state: "温良已被火线收留，但信任有限。"
+    escalation_beat_keys: [beat-013, beat-014, beat-015, beat-016]
+    resolution_beat_key: beat-019
+    intended_resolution: "他以劳动和承担换取有限但真实的协作资格。"
+
+foreshadowing_plan:
+  - foreshadowing_id: FORESH-0007
+    plant_beat_key: beat-015
+    reader_sees: "旧井、火绳、回梦牌和林照的有限经验。"
+    true_meaning: "这是危险但可使用的跨层点。"
+    advance_beat_keys: [beat-016, beat-017]
+    payoff_beat_key: beat-017
+  - foreshadowing_id: FORESH-0008
+    plant_beat_key: beat-017
+    reader_sees: "证据失败、录音空白、物证无效。"
+    true_meaning: "跨层经历不能靠客观取证证明。"
+    advance_beat_keys: [beat-018, beat-019]
+    payoff_beat_key: beat-019
+  - foreshadowing_id: FORESH-0010
+    plant_beat_key: beat-018
+    reader_sees: "灰标、雨衣人、灰色小车、旧楼标记。"
+    true_meaning: "有更大的低层结构在观察两界。"
+    advance_beat_keys: [beat-019, beat-020]
+    payoff_beat_key: beat-020
+  - foreshadowing_id: FORESH-0011
+    plant_beat_key: beat-008
+    reader_sees: "校园里日常不断把温良拉回现实。"
+    true_meaning: "梦境层医院、校园和真实界需要共同承担后果。"
+    advance_beat_keys: [beat-009, beat-010, beat-020]
+    payoff_beat_key: beat-020
+
+chapter_plan:
+  - volume: 1
+    chapter: 7
+    title: "旧井下面"
+    entry_state: "温良顺着旧井往下爬，身边只有火绳、铁梯和必须面对的黑暗。"
+    causal_trigger: "他主动选择回到梦境层。"
+    purpose: "完成返梦与取证失败的第一步，明确跨层不能靠勇气硬闯。"
+    conflict: "井下的方向、身体损伤和未知代价。"
+    decisive_change: "他重新回到梦境层医院。"
+    exit_hook: "梦境层并不安全，且证据仍旧留不住。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001]
+      character_ids: [CHAR-0001]
+      relationship_ids: [REL-0001, REL-0002, REL-0003]
+      foreshadowing_ids: [FORESH-0007]
+  - volume: 1
+    chapter: 8
+    title: "医院醒来"
+    entry_state: "温良带着跨层记忆回到梦境层，病床、医务人员和同学都在。"
+    causal_trigger: "他必须面对证据失败和南宫芸儿的追问。"
+    purpose: "让梦境层医院成为新的压力场，而不是恢复场。"
+    conflict: "任何解释都无法变成客观证明。"
+    decisive_change: "温良承认行动比证明更重要。"
+    exit_hook: "南宫芸儿开始和陈安、古晓雨一起观察他。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001, THREAD-0002]
+      character_ids: [CHAR-0001, CHAR-0002, CHAR-0004, CHAR-0003]
+      relationship_ids: [REL-0001, REL-0002, REL-0003, REL-0004, REL-0008, REL-0009, REL-0010]
+      foreshadowing_ids: [FORESH-0008, FORESH-0011]
+  - volume: 1
+    chapter: 9
+    title: "她开始观察"
+    entry_state: "南宫芸儿已经知道温良不对，却还在等证据。"
+    causal_trigger: "她发现温良的身体反应和说辞并不一致。"
+    purpose: "强化观察和证据之间的拉扯。"
+    conflict: "温良回避、陈安插科打诨、古晓雨制造干扰。"
+    decisive_change: "她不再只问一对一问题。"
+    exit_hook: "小群体开始围拢温良。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0002]
+      character_ids: [CHAR-0002, CHAR-0003, CHAR-0004]
+      relationship_ids: [REL-0008, REL-0009, REL-0010, REL-0003, REL-0004]
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 10
+    title: "三个人的消息"
+    entry_state: "温良、南宫芸儿、陈安和古晓雨开始形成一个小型观察圈。"
+    causal_trigger: "陈安和古晓雨各自用自己的方式介入。"
+    purpose: "把校园日常从二人对话扩展到群像支撑。"
+    conflict: "每个人都知道一点，但没有人能直接给答案。"
+    decisive_change: "温良意识到秘密已经进入社交结构。"
+    exit_hook: "他在校内的异常会持续扩大。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0002]
+      character_ids: [CHAR-0003, CHAR-0004]
+      relationship_ids: [REL-0003, REL-0004, REL-0008, REL-0009, REL-0010]
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 11
+    title: "火线账本"
+    entry_state: "真实界聚落继续要求每个人用劳动换取存在。"
+    causal_trigger: "火线消耗、物资分配和巡夜压力上升。"
+    purpose: "把现实世界的成本细节写扎实。"
+    conflict: "温良想留在聚落，但不能免除成本。"
+    decisive_change: "他开始成为有用的人。"
+    exit_hook: "梁渡和温良建立更具体的技能交换。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0003]
+      character_ids: [CHAR-0012, CHAR-0013, CHAR-0015]
+      relationship_ids: [REL-0015]
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 12
+    title: "听雾的人"
+    entry_state: "温良在真实界学会分辨火线、雾和巡夜声。"
+    causal_trigger: "梁渡开始教他听雾。"
+    purpose: "让温良获得现实世界的初级技能。"
+    conflict: "雾、火和黑斑风险都不允许轻慢。"
+    decisive_change: "温良不再只是受救者。"
+    exit_hook: "他开始真正理解聚落里的人情债。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0003]
+      character_ids: [CHAR-0016]
+      relationship_ids: [REL-0015]
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 13
+    title: "旧井规矩"
+    entry_state: "旧井已经从传闻变成能被使用的风险。"
+    causal_trigger: "温良开始追问井边规矩。"
+    purpose: "明确旧井不是答案，而是门槛。"
+    conflict: "林照和刘婆婆都只愿给有限经验。"
+    decisive_change: "温良得到不完整但可执行的回梦工具。"
+    exit_hook: "下一次跨层有了准备条件。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0003]
+      character_ids: [CHAR-0012, CHAR-0014]
+      relationship_ids: [REL-0015]
+      foreshadowing_ids: [FORESH-0007]
+  - volume: 1
+    chapter: 14
+    title: "草叶和火绳"
+    entry_state: "刘婆婆与林照都在有限范围内帮助温良。"
+    causal_trigger: "温良必须为下一次跨层准备。"
+    purpose: "把有限帮助写成代价明确的资源。"
+    conflict: "任何进一步帮助都不能免除风险。"
+    decisive_change: "温良拿到新的准备项。"
+    exit_hook: "他离再次进井只差决定。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0003]
+      character_ids: [CHAR-0012, CHAR-0014]
+      relationship_ids: [REL-0015]
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 15
+    title: "证据空白"
+    entry_state: "温良再次面对无法独立取证的现实。"
+    causal_trigger: "他试图证明自己没有疯。"
+    purpose: "让‘证据失败’成为结构性事实。"
+    conflict: "录音、照片和物证都不可靠。"
+    decisive_change: "温良停止把证明当成唯一目标。"
+    exit_hook: "他开始主动规划行动。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001]
+      character_ids: [CHAR-0001, CHAR-0002]
+      relationship_ids: [REL-0001, REL-0002]
+      foreshadowing_ids: [FORESH-0008]
+  - volume: 1
+    chapter: 16
+    title: "灰标"
+    entry_state: "灰标、雨衣人和灰色小车开始露出边角。"
+    causal_trigger: "聚落外部结构以低层迹象进入视野。"
+    purpose: "把更大的组织影子压在背景里。"
+    conflict: "谁都不能直接说明他们是谁。"
+    decisive_change: "温良确认自己不只是被雾盯着。"
+    exit_hook: "他意识到自己被更大结构观察。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001]
+      character_ids: [CHAR-0012, CHAR-0013, CHAR-0014]
+      relationship_ids: [REL-0015]
+      foreshadowing_ids: [FORESH-0010]
+  - volume: 1
+    chapter: 17
+    title: "谁在看着"
+    entry_state: "外部低层线索开始形成连续压力。"
+    causal_trigger: "温良试图分辨灰标背后的结构。"
+    purpose: "把低层组织影子维持为谜团。"
+    conflict: "信息不许完整，旁观者不许直说。"
+    decisive_change: "温良开始建立自己的判断框架。"
+    exit_hook: "下一次跨层不再只是逃命。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001]
+      character_ids: [CHAR-0001]
+      relationship_ids: []
+      foreshadowing_ids: [FORESH-0010]
+  - volume: 1
+    chapter: 18
+    title: "准备回去"
+    entry_state: "温良已经知道两界都不可能无代价支持他。"
+    causal_trigger: "他主动决定下一次跨层路线。"
+    purpose: "让主角进入主动选择阶段。"
+    conflict: "校园和聚落两边都在拉扯他。"
+    decisive_change: "他为行动付出准备成本。"
+    exit_hook: "下一次跨层将由他自己发起。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001, THREAD-0002, THREAD-0003]
+      character_ids: [CHAR-0001, CHAR-0002, CHAR-0012, CHAR-0014, CHAR-0016]
+      relationship_ids: [REL-0001, REL-0002, REL-0015]
+      foreshadowing_ids: [FORESH-0008, FORESH-0010]
+  - volume: 1
+    chapter: 19
+    title: "代价清单"
+    entry_state: "跨层准备已经有了代价清单，但还没付完。"
+    causal_trigger: "温良必须决定把哪些关系和资源带进下一次行动。"
+    purpose: "把责任与选择推到台前。"
+    conflict: "每个人都想要不同的结果。"
+    decisive_change: "温良明确了自己要承担什么。"
+    exit_hook: "下一个跨层目标被锁定。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001, THREAD-0002, THREAD-0003]
+      character_ids: [CHAR-0001, CHAR-0002, CHAR-0012, CHAR-0014, CHAR-0016]
+      relationship_ids: [REL-0001, REL-0002, REL-0015]
+      foreshadowing_ids: [FORESH-0008]
+  - volume: 1
+    chapter: 20
+    title: "下一次选择"
+    entry_state: "温良站在下一次跨层行动门口，已经不是最初那个只会被拖走的人。"
+    causal_trigger: "所有支线都推着他做最后选择。"
+    purpose: "收束这一批次，把主角推到主动承担的位置。"
+    conflict: "两界都要求他付代价。"
+    decisive_change: "温良主动选择下一次跨层的方向和边界。"
+    exit_hook: "第 20 章结束，进入下一阶段更高层级冲突。"
+    scene_ids: []
+    advances:
+      thread_ids: [THREAD-0001, THREAD-0002, THREAD-0003]
+      character_ids: [CHAR-0001, CHAR-0002, CHAR-0012, CHAR-0014, CHAR-0015, CHAR-0016]
+      relationship_ids: [REL-0001, REL-0002, REL-0015]
+      foreshadowing_ids: [FORESH-0010, FORESH-0011]
+
+risks:
+  continuity:
+    - "7-8 章必须严格承接旧井返程与医院取证失败，不能重新写成重复醒来。"
+    - "校园线不能提前给出组织答案，必须维持低层观察。"
+  pacing:
+    - "若 9-12 章校园群像铺太长，会挤压真实界生活感。"
+    - "若 15-20 章组织影子太早讲透，会破坏悬念。"
+  genre_promise:
+    - "双界反差必须持续有新信息，而不是反复解释同一套规则。"
+  dependency:
+    - "后续正式写作必须按 7-8 / 9-12 / 13-16 / 17-20 四批工作包执行。"
+
+open_questions:
+  - question: "第 20 章是否作为这一轮的小结点，还是再往后接一段跨层行动？"
+    why_it_matters: "影响这一批次的收束力度。"
+    blocking: false
+    owner: author
+    decision_needed_by: "第 18 章开始写作前"
+  - question: "医院线里是否需要再增加一次明确医疗冲突，还是保持轻压推进？"
+    why_it_matters: "影响第 8-12 章节奏。"
+    blocking: false
+    owner: author
+    decision_needed_by: "第 8 章起草前"
+
+approval:
+  required_approver: author
+  status: pending
+  decision_record_id: null
+  decided_at: null
+  notes: "Proposal for 7-20 continuation; no Canon changes."
+
+validation:
+  checks:
+    - all causal beats have a trigger, change, and next pressure
+    - referenced IDs belong to owner.novel_id or an explicit dependency
+    - chapter plan keeps dream layer, real layer, and low-level organization pressure separated
+    - chapter expansion maintains causal progression without reusing the old 12-chapter abandoned plan
+  evidence: []
