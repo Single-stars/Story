@@ -1,0 +1,57 @@
+schema_version: "0.1.0"
+id: SCN-0006
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 听雾的人
+summary: >-
+  娓╄壇鍦ㄧ幇瀹炰笘鐣岀殑鐏嚎銆侀鍠风▼搴忓拰闆炬皵鍙樺寲閲岋紝寮€濮嬪浼氬垎杈ㄦ姤璀︺€佸贰澶滃拰鍧愭爣澹扮殑宸紓锛屼粬涓嶅啀鍙槸琚姢鐨勪汉锛岃€屾槸寮€濮嬭璁粌鐨勪汉銆?
+tags:
+  - real_layer
+  - hearing
+  - training
+
+narrative_order:
+  volume: 1
+  chapter: 12
+  scene: 1
+
+pov_character_id: CHAR-0001
+location_id: LOC-0011
+
+event_ids:
+  - EVT-0011
+
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0012
+  - CHAR-0014
+  - CHAR-0016
+
+entry_state: >-
+  娓╄壇鍒氬湪鐏嚎涓婄┛杩囦竴杞紝鏅鸿兘杩樻病鏈夊綋鍧愭爣鐢ㄦ墜鏈烘垨鍒扮偣甯栧瓙鍒嗚鲸椋庨櫓銆傜幇鍦紝鏋楃収瑕佷粬娆㈡鍎夸竴鐐瑰惉锛屽垬濠嗗﹩瑕佺湅浠栬兘涓嶈兘鏈変竴鐐逛富鍔ㄥ闂紝鑰岀伆闆剧澹版鍦ㄨ寰嬪崌绾ф湡銆?
+structure:
+  goal: >-
+    让温良把听见变成判断，把判断变成能用的行动。
+  conflict: >-
+    过于安静会漏掉危险，过于敏感又会把自己吓坏。
+  turning_point: >-
+    林昭让他闭眼分辨风向、巡夜脚步和火线远近的差别。
+  crisis: >-
+    如果他把每个声音都当成敌人，就会失去判断；如果他什么都不听，就会继续只靠别人保护。
+  climax: >-
+    温良分辨出灰雾、火线和巡夜脚步的不同节奏。
+  resolution: >-
+    他第一次拥有了能帮助聚落的人手能力。
+  exit_hook: >-
+    他开始真正理解聚落里的人情价。
+exit_state: >-
+  娓╄壇鐨勫惉瑙夊紑濮嬭兘鐢ㄤ簬鍒ゆ柇锛屽叾浠栦汉涔熺湅鍒颁簡杩欎竴鐐规敼鍙樸€備粬涓嶅啀鍙槸鍙楁晳鑰咃紝鑰屾槸鍙互琚缁冨鐞嗚鎶ヤ笌杩滆繎椋庨櫓鐨勪汉銆?
+knowledge_changes:
+  - KNOW-0005
+relationship_changes:
+  - REL-0015
+foreshadowing_ids:
+  - FORESH-0011

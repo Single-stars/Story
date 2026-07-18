@@ -1,0 +1,116 @@
+schema_version: "0.1.0"
+id: CHRUN-0005
+record_type: chapter_workpack
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+chapter_id: CHAPTER-0012
+target_word_count:
+  min: 3000
+  target: 3800
+  max: 4800
+
+scene_ids:
+  - SCN-0006
+
+required_context:
+  style_profile_ids:
+    - STYLE-0001
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0012
+    - CHAR-0014
+    - CHAR-0016
+    - LOC-0005
+    - LOC-0011
+    - RULE-0007
+    - FACT-0006
+    - KNOW-0005
+    - REL-0015
+  narrative_ids:
+    - SCN-0006
+    - EVT-0011
+    - THREAD-0003
+    - FORESH-0010
+  manuscript_chapter_ids:
+    - CHAPTER-0011
+  decision_ids:
+    - RESTRUCT-0002
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
+    - BASELINE-0001
+
+required_reviews:
+  continuity:
+    required: true
+    review_ids: []
+    notes: "Continuity review must cover CHAPTER-0012 before reviewed/accepted status."
+  developmental_edit:
+    required: true
+    review_ids: []
+    notes: "Structural review must cover CHAPTER-0012 before reviewed/accepted status."
+  reader_test:
+    required: true
+    review_ids: []
+    notes: "Fresh-reader test must use authorized manuscript scope only."
+  line_edit:
+    required: true
+    review_ids: []
+    notes: "Line edit review must cover clarity, repetition, AI residue, POV distance, action logic, and prose fidelity."
+
+continuity_contract:
+  world_state: >-
+    Chapter 12 remains in the real/main world settlement and expands the
+    hearing-and-response routine. Keep dream-layer hospital material offstage.
+  capability_scope: >-
+    Wen Liang may learn to distinguish sound, rhythm, and warning. He still
+    cannot use mind-over-matter or produce proof by intention.
+  character_knowledge: >-
+    Wen Liang knows a little more about where danger lives. Lin Zhao and Liu
+    Popo know what can be taught and what can only be lived through.
+  relationship_state: >-
+    Support becomes practical cooperation. Wen Liang is no longer only being
+    protected; he is being trained to notice and act.
+  foreshadowing_plan: >-
+    Advance the hearing/reading-the-environment thread and keep organization
+    pressure indirect.
+  motivation_gate: >-
+    Every lesson must have a visible trigger, an immediate goal, a risk, and a
+    stopping condition.
+  concept_exposure_gate: >-
+    New concepts appear as sound, distance, and routine technique. Do not turn
+    them into theory-first exposition.
+  npc_independence_gate: >-
+    Lin Zhao and Liu Popo each teach for their own reasons and costs.
+  cross_layer_state_gate: >-
+    Track fatigue, hearing, and resource changes across the lesson.
+  reader_exposure:
+    allowed:
+      - The reader may see Wen Liang begin to handle real-world warning signs.
+    forbidden:
+      - Do not reveal organization truth or make the hearing skill supernatural beyond the established rule set.
+
+quality_gates:
+  word_count_defined: true
+  scene_contracts_locked: true
+  capability_scope_checked: true
+  character_roster_named: true
+  relationship_changes_motivated: true
+  plot_causality_checked: true
+  foreshadowing_status_checked: true
+  reader_exposure_limited: true
+  prose_quality_review_planned: true
+  motivation_gate_checked: true
+  concept_exposure_checked: true
+  npc_independence_checked: true
+  cross_layer_state_checked: true
+
+resume_brief: >-
+  CHRUN-0005 is the durable entry point for CHAPTER-0012. Wen Liang learns to
+  distinguish fire line, mist, patrol sound, and warning from Lin Zhao and Liu
+  Popo. Keep the lesson practical and costed; do not turn it into a magic
+  showcase or explanation dump.

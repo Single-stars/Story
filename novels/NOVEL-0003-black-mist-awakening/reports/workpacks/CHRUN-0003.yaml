@@ -1,0 +1,132 @@
+schema_version: "0.1.0"
+id: CHRUN-0003
+record_type: chapter_workpack
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+chapter_id: CHAPTER-0010
+target_word_count:
+  min: 3000
+  target: 3800
+  max: 4800
+
+scene_ids:
+  - SCN-0004
+
+required_context:
+  style_profile_ids:
+    - STYLE-0001
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - CHAR-0003
+    - CHAR-0004
+    - CHAR-0010
+    - LOC-0005
+    - RULE-0007
+    - FACT-0003
+    - FACT-0006
+    - KNOW-0001
+    - KNOW-0002
+    - KNOW-0005
+    - REL-0001
+    - REL-0002
+    - REL-0003
+    - REL-0004
+    - REL-0008
+    - REL-0009
+    - REL-0010
+  narrative_ids:
+    - SCN-0004
+    - EVT-0009
+    - THREAD-0002
+    - FORESH-0009
+    - FORESH-0011
+  manuscript_chapter_ids:
+    - CHAPTER-0009
+  decision_ids:
+    - RESTRUCT-0002
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
+    - BASELINE-0001
+
+required_reviews:
+  continuity:
+    required: true
+    review_ids: []
+    notes: "Continuity review must cover CHAPTER-0010 before reviewed/accepted status."
+  developmental_edit:
+    required: true
+    review_ids: []
+    notes: "Structural review must cover CHAPTER-0010 before reviewed/accepted status."
+  reader_test:
+    required: true
+    review_ids: []
+    notes: "Fresh-reader test must use authorized manuscript scope only."
+  line_edit:
+    required: true
+    review_ids: []
+    notes: "Line edit review must cover clarity, repetition, AI residue, POV distance, action logic, and prose fidelity."
+
+continuity_contract:
+  world_state: >-
+    Chapter 10 remains in the dream-layer hospital. Keep the hospital,
+    school-memory residue, and the emerging gray-clad pressure clearly
+    separated from the real/world survival line.
+  capability_scope: >-
+    Wen Liang can record, compare, infer, and refuse to collapse his
+    experience into a simple explanation. He cannot prove the crossing with
+    physical evidence.
+  character_knowledge: >-
+    Wen Liang, Nan Gong Yun'er, Chen An, and Gu Xiaoyu each know only the
+    pieces visible to them. The gray-clad figure is only a partial external
+    signal.
+  relationship_state: >-
+    The hospital trio begins to function as a shared observation circle. Nan
+    Gong Yun'er remains the lead observer; Chen An supplies ordinary support;
+    Gu Xiaoyu supplies social lubrication and spacing.
+  foreshadowing_plan: >-
+    Advance the gray-clad external-pressure thread through observation, not
+    explanation. Do not reveal full organization logic.
+  motivation_gate: >-
+    Every comparison, question, and record in this chapter must serve the
+    immediate goal of turning Wen Liang's experience into usable sequence.
+  concept_exposure_gate: >-
+    New concepts appear as hospital hallways, paper, timing, shared notes, and
+    an observed gray figure. Do not explain organization or route function.
+  npc_independence_gate: >-
+    Nan Gong Yun'er, Chen An, and Gu Xiaoyu each need their own reason to stay,
+    look, ask, or deflect.
+  cross_layer_state_gate: >-
+    No cross-layer evidence survives as objective proof; track only the social
+    consequences and the memory record.
+  reader_exposure:
+    allowed:
+      - The reader may see the observation circle forming and the gray-clad clue entering the hospital line.
+    forbidden:
+      - Do not reveal full organization truth or make the gray-clad man a solved identity.
+
+quality_gates:
+  word_count_defined: true
+  scene_contracts_locked: true
+  capability_scope_checked: true
+  character_roster_named: true
+  relationship_changes_motivated: true
+  plot_causality_checked: true
+  foreshadowing_status_checked: true
+  reader_exposure_limited: true
+  prose_quality_review_planned: true
+  motivation_gate_checked: true
+  concept_exposure_checked: true
+  npc_independence_checked: true
+  cross_layer_state_checked: true
+
+resume_brief: >-
+  CHRUN-0003 is the durable entry point for CHAPTER-0010. Wen Liang stays in
+  the dream-layer hospital, turns his crossing into a shared sequence with Nan
+  Gong Yun'er, Chen An, and Gu Xiaoyu, and notices a gray-clad observer that
+  pushes the line from private experience toward social pressure.

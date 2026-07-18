@@ -1,0 +1,29 @@
+schema_version: "0.1.0"
+id: EVT-0009
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 病房里的三个人开始记录
+summary: "温良在病房里把跨层经历拆成顺序、时间、位置和人物，南宫筝儿、陈安和古晓雨开始用各自的方式协助记录；走廊上出现的灰衣外来者让这场记录第一次带上外部压力。"
+tags:
+  - dream_layer
+  - hospital
+  - observation-circle
+story_time:
+  value: "2041-05-20T13:00:00+08:00"
+  precision: hour
+participants:
+  - CHAR-0001
+  - CHAR-0002
+  - CHAR-0003
+  - CHAR-0004
+location_id: LOC-0005
+caused_by_event_ids:
+  - EVT-0008
+consequence_event_ids:
+  - EVT-0010
+facts_established:
+  - FACT-0003
+  - FACT-0006

@@ -1,0 +1,30 @@
+schema_version: "0.1.0"
+id: EVT-0010
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 灰衣者再次出现在医院走廊
+summary: >-
+  娓╄壇鍦ㄥ尰闄㈣蛋寤婂啀娆¤鍒扮伆琛ｇ敺浜猴紝濂藉儚浠栨湁鍒簬鎴愭湰甯﹁浠ュ閮ㄥ帇鍔涚洯瀹氾紝浣嗙粷涓嶆彮绀烘棦鏈夎韩浠借繕鏄唴閮ㄧ洰鏍囥€?
+tags:
+  - dream_layer
+  - hospital
+  - gray_pressure
+story_time:
+  value: "2041-05-20T13:10:00+08:00"
+  precision: minute
+participants:
+  - CHAR-0001
+  - CHAR-0002
+  - CHAR-0003
+  - CHAR-0004
+  - CHAR-0010
+location_id: LOC-0005
+caused_by_event_ids:
+  - EVT-0009
+consequence_event_ids: []
+facts_established:
+  - FACT-0003
+  - FACT-0006

@@ -1,0 +1,57 @@
+schema_version: "0.1.0"
+id: SCN-0005
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线账本
+summary: >-
+  娓╄壇鍦ㄦ牎鍥鍜岃仛钀界殑鐏嚎宸ヤ綔閲岄噸鏂板浼氭槑鐧斤紝姣忎竴浠朵粬鑳芥嬁涓嬭鍋氱殑娲诲効閮芥湁鎴愭湰銆佽矗浠诲拰鍙鎴愭灉锛屽洜姝よ仛钀界殑浜虹編鍦ㄦ鍙樻垚鍙摝鏋跺崗浣滅殑瀵硅薄銆?
+tags:
+  - real_layer
+  - settlement
+  - fire_line
+
+narrative_order:
+  volume: 1
+  chapter: 11
+  scene: 1
+
+pov_character_id: CHAR-0001
+location_id: LOC-0011
+
+event_ids:
+  - EVT-0010
+
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0012
+  - CHAR-0013
+  - CHAR-0014
+
+entry_state: >-
+  娓╄壇鎶婅繖涓ゅぉ鐨勭儳姘旂銆佸贰澶滆〃鍜岄ギ姘存満杩涘嚭鏃堕棿璁颁簡涓€閬嶏紝浠栨湁鐨勮姘旈兘鏄叚鍒嗗摢瑙ｉ噴銆佸叚鍒嗚瘽澶栥€備粬闇€瑕佷竴浠界湡姝ｇ殑鏈変环鍊煎伐浣溿€?
+structure:
+  goal: >-
+    让温良找到能留在这里的方式，同时证明自己不是只会被安排的人。
+  conflict: >-
+    物资短缺、巡夜压力和对外来者的保留让每一步都要付代价。
+  turning_point: >-
+    林昭把他带到火线账本前，让他第一次看到这群人如何把生存写成数字。
+  crisis: >-
+    如果他只会口头承诺，他仍然只是负担；如果他开始接活，就会背上真正的责任。
+  climax: >-
+    温良主动接下账本整理和巡夜补位，换取参与资格。
+  resolution: >-
+    这份资格不是安置，而是合作的开始。
+  exit_hook: >-
+    灰衣者的低层压力从医院延伸到聚落外缘。
+exit_state: >-
+  娓╄壇鎷ユ湁浜嗕竴浠借兘鐪熸鎺ヨ繘鐨勫伐浣滐紝姹傜敓宸茬粡涓嶈兘鍐嶅彧闈犲皬璇磋埇鐨勮嚜鎴戣鏈嶃€傚瑙傚悇浜嬪己鐑堝湴鎻愰啋浠栵細鐣欏湪杩欓噷灏辫鍙楄矗銆?
+knowledge_changes:
+  - KNOW-0005
+relationship_changes:
+  - REL-0015
+foreshadowing_ids:
+  - FORESH-0010

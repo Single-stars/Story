@@ -1,0 +1,29 @@
+schema_version: "0.1.0"
+id: EVT-0011
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良开始分辨火线和风里的杂音
+summary: >-
+  娓╄壇鍦ㄦ牎鍥鍏ュ彛鍜岀伀绾夸笂寮€濮嬬敤鍚鍒嗚鲸鍘嬭揪澹般€佺┖姘旀椂椤烘垨宸紓锛屽杩欏畧鍦恒€佸贰澶滃拰闆炬皵闅愬喎鐨勬甯歌鍒欐湁浜嗗叿浣撳弽搴斻€?
+tags:
+  - real_layer
+  - fire_line
+  - training
+story_time:
+  value: "2041-05-20T18:20:00+08:00"
+  precision: minute
+participants:
+  - CHAR-0001
+  - CHAR-0012
+  - CHAR-0013
+  - CHAR-0014
+location_id: LOC-0011
+caused_by_event_ids:
+  - EVT-0009
+consequence_event_ids: []
+facts_established:
+  - FACT-0005
+  - FACT-0006

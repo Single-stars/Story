@@ -1,0 +1,64 @@
+schema_version: "0.1.0"
+id: SCN-0004
+entity_type: scene
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 三个人的消息
+summary: >-
+  温良在医院病床上与南宫芸儿、陈安、古晓雨一起把跨层经历写成可复查的顺序，三人开始分工观察、提问和遮掩，病房由单人的秘密变成一张持续扩大的消息网。读者看到的是证据失败后的共同记录，以及走廊里灰衣外来者留下的轻微压力。
+tags:
+  - dream_layer
+  - hospital
+  - mystery
+  - observation-circle
+
+narrative_order:
+  volume: 1
+  chapter: 10
+  scene: 1
+
+pov_character_id: CHAR-0001
+location_id: LOC-0005
+
+event_ids:
+  - EVT-0009
+
+cast_character_ids:
+  - CHAR-0001
+  - CHAR-0002
+  - CHAR-0003
+  - CHAR-0004
+
+entry_state: >-
+  温良醒在医院，手边有记录本和一片写着“井醒着”的纸。南宫芸儿已经开始要求顺序，陈安负责现实支持，古晓雨负责把病房维持成不会立刻炸开的日常，所有人都知道这件事不能再只靠温良自己记。
+
+structure:
+  goal: 把跨层经历拆成可以重复检查的顺序与细节。
+  conflict: 温良的记忆、众人的怀疑和医院的普通解释都在抢夺叙述权。
+  turning_point: 南宫芸儿不再问“你是不是疯了”，而是改成“按顺序说，我记录”。
+  crisis: 继续把话说成离散的怪事，只会让大家更容易把它当作胡话；但如果按细节记录，又意味着温良必须承认这不是能够立刻解释清楚的经历。
+  climax: 温良把火线、旧井、林照、秦婉、刘婆婆、梁渡和小果按时间说出来，南宫芸儿开始写时间线。
+  resolution: 病房从单人秘密变成三人消息网，古晓雨和陈安也被卷入观察与遮掩的分工。
+  exit_hook: 南宫芸儿在走廊看见一个灰衣人，开始怀疑医院里也有看不见的外部压力。
+
+exit_state: >-
+  温良拥有一份更完整的纸面记录，南宫芸儿手里掌握了时间线和问题清单，陈安知道这不是单纯晕倒，古晓雨知道该先把气氛守住；走廊里的灰衣外来者让医院线开始出现新的外部压力。
+
+knowledge_used_ids:
+  - KNOW-0001
+  - KNOW-0002
+  - KNOW-0005
+knowledge_changes: []
+relationship_changes:
+  - REL-0001
+  - REL-0002
+  - REL-0003
+  - REL-0004
+  - REL-0008
+  - REL-0009
+  - REL-0010
+foreshadowing_ids:
+  - FORESH-0009
+  - FORESH-0011
