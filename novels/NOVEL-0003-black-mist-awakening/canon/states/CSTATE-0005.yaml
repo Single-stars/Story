@@ -1,0 +1,33 @@
+schema_version: "0.1.0"
+id: CSTATE-0005
+entity_type: character_state
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 林照聚落初见温良状态
+summary: "林照作为聚落防御者限制外来者行动，等待温良用劳动和承担改变判断。"
+tags: [real_layer, settlement, continuity]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0012
+state_scope: baseline
+after_event_id: EVT-0001
+after_scene_id: null
+location_id: LOC-0001
+physical_state: "聚落防御状态，需要围绕火线和外来者风险行动。"
+mental_state: "审慎、经验主义，不崇拜温良。"
+capability_state:
+  - "防御判断"
+  - "限制外来者行动"
+resource_state:
+  - "火线"
+  - "聚落规矩"
+  - "本地经验"
+obligation_state:
+  - "保护聚落"
+  - "评估温良风险和价值"
+knowledge_ids: [KNOW-0004]
+item_ids: [ITEM-0001]
+relationship_ids: [REL-0015]

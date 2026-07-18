@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: KNOW-0004
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 刘婆婆知道旧井危险但不完整
+summary: "刘婆婆知道旧井有危险和私人伤口，但她也不能提前给出完整传送规则。"
+tags: [liu_popo, old_well]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0014
+fact_id: FACT-0008
+knowledge_state: believes_true
+learned_at_event_id: EVT-0006
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0.65

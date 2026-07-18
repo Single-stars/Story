@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0007
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陈舟
+summary: "普通学生视角和日常对照人物，让异常先表现为生活里无法解释的缺口。"
+aliases: []
+narrative_tier: support
+tags: [dream_layer, student, dormitory]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "让自己的宿舍生活恢复正常。"
+  need: "承认有些表面解释无法覆盖真实缺口。"
+  wound: "室友被带走后留下空床和不安。"
+  lie: "学校给出的表层解释应该足够。"
+voice:
+  vocabulary: [应该吧, 听说, 生病, 空床]
+  syntax: "普通、谨慎，会怀疑但不夸大。"
+  notices_first: "先注意空床和校方解释之间的缝隙。"
+  avoids: [提前解释双界, 夸张阴谋论]
+capabilities:
+  - "提供普通学生能观察到的异常缺口。"
+limits:
+  - "不知道失踪背后的真实原因。"
+secrets: []
+first_scene_id: null

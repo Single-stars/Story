@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0007
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 危险传送点与证据隔离
+summary: "双界存在极少数危险传送点；同一点在温良使用后失效或坍塌，跨层后不能保留可被他人独立验证的物证。"
+tags: [crossing, evidence_boundary]
+source_refs: ["DECISION-WORKING-021", "DECISION-WORKING-023"]
+supersedes: null
+superseded_by: null
+statement: "跨层经历只能保留主观记忆和由经历造成的选择变化，不能带回手机、录音、物品、伤痕或数字记录作为客观证据。"
+scope: "传送、取证失败、旧井和跨层连续性"
+limitations: ["传送点不是稳定公开门户。", "同一点不能重复使用。"]
+costs: ["触发条件、方向限制、身体与灵魂损伤、迷失或失败后果均未锁定且必须严重。"]
+exceptions: ["肉身锚点只在后续返回真实世界时逐步显现，前期不使用术语解释。"]

@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0004
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 学校宿舍
+summary: "温良与陈安的两人生活空间；陈舟隔壁房间的空床形成不能解释的日常缺口。"
+tags: [dream_layer, dormitory]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [宿舍, 寝室]
+parent_location_id: LOC-0003
+sensory_palette: [窄床, 书桌, 夜灯, 隔墙声]
+constraints:
+  - "温良与陈安同住；陈舟住隔壁双人间，赵思远因病被带走后留下空床。"

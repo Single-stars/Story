@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0004
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 赵思远空床
+summary: "陈舟室友赵思远因病被带走，空床长期保留。"
+tags: [missing_student, dream_layer]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "空床和校方表层解释并存。"
+true_meaning: "去向、实验对象异常或梦境社会失踪机制暂不锁定。"
+intended_payoff: "后续由具体事件决定失踪线是否回收。"
+actual_payoff_scene_id: null
+abandon_reason: null

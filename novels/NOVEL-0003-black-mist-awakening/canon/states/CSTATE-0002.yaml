@@ -1,0 +1,29 @@
+schema_version: "0.1.0"
+id: CSTATE-0002
+entity_type: character_state
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良肉身融合后状态
+summary: "温良完成肉身融合后进入真实世界，以饥饿、疼痛和黑雾压力为首要现实。"
+tags: [wenliang, fusion, real_layer]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0001
+state_scope: post_event
+after_event_id: EVT-0003
+after_scene_id: null
+location_id: LOC-0011
+physical_state: "Hungry, painful, materially present in the real layer."
+mental_state: "Forced to act before he can explain where he is."
+capability_state:
+  - "Mist near him may clear automatically, but he cannot reshape physical reality by intent."
+resource_state:
+  - "No food claim, no stable shelter claim, no trusted local status."
+obligation_state:
+  - "Must survive and learn local rules without exposing too much."
+knowledge_ids: [KNOW-0001]
+item_ids: []
+relationship_ids: [REL-0015]

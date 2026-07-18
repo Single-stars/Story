@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0011
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 古晓雨长期隐情
+summary: "古晓雨作为南宫芸儿闺蜜和热心撮合者，表层可信轻松；她另有长期隐情但早期不得神秘化。"
+tags: [gu_xiaoyu, long_term_secret]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "古灵精怪、乐天、会看气氛、频繁制造相处机会。"
+true_meaning: "真实动机、知识和后续作用不简单，但不需要前期读者知道。"
+intended_payoff: "必须等具体事件提供可回收证据后才能揭示。"
+actual_payoff_scene_id: null
+abandon_reason: null

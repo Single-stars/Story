@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0005
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 南宫芸儿与姚瑶后续朋友线
+summary: "两人后续可发展为朋友，但必须由共同经历建立，不能预设为开局既成事实。"
+tags: [relationship, future_direction]
+thread_type: relationship
+dramatic_question: "什么共同经历会让南宫芸儿和姚瑶建立稳定支持？"
+scene_ids: []
+event_ids: []
+resolution_state: open

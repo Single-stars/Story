@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0015
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 小果
+summary: "真实世界中把末世秩序当正常生活的孩子视角，以直觉和行动判断温良。"
+aliases: []
+narrative_tier: support
+tags: [real_layer, settlement, child]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "在危险规则里继续玩、笑和活下去。"
+  need: "理解温良不是普通外来者，也不是可以随意接近的玩具。"
+  wound: "在雾和火线规则里长大，对危险熟悉得过早。"
+  lie: "熟悉的危险就不算危险。"
+voice:
+  vocabulary: [火别灭, 他不一样, 我知道路]
+  syntax: "直接、好奇，带孩子式判断。"
+  notices_first: "先看雾退了没有、成年人紧不紧张。"
+  avoids: [成人式设定解释]
+capabilities:
+  - "能从孩子视角呈现末世秩序的日常化。"
+limits:
+  - "不能成为路线和答案的便利工具。"
+secrets: []
+first_scene_id: null

@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0003
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 双界时间一比一同步
+summary: "梦境层和真实层时间固定一比一，不再保留时间流速差。"
+tags: [world_structure, disclosure_gate]
+source_refs: ["DECISION-WORKING-019", "DECISION-WORKING-021"]
+supersedes: null
+superseded_by: null
+statement: "梦境层与真实层时间完全同步，角色跨层后的状态变化必须按同一时间流推进。"
+scope: "双界时间线、章节连续性和跨层状态检查"
+limitations: ["不解释完整双界因果。", "不能用时间差修补行动或伤势问题。"]
+costs: ["跨层事件会同时影响两边的行动窗口。"]
+exceptions: []

@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+id: EVT-0005
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线与救援阶段
+summary: "温良在火线压力下验证能力并保护明确对象，救援带来能力暴露和关系后果。"
+tags: [phase, fireline, rescue]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-17T18:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0012, CHAR-0013, CHAR-0016]
+location_id: LOC-0009
+caused_by_event_ids: [EVT-0004]
+consequence_event_ids: [EVT-0006]
+facts_established: [FACT-0004, FACT-0005]
+item_changes:
+  - item_id: ITEM-0004
+    from_holder_id: null
+    to_holder_id: CHAR-0016
+    from_location_id: LOC-0011
+    to_location_id: LOC-0009
+    state_after: "mild black-mist mark created by rescue exposure"

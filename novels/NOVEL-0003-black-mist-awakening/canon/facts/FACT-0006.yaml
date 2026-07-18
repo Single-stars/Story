@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0006
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 跨层取证失败
+summary: "跨层后不能保留可被他人独立验证的物证、数字记录、录音或对应伤痕。"
+tags: [crossing, evidence]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+statement: "温良可以尝试取证，但只能得到空白、失效或无法证明来源的结果；主观记忆和选择变化可以保留。"
+confidence: 0.9
+evidence: [DECISION-WORKING-021]

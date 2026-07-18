@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0005
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 医务室与医院
+summary: "梦境层日常身体问题处理空间；医院只在确有事件需要时出现，不作为万能解释场。"
+tags: [dream_layer, medical]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [医务室, 医院]
+parent_location_id: LOC-0003
+sensory_palette: [消毒水, 白灯, 体温计, 登记表]
+constraints:
+  - "不能替温良保留真实世界物证、录音、印记或系统性证据。"

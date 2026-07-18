@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0013
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陆时年对姚瑶
+summary: "可能以家世和能力优势进行越界试探；具体行为未锁定，只用于制造选择和后果。"
+tags: [relationship, directional, pressure]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0009
+to_character_id: CHAR-0005
+dimensions: { trust: 0.1, affection: 0.05, fear: 0.25, obligation: 0.02, leverage: 0.35 }
+public_label: "同校学生，潜在压力源"
+private_reality: "不得把姚瑶降为等待解救目标；她的选择和反击必须保留。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

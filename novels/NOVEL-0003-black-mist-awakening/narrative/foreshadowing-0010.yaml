@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0010
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿童年记忆
+summary: "南宫芸儿记得温良忘掉的童年，外婆收留线以生活片段出现。"
+tags: [nangong, memory]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "两人曾经亲近，但温良记性变差。"
+true_meaning: "记忆缺失与温良经历有关，以及两人是否能在无法证明的现实上继续选择。"
+intended_payoff: "通过共同生活片段和后续选择回收，而非早期解释真相。"
+actual_payoff_scene_id: null
+abandon_reason: null

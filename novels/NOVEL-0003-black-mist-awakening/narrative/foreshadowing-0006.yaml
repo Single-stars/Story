@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0006
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良身边黑雾退得更快
+summary: "温良身边的雾退得更快，他能缓解轻度黑斑。"
+tags: [wenliang, black_mist, capability]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "局部黑雾反应和轻度伤口变化。"
+true_meaning: "灵魂强度、训练方法和零号身份的后期关系。"
+intended_payoff: "通过救援和聚落评估推进能力边界。"
+actual_payoff_scene_id: null
+abandon_reason: null

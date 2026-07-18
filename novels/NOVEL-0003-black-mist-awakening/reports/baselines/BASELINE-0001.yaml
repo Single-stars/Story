@@ -1,0 +1,157 @@
+schema_version: "0.1.0"
+id: BASELINE-0001
+record_type: drafting_baseline
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+baseline_kind: drafting
+source_decision_ids:
+  - DECISION-WORKING-019
+  - DECISION-WORKING-020
+  - DECISION-WORKING-021
+  - DECISION-WORKING-022
+  - DECISION-WORKING-023
+  - DECISION-WORKING-024
+  - DECISION-WORKING-025
+indexed_ids:
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - CHAR-0003
+    - CHAR-0004
+    - CHAR-0005
+    - CHAR-0006
+    - CHAR-0007
+    - CHAR-0008
+    - CHAR-0009
+    - CHAR-0010
+    - CHAR-0011
+    - CHAR-0012
+    - CHAR-0013
+    - CHAR-0014
+    - CHAR-0015
+    - CHAR-0016
+    - LOC-0001
+    - LOC-0002
+    - LOC-0003
+    - LOC-0004
+    - LOC-0005
+    - LOC-0006
+    - LOC-0007
+    - LOC-0008
+    - LOC-0009
+    - LOC-0010
+    - LOC-0011
+    - FACTION-0001
+    - FACTION-0002
+    - RULE-0001
+    - RULE-0002
+    - RULE-0003
+    - RULE-0004
+    - RULE-0005
+    - RULE-0006
+    - RULE-0007
+    - RULE-0008
+    - FACT-0001
+    - FACT-0002
+    - FACT-0003
+    - FACT-0004
+    - FACT-0005
+    - FACT-0006
+    - FACT-0007
+    - FACT-0008
+    - FACT-0009
+    - REL-0001
+    - REL-0002
+    - REL-0003
+    - REL-0004
+    - REL-0005
+    - REL-0006
+    - REL-0007
+    - REL-0008
+    - REL-0009
+    - REL-0010
+    - REL-0011
+    - REL-0012
+    - REL-0013
+    - REL-0014
+    - REL-0015
+    - ITEM-0001
+    - ITEM-0002
+    - ITEM-0003
+    - ITEM-0004
+    - KNOW-0001
+    - KNOW-0002
+    - KNOW-0003
+    - KNOW-0004
+    - KNOW-0005
+    - KNOW-0006
+    - CSTATE-0001
+    - CSTATE-0002
+    - CSTATE-0003
+    - CSTATE-0004
+    - CSTATE-0005
+  narrative_ids:
+    - SCN-0001
+    - EVT-0001
+    - EVT-0002
+    - EVT-0003
+    - EVT-0004
+    - EVT-0005
+    - EVT-0006
+    - EVT-0007
+    - EVT-0008
+    - THREAD-0001
+    - THREAD-0002
+    - THREAD-0003
+    - THREAD-0004
+    - THREAD-0005
+    - THREAD-0006
+    - THREAD-0007
+    - THREAD-0008
+    - FORESH-0001
+    - FORESH-0002
+    - FORESH-0003
+    - FORESH-0004
+    - FORESH-0005
+    - FORESH-0006
+    - FORESH-0007
+    - FORESH-0008
+    - FORESH-0009
+    - FORESH-0010
+    - FORESH-0011
+  workflow_ids:
+    - CHRUN-0001
+    - STYLE-0001
+    - RESTRUCT-0001
+  decision_ids:
+    - DECISION-WORKING-019
+    - DECISION-WORKING-020
+    - DECISION-WORKING-021
+    - DECISION-WORKING-022
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
+gates:
+  author_accepted_for_drafting: false
+  excludes_legacy_manuscript: true
+  no_canon_promotion: true
+  context_builder_required: true
+  review_workflow_required: true
+open_questions:
+  - "火线燃料的名称、来源、消耗速度和管理方式。"
+  - "灵魂训练的具体方法、代价、掌握群体和保密原因。"
+  - "轻度黑斑可治的判定方式与不可逆阈值。"
+  - "传送失败的具体后果及温良后续返回真实世界的触发条件。"
+  - "入梦计划的目的、实验用途、维护者和零号权限来源。"
+  - "灰衣人的组织结构、资源来源、行动边界及其是否掌握双界信息。"
+semantic_hash: "sha256:5105acb680df413936239a6b3eb6efe458ebe3b1d6d9d69951b0f8a7e6dc70bc"
+resume_brief: >-
+  Drafting baseline for NOVEL-0003 semantic memory migration. Load this baseline
+  before rebuilding chapter workpacks or regenerating prose. It indexes the
+  complete proposed character network, directional relationships, spaces,
+  phase-level events, foreshadowing, items, knowledge records, and character
+  state checkpoints derived from DECISION-WORKING-019 through 025. This baseline
+  is not Canon approval; it is a proposal-only drafting memory contract.

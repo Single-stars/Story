@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0007
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 出租屋
+summary: "温良周末备用住所和生活感据点；钥匙、生活物品和房东照顾通过行动保留。"
+tags: [dream_layer, rental]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [出租屋, 周末住处]
+parent_location_id: null
+sensory_palette: [旧门锁, 账本, 简单家具, 钥匙]
+constraints:
+  - "可以成为异常发生的日常入口，但不能被写成解释世界的说明室。"

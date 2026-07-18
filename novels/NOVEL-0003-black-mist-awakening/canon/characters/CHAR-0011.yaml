@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0011
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 马庆山
+summary: "出租屋房东，守住温良周末备用住所这一生活据点，让照顾通过催租、钥匙、保留住处等具体行动发生。"
+aliases: []
+narrative_tier: support
+tags: [dream_layer, landlord]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "账目清楚，也不让熟悉的孩子彻底没地方落脚。"
+  need: "在市井规则和有限善意之间作清楚选择。"
+  wound: "长期见过太多无法负责到底的困境。"
+  lie: "把账算清楚就不用承认自己在照顾人。"
+voice:
+  vocabulary: [房租, 钥匙, 账, 别拖]
+  syntax: "嘴硬、市井、具体。"
+  notices_first: "先注意钱、钥匙、住处是否还能维持。"
+  avoids: [温情独白, 万能照顾者]
+capabilities:
+  - "能通过保留住所和生活物品提供现实感据点。"
+limits:
+  - "不能成为解释世界的说明室。"
+secrets: []
+first_scene_id: null

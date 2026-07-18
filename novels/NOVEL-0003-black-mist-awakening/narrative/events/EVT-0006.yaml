@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+id: EVT-0006
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 灵魂训练与旧井调查阶段
+summary: "温良通过观察、交换、试错和选择获得不完整模型，旧井提供一次机会但代价未知。"
+tags: [phase, old_well, training]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-18T16:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0012, CHAR-0014]
+location_id: LOC-0010
+caused_by_event_ids: [EVT-0005]
+consequence_event_ids: [EVT-0007]
+facts_established: [FACT-0008]
+item_changes:
+  - item_id: ITEM-0004
+    from_holder_id: CHAR-0016
+    to_holder_id: CHAR-0014
+    from_location_id: LOC-0009
+    to_location_id: LOC-0008
+    state_after: "mild wound is brought to Liu Popo for limited treatment"

@@ -1,0 +1,32 @@
+schema_version: "0.1.0"
+id: CHAR-0009
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陆时年
+summary: "梦境社会中具备家族优势和能力的校园压力人物，后续可与主线牵连，但开局与温良无友情、无监视任务。"
+aliases: []
+narrative_tier: major
+tags: [dream_layer, student, pressure]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "证明自己的家族优势和个人能力都能转化为现实影响。"
+  need: "学会能力和地位不能替代边界。"
+  wound: "习惯被特权环境奖励。"
+  lie: "能做到的事就等于有权去做。"
+voice:
+  vocabulary: [可以, 规矩, 资格, 别浪费]
+  syntax: "自信、轻佻，偶尔带命令感。"
+  notices_first: "先注意权力结构和别人是否让路。"
+  avoids: [旧设监视温良, 入梦计划知情]
+capabilities:
+  - "可能比普通学生更了解梦境社会中的隐秘能力。"
+limits:
+  - "不能自动知道入梦计划和作者侧真相。"
+  - "具体越界事件未锁定前不能成为固定反派答案。"
+secrets: []
+first_scene_id: null

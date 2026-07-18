@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0016
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 梁渡
+summary: "真实世界中被温良主动救援并形成持续关系后果的人，用实际技能交换救命债。"
+aliases: []
+narrative_tier: support
+tags: [real_layer, settlement, rescued]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "活下来并偿还被救的债。"
+  need: "把债变成可执行的协作，而不是漂亮话。"
+  wound: "在黑雾压力下见过承诺失效。"
+  lie: "只要不欠人情，就不用再被关系拖住。"
+voice:
+  vocabulary: [认, 欠你, 干活, 别废话]
+  syntax: "干脆、直接，不说漂亮话。"
+  notices_first: "先看对方是否真的承担风险。"
+  avoids: [煽情报恩, 空泛忠诚]
+capabilities:
+  - "能以实际技能交换救命债。"
+limits:
+  - "关系后果必须来自明确救援事件。"
+secrets: []
+first_scene_id: null

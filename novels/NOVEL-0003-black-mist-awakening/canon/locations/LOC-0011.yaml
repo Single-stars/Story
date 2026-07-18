@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0011
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 聚落外废墟
+summary: "真实世界中承载黑雾、资源搜索、路线判断、救援和温良主动探索的危险空间。"
+tags: [real_layer, wasteland]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [废墟, 雾外]
+parent_location_id: null
+sensory_palette: [视线短, 声音被雾吞没, 地面不可靠, 资源稀缺]
+constraints:
+  - "空间限制必须改变人物选择；不能用末世氛围替代具体劳动和风险。"

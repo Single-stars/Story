@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0007
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿对姚瑶
+summary: "后续可发展为朋友，但必须由共同经历建立；南宫芸儿提供稳定支持，姚瑶仍保有决定权。"
+tags: [relationship, directional, future_friendship]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0002
+to_character_id: CHAR-0005
+dimensions: { trust: 0.25, affection: 0.2, fear: 0.02, obligation: 0.1, leverage: 0.02 }
+public_label: "同校学生"
+private_reality: "支持必须来自共同事件，不能跳过积累。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0008
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 古晓雨对南宫芸儿
+summary: "舍友兼最亲密闺蜜，会用玩笑、安排和观察制造机会，但不替南宫芸儿作决定。"
+tags: [relationship, directional, friendship]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0003
+to_character_id: CHAR-0002
+dimensions: { trust: 0.7, affection: 0.65, fear: 0.02, obligation: 0.25, leverage: 0.08 }
+public_label: "舍友兼闺蜜"
+private_reality: "古晓雨会帮忙制造机会，但边界是机会而非操盘。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

@@ -1,0 +1,32 @@
+schema_version: "0.1.0"
+id: CHAR-0014
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 刘婆婆
+summary: "真实世界聚落中有有限医疗经验的人，守着旧井相关私人伤口；帮助温良必须来自她对过去失败的选择。"
+aliases: []
+narrative_tier: major
+tags: [real_layer, settlement, healer, old_well]
+source_refs: [DECISION-WORKING-020, CR-0001-liu-popo-grandmother-line]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "守住还能救的人，也守住自己不愿再说的旧事。"
+  need: "把过去失败转化为一次有代价的帮助。"
+  wound: "孙女谷雨失踪使她长期关注旧井。"
+  lie: "只要不再提起旧井，就不会再有人被它吞掉。"
+voice:
+  vocabulary: [别碰, 伤口, 旧井, 还来得及]
+  syntax: "嘴硬、手稳，记仇也记恩。"
+  notices_first: "先看伤势、黑斑阶段和旧井风险。"
+  avoids: [免费答案, 过早解释通道规则]
+capabilities:
+  - "能处理有限伤口和轻度黑斑。"
+limits:
+  - "医疗能力有限，不能逆转严重侵蚀。"
+secrets:
+  - "孙女谷雨失踪的真相未决定。"
+first_scene_id: null

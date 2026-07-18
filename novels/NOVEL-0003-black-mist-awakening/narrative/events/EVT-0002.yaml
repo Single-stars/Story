@@ -1,0 +1,19 @@
+schema_version: "0.1.0"
+id: EVT-0002
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 校园日常与脚步声阶段
+summary: "温良试图维持普通生活，但虚弱、记忆缺口和只有他能感知的脚步声不断破坏日常。"
+tags: [phase, dream_layer, footsteps]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-14T08:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0002, CHAR-0003, CHAR-0004]
+location_id: LOC-0003
+caused_by_event_ids: [EVT-0001]
+consequence_event_ids: [EVT-0003]
+facts_established: [FACT-0003]

@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0008
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 旧井单点失效
+summary: "旧井是当前已知危险传送点之一；同一传送点在温良使用后会失效或坍塌。"
+tags: [crossing, old_well]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+statement: "旧井不是稳定门，不能重复使用；触发条件、方向限制和失败代价仍是开放问题。"
+confidence: 0.8
+evidence: [DECISION-WORKING-021, DECISION-WORKING-023]

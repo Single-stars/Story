@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0004
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾侵蚀链
+summary: "真实世界黑雾会侵蚀身体、记忆、意识和自主行动；严重阶段不可轻易逆转。"
+tags: [real_layer, black_mist]
+source_refs: [DECISION-WORKING-021]
+supersedes: null
+superseded_by: null
+statement: "活人接触黑雾后出现黑斑，侵蚀加深会影响身体、记忆、意识和自主行动，完成后肉体可能彻底空壳化。"
+confidence: 0.8
+evidence: [DECISION-WORKING-021]

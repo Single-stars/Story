@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0015
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 林照对温良
+summary: "代表聚落对温良的警惕、评估、利益需求和有限同情；信任只能由劳动、选择、能力风险和承担逐步改变。"
+tags: [relationship, directional, settlement]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-021]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0012
+to_character_id: CHAR-0001
+dimensions: { trust: 0.15, affection: 0.05, fear: 0.35, obligation: 0.15, leverage: 0.4 }
+public_label: "聚落防卫者对外来者"
+private_reality: "先限制行动，再根据温良主动劳动、选择和后果调整判断。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

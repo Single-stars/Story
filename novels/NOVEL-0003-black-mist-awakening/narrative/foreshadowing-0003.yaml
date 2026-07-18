@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0003
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 普通人不做梦
+summary: "所有人把不做梦视为正常，少数异常者被带走或合理化。"
+tags: [dream_layer, no_dream]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "不做梦被当作健康或制度常态。"
+true_meaning: "深层原因是系统主动关闭普通人的梦境能力。"
+intended_payoff: "公开解释与深层原因分阶段揭示。"
+actual_payoff_scene_id: null
+abandon_reason: null

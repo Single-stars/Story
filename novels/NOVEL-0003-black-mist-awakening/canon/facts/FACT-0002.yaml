@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0002
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 双层世界工作真相
+summary: "作者侧暂定：约十一年前，入梦计划与黑雾灾变造成梦境层和真实层长期分离；前期正文不得直接公开完整因果。"
+tags: [author_only, world_structure]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+statement: "世界原本只有一个；入梦计划与黑雾灾变造成梦境层和真实层的长期分离，但完整因果仍未锁定。"
+confidence: 0.7
+evidence: [DECISION-WORKING-021]

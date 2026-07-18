@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+id: EVT-0003
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 追入雾中与肉身融合阶段
+summary: "温良追查脚步声来源，遭遇黑雾、方向错位、身体与意识错位，并完成与真实世界肉身的融合。"
+tags: [phase, crossing, fusion]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-15T22:00:00+08:00"
+  precision: day
+participants: [CHAR-0001]
+location_id: LOC-0011
+caused_by_event_ids: [EVT-0002]
+consequence_event_ids: [EVT-0004]
+facts_established: [FACT-0002, FACT-0004]
+item_changes:
+  - item_id: ITEM-0003
+    from_holder_id: CHAR-0001
+    to_holder_id: CHAR-0001
+    from_location_id: LOC-0003
+    to_location_id: LOC-0003
+    state_after: "cross-layer proof fails; no usable objective evidence remains"

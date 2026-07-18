@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0002
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 校园日常与脚步声阶段
+summary: "温良想维持普通生活并隐藏衰弱，脚步声和记忆缺口持续破坏日常。"
+tags: [phase, dream_layer]
+thread_type: mystery
+dramatic_question: "脚步声到底来自噩梦、幻觉，还是另一个层面的真实影响？"
+scene_ids: [SCN-0001]
+event_ids: [EVT-0001]
+resolution_state: open

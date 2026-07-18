@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0012
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 姚瑶对许宁宁
+summary: "信任但仍保留自尊边界，会接受陪伴而不愿被过度照顾。"
+tags: [relationship, directional, friendship]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0005
+to_character_id: CHAR-0006
+dimensions: { trust: 0.65, affection: 0.45, fear: 0.02, obligation: 0.2, leverage: 0.02 }
+public_label: "舍友兼闺蜜"
+private_reality: "姚瑶的反击线不能因舍友存在而被代替。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

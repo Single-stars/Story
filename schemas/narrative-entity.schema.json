@@ -67,6 +67,19 @@
           "type": "array",
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "source_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "supersedes": {
+          "type": ["string", "null"],
+          "pattern": "^(EVT|SCN|THREAD|FORESH)-[0-9]{4}$"
+        },
+        "superseded_by": {
+          "type": ["string", "null"],
+          "pattern": "^(EVT|SCN|THREAD|FORESH)-[0-9]{4}$"
         }
       }
     },
@@ -288,6 +301,19 @@
             "actual_payoff_scene_id": {
               "type": ["string", "null"],
               "pattern": "^SCN-[0-9]{4}$"
+            },
+            "advanced_scene_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^SCN-[0-9]{4}$" }
+            },
+            "disclosure_stage": {
+              "type": "string",
+              "enum": ["surface", "awareness_forming", "named_reveal", "deep_public"]
+            },
+            "payoff_conditions": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
             },
             "abandon_reason": { "type": ["string", "null"] }
           }

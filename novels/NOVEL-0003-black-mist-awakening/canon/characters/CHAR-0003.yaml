@@ -1,0 +1,33 @@
+schema_version: "0.1.0"
+id: CHAR-0003
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 古晓雨
+summary: "南宫芸儿的舍友和闺蜜，前期以可信的校园日常、玩笑和观察力制造自然相处机会；她另有长期伏笔，但早期不暴露答案。"
+aliases: []
+narrative_tier: major
+tags: [dream_layer, student, foreshadowing_carrier]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "让校园生活保持热闹有趣，也让重要朋友不要错过彼此。"
+  need: "在玩笑和安排之外保留自己的判断与风险边界。"
+  wound: "真实动机暂不公开，只保留为作者侧长期设计。"
+  lie: "只要气氛足够轻松，沉重的问题就可以暂时不碰。"
+voice:
+  vocabulary: [热闹, 别躲, 你们俩, 好玩]
+  syntax: "轻快、短促，常用玩笑卸掉压力。"
+  notices_first: "先看人和人之间的气氛变化。"
+  avoids: [过早神秘化, 作者旁白式暗示]
+capabilities:
+  - "能自然制造温良与南宫芸儿相处的机会。"
+limits:
+  - "不能替男女主表白、选择或解决矛盾。"
+  - "前期不能泄露系统、入梦计划或权限术语。"
+secrets:
+  - "另有隐情，真实动机、知识和后续作用未锁定。"
+first_scene_id: null

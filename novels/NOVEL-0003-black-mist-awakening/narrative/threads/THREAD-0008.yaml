@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0008
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 单点返程与取证失败
+summary: "旧井返程只能服务不可替代目标，回梦境后不能留下客观证据，迫使温良从证明转向承担。"
+tags: [crossing, evidence_boundary]
+thread_type: mystery
+dramatic_question: "温良无法证明真实经历后，还能怎样根据记忆承担选择？"
+scene_ids: []
+event_ids: [EVT-0007, EVT-0008]
+resolution_state: open

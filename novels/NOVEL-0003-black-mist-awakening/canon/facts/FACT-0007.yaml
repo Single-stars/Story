@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0007
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 普通人不做梦的表层解释
+summary: "梦境层居民把不做梦视为正常，表层可用脑波调节、睡眠改善或精神健康措施解释。"
+tags: [dream_layer, disclosure]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+statement: "深层原因是系统主动关闭普通人的梦境能力，但前期正文只能通过表层解释和异常个体被带走来呈现。"
+confidence: 0.7
+evidence: [DECISION-WORKING-021]

@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0006
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 食堂、失物招领处与操场
+summary: "梦境层公共交往空间，承载关系、流言、排斥、偶遇和具体行动，不单独承担设定说明。"
+tags: [dream_layer, public_space]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [食堂, 失物招领处, 操场]
+parent_location_id: LOC-0003
+sensory_palette: [人声, 排队, 广播, 塑胶跑道]
+constraints:
+  - "空间细节必须改变行动、关系、资源压力或信息误导。"

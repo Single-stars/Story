@@ -10,7 +10,8 @@
     { "$ref": "#/$defs/rule" },
     { "$ref": "#/$defs/fact" },
     { "$ref": "#/$defs/relationship" },
-    { "$ref": "#/$defs/knowledge" }
+    { "$ref": "#/$defs/knowledge" },
+    { "$ref": "#/$defs/characterState" }
   ],
   "$defs": {
     "owner": {
@@ -56,7 +57,7 @@
         },
         "id": {
           "type": "string",
-          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$"
         },
         "entity_type": {
           "type": "string",
@@ -68,7 +69,8 @@
             "rule",
             "fact",
             "relationship",
-            "knowledge"
+            "knowledge",
+            "character_state"
           ]
         },
         "owner": { "$ref": "#/$defs/owner" },
@@ -92,11 +94,11 @@
         },
         "supersedes": {
           "type": ["string", "null"],
-          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$"
         },
         "superseded_by": {
           "type": ["string", "null"],
-          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+          "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$"
         }
       }
     },
@@ -118,21 +120,39 @@
           "properties": {
             "id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
             "entity_type": { "const": "character" },
+            "narrative_tier": {
+              "type": "string",
+              "enum": ["core", "major", "support", "minor", "background"]
+            },
             "aliases": {
               "type": "array",
               "uniqueItems": true,
               "items": { "type": "string", "minLength": 1, "maxLength": 120 }
             },
             "psychology": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["want", "need", "wound", "lie"],
-              "properties": {
-                "want": { "type": "string", "minLength": 1 },
-                "need": { "type": "string", "minLength": 1 },
-                "wound": { "type": "string", "minLength": 1 },
-                "lie": { "type": "string", "minLength": 1 }
-              }
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["want", "need", "wound", "lie"],
+                  "properties": {
+                    "want": { "type": "string", "minLength": 1 },
+                    "need": { "type": "string", "minLength": 1 },
+                    "wound": { "type": "string", "minLength": 1 },
+                    "lie": { "type": "string", "minLength": 1 }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["characterization_scope", "want", "boundary"],
+                  "properties": {
+                    "characterization_scope": { "type": "string", "minLength": 1 },
+                    "want": { "type": "string", "minLength": 1 },
+                    "boundary": { "type": "string", "minLength": 1 }
+                  }
+                }
+              ]
             },
             "voice": {
               "type": "object",
@@ -365,6 +385,80 @@
               "pattern": "^CHAR-[0-9]{4}$"
             },
             "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "characterState": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "required": [
+            "character_id",
+            "state_scope",
+            "after_event_id",
+            "after_scene_id",
+            "location_id",
+            "physical_state",
+            "mental_state",
+            "capability_state",
+            "resource_state",
+            "obligation_state",
+            "knowledge_ids",
+            "item_ids",
+            "relationship_ids"
+          ],
+          "properties": {
+            "id": { "type": "string", "pattern": "^CSTATE-[0-9]{4}$" },
+            "entity_type": { "const": "character_state" },
+            "character_id": { "type": "string", "pattern": "^CHAR-[0-9]{4}$" },
+            "state_scope": {
+              "type": "string",
+              "enum": ["baseline", "entry", "exit", "post_event", "post_scene"]
+            },
+            "after_event_id": {
+              "type": ["string", "null"],
+              "pattern": "^EVT-[0-9]{4}$"
+            },
+            "after_scene_id": {
+              "type": ["string", "null"],
+              "pattern": "^SCN-[0-9]{4}$"
+            },
+            "location_id": {
+              "type": ["string", "null"],
+              "pattern": "^LOC-[0-9]{4}$"
+            },
+            "physical_state": { "type": "string", "minLength": 1 },
+            "mental_state": { "type": "string", "minLength": 1 },
+            "capability_state": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "resource_state": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "obligation_state": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "knowledge_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^KNOW-[0-9]{4}$" }
+            },
+            "item_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^ITEM-[0-9]{4}$" }
+            },
+            "relationship_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^REL-[0-9]{4}$" }
+            }
           }
         }
       ],

@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0003
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 教室与校园日常
+summary: "梦境层的明亮校园日常空间，承载虚弱、观察、照顾、同学压力和异常被自然化的反应。"
+tags: [dream_layer, campus]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [教室, 走廊, 校园]
+parent_location_id: null
+sensory_palette: [明亮, 拥挤, 熟悉, 琐碎]
+constraints:
+  - "不得在课堂或走廊用旁白讲解入梦计划、系统、零号或双界真相。"

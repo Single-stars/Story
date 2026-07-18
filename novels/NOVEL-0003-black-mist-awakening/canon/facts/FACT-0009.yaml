@@ -1,0 +1,15 @@
+schema_version: "0.1.0"
+id: FACT-0009
+entity_type: fact
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: Zhao Siyuan empty bed surface fact
+summary: "Zhao Siyuan is publicly explained as sick and taken away, leaving an empty bed in Chen Xian's dorm context."
+tags: [empty-bed, disappearance]
+source_refs: ["DECISION-WORKING-020", "DECISION-WORKING-023"]
+supersedes: null
+superseded_by: null
+statement: "The surface explanation for Zhao Siyuan's absence is illness, while the true route remains unresolved."
+confidence: 0.7
+evidence: ["working character and foreshadowing notes"]

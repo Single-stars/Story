@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0013
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 秦婉
+summary: "真实世界聚落物资和生存账本代表，让每次接纳都有可见成本。"
+aliases: []
+narrative_tier: support
+tags: [real_layer, settlement, logistics]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-021]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "让聚落资源撑过下一次雾压和燃料短缺。"
+  need: "在护短和不滥情之间承认可计算之外的价值。"
+  wound: "长期资源不足让她先算承受能力。"
+  lie: "账本不允许的事就不该发生。"
+voice:
+  vocabulary: [账, 口粮, 燃料, 承受不起]
+  syntax: "强硬、务实，先算成本。"
+  notices_first: "先看食物、燃料、工具和人力损耗。"
+  avoids: [无成本接纳, 滥情许诺]
+capabilities:
+  - "能把聚落接纳外来者的成本具体化。"
+limits:
+  - "不能因为温良特殊就免除资源代价。"
+secrets: []
+first_scene_id: null

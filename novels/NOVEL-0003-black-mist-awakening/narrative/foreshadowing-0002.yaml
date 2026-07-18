@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0002
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 异常被常识修正
+summary: "明显异常被周围人用健康、疲劳、巧合或普通手续解释，后续回收为梦境层常识修正机制。"
+tags: [correction, dream_layer]
+source_refs: [DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "周围人自然化温良无法解释的异常。"
+true_meaning: "梦境层常识修正让未形成异常认知的人忽略或合理化痕迹。"
+intended_payoff: "少数角色逐渐意识到异常后，修正机制的边界才显现。"
+actual_payoff_scene_id: null
+abandon_reason: null

@@ -15,4 +15,9 @@ reader_sees: "黑雾梦境里第一次有了不属于黑雾本身的脚步声"
 true_meaning: "温良的真实界肉身正在接近，灵魂与肉身的重新合并已经开始"
 intended_payoff: "后续真实界肉身登场并完成融合"
 actual_payoff_scene_id: null
+advanced_scene_ids: []
+disclosure_stage: surface
+payoff_conditions:
+  - "必须先让读者看到脚步声逐步逼近。"
+  - "回收时通过肉身接近、接触、融合和黑屏改变温良状态。"
 abandon_reason: null

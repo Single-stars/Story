@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0006
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 陆时年与温良后续相交
+summary: "陆时年开局与温良无关系、无友情、无监视任务；必须等后续事件真实相交后才建立关系。"
+tags: [relationship, future_direction, obsolete_guard]
+thread_type: relationship
+dramatic_question: "陆时年何时以真实事件进入温良主线，而不是继承旧设？"
+scene_ids: []
+event_ids: []
+resolution_state: open

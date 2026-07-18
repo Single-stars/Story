@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0004
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良对陈安
+summary: "把陈安当作仍在身边的朋友，却习惯接受照顾而少问对方处境；恢复主动性后必须回应陈安的压力。"
+tags: [relationship, directional]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0001
+to_character_id: CHAR-0004
+dimensions: { trust: 0.6, affection: 0.4, fear: 0.05, obligation: 0.25, leverage: 0.05 }
+public_label: "同桌兼舍友"
+private_reality: "温良需要从被照顾转向看见并回应朋友。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

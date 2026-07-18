@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0005
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线燃料与雾压
+summary: "燃料变少时黑雾逼近，火势恢复时雾退开。"
+tags: [fireline, real_layer]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "聚落把火线当作基本生存常识。"
+true_meaning: "火线、灵魂训练和驱雾能力之间的关系将逐步显现。"
+intended_payoff: "温良能力暴露时，火线不再只是背景设施。"
+actual_payoff_scene_id: null
+abandon_reason: null

@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0004
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 陈安与姚瑶边界线
+summary: "陈安对姚瑶的喜欢必须经过尊重拒绝和平等协作，不能滑向拯救或纠缠。"
+tags: [relationship, dream_layer]
+thread_type: relationship
+dramatic_question: "陈安能否学会先尊重边界，再争取真实协作？"
+scene_ids: []
+event_ids: []
+resolution_state: open

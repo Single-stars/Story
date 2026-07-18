@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0008
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陆时年越界试探
+summary: "陆时年以家族优势和能力在校园中越界试探姚瑶；具体事件尚未锁定。"
+tags: [lu_shinian, campus_pressure]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "普通权势压力和同学冲突。"
+true_meaning: "陆时年的家族、能力和梦境社会结构可能牵动主线，但不预设他与入梦计划有关。"
+intended_payoff: "用于制造选择和后果，而非把姚瑶写成待救目标。"
+actual_payoff_scene_id: null
+abandon_reason: null

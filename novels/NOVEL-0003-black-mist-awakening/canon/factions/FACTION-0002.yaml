@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACTION-0002
+entity_type: faction
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 灰衣人
+summary: "跨聚落行动势力的工作提案，可能交换药品、工具、燃料或消息，并可能关注异常梦境、返程者或双界线索。"
+tags: [real_layer, external_group, unresolved]
+source_refs: ["DECISION-WORKING-021", "DECISION-WORKING-023"]
+supersedes: null
+superseded_by: null
+goal: "组织目的未锁定；当前只保留跨聚落行动和资源交换功能。"
+methods: ["跨聚落交易", "收集消息", "保留明显戒备感"]
+resources: ["药品", "工具", "燃料", "消息"]
+constraints: ["只有角色实际见到成员、交易或行动，并由当地人给出称呼后，正文才能使用灰衣人名称。"]

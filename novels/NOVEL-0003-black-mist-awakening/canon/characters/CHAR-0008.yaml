@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0008
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 赵思远
+summary: "陈舟空床对应的具体学生，使失踪留下人物重量而不是纯背景。"
+aliases: []
+narrative_tier: support
+tags: [dream_layer, missing_student]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "当前不作为行动 POV，目标待事件锁定后补全。"
+  need: "让失踪线在人物层面保留后续回收空间。"
+  wound: "真实去向和经历未公开。"
+  lie: "表层上只是因病被带走。"
+voice:
+  vocabulary: [暂未出场]
+  syntax: "未锁定。"
+  notices_first: "未锁定。"
+  avoids: [提前公开真实去向]
+capabilities: []
+limits:
+  - "真实去向和事件职责未决定前，不写入确定解释。"
+secrets:
+  - "表层因病离校可能遮盖实验对象异常或梦境社会失踪机制。"
+first_scene_id: null

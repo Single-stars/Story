@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0010
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 古晓雨对温良
+summary: "以轻松玩笑和半公开撮合接近，不把温良当异常研究对象；她后续隐情可能改变风险结构。"
+tags: [relationship, directional, foreshadowing]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0003
+to_character_id: CHAR-0001
+dimensions: { trust: 0.35, affection: 0.25, fear: 0.02, obligation: 0.1, leverage: 0.08 }
+public_label: "闺蜜的熟人，玩笑撮合对象"
+private_reality: "表层可信轻松，隐藏方向不能提前用旁白或术语暗示。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

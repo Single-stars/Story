@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0005
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 黑雾侵蚀链
+summary: "黑雾接触活人后留下黑色痕迹，侵蚀加深会影响身体、记忆、意识和自主行动，完成后肉体成为空壳。"
+tags: [real_layer, black_mist]
+source_refs: ["DECISION-WORKING-019", "DECISION-WORKING-021"]
+supersedes: null
+superseded_by: null
+statement: "黑雾侵蚀必须经过可观察阶段，严重程度决定是否仍可缓解。"
+scope: "真实层伤害、黑斑、空壳化和救援代价"
+limitations: ["温良只能缓解或治愈尚不严重的黑斑。", "不能无条件逆转完成空壳化。"]
+costs: ["延误、雾压和连续侵蚀会提高不可逆风险。"]
+exceptions: ["严重阶段、失败风险和不可逆阈值尚未锁定。"]

@@ -1,8 +1,8 @@
-import { cp, mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
-import { stringify } from "yaml";
+import { parse, stringify } from "yaml";
 import { afterEach, describe, expect, test } from "vitest";
 
 import { buildContext } from "../../tools/context-builder/src/build-context.js";
@@ -244,6 +244,13 @@ async function writeWorkpackWithDependencies(novelRoot: string, novelId: string)
   );
 }
 
+async function writeReviewedWorkpackWithDependencies(novelRoot: string, novelId: string) {
+  await writeWorkpackWithDependencies(novelRoot, novelId);
+  const workpackPath = path.join(novelRoot, "reports", "workpacks", "CHRUN-0002.yaml");
+  const planned = parse(await readFile(workpackPath, "utf8")) as Record<string, unknown>;
+  await writeFile(workpackPath, stringify({ ...planned, status: "reviewed" }), "utf8");
+}
+
 async function writeChapter(novelRoot: string, novelId: string) {
   const directory = path.join(novelRoot, "manuscript");
   await mkdir(directory, { recursive: true });
@@ -319,6 +326,7 @@ async function writeWorkpackWithReviewGate(
     required: boolean;
     reviewIds: string[];
     reviewType?: "continuity" | "developmental_edit" | "reader_test" | "line_edit";
+    status?: "planned" | "in_progress" | "reviewed" | "accepted";
   }
 ) {
   const directory = path.join(novelRoot, "reports", "workpacks");
@@ -330,7 +338,7 @@ async function writeWorkpackWithReviewGate(
       id: "CHRUN-0003",
       record_type: "chapter_workpack",
       owner: { novel_id: novelId },
-      status: "planned",
+      status: gate.status ?? "planned",
       visibility: "internal",
       canon_effect: "proposal_only",
       chapter_id: "CHAPTER-0001",
@@ -370,6 +378,25 @@ async function writeWorkpackWithReviewGate(
   );
 }
 
+async function writeWorkingDecision(novelRoot: string) {
+  const directory = path.join(novelRoot, "decisions");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "DECISION-WORKING-020.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "DECISION-WORKING-020",
+      record_type: "working_decision",
+      owner: { novel_id: "NOVEL-0001" },
+      status: "working",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      summary: "Working decision records must be loadable by id."
+    }),
+    "utf8"
+  );
+}
+
 async function writeReviewVariant(
   novelRoot: string,
   novelId: string,
@@ -379,6 +406,10 @@ async function writeReviewVariant(
     scopeNovelId?: string;
     chapterIds?: string[];
     reviewType?: "continuity" | "developmental_edit" | "reader_test" | "line_edit";
+    status?: "planned" | "in_progress" | "reviewed" | "accepted" | "blocked" | "stale";
+    verdict?: "pass" | "pass_with_notes" | "blocked" | "inconclusive";
+    authorDecisionStatus?: "pending" | "accepted" | "rejected" | "partially_accepted";
+    reverificationStatus?: "not_required" | "required" | "passed" | "failed";
   } = {}
 ) {
   const directory = path.join(novelRoot, "reports", "reviews");
@@ -391,7 +422,7 @@ async function writeReviewVariant(
       id,
       record_type: "review_record",
       owner: { novel_id: options.ownerNovelId ?? novelId },
-      status: "reviewed",
+      status: options.status ?? "reviewed",
       visibility: "internal",
       canon_effect: "proposal_only",
       review_type: options.reviewType ?? "continuity",
@@ -408,9 +439,9 @@ async function writeReviewVariant(
       },
       coverage: { checked: ["chapter"], gaps: [] },
       findings: [],
-      conclusion: { verdict: "pass", summary: "Review variant loaded.", blockers: [] },
-      author_decision: { status: "pending", decision_id: null, notes: "" },
-      reverification: { status: "not_required", required_review_ids: [], notes: "" },
+      conclusion: { verdict: options.verdict ?? "pass", summary: "Review variant loaded.", blockers: [] },
+      author_decision: { status: options.authorDecisionStatus ?? "pending", decision_id: null, notes: "" },
+      reverification: { status: options.reverificationStatus ?? "not_required", required_review_ids: [], notes: "" },
       resume_brief: "Review variant must be loaded."
     }),
     "utf8"
@@ -515,6 +546,42 @@ async function writeRestructurePlan(novelRoot: string, novelId: string) {
   );
 }
 
+async function writeBaseline(novelRoot: string, novelId: string) {
+  const directory = path.join(novelRoot, "reports", "baselines");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "BASELINE-0001.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "BASELINE-0001",
+      record_type: "drafting_baseline",
+      owner: { novel_id: novelId },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      baseline_kind: "drafting",
+      source_decision_ids: ["DECISION-WORKING-020"],
+      indexed_ids: {
+        canon_ids: ["FACT-0001"],
+        narrative_ids: [],
+        workflow_ids: ["STYLE-0001"],
+        decision_ids: ["DECISION-WORKING-020"]
+      },
+      gates: {
+        author_accepted_for_drafting: false,
+        excludes_legacy_manuscript: true,
+        no_canon_promotion: true,
+        context_builder_required: true,
+        review_workflow_required: true
+      },
+      open_questions: ["The fixture keeps one unresolved world question."],
+      semantic_hash: "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      resume_brief: "Baseline memory must load graph records and source decisions."
+    }),
+    "utf8"
+  );
+}
+
 describe("buildContext", () => {
   test("loads only the selected novel even when local entity ids repeat", async () => {
     const { root, firstRoot, secondRoot } = await fixture();
@@ -570,7 +637,7 @@ describe("buildContext", () => {
 
   test("recursively loads required context from chapter workpacks", async () => {
     const { root, firstRoot } = await fixture();
-    await writeWorkpackWithDependencies(firstRoot, "NOVEL-0001");
+    await writeReviewedWorkpackWithDependencies(firstRoot, "NOVEL-0001");
     await writeChapter(firstRoot, "NOVEL-0001");
     await writeDecision(firstRoot);
     await writeReview(firstRoot, "NOVEL-0001");
@@ -596,12 +663,100 @@ describe("buildContext", () => {
     ).toBe(true);
   });
 
+  test("loads drafting baselines and recursively includes indexed graph records", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeFact(firstRoot, "NOVEL-0001", "The baseline-indexed fact must load.");
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
+    await writeBaseline(firstRoot, "NOVEL-0001");
+    await writeDecision(firstRoot);
+    await writeWorkingDecision(firstRoot);
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["BASELINE-0001"],
+      maxChars: 30000
+    });
+
+    expect(result.content).toContain("drafting_baseline");
+    expect(result.content).toContain("The baseline-indexed fact must load.");
+    expect(result.content).toContain("Style memory must load before rewrite");
+    expect(result.content).toContain("Working decision records must be loadable by id.");
+    expect(result.missingEntityIds).toEqual([]);
+  });
+
+  test("reader profile omits internal hidden records even when requested directly", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeFact(firstRoot, "NOVEL-0001", "Internal fact must not leak to reader profile.");
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["FACT-0001"],
+      maxChars: 12000,
+      profile: "reader"
+    });
+
+    expect(result.content).not.toContain("Internal fact must not leak to reader profile.");
+    expect(result.missingEntityIds).toEqual([]);
+    expect(result.warnings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "SOURCE_NOT_VISIBLE",
+          id: "FACT-0001"
+        })
+      ])
+    );
+  });
+
+  test("does not require post-draft review evidence for planned workpacks", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: []
+    });
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["CHRUN-0003"],
+      maxChars: 12000
+    });
+
+    expect(result.content).toContain("Review gate fixture");
+    expect(result.missingEntityIds).toEqual([]);
+  });
+
+  test("does not load post-draft review ids for planned workpacks", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"]
+    });
+    await writeReviewVariant(firstRoot, "NOVEL-0001", {
+      id: "REVIEW-0001",
+      reviewType: "continuity"
+    });
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["CHRUN-0003"],
+      maxChars: 12000
+    });
+
+    expect(result.content).toContain("Review gate fixture");
+    expect(result.content).not.toContain("Review variant loaded.");
+    expect(result.missingEntityIds).toEqual([]);
+  });
+
   test("fails when a required review gate has no review ids", async () => {
     const { root, firstRoot } = await fixture();
     await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
       required: true,
       reviewIds: []
     });
+    const workpackPath = path.join(firstRoot, "reports", "workpacks", "CHRUN-0003.yaml");
+    const planned = parse(await readFile(workpackPath, "utf8")) as Record<string, unknown>;
+    await writeFile(workpackPath, stringify({ ...planned, status: "reviewed" }), "utf8");
 
     await expect(
       buildContext(root, {
@@ -616,7 +771,8 @@ describe("buildContext", () => {
     const { root, firstRoot, secondRoot } = await fixture();
     await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
       required: true,
-      reviewIds: ["REVIEW-0001"]
+      reviewIds: ["REVIEW-0001"],
+      status: "reviewed"
     });
     await writeReviewVariant(secondRoot, "NOVEL-0002", { id: "REVIEW-0001" });
 
@@ -633,7 +789,8 @@ describe("buildContext", () => {
     const { root, firstRoot } = await fixture();
     await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
       required: true,
-      reviewIds: ["REVIEW-0001"]
+      reviewIds: ["REVIEW-0001"],
+      status: "reviewed"
     });
     await writeReviewVariant(firstRoot, "NOVEL-0001", {
       id: "REVIEW-0001",
@@ -650,13 +807,77 @@ describe("buildContext", () => {
     ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_TYPE_MISMATCH" });
   });
 
+  test("fails when a required review verdict is not passing", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"],
+      status: "reviewed"
+    });
+    await writeReviewVariant(firstRoot, "NOVEL-0001", {
+      id: "REVIEW-0001",
+      verdict: "blocked"
+    });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_VERDICT_NOT_PASSING" });
+  });
+
+  test("fails when a required review still needs reverification", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"],
+      status: "reviewed"
+    });
+    await writeReviewVariant(firstRoot, "NOVEL-0001", {
+      id: "REVIEW-0001",
+      reverificationStatus: "required"
+    });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_REVERIFICATION_NOT_CLEAR" });
+  });
+
+  test("fails when accepted workpack review handling has not been accepted by the author", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"],
+      status: "accepted"
+    });
+    await writeReviewVariant(firstRoot, "NOVEL-0001", {
+      id: "REVIEW-0001",
+      authorDecisionStatus: "pending"
+    });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_AUTHOR_DECISION_PENDING" });
+  });
+
   test("degrades instead of failing when an optional review id is missing", async () => {
     const { root, firstRoot } = await fixture();
     await writeStyleProfile(firstRoot, "NOVEL-0001");
     await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
       required: false,
       reviewType: "line_edit",
-      reviewIds: ["REVIEW-9999"]
+      reviewIds: ["REVIEW-9999"],
+      status: "reviewed"
     });
 
     const result = await buildContext(root, {

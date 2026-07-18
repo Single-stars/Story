@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0003
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 梦境层常识修正
+summary: "梦境层会自动修正常识冲突，使未意识到异常的人忽略、合理化或遗忘异常。"
+tags: [dream_layer, correction]
+source_refs: [DECISION-WORKING-021]
+supersedes: null
+superseded_by: null
+statement: "只有已经意识到或正在形成异常认知的人，才可能持续发现被修正的痕迹。"
+confidence: 0.8
+evidence: [DECISION-WORKING-021]

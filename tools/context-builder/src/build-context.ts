@@ -9,6 +9,7 @@ export interface BuildContextOptions {
   novelId: string;
   entityIds: string[];
   maxChars: number;
+  profile?: ContextProfile;
 }
 
 export interface ContextBuildResult {
@@ -30,10 +31,12 @@ export interface ContextSourceDetail {
 }
 
 export interface ContextBuildWarning {
-  code: "OPTIONAL_REVIEW_NOT_FOUND" | "OPTIONAL_REVIEW_INVALID";
+  code: "OPTIONAL_REVIEW_NOT_FOUND" | "OPTIONAL_REVIEW_INVALID" | "SOURCE_NOT_VISIBLE";
   id: string;
   message: string;
 }
+
+export type ContextProfile = "internal" | "editor" | "reader" | "public";
 
 export type ContextBuilderErrorCode =
   | "INVALID_CONTEXT_BUDGET"
@@ -44,6 +47,10 @@ export type ContextBuilderErrorCode =
   | "REQUIRED_REVIEW_OWNER_MISMATCH"
   | "REQUIRED_REVIEW_TYPE_MISMATCH"
   | "REQUIRED_REVIEW_SCOPE_MISMATCH"
+  | "REQUIRED_REVIEW_STATUS_NOT_READY"
+  | "REQUIRED_REVIEW_VERDICT_NOT_PASSING"
+  | "REQUIRED_REVIEW_REVERIFICATION_NOT_CLEAR"
+  | "REQUIRED_REVIEW_AUTHOR_DECISION_PENDING"
   | "WORKSPACE_READ_FAILED";
 
 export class ContextBuilderError extends Error {
@@ -74,6 +81,9 @@ const dependencyKeys = new Set([
   "narrative_ids",
   "manuscript_chapter_ids",
   "decision_ids",
+  "source_decision_ids",
+  "indexed_ids",
+  "workflow_ids",
   "research_ids",
   "must_load_ids"
 ]);
@@ -88,7 +98,7 @@ const reviewGateTypes = [
 type ReviewGateType = (typeof reviewGateTypes)[number];
 
 const loadableIdPattern =
-  /^(CHRUN|STYLE|RESTRUCT|REVIEW|CHAPTER|DEC|RESEARCH|SESSION|SCN|EVT|THREAD|FORESH|CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$/;
+  /^(?:(CHRUN|STYLE|RESTRUCT|BASELINE|REVIEW|CHAPTER|DEC|RESEARCH|SESSION|SCN|EVT|THREAD|FORESH|CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}|DECISION-WORKING-[0-9]{3})$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -153,6 +163,24 @@ function recordString(value: Record<string, unknown>, key: string): string | nul
   return typeof child === "string" ? child : null;
 }
 
+function profileCanRead(profile: ContextProfile, visibility: string | null): boolean {
+  if (profile === "internal") {
+    return true;
+  }
+  const sourceVisibility = visibility ?? "internal";
+  if (profile === "editor") {
+    return ["editor", "reader", "public"].includes(sourceVisibility);
+  }
+  if (profile === "reader") {
+    return ["reader", "public"].includes(sourceVisibility);
+  }
+  return sourceVisibility === "public";
+}
+
+function sourceVisibility(source: SourceDocument): string | null {
+  return isRecord(source.parsed) ? recordString(source.parsed, "visibility") : null;
+}
+
 function reviewGateDependencies(
   source: SourceDocument,
   found: Map<string, SourceDocument>,
@@ -164,6 +192,8 @@ function reviewGateDependencies(
   }
 
   const workpack = source.parsed;
+  const workpackStatus = recordString(workpack, "status");
+  const enforceRequiredReviews = workpackStatus === "reviewed" || workpackStatus === "accepted";
   const chapterId = recordString(workpack, "chapter_id");
   const requiredReviews = workpack.required_reviews;
   if (!isRecord(requiredReviews)) {
@@ -177,7 +207,12 @@ function reviewGateDependencies(
       continue;
     }
 
-    const required = gate.required === true;
+    const gateRequiresReview = gate.required === true;
+    if (gateRequiresReview && !enforceRequiredReviews) {
+      continue;
+    }
+
+    const required = gateRequiresReview;
     const reviewIds = stringArray(gate.review_ids).filter((id) => loadableIdPattern.test(id));
     if (required && reviewIds.length === 0) {
       throw new ContextBuilderError(
@@ -203,7 +238,13 @@ function reviewGateDependencies(
         continue;
       }
 
-      const invalidReason = validateReviewForGate(review, novelId, gateType, chapterId);
+      const invalidReason = validateReviewForGate(
+        review,
+        novelId,
+        gateType,
+        chapterId,
+        workpackStatus
+      );
       if (invalidReason !== null) {
         if (required) {
           throw invalidReason;
@@ -227,7 +268,8 @@ function validateReviewForGate(
   review: SourceDocument,
   novelId: string,
   gateType: ReviewGateType,
-  chapterId: string | null
+  chapterId: string | null,
+  workpackStatus: string | null
 ): ContextBuilderError | null {
   if (!isRecord(review.parsed)) {
     return new ContextBuilderError(
@@ -263,6 +305,41 @@ function validateReviewForGate(
     return new ContextBuilderError(
       "REQUIRED_REVIEW_SCOPE_MISMATCH",
       `${review.id ?? review.relativePath} does not cover ${chapterId}.`
+    );
+  }
+
+  const reviewStatus = recordString(review.parsed, "status");
+  if (!["reviewed", "accepted"].includes(reviewStatus ?? "")) {
+    return new ContextBuilderError(
+      "REQUIRED_REVIEW_STATUS_NOT_READY",
+      `${review.id ?? review.relativePath} must be reviewed or accepted before ${workpackStatus ?? "this"} workpack context can use it.`
+    );
+  }
+
+  const conclusion = review.parsed.conclusion;
+  const verdict = isRecord(conclusion) ? recordString(conclusion, "verdict") : null;
+  if (!["pass", "pass_with_notes"].includes(verdict ?? "")) {
+    return new ContextBuilderError(
+      "REQUIRED_REVIEW_VERDICT_NOT_PASSING",
+      `${review.id ?? review.relativePath} must have a passing verdict before ${workpackStatus ?? "this"} workpack context can use it.`
+    );
+  }
+
+  const reverification = review.parsed.reverification;
+  const reverificationStatus = isRecord(reverification) ? recordString(reverification, "status") : null;
+  if (["required", "failed"].includes(reverificationStatus ?? "")) {
+    return new ContextBuilderError(
+      "REQUIRED_REVIEW_REVERIFICATION_NOT_CLEAR",
+      `${review.id ?? review.relativePath} has unresolved or failed reverification.`
+    );
+  }
+
+  const authorDecision = review.parsed.author_decision;
+  const authorDecisionStatus = isRecord(authorDecision) ? recordString(authorDecision, "status") : null;
+  if (workpackStatus === "accepted" && authorDecisionStatus !== "accepted") {
+    return new ContextBuilderError(
+      "REQUIRED_REVIEW_AUTHOR_DECISION_PENDING",
+      `${review.id ?? review.relativePath} must have accepted author handling before accepted workpack context can use it.`
     );
   }
 
@@ -347,11 +424,13 @@ export async function buildContext(
     path.join(novelRoot, "reports", "workpacks"),
     path.join(novelRoot, "reports", "style"),
     path.join(novelRoot, "reports", "restructure"),
+    path.join(novelRoot, "reports", "baselines"),
     path.join(novelRoot, "reports", "reviews"),
     path.join(novelRoot, "reports", "sessions")
   ];
   const files = (await Promise.all(entityRoots.map(safeListFiles))).flat();
   const requestedIds = [...new Set(options.entityIds)];
+  const profile = options.profile ?? "internal";
   const found = new Map<string, SourceDocument>();
 
   for (const filePath of files) {
@@ -394,6 +473,14 @@ export async function buildContext(
       } else {
         missingRequiredIds.push(entityId);
       }
+      continue;
+    }
+    if (!profileCanRead(profile, sourceVisibility(source))) {
+      warnings.push({
+        code: "SOURCE_NOT_VISIBLE",
+        id: entityId,
+        message: `${entityId} is not visible to ${profile} context.`
+      });
       continue;
     }
     sources.push(source);

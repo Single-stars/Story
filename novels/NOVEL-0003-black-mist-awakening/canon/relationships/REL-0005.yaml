@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0005
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陈安对姚瑶
+summary: "单向喜欢，容易产生帮助冲动；必须学习先尊重拒绝，再争取平等协作。"
+tags: [relationship, directional, slow_burn]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0004
+to_character_id: CHAR-0005
+dimensions: { trust: 0.25, affection: 0.5, fear: 0.05, obligation: 0.2, leverage: 0.05 }
+public_label: "同学，有好感"
+private_reality: "喜欢不能越过姚瑶的边界，帮助必须有尊重和后果。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

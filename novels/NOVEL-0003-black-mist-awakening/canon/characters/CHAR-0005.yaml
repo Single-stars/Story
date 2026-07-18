@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0005
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 姚瑶
+summary: "贫困、优秀、自尊且被针对的学生线人物，推动校园现实压力，并形成独立反击成长。"
+aliases: []
+narrative_tier: major
+tags: [dream_layer, student, pressure_line]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "守住学习机会和尊严，查清持续针对自己的压力来源。"
+  need: "接受平等协作，同时保留自己作决定的权利。"
+  wound: "长期独自承受结构性压力。"
+  lie: "接受帮助就会变成被施舍。"
+voice:
+  vocabulary: [谢谢, 不用, 我自己来, 证据]
+  syntax: "礼貌、克制，边界清晰。"
+  notices_first: "先判断对方的帮助是否带有施舍感。"
+  avoids: [等待拯救, 被动奖品化]
+capabilities:
+  - "观察细致，能在压力中保留反击线索。"
+limits:
+  - "她的反击线不能被陈安或温良代替完成。"
+secrets: []
+first_scene_id: null

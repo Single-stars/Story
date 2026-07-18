@@ -1,0 +1,19 @@
+schema_version: "0.1.0"
+id: LOC-0009
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线
+summary: "某种燃料持续燃烧形成的抗雾防线，也是聚落分配劳动、安排巡守和判断安全的核心。"
+tags: [real_layer, fireline]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [火线]
+parent_location_id: LOC-0008
+sensory_palette: [热浪, 烟, 灰烬, 逼近的雾]
+constraints:
+  - "统一使用火线称呼；巡守是围绕火线进行的工作，不另设巡守区。"
+  - "火势下降时黑雾逼近，火势恢复时雾退开。"

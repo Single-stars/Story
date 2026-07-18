@@ -86,7 +86,7 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|EVT|SCN|THREAD|FORESH)-[0-9]{4}$"
+            "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE|EVT|SCN|THREAD|FORESH)-[0-9]{4}$"
           }
         },
         "manuscript_paths": {

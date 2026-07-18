@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0004
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 梦境常识修正机制
+summary: "梦境层会自动修正常识冲突；未意识到异常的人会忽略、合理化或遗忘，开始意识到异常的人才可能持续发现痕迹。"
+tags: [dream_layer, correction]
+source_refs: ["DECISION-WORKING-019", "DECISION-WORKING-021"]
+supersedes: null
+superseded_by: null
+statement: "梦境层对明显异常进行常识修正，人物必须通过怀疑、误信、验证或失败逐步形成认知。"
+scope: "梦境层异常可见性、人物知识和读者披露"
+limitations: ["不能无限重置已形成强烈认知的人。", "不能让人物凭设定文件直接知道规则。"]
+costs: ["持续追查会提高被压制、治疗、隔离、带走或消失的风险。"]
+exceptions: ["已意识到或正在形成异常认知的人能持续看见部分痕迹。"]

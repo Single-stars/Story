@@ -8,6 +8,7 @@ visibility: internal
 name: 温良
 summary: "高三生，原本优秀，却被十年黑雾梦境逐渐削弱；他先以为自己只是普通、虚弱、没家的人，后来才一步步意识到自己仍然拥有改变现实的潜力。"
 aliases: []
+narrative_tier: core
 tags:
   - protagonist
   - student

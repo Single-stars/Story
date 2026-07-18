@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: KNOW-0005
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良验证跨层证据失败
+summary: "温良返回梦境层后知道客观取证无法证明真实经历，只能保留主观记忆和行动变化。"
+tags: [wenliang, evidence_failure]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0001
+fact_id: FACT-0006
+knowledge_state: verified
+learned_at_event_id: EVT-0008
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0.9

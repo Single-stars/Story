@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0011
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 许宁宁对姚瑶
+summary: "舍友兼闺蜜，提供日常陪伴和不带施舍感的支持，让姚瑶在被针对时拥有主角团之外的退路。"
+tags: [relationship, directional, friendship]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0006
+to_character_id: CHAR-0005
+dimensions: { trust: 0.65, affection: 0.55, fear: 0.02, obligation: 0.25, leverage: 0.03 }
+public_label: "舍友兼闺蜜"
+private_reality: "许宁宁只承接姚瑶愿意分享的部分，不替她反击。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

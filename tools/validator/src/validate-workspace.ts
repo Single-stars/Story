@@ -207,7 +207,7 @@ interface Validators {
 }
 
 const ENTITY_EXTENSIONS = new Set([".yaml", ".yml", ".md"]);
-const ENTITY_ID_PATTERN = /^(?:CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|EVT|SCN|THREAD|FORESH)-[0-9]{4}$/;
+const ENTITY_ID_PATTERN = /^(?:CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE|EVT|SCN|THREAD|FORESH)-[0-9]{4}$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -1450,7 +1450,8 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
       const workflowRoots = [
         path.join(novelRoot, novelManifest.paths.reports, "workpacks"),
         path.join(novelRoot, novelManifest.paths.reports, "style"),
-        path.join(novelRoot, novelManifest.paths.reports, "restructure")
+        path.join(novelRoot, novelManifest.paths.reports, "restructure"),
+        path.join(novelRoot, novelManifest.paths.reports, "baselines")
       ];
       const workflowFiles = (
         await Promise.all(

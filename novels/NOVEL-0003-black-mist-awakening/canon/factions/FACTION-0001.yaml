@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACTION-0001
+entity_type: faction
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 聚落
+summary: "真实层本地生存共同体，以劳动、物资交换和火线维持秩序；接纳外来者必须承担可见成本。"
+tags: [real_layer, settlement]
+source_refs: ["DECISION-WORKING-021", "DECISION-WORKING-022"]
+supersedes: null
+superseded_by: null
+goal: "在黑雾和物资限制下继续生存。"
+methods: ["火线巡守", "劳动换取食物和信任", "限制外来者行动"]
+resources: ["火线", "有限食物", "有限医疗经验", "本地路线经验"]
+constraints: ["只称聚落，不使用余烬聚落等专名。", "不能免费接纳外来者。"]

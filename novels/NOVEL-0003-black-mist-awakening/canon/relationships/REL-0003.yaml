@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0003
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陈安对温良
+summary: "用玩笑和日常照顾维持友情，同时隐藏自己的困境；温良变化会迫使他决定是否暴露脆弱。"
+tags: [relationship, directional]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0004
+to_character_id: CHAR-0001
+dimensions: { trust: 0.65, affection: 0.45, fear: 0.05, obligation: 0.35, leverage: 0.05 }
+public_label: "同桌兼舍友"
+private_reality: "陈安照顾温良，但也需要被看见自己的压力。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

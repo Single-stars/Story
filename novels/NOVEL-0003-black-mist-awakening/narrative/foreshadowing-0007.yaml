@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0007
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 旧井避讳
+summary: "旧井被聚落避讳，知情者只讲不完整规则和代价。"
+tags: [old_well, crossing]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "幸存者对旧井回避、含糊和不愿解释。"
+true_meaning: "旧井是一次性高风险通道，同一地点不能重复使用。"
+intended_payoff: "温良必须在不可重复使用的限制下选择是否返程。"
+actual_payoff_scene_id: null
+abandon_reason: null

@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+id: EVT-0004
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 聚落初到阶段
+summary: "温良在真实世界聚落求生，主动观察规则，用劳动和选择争取最低限度容身资格。"
+tags: [phase, real_layer, settlement]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-16T09:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0012, CHAR-0013, CHAR-0015]
+location_id: LOC-0008
+caused_by_event_ids: [EVT-0003]
+consequence_event_ids: [EVT-0005]
+facts_established: [FACT-0005]
+item_changes:
+  - item_id: ITEM-0001
+    from_holder_id: CHAR-0013
+    to_holder_id: CHAR-0013
+    from_location_id: LOC-0008
+    to_location_id: LOC-0008
+    state_after: "rationed for fireline survival and newcomer evaluation"

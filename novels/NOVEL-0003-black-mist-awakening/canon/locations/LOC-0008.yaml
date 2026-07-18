@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: LOC-0008
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 聚落
+summary: "真实世界的临时生存秩序，以劳动、物资交换和火线维持本地生存；接纳外来者必须承担可见成本。"
+tags: [real_layer, settlement]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+aliases: [聚落]
+parent_location_id: null
+sensory_palette: [低声交谈, 燃料味, 旧布, 分配表]
+constraints:
+  - "所有食物、工具和信息都要对应劳动、风险或关系代价。"

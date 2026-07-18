@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0003
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 聚落接纳与火线压力
+summary: "温良必须通过劳动、选择和承担改变聚落对他的风险判断。"
+tags: [phase, real_layer, settlement]
+thread_type: subplot
+dramatic_question: "温良能否在不被崇拜也不被驱逐的情况下获得容身资格？"
+scene_ids: []
+event_ids: [EVT-0005, EVT-0006]
+resolution_state: open

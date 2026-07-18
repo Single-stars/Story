@@ -8,6 +8,7 @@ visibility: internal
 name: 南宫芸儿
 summary: "表面天真简单，实际上观察力很强；她和温良有共同成长的童年基础，但她比温良更能抓住异常，也更早意识到他不对劲。"
 aliases: []
+narrative_tier: core
 tags:
   - heroine
   - student

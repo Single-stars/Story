@@ -1,0 +1,19 @@
+schema_version: "0.1.0"
+id: EVT-0008
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 梦境回归后的取证失败阶段
+summary: "温良想证明自己没有疯，但物品、数字、录音和身体印记都无法成为独立证据，只能转向依据无法证明的经历作选择。"
+tags: [phase, dream_layer, evidence_failure]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-20T08:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0002, CHAR-0003, CHAR-0004]
+location_id: LOC-0003
+caused_by_event_ids: [EVT-0007]
+consequence_event_ids: []
+facts_established: [FACT-0003, FACT-0006]

@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0006
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 许宁宁
+summary: "姚瑶的舍友和闺蜜，承接姚瑶在主角团之外的日常生活与情绪出口。"
+aliases: []
+narrative_tier: support
+tags: [dream_layer, student, roommate]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "维持学业、宿舍生活和朋友关系。"
+  need: "在陪伴别人时不替别人承受全部选择。"
+  wound: "不适用为主线伤口，当前以普通 NPC 功能保留。"
+  lie: "只要安静陪着，就一定足够。"
+voice:
+  vocabulary: [我听着, 慢慢说, 先别急]
+  syntax: "亲切务实，不主动抢戏。"
+  notices_first: "先注意姚瑶是否愿意说。"
+  avoids: [隐藏身份暗示, 异常知识]
+capabilities:
+  - "提供日常陪伴和不带施舍感的支持。"
+limits:
+  - "不能提前添加隐藏身份、异常知识或大线功能。"
+secrets: []
+first_scene_id: null

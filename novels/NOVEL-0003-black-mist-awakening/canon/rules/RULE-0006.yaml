@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0006
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 火线抗雾防线
+summary: "某种燃料持续燃烧形成火线，可以迫退黑雾并保护聚落；燃料名称、来源和效率尚未确定。"
+tags: [real_layer, fireline]
+source_refs: ["DECISION-WORKING-021", "DECISION-WORKING-022"]
+supersedes: null
+superseded_by: null
+statement: "火线是聚落稳定生存基础，火势下降时黑雾逼近，火势恢复时雾退开。"
+scope: "聚落生存、巡守、劳动分配和黑雾压力"
+limitations: ["燃料消耗和人员疲劳必须持续存在。", "温良能力不能替代火线成为无限安全区。"]
+costs: ["燃料、巡守劳力和暴露风险。"]
+exceptions: ["燃料具体名称、来源、效率和管理方式未锁定。"]

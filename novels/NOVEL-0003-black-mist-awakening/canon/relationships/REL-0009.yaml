@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0009
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿对古晓雨
+summary: "信任古晓雨的活泼和陪伴，把她视为日常生活的一部分；会接受提醒，但仍按自己的判断处理关系。"
+tags: [relationship, directional, friendship]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0002
+to_character_id: CHAR-0003
+dimensions: { trust: 0.7, affection: 0.6, fear: 0.02, obligation: 0.2, leverage: 0.05 }
+public_label: "舍友兼闺蜜"
+private_reality: "南宫芸儿接受撮合或提醒，但不会交出判断权。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: ITEM-0003
+entity_type: item
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 取证手机
+summary: "温良可能尝试用于录音、拍照或记录真实经历的手机；跨层后记录必须空白、失效或无法证明来源。"
+tags: [dream_layer, evidence, obsolete_proof]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+current_holder_id: CHAR-0001
+current_location_id: LOC-0003
+state: "normal phone; cross-layer proof invalid by rule"
+significance: "防止旧稿中录音、红印、灯光等作为客观证据的逻辑回流。"

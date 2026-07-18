@@ -5,7 +5,8 @@
   "oneOf": [
     { "$ref": "#/$defs/chapterWorkpack" },
     { "$ref": "#/$defs/proseStyleProfile" },
-    { "$ref": "#/$defs/volumeRestructurePlan" }
+    { "$ref": "#/$defs/volumeRestructurePlan" },
+    { "$ref": "#/$defs/draftingBaseline" }
   ],
   "$defs": {
     "owner": {
@@ -138,7 +139,7 @@
             "canon_ids": {
               "type": "array",
               "uniqueItems": true,
-              "items": { "type": "string", "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$" }
+              "items": { "type": "string", "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$" }
             },
             "narrative_ids": {
               "type": "array",
@@ -154,6 +155,11 @@
               "type": "array",
               "uniqueItems": true,
               "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+            },
+            "workflow_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(CHRUN|STYLE|RESTRUCT|BASELINE|REVIEW)-[0-9]{4}$" }
             }
           }
         },
@@ -472,7 +478,7 @@
               "uniqueItems": true,
               "items": {
                 "type": "string",
-                "pattern": "^(CHRUN|STYLE|RESTRUCT|CHAPTER|SCN|EVT|THREAD|FORESH|CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+                "pattern": "^(CHRUN|STYLE|RESTRUCT|BASELINE|CHAPTER|SCN|EVT|THREAD|FORESH|CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$"
               }
             },
             "must_update_after_draft": { "$ref": "#/$defs/nonEmptyStringArray" },
@@ -480,6 +486,116 @@
           }
         },
         "quality_gates": { "$ref": "#/$defs/gateMap" },
+        "resume_brief": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      }
+    },
+    "draftingBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "record_type",
+        "owner",
+        "status",
+        "visibility",
+        "canon_effect",
+        "baseline_kind",
+        "source_decision_ids",
+        "indexed_ids",
+        "gates",
+        "open_questions",
+        "semantic_hash",
+        "resume_brief"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^BASELINE-[0-9]{4}$"
+        },
+        "record_type": {
+          "type": "string",
+          "const": "drafting_baseline"
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "status": { "$ref": "#/$defs/workflowStatus" },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "canon_effect": {
+          "type": "string",
+          "const": "proposal_only"
+        },
+        "baseline_kind": {
+          "type": "string",
+          "enum": ["drafting", "continuity", "reader_release"]
+        },
+        "source_decision_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "indexed_ids": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["canon_ids", "narrative_ids", "workflow_ids", "decision_ids"],
+          "properties": {
+            "canon_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW|CSTATE)-[0-9]{4}$" }
+            },
+            "narrative_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(EVT|SCN|THREAD|FORESH)-[0-9]{4}$" }
+            },
+            "workflow_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(CHRUN|STYLE|RESTRUCT|BASELINE|REVIEW)-[0-9]{4}$" }
+            },
+            "decision_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+            }
+          }
+        },
+        "gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "author_accepted_for_drafting",
+            "excludes_legacy_manuscript",
+            "no_canon_promotion",
+            "context_builder_required",
+            "review_workflow_required"
+          ],
+          "properties": {
+            "author_accepted_for_drafting": { "type": "boolean" },
+            "excludes_legacy_manuscript": { "type": "boolean" },
+            "no_canon_promotion": { "type": "boolean" },
+            "context_builder_required": { "type": "boolean" },
+            "review_workflow_required": { "type": "boolean" }
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "semantic_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
         "resume_brief": {
           "type": "string",
           "minLength": 1,

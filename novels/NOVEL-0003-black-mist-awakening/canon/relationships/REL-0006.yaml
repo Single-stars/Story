@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0006
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 姚瑶对陈安
+summary: "不会因善意立刻信任，更警惕帮助背后的施舍感；只有陈安持续尊重边界，她才可能调整判断。"
+tags: [relationship, directional, boundary]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0005
+to_character_id: CHAR-0004
+dimensions: { trust: 0.2, affection: 0.15, fear: 0.1, obligation: 0.05, leverage: 0.05 }
+public_label: "同学，保持距离"
+private_reality: "姚瑶保留自尊边界，拒绝被奖品化。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

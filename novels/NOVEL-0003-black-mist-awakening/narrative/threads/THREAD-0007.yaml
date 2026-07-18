@@ -1,0 +1,14 @@
+schema_version: "0.1.0"
+id: THREAD-0007
+entity_type: thread
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 灰衣人外部势力提案
+summary: "灰衣人可作为跨聚落交易和信息收集势力，但组织结构、资源来源和是否掌握双界信息均未锁定。"
+tags: [real_layer, future_direction, gray_clad]
+thread_type: mystery
+dramatic_question: "灰衣人是单纯资源势力，还是掌握异常梦境和返程者线索？"
+scene_ids: []
+event_ids: []
+resolution_state: open

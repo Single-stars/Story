@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0009
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 灰衣人外部势力
+summary: "聚落对一批能跨聚落交易的灰衣来客保持明显戒备。"
+tags: [gray_clad, real_layer, organization]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "药品、工具、燃料或消息被外部来客掌握，聚落戒备。"
+true_meaning: "他们可能收集异常梦境、返程者或双界线索；组织目的继续未知。"
+intended_payoff: "只有角色实际见到成员、交易或行动，并由当地人命名后，正文才可使用灰衣人称呼。"
+actual_payoff_scene_id: null
+abandon_reason: null

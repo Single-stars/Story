@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: KNOW-0002
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿知道温良状态不对
+summary: "南宫芸儿只能从温良虚弱、遗忘和行为变化判断他不对劲；她不知道双界真相。"
+tags: [nangong, boundary]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0002
+fact_id: FACT-0003
+knowledge_state: suspects
+learned_at_event_id: EVT-0002
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0.35

@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+id: EVT-0007
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 单点返程阶段
+summary: "温良为了明确的人或不可替代目的选择返程，只能带回主观记忆和行为变化，不能带回可验证证据。"
+tags: [phase, crossing, return]
+source_refs: [DECISION-WORKING-023]
+story_time:
+  value: "2041-05-19T23:00:00+08:00"
+  precision: day
+participants: [CHAR-0001, CHAR-0014]
+location_id: LOC-0010
+caused_by_event_ids: [EVT-0006]
+consequence_event_ids: [EVT-0008]
+facts_established: [FACT-0006, FACT-0008]
+item_changes:
+  - item_id: ITEM-0003
+    from_holder_id: CHAR-0001
+    to_holder_id: CHAR-0001
+    from_location_id: LOC-0010
+    to_location_id: LOC-0003
+    state_after: "no independent recording or physical proof survives the crossing"

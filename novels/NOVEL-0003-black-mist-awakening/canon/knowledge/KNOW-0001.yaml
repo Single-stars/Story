@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: KNOW-0001
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良怀疑脚步声不是普通噩梦
+summary: "温良在黑雾梦境里听见不属于黑雾本身的脚步声，开始怀疑梦境不再完全重复。"
+tags: [wenliang, footsteps, suspicion]
+source_refs: [SCN-0001, EVT-0001, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0001
+fact_id: FACT-0001
+knowledge_state: suspects
+learned_at_event_id: EVT-0001
+learned_in_scene_id: SCN-0001
+source_character_id: null
+confidence: 0.45

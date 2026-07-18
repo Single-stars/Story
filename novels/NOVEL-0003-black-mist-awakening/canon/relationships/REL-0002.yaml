@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0002
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 南宫芸儿对温良
+summary: "有深厚童年感情，也坚持用事实判断当下；她会关心和观察，但不会无条件相信或替温良调查异常。"
+tags: [relationship, directional]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0002
+to_character_id: CHAR-0001
+dimensions: { trust: 0.55, affection: 0.55, fear: 0.05, obligation: 0.2, leverage: 0.1 }
+public_label: "同学，熟人，偶尔照应"
+private_reality: "她记得更多共同童年，也更早察觉温良状态不对，但仍需要证据。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

@@ -1,0 +1,20 @@
+schema_version: "0.1.0"
+id: KNOW-0003
+entity_type: knowledge
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 林照知道火线成本
+summary: "林照知道火线和燃料是聚落生存基础，因此会先评估温良对火线的风险和价值。"
+tags: [linzhao, fireline]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0012
+fact_id: FACT-0005
+knowledge_state: verified
+learned_at_event_id: EVT-0004
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0.9

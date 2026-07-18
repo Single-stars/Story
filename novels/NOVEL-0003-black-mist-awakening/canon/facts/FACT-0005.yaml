@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: FACT-0005
+entity_type: fact
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线抗雾
+summary: "某种燃料持续燃烧形成火线，可以逼退黑雾并保护聚落，但燃料、效率和管理方式仍是开放问题。"
+tags: [real_layer, fireline]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+statement: "火线是聚落稳定生存基础；燃料减少时雾逼近，火势恢复时雾退开。"
+confidence: 0.8
+evidence: [DECISION-WORKING-021, DECISION-WORKING-022]

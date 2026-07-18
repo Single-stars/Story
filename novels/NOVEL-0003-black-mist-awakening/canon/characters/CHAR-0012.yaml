@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0012
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 林照
+summary: "真实世界聚落防卫与经验判断者，以审慎而非崇拜回应温良异常。"
+aliases: []
+narrative_tier: major
+tags: [real_layer, settlement, defender]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-021]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "保护聚落，判断温良是风险、资源还是两者兼有。"
+  need: "允许事实改变判断，但不能放弃防卫职责。"
+  wound: "聚落长期损失让他不轻信任何外来者。"
+  lie: "经验足够处理所有异常。"
+voice:
+  vocabulary: [站住, 代价, 规矩, 火线]
+  syntax: "话少、审慎，承诺少但会承担。"
+  notices_first: "先看风险、行动后果和火线状态。"
+  avoids: [无条件崇拜, 设定讲解]
+capabilities:
+  - "能限制、考察并逐步调整对温良的信任。"
+limits:
+  - "信任只能由温良的劳动、选择和承担逐步改变。"
+secrets: []
+first_scene_id: null

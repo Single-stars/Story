@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: RULE-0008
+entity_type: rule
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: 梦境关闭与异常对象
+summary: "普通人的梦境能力被系统主动关闭，公开解释可包装为脑波调节、睡眠改善或精神健康措施。"
+tags: [dream_layer, no_dream]
+source_refs: ["DECISION-WORKING-021", "DECISION-WORKING-023"]
+supersedes: null
+superseded_by: null
+statement: "普通人不会因为少数异常梦境立刻理解双界真相，不做梦被社会视为正常。"
+scope: "梦境社会常识、异常对象和校园失踪伏笔"
+limitations: ["不能提前公开系统或入梦计划术语。"]
+costs: ["异常者持续暴露会增加被带走或合理化的风险。"]
+exceptions: ["温良及其他不稳定实验对象可能出现异常梦境。"]

@@ -1,0 +1,19 @@
+schema_version: "0.1.0"
+id: KNOW-0006
+entity_type: knowledge
+owner: { novel_id: NOVEL-0003 }
+status: proposed
+visibility: internal
+name: Gu Xiaoyu appears to know only ordinary school context
+summary: "Until a later event proves otherwise, her on-page knowledge boundary stays ordinary."
+tags: [knowledge, gu-xiaoyu, boundary]
+source_refs: ["DECISION-WORKING-020", "DECISION-WORKING-023"]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0003
+fact_id: FACT-0008
+knowledge_state: unknown
+learned_at_event_id: null
+learned_in_scene_id: null
+source_character_id: null
+confidence: 0

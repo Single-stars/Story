@@ -1,0 +1,21 @@
+schema_version: "0.1.0"
+id: REL-0014
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 陆时年对温良
+summary: "开局无关系、无友情、无监视任务；必须等后续事件真实相交后才能建立关系。"
+tags: [relationship, directional, no_early_link]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0009
+to_character_id: CHAR-0001
+dimensions: { trust: 0.0, affection: 0.0, fear: 0.0, obligation: 0.0, leverage: 0.0 }
+public_label: "开局无关系"
+private_reality: "废止旧设中自幼监视温良、家族参与入梦计划或真实友情的逻辑。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids: [EVT-0001]

@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: ITEM-0001
+entity_type: item
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 火线燃料
+summary: "维持火线燃烧的稀缺燃料；名称、来源、消耗速度和管理方式仍是开放问题。"
+tags: [real_layer, fireline, resource]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+current_holder_id: CHAR-0013
+current_location_id: LOC-0008
+state: "stored and rationed"
+significance: "决定火线能否持续逼退黑雾，是聚落接纳外来者的可见成本之一。"

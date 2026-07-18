@@ -1,0 +1,31 @@
+schema_version: "0.1.0"
+id: CHAR-0010
+entity_type: character
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 周成海
+summary: "班主任，维护学校日常秩序，并对温良长期下滑作出现实、克制的成年人反应。"
+aliases: []
+narrative_tier: support
+tags: [dream_layer, teacher]
+source_refs: [DECISION-WORKING-020]
+supersedes: null
+superseded_by: null
+psychology:
+  want: "让班级秩序和学生问题得到回应。"
+  need: "在制度解释之外看见学生真实变化。"
+  wound: "成年人职责限制他不能只凭直觉越过流程。"
+  lie: "只要程序到位，问题就能被解释。"
+voice:
+  vocabulary: [情况, 家长, 先说清楚, 负责]
+  syntax: "克制、明确，不和学生称兄道弟。"
+  notices_first: "先看成绩、状态和出勤变化。"
+  avoids: [过度亲昵, 神秘设定解释]
+capabilities:
+  - "能提供学校日常秩序和成年人压力。"
+limits:
+  - "不知道双界真相。"
+secrets: []
+first_scene_id: null

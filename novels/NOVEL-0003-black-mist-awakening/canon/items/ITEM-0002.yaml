@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: ITEM-0002
+entity_type: item
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 出租屋钥匙
+summary: "温良周末备用住所的钥匙，连接梦境层日常据点和房东马庆山的有限照顾。"
+tags: [dream_layer, rental, key]
+source_refs: [DECISION-WORKING-022]
+supersedes: null
+superseded_by: null
+current_holder_id: CHAR-0001
+current_location_id: LOC-0007
+state: "usable in dream-layer daily life"
+significance: "提供日常入口和生活感，但不能保留跨层物证。"

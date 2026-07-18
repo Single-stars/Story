@@ -1,0 +1,19 @@
+schema_version: "0.1.0"
+id: LOC-0010
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 旧井
+summary: "当前已知的危险传送点之一，承载返程欲望、规则缺口和不可重复使用的后果。"
+tags: [real_layer, crossing_point, old_well]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-022, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+aliases: [旧井]
+parent_location_id: LOC-0008
+sensory_palette: [湿冷, 井沿裂痕, 回声, 避讳的目光]
+constraints:
+  - "旧井不是稳定入口；温良使用后该点失效或坍塌。"
+  - "触发条件、方向限制和失败代价不得提前解释完整。"

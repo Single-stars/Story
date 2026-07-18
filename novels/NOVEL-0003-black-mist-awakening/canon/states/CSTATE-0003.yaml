@@ -1,0 +1,29 @@
+schema_version: "0.1.0"
+id: CSTATE-0003
+entity_type: character_state
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良聚落初到后状态
+summary: "温良开始以劳动、观察和承担换取聚落最低限度容身资格。"
+tags: [wenliang, settlement]
+source_refs: [DECISION-WORKING-020, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+character_id: CHAR-0001
+state_scope: post_event
+after_event_id: EVT-0004
+after_scene_id: null
+location_id: LOC-0008
+physical_state: "Exhausted but functioning inside the settlement boundary."
+mental_state: "Choosing observation and labor over waiting for explanation."
+capability_state:
+  - "Automatic local mist-clearing may be noticed by defenders."
+resource_state:
+  - "Minimal food and shelter remain conditional."
+obligation_state:
+  - "Must repay settlement tolerance through visible labor."
+knowledge_ids: [KNOW-0001]
+item_ids: [ITEM-0004]
+relationship_ids: [REL-0015]

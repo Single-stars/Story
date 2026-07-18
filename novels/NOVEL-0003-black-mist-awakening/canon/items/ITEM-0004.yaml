@@ -1,0 +1,17 @@
+schema_version: "0.1.0"
+id: ITEM-0004
+entity_type: item
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 轻度黑斑伤口
+summary: "黑雾早期侵蚀的可见身体状态，刘婆婆可处理轻度阶段，严重阶段不可轻易逆转。"
+tags: [real_layer, black_mist, injury]
+source_refs: [DECISION-WORKING-021, DECISION-WORKING-023]
+supersedes: null
+superseded_by: null
+current_holder_id: null
+current_location_id: LOC-0008
+state: "treatable only while mild"
+significance: "把治疗边界和黑雾威胁绑定为可检查对象。"
