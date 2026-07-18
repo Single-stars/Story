@@ -1,0 +1,18 @@
+schema_version: "0.1.0"
+id: FORESH-0001
+entity_type: foreshadowing
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾里第一次出现脚步声
+summary: "梦境前期最关键的钩子，告诉读者黑雾不是静态背景，而是正在接近温良的东西。"
+tags:
+  - black-mist
+foreshadow_state: planted
+planted_scene_id: SCN-0001
+reader_sees: "黑雾梦境里第一次有了不属于黑雾本身的脚步声"
+true_meaning: "温良的真实界肉身正在接近，灵魂与肉身的重新合并已经开始"
+intended_payoff: "后续真实界肉身登场并完成融合"
+actual_payoff_scene_id: null
+abandon_reason: null

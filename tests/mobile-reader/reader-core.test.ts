@@ -14,57 +14,36 @@ const library = {
   profile: "reader" as const,
   books: [
     {
-      id: "NOVEL-0001",
-      title: "死亡账户",
-      slug: "death-account",
+      id: "NOVEL-0003",
+      title: "雾醒时分",
+      slug: "black-mist-awakening",
       status: "drafting",
       chapters: [
         {
           id: "CHAPTER-0001",
-          title: "第一章 死亡客户来电",
+          title: "第一章 黑雾里有脚步声",
           volume: 1,
           chapter: 1,
-          summary: "系统第一次否认她活着。",
+          summary: "黑雾梦境里第一次出现脚步声。",
           contentVersion: "0.1.0",
           previousChapterId: null,
           nextChapterId: "CHAPTER-0002",
           blocks: [
-            { id: "p-a", kind: "paragraph" as const, text: "死人给她打来电话。" },
-            { id: "p-b", kind: "paragraph" as const, text: "门禁随后注销了她。" }
+            { id: "p-a", kind: "paragraph" as const, text: "黑雾里有脚步声。" },
+            { id: "p-b", kind: "paragraph" as const, text: "南宫芸儿也听见了。" }
           ]
         },
         {
           id: "CHAPTER-0002",
-          title: "第二章",
+          title: "第二章 她为什么不信",
           volume: 1,
           chapter: 2,
-          summary: "她寻找离线证据。",
+          summary: "温良试着解释黑雾梦境。",
           contentVersion: "0.1.0",
           previousChapterId: "CHAPTER-0001",
           nextChapterId: null,
           blocks: [
-            { id: "p-c", kind: "paragraph" as const, text: "机械表还认得她。" }
-          ]
-        }
-      ]
-    },
-    {
-      id: "NOVEL-0002",
-      title: "六百里夜驿",
-      slug: "six-hundred-li-night-relay",
-      status: "drafting",
-      chapters: [
-        {
-          id: "CHAPTER-0001",
-          title: "第一章 死驿发签",
-          volume: 1,
-          chapter: 1,
-          summary: "死去的父亲发出急件。",
-          contentVersion: "0.1.0",
-          previousChapterId: null,
-          nextChapterId: null,
-          blocks: [
-            { id: "p-d", kind: "paragraph" as const, text: "驿铃在封死的门后响了。" }
+            { id: "p-c", kind: "paragraph" as const, text: "那支笔停在讲台旁边。" }
           ]
         }
       ]
@@ -77,22 +56,22 @@ describe("mobile reader core", () => {
     expect(
       resolveSelection(
         library,
-        { book: "six-hundred-li-night-relay", chapter: "CHAPTER-0001", anchor: "p-d" },
-        { bookId: "NOVEL-0001", chapterId: "CHAPTER-0002", anchorId: "p-c" }
+        { book: "black-mist-awakening", chapter: "CHAPTER-0001", anchor: "p-b" },
+        { bookId: "NOVEL-0003", chapterId: "CHAPTER-0002", anchorId: "p-c" }
       )
-    ).toEqual({ bookId: "NOVEL-0002", chapterId: "CHAPTER-0001", anchorId: "p-d" });
+    ).toEqual({ bookId: "NOVEL-0003", chapterId: "CHAPTER-0001", anchorId: "p-b" });
 
     expect(
       resolveSelection(library, { book: "missing", chapter: "missing" }, null)
-    ).toEqual({ bookId: "NOVEL-0001", chapterId: "CHAPTER-0001", anchorId: "p-a" });
+    ).toEqual({ bookId: "NOVEL-0003", chapterId: "CHAPTER-0001", anchorId: "p-a" });
   });
 
   test("searches titles, summaries, and body text across books", () => {
-    const results = searchLibrary(library, "机械表");
+    const results = searchLibrary(library, "讲台");
 
     expect(results).toHaveLength(1);
     expect(results[0]).toMatchObject({
-      bookId: "NOVEL-0001",
+      bookId: "NOVEL-0003",
       chapterId: "CHAPTER-0002",
       anchorId: "p-c"
     });
@@ -145,7 +124,7 @@ describe("mobile reader core", () => {
 
   test("builds a content-free reader feedback draft", () => {
     const feedback = buildFeedbackExport({
-      novel: "NOVEL-0001",
+      novel: "NOVEL-0003",
       chapter: "CHAPTER-0002",
       anchor: "p-c",
       contentVersion: "0.1.0",
@@ -157,7 +136,7 @@ describe("mobile reader core", () => {
 
     expect(feedback).toEqual({
       recordType: "reader_feedback",
-      novel: "NOVEL-0001",
+      novel: "NOVEL-0003",
       chapter: "CHAPTER-0002",
       anchor: "p-c",
       contentVersion: "0.1.0",
@@ -179,12 +158,12 @@ describe("mobile reader core", () => {
     expect(
       buildShareUrl(
         "https://story.example/reader/",
-        "death-account",
+        "black-mist-awakening",
         "CHAPTER-0002",
         "p-c"
       )
     ).toBe(
-      "https://story.example/reader/?book=death-account&chapter=CHAPTER-0002&anchor=p-c"
+      "https://story.example/reader/?book=black-mist-awakening&chapter=CHAPTER-0002&anchor=p-c"
     );
   });
 });

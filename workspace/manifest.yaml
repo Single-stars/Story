@@ -25,22 +25,18 @@ defaults:
     - want-need-wound-lie
     - scene-sequel
     - story-grid-five-commandments
-active_novel_id: NOVEL-0002
+active_novel_id: NOVEL-0003
 novels:
-  - id: NOVEL-0001
-    title: 死亡账户
-    path: novels/NOVEL-0001-death-account
-    status: planning
-  - id: NOVEL-0002
-    title: 六百里夜驿
-    path: novels/NOVEL-0002-six-hundred-li-night-relay
+  - id: NOVEL-0003
+    title: 雾醒时分
+    path: novels/NOVEL-0003-black-mist-awakening
     status: planning
 universes: []
 series: []
 id_counters:
   universe: 0
   series: 0
-  novel: 2
+  novel: 3
 paths:
   novels: novels
   universes: universes

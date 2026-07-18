@@ -1,0 +1,27 @@
+schema_version: "0.1.0"
+id: LOC-0001
+entity_type: location
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾世界聚落
+summary: "真实界里以火光和围挡维持生存的普通聚落，居民大多从出生起就生活在黑雾中，把黑雾视为世界常态。"
+tags:
+  - real-world
+  - settlement
+source_refs: []
+supersedes: null
+superseded_by: null
+aliases:
+  - 火光聚落
+parent_location_id: null
+sensory_palette:
+  - "远处持续摇晃的火光"
+  - "潮湿、冷硬、灰土和烟味"
+  - "黑雾贴着地面和建筑边缘流动"
+  - "夜里有压低的脚步和守望声"
+constraints:
+  - "外来者不会被立刻信任"
+  - "聚落只掌握局部生存法则，不掌握完整真相"
+  - "物资与安全都有限"

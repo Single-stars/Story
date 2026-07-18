@@ -1,0 +1,50 @@
+schema_version: 0.1.0
+novel_id: NOVEL-0003
+title: 雾醒时分
+slug: black-mist-awakening
+status: planning
+language: zh-CN
+genre:
+  primary: 都市奇幻悬疑
+  secondary:
+    - 校园成长
+    - 轻冒险
+    - 双界解谜
+  target_readers: 喜欢校园开篇、渐进揭露真相、轻松对白和长线悬疑成长的中文网文读者
+  promises:
+    - 前期以校园日常和微弱异常慢慢积累黑雾压迫感，不急着掀开全部真相。
+    - 梦境与真实界双线互相牵引，能力成长遵循严格边界与代价，不靠无脑碾压。
+    - 温良会从虚弱、误判和失去中重新建立主动性，最终在医院醒来形成第一卷闭环。
+  content_notes: []
+premise:
+  status: proposed
+  logline: 高三生温良十年间被迫在黑雾梦境里不断衰弱，直到一次梦中与真实界肉身融合后彻底留在荒芜的真实地球；他必须先在黑雾聚落里活下来，再找到回到梦境、拯救重要之人的方法，而他对世界的每一次新理解都可能改变现实本身。
+  theme_question: 当你以为自己活在真实里时，究竟什么才算醒来，什么才算救回自己？
+  core_conflict: 温良一边被现实的荒芜与失忆逼迫接受真实界，一边被梦境里仍然存在的亲友和情感牵引着回头；他想修复一切，但每一步都会让他更接近更大的真相，也更接近失去现有的自我。
+structure:
+  lenses:
+    - snowflake
+    - want-need-wound-lie
+    - scene-sequel
+    - story-grid-five-commandments
+  intended_length_words: 300000
+  volumes: 1
+dependencies:
+  universe_refs: []
+  series_id: null
+current_focus:
+  volume: 1
+  chapter: 1
+  scene_id: null
+  note: 先完成第一卷全书骨架，再进入章节正文；第一卷终点锁定为温良在医院醒来。
+paths:
+  canon: canon
+  narrative: narrative
+  manuscript: manuscript
+  research: research
+  decisions: decisions
+  feedback: feedback
+  reports: reports
+sharing:
+  default_profile: internal
+  allow_offline_reader: false

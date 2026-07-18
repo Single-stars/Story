@@ -1,0 +1,16 @@
+schema_version: "0.1.0"
+id: THREAD-0001
+entity_type: thread
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 黑雾到底通向哪里
+summary: "围绕温良是否仍在做梦、真实界是什么、以及他能否回到梦境拯救重要之人的主线悬疑。"
+tags:
+  - main
+thread_type: main
+dramatic_question: "温良能不能在看似荒芜的真实界里找到回到梦境的路，并重新理解自己是谁"
+scene_ids: []
+event_ids: []
+resolution_state: open

@@ -1,0 +1,547 @@
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: outline
+
+owner:
+  novel_id: NOVEL-0003
+
+status: proposed
+visibility: internal
+title: "雾醒时分 第一卷：黑雾与脚步声"
+
+scope:
+  level: novel
+  volume: 1
+  act: null
+  chapter: null
+  summary: "校园日常慢热开局，黑雾梦境间断渗出，温良在最后一次梦境中与真实界肉身融合，被迫进入荒芜的真实界；他在黑雾中发现火光聚落，谨慎接触普通幸存者，尝试寻找回到梦境的方法，最终在医院醒来。"
+
+dependencies:
+  series_id: null
+  universe_refs: []
+
+source_refs:
+  premise_refs:
+    - "NOVEL-0003-INTAKE-01"
+  canon_ids: []
+  decision_ids: []
+  research_refs: []
+
+objective:
+  story_goal: "让温良在第一卷里完成从被动虚弱到主动寻找真相的转变，并把双界、权限和南宫芸儿的关系线立起来。"
+  reader_promise: "校园轻松感、黑雾悬疑、双界反转、真实界探索、情绪推动的能力变化、第一卷闭环。"
+  theme_question: "当梦境比现实更像救赎时，人该怎么确认自己真正醒来。"
+  core_conflict: "温良想回到梦境找回重要的人，但真实界逼他接受新的生存法则，而梦境里的异常又不断证明他不能把一切当成幻觉。"
+  ending_cost: "第一卷结束时，温良必须承认现实界不是梦境的附属，而是他必须主动面对的另一层真实；医院醒来只是阶段性恢复，不是问题解决。"
+  success_criteria:
+    - "校园前期自然，不像设定讲解"
+    - "黑雾、脚步声和小异常有递进"
+    - "真实界火光聚落的出现可信"
+    - "温良的主动性逐步回升"
+    - "第一卷在医院醒来处形成闭环"
+
+structure:
+  lenses:
+    - scene-sequel
+    - want-need-wound-lie
+    - story-grid-five-commandments
+  opening_promise: "第一眼是校园和黑雾的怪异回声，读者先跟着温良困惑，再慢慢意识到这不是普通梦。"
+  first_major_turn: "温良在最后一次梦中与真实界肉身融合，永久留在真实界。"
+  midpoint_change: "黑雾中出现火光聚落，温良第一次确认真实界并非无人之地。"
+  lowest_point: "温良尝试回梦境失败，且不得不面对现实界的生存压力与失忆。"
+  climax_choice: "他借助组织或诡异方法返回梦境，在真假之间做出一次有代价的选择。"
+  resolution: "温良在医院醒来，暂时恢复正常生活，但真相已经无法再被完全压回去。"
+
+causal_spine:
+  - beat_key: beat-001
+    narrative_position: opening
+    trigger:
+      source_ids: []
+      pressure: "高三校园日常里，温良依旧虚弱，且黑雾梦境的残影开始出现"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "撑过普通的一天，不让别人看出自己已经越来越弱"
+      motivation: "他已经习惯把自己当成普通人，但内心还残留着曾经优秀的影子"
+    opposition: "现实里的疲惫与梦里的黑雾，双重都在削弱他"
+    choice_or_action: "温良按下不适，继续上课，假装一切正常"
+    turning_point: "夜里黑雾梦境第一次出现脚步声"
+    consequence:
+      state_change: "他第一次明确意识到梦里有了不属于黑雾的东西"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "脚步声持续逼近，且像是冲着他来"
+    scene_ids: []
+  - beat_key: beat-002
+    narrative_position: early
+    trigger:
+      source_ids: []
+      pressure: "脚步声和梦境异常开始影响白天情绪"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "弄清梦里到底发生了什么"
+      motivation: "长期重复的黑雾梦忽然变了，意味着他不是在原地打转"
+    opposition: "南宫芸儿不信他把梦当成现实的说法"
+    choice_or_action: "温良试探着把梦的怪异告诉南宫芸儿"
+    turning_point: "南宫芸儿表面敷衍，实际开始观察他"
+    consequence:
+      state_change: "两人的关系从平静同学转向带有疑问的对话"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "温良开始怀疑自己是不是只是太累"
+    scene_ids: []
+  - beat_key: beat-003
+    narrative_position: early
+    trigger:
+      source_ids: []
+      pressure: "校园里出现细小的不合逻辑事件，像是梦的回声"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "验证异常是否和自己的情绪有关"
+      motivation: "他开始隐约觉得梦并非纯粹幻觉"
+    opposition: "情绪越强，异常越像在回应他"
+    choice_or_action: "温良在压力下做出下意识反应"
+    turning_point: "一个小异常真的按他的情绪改写了"
+    consequence:
+      state_change: "他意识到梦境可能会把想法变成倾向现实的结果"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "他必须决定是继续试，还是假装没发生"
+    scene_ids: []
+  - beat_key: beat-004
+    narrative_position: early-mid
+    trigger:
+      source_ids: []
+      pressure: "现实压力和梦境异常叠加，温良精神更差"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "继续维持正常生活"
+      motivation: "他还没准备好把世界翻过来"
+    opposition: "南宫芸儿的观察越来越精准"
+    choice_or_action: "温良在校园碎片日常里继续忍着"
+    turning_point: "南宫芸儿发现他对某些童年细节完全失忆"
+    consequence:
+      state_change: "她开始怀疑温良真的忘掉了很重要的东西"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "被遗忘的童年成为后续牵引"
+    scene_ids: []
+  - beat_key: beat-005
+    narrative_position: mid
+    trigger:
+      source_ids: []
+      pressure: "最后一次梦境来临，黑雾中出现不属于雾的声音与触感"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "弄清那一步是谁在走"
+      motivation: "他被那脚步声拖向一个无法忽视的答案"
+    opposition: "梦境逼迫他面对真实界肉身"
+    choice_or_action: "温良走向声音来源"
+    turning_point: "他与真实界肉身融合，永久留在真实界"
+    consequence:
+      state_change: "梦境通道断裂，现实世界成为当前唯一舞台"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "他必须在荒芜中活下来"
+    scene_ids: []
+  - beat_key: beat-006
+    narrative_position: mid-late
+    trigger:
+      source_ids: []
+      pressure: "真实界的黑雾、废墟和时间差彻底暴露"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "确认自己到底在哪"
+      motivation: "他仍以为自己可能只是做了一个过长的梦"
+    opposition: "真实界不解释自己，只要求生存"
+    choice_or_action: "温良开始徒步探索并寻找人类痕迹"
+    turning_point: "他在黑雾里看见火光"
+    consequence:
+      state_change: "真实界存在人类聚落的可能被确认"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "聚落是否安全、是否知道真相，仍不明"
+    scene_ids: []
+  - beat_key: beat-007
+    narrative_position: mid-late
+    trigger:
+      source_ids: []
+      pressure: "聚落里的人对黑雾习以为常，但对温良这个外来者警惕"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "接近聚落，获取信息"
+      motivation: "他需要知道自己能不能回去"
+    opposition: "普通幸存者只知道表层生存法则，不会主动讲真相"
+    choice_or_action: "温良小心观察、试探接触"
+    turning_point: "他发现这里的人大多不知道世界曾经是什么样"
+    consequence:
+      state_change: "真实界从谜团变成可逐步调查的社会现场"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "他必须从生活细节中自己拼出答案"
+    scene_ids: []
+  - beat_key: beat-008
+    narrative_position: late
+    trigger:
+      source_ids: []
+      pressure: "温良想回到梦境拯救重要的人"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "找到连接真实界与梦境的方法"
+      motivation: "他不想只接受现实，更不愿放弃梦里的人"
+    opposition: "组织和设施的信息被延后显现，方法不可能轻易拿到"
+    choice_or_action: "温良混入、追踪、借用或利用既有通道"
+    turning_point: "他摸到连接两界的诡异方法或组织线索"
+    consequence:
+      state_change: "返梦不再是幻想，而是可执行目标"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "回去意味着要付代价"
+    scene_ids: []
+  - beat_key: beat-009
+    narrative_position: late
+    trigger:
+      source_ids: []
+      pressure: "温良在真实界和梦境都失去稳定感"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "用风险换回回梦机会"
+      motivation: "他已经不能再假装什么都没发生"
+    opposition: "现实和梦境都不允许他无代价穿梭"
+    choice_or_action: "温良做出一次有后果的穿越选择"
+    turning_point: "他重新回到梦境"
+    consequence:
+      state_change: "双界从单向探索变成双向牵引"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "梦境并不会因为他回来就恢复原状"
+    scene_ids: []
+  - beat_key: beat-010
+    narrative_position: finale
+    trigger:
+      source_ids: []
+      pressure: "梦境内的异常逐渐回收，现实线与梦境线完成对接"
+    character_drive:
+      character_ids:
+        - CHAR-0001
+      goal: "活着醒来"
+      motivation: "他需要先保住自己，才有资格继续找答案"
+    opposition: "最后的梦境与医院场景交叠"
+    choice_or_action: "温良接受暂时的回归和苏醒"
+    turning_point: "他在医院醒来"
+    consequence:
+      state_change: "第一卷闭环，温良暂时回到看似正常的生活"
+      fact_ids: []
+      event_ids: []
+    next_pressure: "新的正常生活并不代表真相结束"
+    scene_ids: []
+
+character_arcs:
+  - character_id: CHAR-0001
+    starting_state: "疲惫、虚弱、习惯把自己当成普通人"
+    want: "回到梦境、找回重要的人、弄清自己发生了什么"
+    need: "承认自己仍然有能力做选择，不能再继续自我放弃"
+    wound_or_lie_pressure: "十年被削弱后，他相信自己已经失去价值"
+    irreversible_choice: "在不知道代价的情况下选择回到梦境或进入真实界"
+    ending_state: "暂时苏醒，重新拥有行动意志，但仍带着无法忽视的真相"
+    beat_keys:
+      - beat-001
+      - beat-003
+      - beat-005
+      - beat-006
+      - beat-008
+      - beat-009
+      - beat-010
+  - character_id: CHAR-0002
+    starting_state: "表面天真简单，实际上对异常极敏感"
+    want: "确认温良到底发生了什么"
+    need: "面对自己比表现更聪明、更清楚的那一面"
+    wound_or_lie_pressure: "她习惯把真实感受藏起来，不轻易让人看穿"
+    irreversible_choice: "从不信到开始真正站在温良这边"
+    ending_state: "成为温良回梦境线上的重要同行者与长期伏笔承接者"
+    beat_keys:
+      - beat-002
+      - beat-004
+      - beat-007
+
+thread_plan:
+  - thread_id: THREAD-0001
+    dramatic_question: "温良到底是在做梦，还是他正在被现实一点点逼醒"
+    opening_state: "校园里他看起来只是个虚弱的普通高三生"
+    escalation_beat_keys:
+      - beat-001
+      - beat-002
+      - beat-003
+      - beat-005
+    resolution_beat_key: beat-010
+    intended_resolution: "第一卷结束时，读者明确知道温良的世界已经被双界反转，但故事还没有结束。"
+
+foreshadowing_plan:
+  - foreshadowing_id: FORESH-0001
+    plant_beat_key: beat-001
+    reader_sees: "黑雾梦境里第一次出现脚步声"
+    true_meaning: "真实界肉身正在向他靠近，且他并非只是单纯做梦"
+    advance_beat_keys:
+      - beat-005
+      - beat-006
+    payoff_beat_key: beat-005
+  - foreshadowing_id: FORESH-0002
+    plant_beat_key: beat-002
+    reader_sees: "南宫芸儿对温良的说法半信半疑"
+    true_meaning: "她本来就知道更多童年线索，只是暂时不说"
+    advance_beat_keys:
+      - beat-004
+      - beat-007
+    payoff_beat_key: beat-007
+
+chapter_plan:
+  - volume: 1
+    chapter: 1
+    title: "黑雾里有脚步声"
+    entry_state: "温良还是一个校园里看起来没什么精神的高三生"
+    causal_trigger: "梦境第一次出现脚步声"
+    purpose: "用钩子打穿日常，让读者感觉到异常正在逼近"
+    conflict: "他既想忽略异常，又不能完全忽略"
+    decisive_change: "温良第一次意识到梦已经不是重复播放的旧噩梦"
+    exit_hook: "那脚步声像是在朝他走来"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids:
+        - FORESH-0001
+  - volume: 1
+    chapter: 2
+    title: "她为什么不信"
+    entry_state: "温良试着把梦说给南宫芸儿听"
+    causal_trigger: "南宫芸儿对他的说法不信，却开始留意他"
+    purpose: "建立女主的观察力与后续拉扯"
+    conflict: "温良希望被理解，南宫芸儿却必须先怀疑"
+    decisive_change: "两人的关系从轻松同学变成带疑问的共谋"
+    exit_hook: "南宫芸儿问出了一个温良答不上来的童年细节"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+        - CHAR-0002
+      relationship_ids: []
+      foreshadowing_ids:
+        - FORESH-0002
+  - volume: 1
+    chapter: 3
+    title: "情绪会不会骗人"
+    entry_state: "温良开始怀疑自己是不是太累了"
+    causal_trigger: "校园中出现一处不合逻辑的小异常"
+    purpose: "把梦境反应和现实轻微联动起来"
+    conflict: "他想验证，却怕验证本身就意味着自己有问题"
+    decisive_change: "温良第一次看到自己的下意识反应真的改变了某个小结果"
+    exit_hook: "他意识到自己可能在梦里拥有过影响现实的倾向"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 4
+    title: "忘掉的童年"
+    entry_state: "南宫芸儿对他越来越敏感"
+    causal_trigger: "她发现温良对某段共同记忆完全失忆"
+    purpose: "埋下共同抚养者和童年的长线伏笔"
+    conflict: "温良不想见过去，南宫芸儿却知道过去在追着他"
+    decisive_change: "童年不是背景，而是悬而未揭的核心线索"
+    exit_hook: "一个与‘家’有关的词戳中了温良的空白"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+        - CHAR-0002
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 5
+    title: "最后一场梦"
+    entry_state: "黑雾梦境再次袭来"
+    causal_trigger: "梦里出现不属于黑雾的真实脚步声与触感"
+    purpose: "推动第一卷第一个大翻转"
+    conflict: "温良要不要靠近那声音"
+    decisive_change: "他与真实界肉身融合，彻底留在真实界"
+    exit_hook: "醒来后，他已经不在原来的世界"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 6
+    title: "雾里的白天"
+    entry_state: "温良第一次面对真实界"
+    causal_trigger: "他意识到自己无法返回梦境"
+    purpose: "建立真实界的陌生生存逻辑"
+    conflict: "他不确定自己是不是还在做梦"
+    decisive_change: "黑雾、废墟和时间差变成现实"
+    exit_hook: "远处出现一团不属于废墟的火光"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 7
+    title: "火光聚落"
+    entry_state: "温良循着火光靠近"
+    causal_trigger: "他看见聚落与守夜的人"
+    purpose: "确认真实界并非空无一人"
+    conflict: "他想靠近，却必须先学会观察"
+    decisive_change: "普通幸存者登场，世界从单人荒野变成群体生存"
+    exit_hook: "这里的人竟然把黑雾当成日常"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 8
+    title: "别急着相信"
+    entry_state: "温良开始接触聚落规则"
+    causal_trigger: "聚落里的普通人对外来者保持警惕"
+    purpose: "用日常方式慢慢解释世界，而不是开讲座"
+    conflict: "他想问真相，对方只愿意先讲生存"
+    decisive_change: "温良意识到自己得自己拼出信息"
+    exit_hook: "他隐约听见有人提到‘组织’"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 9
+    title: "权限的影子"
+    entry_state: "温良开始尝试在真实界里影响雾"
+    causal_trigger: "他在压力下驱散了极小一片黑雾"
+    purpose: "把梦境权限和真实界能力分开，开始埋规则"
+    conflict: "他既想确认能力，又怕失控"
+    decisive_change: "权限不是无脑战斗力，而是带条件的现实操作"
+    exit_hook: "他终于看见了被雾遮住的旧痕迹"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 10
+    title: "找回通道"
+    entry_state: "温良在聚落里寻找返梦办法"
+    causal_trigger: "他摸到组织或设施的线索"
+    purpose: "把回梦从想法变成可执行目标"
+    conflict: "通道不是免费，接触意味着代价"
+    decisive_change: "他决定赌一次"
+    exit_hook: "那条通道背后不是空白，而是某种权限结构"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 11
+    title: "回到梦里"
+    entry_state: "温良准备穿回梦境"
+    causal_trigger: "他用代价换取一次回梦机会"
+    purpose: "把双界闭环完成一半"
+    conflict: "回去意味着把现有安全感也押上"
+    decisive_change: "他重新进入梦境"
+    exit_hook: "梦境和真实界开始重叠"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+  - volume: 1
+    chapter: 12
+    title: "医院醒来"
+    entry_state: "梦境与现实交叠到尽头"
+    causal_trigger: "最后一次梦境完成收束"
+    purpose: "收尾第一卷"
+    conflict: "他醒来后要面对的生活并不真正安全"
+    decisive_change: "温良在医院醒来"
+    exit_hook: "普通生活重新开始，但真相已经留在他身上"
+    scene_ids: []
+    advances:
+      thread_ids:
+        - THREAD-0001
+      character_ids:
+        - CHAR-0001
+      relationship_ids: []
+      foreshadowing_ids: []
+
+risks:
+  continuity:
+    - "温良的能力边界如果过早写死，后续会难以成长"
+    - "南宫芸儿如果只负责知情，会变工具人"
+  pacing:
+    - "校园段如果没有每章小推进，会显得拖"
+    - "真实界段如果一上来讲世界史，会破坏阅读兴趣曲线"
+  genre_promise:
+    - "双界反转要慢于读者预期揭露，但不能迟迟不交付"
+  dependency:
+    - "权限体系、组织线和童年线必须后续回收"
+
+open_questions:
+  - question: "第一卷到底采用 12 章还是 16 章更合适"
+    why_it_matters: "影响每章事件密度与场景长度"
+    blocking: false
+    owner: author
+    decision_needed_by: "进入逐章场景契约前"
+
+approval:
+  required_approver: author
+  status: pending
+  decision_record_id: null
+  decided_at: null
+  notes: ""
+
+validation:
+  checks:
+    - all causal beats have a trigger, change, and next pressure
+    - referenced IDs belong to owner.novel_id or an explicit dependency
+    - character choices follow established goals, values, wounds, or pressure
+    - climax resolves the core causal chain and charges the stated ending cost
+  evidence: []

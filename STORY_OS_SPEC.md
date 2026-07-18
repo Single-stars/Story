@@ -228,13 +228,43 @@ verified
 
 ## 8. Standard Workflows
 
+### 8.0 Beginner Creative Intake
+
+当作者以零基础灵感开始新小说，或要求 AI 逐步引导创作时，Story OS MUST 先进入创作启动访谈，而不是直接写正文、直接注册 Canon，或一次性要求作者填写完整设定表。
+
+创作启动访谈 MUST 遵守：
+
+- 一次只问一个高影响问题，优先解决作品归属、核心灵感、目标体验、类型承诺、主角驱动力和主要阻力。
+- 每轮回答后 SHOULD 输出：已确认、AI 推断、仍未知、建议与取舍。
+- 低影响细节 SHOULD 延后，避免问卷疲劳和过早设定锁死。
+- AI MAY 补充专业建议和候选方案，但作者必须选择方向。
+- 未经作者明确批准的内容 MUST 保持为 idea、proposed 或 decision draft，不得写成 Canon。
+- 访谈记录 SHOULD 使用 `templates/workflow/creative-intake.yaml`，并绑定后续分配的 `novel_id`；在 novel_id 尚未分配前，必须保持 `novel_id: null`。
+
+创作启动访谈至少覆盖：
+
+1. 单本、系列或共享世界意图。
+2. 作者灵感、不可丢失的核心画面或情绪。
+3. 目标读者、类型承诺、禁区和敏感内容边界。
+4. 参考作品与反参考作品，以及希望继承或避开的体验。
+5. 主角候选、Want / Need / Wound / Lie、能力、限制、代价、声音指纹和行动压力。
+6. 反对力量、关系网络、秘密、知识边界和人物之间的方向性关系。
+7. 世界规则、制度、资源、成本、例外和信息披露节奏。
+8. 主题问题、核心冲突、情绪曲线、悬念、惊奇、好奇和伏笔策略。
+9. 篇幅、更新节奏、作者投入时间和长期工作方式。
+10. 需要研究或同类作品拆解的高影响问题。
+
+创作启动完成后，AI MUST 先给出创作简报和未决问题，由作者确认；确认后才能注册新 `NOVEL-*`、进入 premise proposal、人物、世界观、大纲或章节流程。
+
 ### 8.1 New Novel
 
 ```text
-register NOVEL ID
+creative intake
+-> author confirms creation brief
+-> register NOVEL ID
 -> choose standalone / series / universe
 -> audience and genre promise
--> three premise alternatives
+-> three to five premise alternatives
 -> author selection
 -> initial character/world constraints
 -> global outline
@@ -371,4 +401,3 @@ public    明确批准的宣传内容
 3. 描述对现有小说和 Schema 的影响。
 4. 提供迁移、测试和回滚方案。
 5. 由作者批准并记录 Git 历史。
-

@@ -1,0 +1,22 @@
+schema_version: "0.1.0"
+id: EVT-0001
+entity_type: event
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良第一次听见黑雾里的脚步声
+summary: "温良在黑雾梦境中第一次听见不属于黑雾的脚步声，并因此意识到梦境并非完全重复的旧噩梦。"
+tags:
+  - opening-hook
+  - black-mist
+story_time:
+  value: "2041-05-13T22:10:00+08:00"
+  precision: minute
+participants:
+  - CHAR-0001
+location_id: LOC-0002
+caused_by_event_ids: []
+consequence_event_ids: []
+facts_established:
+  - FACT-0001

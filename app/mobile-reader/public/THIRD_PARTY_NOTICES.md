@@ -1,10 +1,3 @@
 # Third Party Notices
 
-## Game Icon Pack
-
-- Source: https://github.com/Nieobie/Game-Icon-Pack
-- License: CC0 1.0 Universal
-- Use: PWA app icon source material for Story OS Reader.
-
-The upstream project states that attribution is optional. This notice is kept so the
-asset source and license remain auditable.
+Story OS Reader 的应用图标是项目内生成的几何品牌标记，未使用第三方图标素材。

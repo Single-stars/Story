@@ -1,0 +1,28 @@
+schema_version: "0.1.0"
+id: REL-0001
+entity_type: relationship
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+name: 温良与南宫芸儿
+summary: "高中文同学，表面是轻松自然的熟人关系，深层却有共同童年的空白、误读过的信任和尚未说破的牵引。"
+tags:
+  - relationship
+source_refs: []
+supersedes: null
+superseded_by: null
+from_character_id: CHAR-0001
+to_character_id: CHAR-0002
+dimensions:
+  trust: 0.5
+  affection: 0.45
+  fear: 0.05
+  obligation: 0.25
+  leverage: 0.1
+public_label: 普通同学，偶尔互相照应
+private_reality: "南宫芸儿比温良更早察觉异常，也比温良更接近共同童年的真相；温良则因为长期失忆，把这段关系误判成了简单的校园联系。"
+valid_from_event_id: EVT-0001
+valid_to_event_id: null
+caused_by_event_ids:
+  - EVT-0001

@@ -95,10 +95,19 @@ site/*        阅读器
 - [x] 研究与路线选择
 - [x] 多小说总体计划
 - [x] 工作区入口与项目宪法
-- [ ] 核心 Schema
-- [ ] 模板与示例项目
-- [ ] 验证器与 CI
-- [ ] 项目 skills
-- [ ] 两部小说的前三章完整流程
-- [ ] 手机阅读器与分享流程
+- [x] 核心 Schema
+- [x] 模板与示例项目
+- [x] 验证器基础
+- [x] 项目 skills
+- [x] 两部小说的前三章 reader 示例稿
+- [x] 手机阅读器基础构建与样式接入
+- [ ] CI、生产发布权限、Canon 决策强制门禁
+- [ ] 正式 Canon 实体、场景契约与作者批准记录
 
+## Current Sample Reader State
+
+- GitHub `main` 已完成初始提交与推送；当前工作分支为 `codex/story-os-reader-samples`。
+- 工作区当前只保留 `NOVEL-0003`《雾醒时分》作为正式小说项目。
+- 早期 reader 示例小说内容已移除；模板和测试中的 `NOVEL-*` 占位仅作为 fixture 使用，不代表工作区注册小说。
+- `npm.cmd run validate:story` 当前应识别 `1 novel / 12 entity records / 12 chapters`。
+- `npm.cmd run build:reader-app` 会生成 `.generated/mobile-reader`，其中 `library.json` 含《雾醒时分》的 reader 可见章节。
