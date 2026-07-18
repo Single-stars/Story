@@ -24,7 +24,8 @@ async function entityValidators() {
   ajv.addSchema(await loadJson("schemas/common.schema.json"));
   return {
     canon: ajv.compile(await loadJson("schemas/canon-entity.schema.json")),
-    narrative: ajv.compile(await loadJson("schemas/narrative-entity.schema.json"))
+    narrative: ajv.compile(await loadJson("schemas/narrative-entity.schema.json")),
+    workflow: ajv.compile(await loadJson("schemas/workflow-run.schema.json"))
   };
 }
 
@@ -80,5 +81,58 @@ describe("workflow input templates", () => {
     expect(document).toHaveProperty("observations.expectations");
     expect(document).toHaveProperty("observations.emotional_landing");
     expect(document).toHaveProperty("observations.continue_reading");
+  });
+
+  test("chapter workpack records durable longform gates", async () => {
+    const { workflow } = await entityValidators();
+    const document = await loadYaml("templates/workflow/chapter-workpack.yaml");
+    expect(workflow(document), JSON.stringify(workflow.errors)).toBe(true);
+    expect(document).toMatchObject({
+      record_type: "chapter_workpack",
+      owner: { novel_id: "NOVEL-0001" },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only"
+    });
+    expect(document).toHaveProperty("target_word_count.min");
+    expect(document).toHaveProperty("scene_ids");
+    expect(document).toHaveProperty("required_context.canon_ids");
+    expect(document).toHaveProperty("continuity_contract.capability_scope");
+    expect(document).toHaveProperty("continuity_contract.reader_exposure.forbidden");
+    expect(document).toHaveProperty("quality_gates.reader_exposure_limited");
+  });
+
+  test("prose style profile records reusable language gates", async () => {
+    const { workflow } = await entityValidators();
+    const document = await loadYaml("templates/workflow/prose-style-profile.yaml");
+    expect(workflow(document), JSON.stringify(workflow.errors)).toBe(true);
+    expect(document).toMatchObject({
+      record_type: "prose_style_profile",
+      owner: { novel_id: "NOVEL-0001" },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only"
+    });
+    expect(document).toHaveProperty("style_contract.forbidden_patterns");
+    expect(document).toHaveProperty("style_contract.imagery_rules");
+    expect(document).toHaveProperty("prose_gates.hard");
+    expect(document).toHaveProperty("revision_protocol.reread_checks");
+  });
+
+  test("volume restructure plan records longform rebuild constraints", async () => {
+    const { workflow } = await entityValidators();
+    const document = await loadYaml("templates/workflow/volume-restructure-plan.yaml");
+    expect(workflow(document), JSON.stringify(workflow.errors)).toBe(true);
+    expect(document).toMatchObject({
+      record_type: "volume_restructure_plan",
+      owner: { novel_id: "NOVEL-0001" },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only"
+    });
+    expect(document).toHaveProperty("source_constraints.capability_timeline");
+    expect(document).toHaveProperty("phase_plan.0.entry_pressure");
+    expect(document).toHaveProperty("memory_contract.must_load_ids");
+    expect(document).toHaveProperty("quality_gates.prose_profile_linked");
   });
 });

@@ -1,19 +1,3 @@
----
-schema_version: "0.1.0"
-id: CHAPTER-0006
-document_type: chapter
-novel_id: NOVEL-0003
-title: "病床边的人"
-volume: 1
-chapter: 6
-status: revised
-visibility: reader
-summary: "病床边的人: 新规则重构版正文，替换旧稿读者入口。"
-content_version: "0.2.0"
-word_count: 2495
-previous_chapter_id: CHAPTER-0005
-next_chapter_id: null
----
 # 第六章 病床边的人
 
 温良往井下爬了二十七级。
@@ -217,4 +201,3 @@ next_chapter_id: null
 温良知道自己回来了。
 
 也知道这一次醒来以后，梦不会再只是梦。
-

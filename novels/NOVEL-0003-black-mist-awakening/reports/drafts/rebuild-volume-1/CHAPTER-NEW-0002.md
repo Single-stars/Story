@@ -1,19 +1,3 @@
----
-schema_version: "0.1.0"
-id: CHAPTER-0002
-document_type: chapter
-novel_id: NOVEL-0003
-title: "她记得的事"
-volume: 1
-chapter: 2
-status: revised
-visibility: reader
-summary: "她记得的事: 新规则重构版正文，替换旧稿读者入口。"
-content_version: "0.2.0"
-word_count: 2269
-previous_chapter_id: CHAPTER-0001
-next_chapter_id: CHAPTER-0003
----
 # 第二章 她记得的事
 
 晚自习前，温良去了医务室。
@@ -197,4 +181,3 @@ next_chapter_id: CHAPTER-0003
 前方，一个人影从路口晃过去。
 
 那人穿着和他一样的校服。
-

@@ -1,0 +1,77 @@
+# Copy this file into reports/style/ before large rewrites or longform continuation.
+schema_version: "0.1.0"
+id: STYLE-0001
+record_type: prose_style_profile
+owner:
+  novel_id: NOVEL-0001
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+scope:
+  novel_id: NOVEL-0001
+  applies_to_chapter_ids:
+    - CHAPTER-0001
+  source_skill_refs:
+    - novel-line-edit
+    - shuorenhua
+
+style_contract:
+  positive_targets:
+    - "先给当前场景里的动作、感知、选择和后果，再给必要判断。"
+    - "每段必须能回答：谁在什么压力下做了什么，结果改变了什么。"
+    - "情绪通过动作、停顿、回避、误判和选择表现，不由旁白替读者总结。"
+  protected_items:
+    - "不改事实、能力边界、世界层级、人物知识、关系状态和伏笔披露边界。"
+    - "不为了顺句子补原文没有的设定、背景、感官或象征。"
+  forbidden_patterns:
+    - "禁止用“不是 X，而是 Y”“这意味着”“真正的”“更大的东西”等骨架制造假洞见。"
+    - "禁止用总结式收尾替代章末由行动后果产生的拉力。"
+    - "禁止解释先于画面；读者能从动作看懂的内容不再重复说明。"
+  pov_and_distance:
+    - "同一场景只跟随批准 POV；不写 POV 不可能知道的内部真相。"
+    - "梦世界、真实界、主世界必须通过可见环境和人物反应重新定向。"
+  dialogue_rules:
+    - "对白必须服务目标、试探、回避、误解、关系位置或行动推进。"
+    - "有对白或后续可复用角色必须命名，并给出最低可识别描写。"
+  imagery_rules:
+    - "意象必须改变行动、知识、关系、伏笔状态或氛围压力；无功能意象删除。"
+    - "不使用没有来源、没有回收计划、没有行动影响的奇怪纹路或符号。"
+
+prose_gates:
+  hard:
+    - "存在结构或连续性 blocker 时禁止行文精修。"
+    - "任何句子不能把真实界写成可意念改物，或把融合前能力写成已生效。"
+    - "任何早期段落不能泄露组织高级真相、设施逻辑或作者内部答案。"
+    - "任何章节不得让南宫芸儿承担真相雷达功能。"
+  soft:
+    - "抽象判断密度过高时，优先改成动作、物件、反应和后果。"
+    - "连续句长过匀、解释句过密、对话口吻同质时必须回读。"
+
+revision_protocol:
+  order:
+    - "结构与连续性预检"
+    - "人物动机与关系检查"
+    - "段落因果检查"
+    - "语言去 AI 味"
+    - "保真回读"
+    - "残留套路回读"
+  line_edit_strength: standard
+  reread_checks:
+    - "事实、世界层级、能力、人物知识和伏笔边界是否漂移。"
+    - "是否还存在总结提示、二元对比、narrator 解释和无功能意象。"
+    - "朗读时句子是否像同一个模板抛光，而不是当前人物的感知。"
+
+quality_gates:
+  structure_blockers_cleared: true
+  continuity_blockers_cleared: true
+  protected_items_declared: true
+  forbidden_patterns_declared: true
+  dialogue_voice_rules_declared: true
+  imagery_function_gate_declared: true
+  reread_protocol_declared: true
+
+resume_brief: >-
+  Load this prose style profile before rewriting or line-editing. It does not
+  approve Canon. It constrains prose so the draft reads as scene action instead
+  of outline explanation or AI-style summary.

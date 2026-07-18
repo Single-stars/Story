@@ -35,6 +35,9 @@ interface Fixture {
   novelRoot: string;
   writeCanon(entity: Record<string, unknown>): Promise<void>;
   writeNarrative(entity: Record<string, unknown>): Promise<void>;
+  writeWorkpack(workpack: Record<string, unknown>): Promise<void>;
+  writeStyle(record: Record<string, unknown>): Promise<void>;
+  writeRestructure(record: Record<string, unknown>): Promise<void>;
 }
 
 afterEach(async () => {
@@ -151,6 +154,9 @@ async function createFixture(options: FixtureOptions = {}): Promise<Fixture> {
   const novelRoot = path.join(root, "novels", "NOVEL-0001-semantic-fixture");
   const canonRoot = path.join(novelRoot, "canon", "fixtures");
   const narrativeRoot = path.join(novelRoot, "narrative", "fixtures");
+  const workpackRoot = path.join(novelRoot, "reports", "workpacks");
+  const styleRoot = path.join(novelRoot, "reports", "style");
+  const restructureRoot = path.join(novelRoot, "reports", "restructure");
 
   await cp(path.join(repositoryRoot, "schemas"), path.join(root, "schemas"), {
     recursive: true
@@ -158,6 +164,9 @@ async function createFixture(options: FixtureOptions = {}): Promise<Fixture> {
   await mkdir(path.join(root, "workspace"), { recursive: true });
   await mkdir(canonRoot, { recursive: true });
   await mkdir(narrativeRoot, { recursive: true });
+  await mkdir(workpackRoot, { recursive: true });
+  await mkdir(styleRoot, { recursive: true });
+  await mkdir(restructureRoot, { recursive: true });
 
   await writeFile(
     path.join(root, "workspace", "manifest.yaml"),
@@ -189,7 +198,10 @@ async function createFixture(options: FixtureOptions = {}): Promise<Fixture> {
     root,
     novelRoot,
     writeCanon: (entity) => writeEntity(canonRoot, entity),
-    writeNarrative: (entity) => writeEntity(narrativeRoot, entity)
+    writeNarrative: (entity) => writeEntity(narrativeRoot, entity),
+    writeWorkpack: (workpack) => writeEntity(workpackRoot, workpack),
+    writeStyle: (record) => writeEntity(styleRoot, record),
+    writeRestructure: (record) => writeEntity(restructureRoot, record)
   };
 }
 
@@ -339,6 +351,140 @@ function foreshadowing(id: string, payoffSceneId: string | null) {
 function expectErrorCode(report: ValidationReport, code: string): void {
   expect(report.ok).toBe(false);
   expect(report.errors.map((issue) => issue.code)).toContain(code);
+}
+
+function workpack(id: string, sceneIds = ["SCN-0001"]): Record<string, unknown> {
+  return {
+    schema_version: "0.1.0",
+    id,
+    record_type: "chapter_workpack",
+    owner: { novel_id: "NOVEL-0001" },
+    status: "planned",
+    visibility: "internal",
+    canon_effect: "proposal_only",
+    chapter_id: "CHAPTER-0001",
+    target_word_count: { min: 3000, target: 3500, max: 4200 },
+    scene_ids: sceneIds,
+    required_context: {
+      canon_ids: ["CHAR-0001", "LOC-0001"],
+      narrative_ids: sceneIds,
+      manuscript_chapter_ids: [],
+      decision_ids: []
+    },
+    continuity_contract: {
+      world_state: "The scene state is explicit before drafting.",
+      capability_scope: "Only approved capabilities valid in this world and story phase may appear.",
+      character_knowledge: "Characters may only act on known, suspected, or misbelieved facts recorded before this chapter.",
+      relationship_state: "Relationship changes must name the triggering event or scene.",
+      foreshadowing_plan: "Foreshadowing must be planted, advanced, paid off, or abandoned with reader-visible evidence.",
+      reader_exposure: {
+        allowed: ["The reader may see only facts earned by the approved scenes."],
+        forbidden: ["Future truth and organization-level explanations are withheld."]
+      }
+    },
+    quality_gates: {
+      word_count_defined: true,
+      scene_contracts_locked: true,
+      capability_scope_checked: true,
+      character_roster_named: true,
+      relationship_changes_motivated: true,
+      plot_causality_checked: true,
+      foreshadowing_status_checked: true,
+      reader_exposure_limited: true,
+      prose_quality_review_planned: true
+    },
+    resume_brief: "Load this workpack before writing or continuing the chapter."
+  };
+}
+
+function styleProfile(id = "STYLE-0001"): Record<string, unknown> {
+  return {
+    schema_version: "0.1.0",
+    id,
+    record_type: "prose_style_profile",
+    owner: { novel_id: "NOVEL-0001" },
+    status: "planned",
+    visibility: "internal",
+    canon_effect: "proposal_only",
+    scope: {
+      novel_id: "NOVEL-0001",
+      applies_to_chapter_ids: ["CHAPTER-0001"],
+      source_skill_refs: ["novel-line-edit", "shuorenhua"]
+    },
+    style_contract: {
+      positive_targets: ["Specific actions before abstract judgment."],
+      protected_items: ["Keep facts and capability limits stable."],
+      forbidden_patterns: ["Template cliffhangers."],
+      pov_and_distance: ["Do not use knowledge outside POV."],
+      dialogue_rules: ["Dialogue must change action or relationship."],
+      imagery_rules: ["Images must affect action, knowledge, relationship, or payoff."]
+    },
+    prose_gates: {
+      hard: ["No structural blockers before line edit."],
+      soft: ["Reduce abstract summary density."]
+    },
+    revision_protocol: {
+      order: ["structure", "continuity", "character", "paragraph causality", "line edit"],
+      line_edit_strength: "standard",
+      reread_checks: ["facts retained", "AI residue reduced"]
+    },
+    quality_gates: {
+      protected_items_declared: true
+    },
+    resume_brief: "Use this profile before drafting and line editing."
+  };
+}
+
+function restructurePlan(id = "RESTRUCT-0001"): Record<string, unknown> {
+  return {
+    schema_version: "0.1.0",
+    id,
+    record_type: "volume_restructure_plan",
+    owner: { novel_id: "NOVEL-0001" },
+    status: "planned",
+    visibility: "internal",
+    canon_effect: "proposal_only",
+    scope: {
+      novel_id: "NOVEL-0001",
+      volume: 1,
+      from: "story opening",
+      to: "protagonist returns to the dream world",
+      replaces_chapter_ids: ["CHAPTER-0001"]
+    },
+    source_constraints: {
+      world_layers: ["Dream world normal; real world decayed."],
+      capability_timeline: ["Pre-fusion forbids thought-based object control."],
+      reader_exposure: ["No organization truth."],
+      relationship_pacing: ["Slow-burn relationships."]
+    },
+    phase_plan: [
+      {
+        phase_id: "phase-01",
+        chapter_slots: ["CHAPTER-0001"],
+        world_layer: "dream_world",
+        function: "Establish pressure.",
+        entry_pressure: "The protagonist is exhausted.",
+        decisive_change: "The problem becomes visible.",
+        exit_hook: "A fair next question.",
+        required_cast: ["CHAR-0001"],
+        foreshadowing: ["plant footsteps"]
+      }
+    ],
+    character_roster_policy: ["Recurring speakers must be named."],
+    memory_contract: {
+      must_load_ids: ["CHRUN-0001", "STYLE-0001", "RESTRUCT-0001"],
+      must_update_after_draft: ["capability phase ledger", "reader exposure ledger"],
+      forbidden_shortcuts: ["Do not use chat memory as authority."]
+    },
+    quality_gates: {
+      world_layer_clear_per_chapter: true,
+      ability_phase_clear_per_chapter: true,
+      named_cast_has_function: true,
+      spoiler_boundary_checked: true,
+      prose_profile_attached: true
+    },
+    resume_brief: "Load this restructure plan before creating chapter workpacks."
+  };
 }
 
 describe("validateWorkspace semantic continuity", () => {
@@ -515,6 +661,63 @@ describe("validateWorkspace semantic continuity", () => {
       knowledge_used_ids: ["KNOW-0001"]
     });
     await fixture.writeNarrative(foreshadowing("FORESH-0001", "SCN-0002"));
+
+    const report = await validateWorkspace(fixture.root);
+
+    expect(report.errors).toEqual([]);
+    expect(report.ok).toBe(true);
+  });
+
+  test("reports chapter workpack gates that are not satisfied", async () => {
+    const fixture = await createFixture();
+    await fixture.writeCanon(character("CHAR-0001"));
+    await fixture.writeCanon(location("LOC-0001"));
+    await fixture.writeNarrative(scene("SCN-0001", 1));
+    await fixture.writeWorkpack({
+      ...workpack("CHRUN-0001"),
+      quality_gates: {
+        ...workpack("CHRUN-0001").quality_gates as Record<string, unknown>,
+        reader_exposure_limited: false
+      }
+    });
+
+    const report = await validateWorkspace(fixture.root);
+
+    expectErrorCode(report, "WORKPACK_GATE_NOT_SATISFIED");
+  });
+
+  test("reports chapter workpack references that do not exist", async () => {
+    const fixture = await createFixture();
+    await fixture.writeCanon(character("CHAR-0001"));
+    await fixture.writeCanon(location("LOC-0001"));
+    await fixture.writeWorkpack(workpack("CHRUN-0001", ["SCN-9999"]));
+
+    const report = await validateWorkspace(fixture.root);
+
+    expectErrorCode(report, "WORKPACK_REFERENCE_NOT_FOUND");
+  });
+
+  test("reports a restructure plan whose required style memory is missing", async () => {
+    const fixture = await createFixture();
+    await fixture.writeCanon(character("CHAR-0001"));
+    await fixture.writeCanon(location("LOC-0001"));
+    await fixture.writeNarrative(scene("SCN-0001", 1));
+    await fixture.writeWorkpack(workpack("CHRUN-0001"));
+    await fixture.writeRestructure(restructurePlan());
+
+    const report = await validateWorkspace(fixture.root);
+
+    expectErrorCode(report, "WORKFLOW_MEMORY_REFERENCE_NOT_FOUND");
+  });
+
+  test("accepts workflow records when workpack, style profile, and restructure plan are linked", async () => {
+    const fixture = await createFixture();
+    await fixture.writeCanon(character("CHAR-0001"));
+    await fixture.writeCanon(location("LOC-0001"));
+    await fixture.writeNarrative(scene("SCN-0001", 1));
+    await fixture.writeStyle(styleProfile());
+    await fixture.writeWorkpack(workpack("CHRUN-0001"));
+    await fixture.writeRestructure(restructurePlan());
 
     const report = await validateWorkspace(fixture.root);
 

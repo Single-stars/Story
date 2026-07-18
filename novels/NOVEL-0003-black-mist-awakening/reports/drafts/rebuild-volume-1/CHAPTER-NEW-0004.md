@@ -1,19 +1,3 @@
----
-schema_version: "0.1.0"
-id: CHAPTER-0004
-document_type: chapter
-novel_id: NOVEL-0003
-title: "火线外的人"
-volume: 1
-chapter: 4
-status: revised
-visibility: reader
-summary: "火线外的人: 新规则重构版正文，替换旧稿读者入口。"
-content_version: "0.2.0"
-word_count: 2201
-previous_chapter_id: CHAPTER-0003
-next_chapter_id: CHAPTER-0005
----
 # 第四章 火线外的人
 
 温良在外棚醒来时，天没有亮。
@@ -185,4 +169,3 @@ next_chapter_id: CHAPTER-0005
 木牌上的字被烟熏黑了，只剩最后两个能看清：
 
 回梦。
-

@@ -1,0 +1,73 @@
+# Story OS chapter workpack template.
+# Copy this file into reports/workpacks/ before drafting or continuing one chapter.
+schema_version: "0.1.0"
+id: CHRUN-0001
+record_type: chapter_workpack
+owner:
+  novel_id: NOVEL-0001
+status: planned # planned | in_progress | draft_ready | reviewed | accepted | blocked | stale
+visibility: internal
+canon_effect: proposal_only
+
+chapter_id: CHAPTER-0001
+target_word_count:
+  min: 3000
+  target: 3500
+  max: 4200
+
+# These scenes are the only approved structural source for the chapter draft.
+scene_ids:
+  - SCN-0001
+
+# Load these records before writing. Do not rely on chat memory.
+required_context:
+  canon_ids:
+    - CHAR-0001
+    - LOC-0001
+    - RULE-0001
+  narrative_ids:
+    - SCN-0001
+    - THREAD-0001
+    - FORESH-0001
+  manuscript_chapter_ids:
+    - CHAPTER-0000
+  decision_ids:
+    - DEC-0001
+
+continuity_contract:
+  world_state: >-
+    Name the current world and visible condition before drafting: dream world,
+    real/main world, memory, flashback, rumor, or unreliable narration.
+  capability_scope: >-
+    List what the POV may and may not do in this world and phase. A chapter may
+    not invent or carry abilities across worlds without an approved rule change.
+  character_knowledge: >-
+    List what each active character knows, suspects, wrongly believes, and must
+    not know yet. Do not use author knowledge as character knowledge.
+  relationship_state: >-
+    Name the current relationship direction and the event that justifies any
+    change in trust, affection, fear, obligation, or leverage.
+  foreshadowing_plan: >-
+    State which foreshadowing is planted, advanced, paid off, or withheld. The
+    reader-visible clue must not reveal the hidden answer too early.
+  reader_exposure:
+    allowed:
+      - The reader may see only facts earned by the approved scenes.
+    forbidden:
+      - Do not reveal future truth, hidden organization-level explanations, or unearned rule answers.
+
+quality_gates:
+  word_count_defined: true
+  scene_contracts_locked: true
+  capability_scope_checked: true
+  character_roster_named: true
+  relationship_changes_motivated: true
+  plot_causality_checked: true
+  foreshadowing_status_checked: true
+  reader_exposure_limited: true
+  prose_quality_review_planned: true
+
+resume_brief: >-
+  One paragraph that lets a new agent resume the chapter without reading the
+  whole chat: current chapter purpose, entry pressure, approved scenes, key
+  rules, forbidden spoilers, target word range, and exact stop point.

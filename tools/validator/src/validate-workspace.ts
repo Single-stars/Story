@@ -57,6 +57,7 @@ interface NovelManifest {
     canon: string;
     narrative: string;
     manuscript: string;
+    reports?: string;
   };
 }
 
@@ -90,12 +91,58 @@ interface StoredChapter {
   novelId: string;
 }
 
+interface ChapterWorkpackRecord {
+  id: string;
+  record_type: "chapter_workpack";
+  owner?: {
+    novel_id?: string;
+  };
+  status: string;
+  chapter_id: string;
+  target_word_count: {
+    min: number;
+    target: number;
+    max: number;
+  };
+  scene_ids: string[];
+  required_context: {
+    canon_ids: string[];
+    narrative_ids: string[];
+    manuscript_chapter_ids: string[];
+    decision_ids: string[];
+  };
+  quality_gates: Record<string, boolean>;
+}
+
+interface StoredWorkpack {
+  data: ChapterWorkpackRecord;
+  filePath: string;
+  novelId: string;
+}
+
+interface WorkflowRecord {
+  id: string;
+  record_type: string;
+  owner?: {
+    novel_id?: string;
+  };
+  status?: string;
+  quality_gates?: Record<string, boolean>;
+}
+
+interface StoredWorkflowRecord {
+  data: WorkflowRecord;
+  filePath: string;
+  novelId: string;
+}
+
 interface Validators {
   workspace: ValidateFunction;
   novel: ValidateFunction;
   canon: ValidateFunction;
   narrative: ValidateFunction;
   manuscript: ValidateFunction;
+  workflow: ValidateFunction;
 }
 
 const ENTITY_EXTENSIONS = new Set([".yaml", ".yml", ".md"]);
@@ -148,6 +195,34 @@ function isChapterRecord(value: unknown): value is ChapterRecord {
   );
 }
 
+function isChapterWorkpackRecord(value: unknown): value is ChapterWorkpackRecord {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    value.record_type === "chapter_workpack" &&
+    typeof value.status === "string" &&
+    isRecord(value.target_word_count) &&
+    typeof value.target_word_count.min === "number" &&
+    typeof value.target_word_count.target === "number" &&
+    typeof value.target_word_count.max === "number" &&
+    Array.isArray(value.scene_ids) &&
+    isRecord(value.required_context) &&
+    Array.isArray(value.required_context.canon_ids) &&
+    Array.isArray(value.required_context.narrative_ids) &&
+    Array.isArray(value.required_context.manuscript_chapter_ids) &&
+    Array.isArray(value.required_context.decision_ids) &&
+    isRecord(value.quality_gates)
+  );
+}
+
+function isWorkflowRecord(value: unknown): value is WorkflowRecord {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    typeof value.record_type === "string"
+  );
+}
+
 async function loadJson(filePath: string): Promise<AnySchema> {
   return JSON.parse(await readFile(filePath, "utf8")) as AnySchema;
 }
@@ -177,6 +252,9 @@ async function createValidators(root: string): Promise<Validators> {
     ),
     manuscript: ajv.compile(
       await loadJson(path.join(schemaRoot, "manuscript.schema.json"))
+    ),
+    workflow: ajv.compile(
+      await loadJson(path.join(schemaRoot, "workflow-run.schema.json"))
     )
   };
 }
@@ -433,6 +511,176 @@ function validateSemanticContinuity(
   }
 }
 
+function validateChapterWorkpacks(
+  workpacks: StoredWorkpack[],
+  entities: StoredEntity[],
+  chapters: StoredChapter[],
+  errors: ValidationIssue[]
+): void {
+  const entityIndex = new Map<string, StoredEntity>();
+  for (const entity of entities) {
+    entityIndex.set(`${entity.novelId}:${entity.data.id}`, entity);
+  }
+
+  const chapterIndex = new Set(
+    chapters.map((chapter) => `${chapter.novelId}:${chapter.data.id}`)
+  );
+  for (const workpack of workpacks) {
+    const { data } = workpack;
+    const wordCount = data.target_word_count;
+    if (!(wordCount.min <= wordCount.target && wordCount.target <= wordCount.max)) {
+      errors.push({
+        code: "WORKPACK_WORD_COUNT_RANGE_INVALID",
+        message: "Chapter workpack target_word_count must satisfy min <= target <= max.",
+        path: workpack.filePath,
+        entityId: data.id,
+        novelId: workpack.novelId,
+        details: wordCount
+      });
+    }
+
+    if (!["blocked", "stale"].includes(data.status)) {
+      for (const [gate, passed] of Object.entries(data.quality_gates)) {
+        if (passed !== true) {
+          errors.push({
+            code: "WORKPACK_GATE_NOT_SATISFIED",
+            message: `Chapter workpack gate ${gate} must be true before drafting or continuing.`,
+            path: workpack.filePath,
+            entityId: data.id,
+            novelId: workpack.novelId,
+            details: { gate }
+          });
+        }
+      }
+    }
+
+    const referencedEntityIds = new Set([
+      ...data.scene_ids,
+      ...data.required_context.canon_ids,
+      ...data.required_context.narrative_ids
+    ]);
+    for (const reference of referencedEntityIds) {
+      if (!entityIndex.has(`${workpack.novelId}:${reference}`)) {
+        errors.push({
+          code: "WORKPACK_REFERENCE_NOT_FOUND",
+          message: `Chapter workpack references missing entity ${reference}.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: { reference }
+        });
+      }
+    }
+
+    const contextNarrativeIds = new Set(data.required_context.narrative_ids);
+    for (const sceneId of data.scene_ids) {
+      if (!contextNarrativeIds.has(sceneId)) {
+        errors.push({
+          code: "WORKPACK_SCENE_NOT_IN_CONTEXT",
+          message: `Chapter workpack scene ${sceneId} must also appear in required_context.narrative_ids.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: { sceneId }
+        });
+      }
+    }
+
+    if (
+      ["draft_ready", "reviewed", "accepted"].includes(data.status) &&
+      !chapterIndex.has(`${workpack.novelId}:${data.chapter_id}`)
+    ) {
+      errors.push({
+        code: "WORKPACK_CHAPTER_NOT_FOUND",
+        message: `Chapter workpack status ${data.status} requires existing manuscript ${data.chapter_id}.`,
+        path: workpack.filePath,
+        entityId: data.id,
+        novelId: workpack.novelId,
+        details: { chapterId: data.chapter_id }
+      });
+    }
+
+    for (const chapterId of data.required_context.manuscript_chapter_ids) {
+      if (!chapterIndex.has(`${workpack.novelId}:${chapterId}`)) {
+        errors.push({
+          code: "WORKPACK_CHAPTER_REFERENCE_NOT_FOUND",
+          message: `Chapter workpack references missing manuscript ${chapterId}.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: { chapterId }
+        });
+      }
+    }
+  }
+}
+
+function validateWorkflowRecords(
+  records: StoredWorkflowRecord[],
+  entities: StoredEntity[],
+  chapters: StoredChapter[],
+  errors: ValidationIssue[]
+): void {
+  const workflowIndex = new Set(records.map((record) => `${record.novelId}:${record.data.id}`));
+  const entityIndex = new Set(entities.map((entity) => `${entity.novelId}:${entity.data.id}`));
+  const chapterIndex = new Set(chapters.map((chapter) => `${chapter.novelId}:${chapter.data.id}`));
+
+  for (const record of records) {
+    const { data } = record;
+    if (data.owner?.novel_id !== record.novelId) {
+      errors.push({
+        code: "WORKFLOW_OWNER_MISMATCH",
+        message: `Workflow record owner must be ${record.novelId} inside this novel.`,
+        path: record.filePath,
+        entityId: data.id,
+        novelId: record.novelId
+      });
+    }
+
+    if (
+      data.quality_gates !== undefined &&
+      !["blocked", "stale"].includes(data.status ?? "")
+    ) {
+      for (const [gate, passed] of Object.entries(data.quality_gates)) {
+        if (passed !== true) {
+          errors.push({
+            code: "WORKFLOW_GATE_NOT_SATISFIED",
+            message: `Workflow record gate ${gate} must be true before use.`,
+            path: record.filePath,
+            entityId: data.id,
+            novelId: record.novelId,
+            details: { gate }
+          });
+        }
+      }
+    }
+
+    const recordData = data as unknown as Record<string, unknown>;
+    const memoryContract = recordValue(recordData, "memory_contract");
+    if (memoryContract === null) {
+      continue;
+    }
+
+    for (const reference of stringArray(memoryContract, "must_load_ids")) {
+      const scopedReference = `${record.novelId}:${reference}`;
+      if (
+        !workflowIndex.has(scopedReference) &&
+        !entityIndex.has(scopedReference) &&
+        !chapterIndex.has(scopedReference)
+      ) {
+        errors.push({
+          code: "WORKFLOW_MEMORY_REFERENCE_NOT_FOUND",
+          message: `Workflow record references missing required memory ${reference}.`,
+          path: record.filePath,
+          entityId: data.id,
+          novelId: record.novelId,
+          details: { reference }
+        });
+      }
+    }
+  }
+}
+
 export async function validateWorkspace(rootPath: string): Promise<ValidationReport> {
   const root = path.resolve(rootPath);
   const errors: ValidationIssue[] = [];
@@ -440,6 +688,8 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
   const stats = { novels: 0, entityFiles: 0, entities: 0, chapters: 0 };
   const storedEntities: StoredEntity[] = [];
   const storedChapters: StoredChapter[] = [];
+  const storedWorkpacks: StoredWorkpack[] = [];
+  const storedWorkflowRecords: StoredWorkflowRecord[] = [];
   let validators: Validators;
 
   try {
@@ -712,6 +962,76 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
         chapterPositions.set(position, filePath);
       }
     }
+
+    if (novelManifest.paths.reports !== undefined) {
+      const workflowRoots = [
+        path.join(novelRoot, novelManifest.paths.reports, "workpacks"),
+        path.join(novelRoot, novelManifest.paths.reports, "style"),
+        path.join(novelRoot, novelManifest.paths.reports, "restructure")
+      ];
+      const workflowFiles = (
+        await Promise.all(
+          workflowRoots.map(async (directory) => {
+            try {
+              return await listEntityFiles(directory);
+            } catch (error) {
+              if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+                return [];
+              }
+              throw error;
+            }
+          })
+        )
+      ).flat().filter((filePath) =>
+        [".yaml", ".yml"].includes(path.extname(filePath).toLowerCase())
+      );
+      for (const filePath of workflowFiles) {
+        let workflowRecord: unknown;
+        try {
+          workflowRecord = await loadYaml(filePath);
+        } catch (error) {
+          errors.push({
+            code: "WORKFLOW_READ_FAILED",
+            message: error instanceof Error ? error.message : String(error),
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+
+        if (!validators.workflow(workflowRecord)) {
+          errors.push(
+            ...schemaIssues("WORKFLOW_SCHEMA_INVALID", filePath, validators.workflow.errors).map(
+              (issue) => ({ ...issue, novelId: registration.id })
+            )
+          );
+          continue;
+        }
+        if (!isWorkflowRecord(workflowRecord)) {
+          errors.push({
+            code: "WORKFLOW_RECORD_INVALID",
+            message: "Workflow record has an unexpected runtime shape.",
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+
+        storedWorkflowRecords.push({
+          data: workflowRecord,
+          filePath,
+          novelId: registration.id
+        });
+
+        if (isChapterWorkpackRecord(workflowRecord)) {
+          storedWorkpacks.push({
+            data: workflowRecord,
+            filePath,
+            novelId: registration.id
+          });
+        }
+      }
+    }
   }
 
   validateSemanticContinuity(storedEntities, errors);
@@ -736,6 +1056,9 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
       }
     }
   }
+
+  validateChapterWorkpacks(storedWorkpacks, storedEntities, storedChapters, errors);
+  validateWorkflowRecords(storedWorkflowRecords, storedEntities, storedChapters, errors);
 
   return { ok: errors.length === 0, errors, warnings, stats };
 }

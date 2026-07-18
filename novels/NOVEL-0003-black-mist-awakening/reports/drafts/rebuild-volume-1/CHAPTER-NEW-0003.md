@@ -1,19 +1,3 @@
----
-schema_version: "0.1.0"
-id: CHAPTER-0003
-document_type: chapter
-novel_id: NOVEL-0003
-title: "另一个温良"
-volume: 1
-chapter: 3
-status: revised
-visibility: reader
-summary: "另一个温良: 新规则重构版正文，替换旧稿读者入口。"
-content_version: "0.2.0"
-word_count: 2379
-previous_chapter_id: CHAPTER-0002
-next_chapter_id: CHAPTER-0004
----
 # 第三章 另一个温良
 
 温良站在废街中央，身后的门还亮着。
@@ -209,4 +193,3 @@ next_chapter_id: CHAPTER-0004
 这次它们不是来找另一个温良。
 
 它们在找他。
-

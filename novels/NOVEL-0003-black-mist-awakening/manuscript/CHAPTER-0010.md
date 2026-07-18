@@ -6,9 +6,9 @@ novel_id: NOVEL-0003
 title: "找回通道"
 volume: 1
 chapter: 10
-status: revised
-visibility: reader
-summary: "温良顺着井口和聚落里的旧痕迹找到返梦线索，意识到通道背后存在不止一种权限结构。"
+status: cut
+visibility: internal
+summary: "旧版正文已从 reader 链路移除，等待按新规则重构。"
 content_version: "0.1.0"
 word_count: 2100
 previous_chapter_id: CHAPTER-0009

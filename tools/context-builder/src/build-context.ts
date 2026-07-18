@@ -128,7 +128,13 @@ export async function buildContext(
     }
   ];
 
-  const entityRoots = [path.join(novelRoot, "canon"), path.join(novelRoot, "narrative")];
+  const entityRoots = [
+    path.join(novelRoot, "canon"),
+    path.join(novelRoot, "narrative"),
+    path.join(novelRoot, "reports", "workpacks"),
+    path.join(novelRoot, "reports", "style"),
+    path.join(novelRoot, "reports", "restructure")
+  ];
   const files = (
     await Promise.all(
       entityRoots.map(async (directory) => {

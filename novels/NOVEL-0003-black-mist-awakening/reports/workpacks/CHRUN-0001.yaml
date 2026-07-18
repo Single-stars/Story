@@ -1,0 +1,120 @@
+schema_version: "0.1.0"
+id: CHRUN-0001
+record_type: chapter_workpack
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+chapter_id: CHAPTER-0001
+target_word_count:
+  min: 3000
+  target: 4000
+  max: 5000
+
+scene_ids:
+  - SCN-0001
+
+required_context:
+  canon_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - LOC-0001
+    - LOC-0002
+    - RULE-0001
+    - RULE-0002
+    - FACT-0001
+    - REL-0001
+  narrative_ids:
+    - SCN-0001
+    - EVT-0001
+    - THREAD-0001
+    - FORESH-0001
+  manuscript_chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+    - CHAPTER-0007
+    - CHAPTER-0008
+    - CHAPTER-0009
+    - CHAPTER-0010
+    - CHAPTER-0011
+    - CHAPTER-0012
+  decision_ids:
+    - author-2026-07-18-capability-timing
+    - author-2026-07-18-world-clarity
+    - author-2026-07-18-organization-delay
+    - author-2026-07-18-character-roster
+
+continuity_contract:
+  world_state: >-
+    Every scene must name and render the current layer clearly. Dream world:
+    prosperous, normal, daily school life. Real/main world: decayed, black-mist
+    covered, materially harsh. Do not use vague "reality" wording when the
+    reader needs layer orientation. Chapter 5's body encounter must be a
+    wandering, living-corpse-like self whose footsteps have been heard, not a
+    self sitting in a car.
+  capability_scope: >-
+    Author rule for revisions: before body-soul fusion, Wen Liang may perceive
+    black mist, footsteps, memory anomalies, and emotional distortions, but may
+    not stop pens, posters, lights, iron sheets, or change objects by thought.
+    After fusion in the real/main world, he automatically clears nearby mist and
+    can be noticed because of it, but still cannot reshape physical reality by
+    intention. Only after knowingly entering the dream world may he make limited
+    dream-rule changes. Existing RULE-0002 and early chapters conflict with this
+    and require proposal/retcon handling before rewrite.
+  character_knowledge: >-
+    Characters may not speak or act from organization-level truth before they
+    have a source. Wen Liang cannot ask about a special organization before
+    learning such a thing exists. Early knowledge should come from observation,
+    named local people, mistaken guesses, survival routines, and visible costs,
+    not from author explanation.
+  relationship_state: >-
+    Wen Liang and Nangong Yun'er must slow down. Early dream-world school life
+    needs normal social texture: roommates, classmates, desk mates, teachers,
+    and named recurring minor characters. Any character with dialogue, repeated
+    function, or likely future use needs a name, first-look detail, simple
+    personality signal, and relationship position.
+  foreshadowing_plan: >-
+    Footsteps must point toward the wandering body/self and pay off through
+    contact, fusion, and blackout. Hospital wake-up should not repeat across
+    chapters as the same hook. Organization traces must remain low-level and
+    indirect early; no advanced explanation, facility tour, or precise external
+    handler should appear before its disclosure window.
+  reader_exposure:
+    allowed:
+      - "Readers may see layer-specific evidence: prosperous dream school life or decayed black-mist real/main world."
+      - Readers may see Wen Liang's automatic mist-clearing after fusion through local people's reactions.
+      - Readers may see local survival details such as fire lines, patrol routines, resource limits, and mistaken explanations.
+      - Readers may see named everyday classmates and settlement residents through action and conflict.
+    forbidden:
+      - Do not reveal high-level organization truth, facility logic, or handler knowledge in the early chapters.
+      - Do not use unexplained decorative signs such as meaningless water mist patterns unless they change action, knowledge, relationship, or payoff.
+      - Do not imply real/main world telekinesis or physical reality rewriting.
+      - Do not make Nangong Yun'er a truth radar or emotional shortcut.
+      - Do not rely on vague dream/real wording that leaves the reader unsure where the scene is.
+
+quality_gates:
+  word_count_defined: true
+  scene_contracts_locked: true
+  capability_scope_checked: true
+  character_roster_named: true
+  relationship_changes_motivated: true
+  plot_causality_checked: true
+  foreshadowing_status_checked: true
+  reader_exposure_limited: true
+  prose_quality_review_planned: true
+
+resume_brief: >-
+  This is the durable entry point for restructuring NOVEL-0003 volume 1. Before
+  any rewrite or continuation, load this workpack plus the listed IDs. The next
+  implementation should not polish the existing prose first. It should build a
+  revised chapter/scene matrix, then create CHRUN records per chapter. Hard
+  priorities: enforce ability timing, make each world visually unambiguous,
+  delay organization exposure, add named social cast, slow Wen Liang/Nangong
+  Yun'er, explain settlement survival through visible routines, and remove
+  decorative clues that do not affect action or knowledge.

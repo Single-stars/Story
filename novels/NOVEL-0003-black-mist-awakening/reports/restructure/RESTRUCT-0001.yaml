@@ -1,0 +1,206 @@
+schema_version: "0.1.0"
+id: RESTRUCT-0001
+record_type: volume_restructure_plan
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+scope:
+  novel_id: NOVEL-0003
+  volume: 1
+  from: "故事开始：黑雾梦境与正常校园日常并置"
+  to: "温良主动回到梦世界，段末保留医院醒来的卷闭环位置"
+  replaces_chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+    - CHAPTER-0007
+    - CHAPTER-0008
+    - CHAPTER-0009
+    - CHAPTER-0010
+    - CHAPTER-0011
+    - CHAPTER-0012
+
+source_constraints:
+  world_layers:
+    - "梦世界：繁华、正常、校园日常完整，有同学、舍友、同桌、老师、午饭、晚自习等生活纹理。"
+    - "真实界/主世界：衰败、黑雾、废墟、火线、巡夜、资源短缺、身体消耗和聚落生存秩序必须可见。"
+    - "每章每场开头必须通过环境、身体状态、人物在场和行动目标让读者知道当前世界层级。"
+  capability_timeline:
+    - "融合前：温良只能感知黑雾、脚步、记忆异常和梦境压力；不能停笔、停灯、停海报或改变任何现实物件。"
+    - "真实界遇到自己：对方不是坐在车里，而是在黑雾和废墟间行尸走肉般漫无目的行走，脚步声由此成立。"
+    - "融合事件：温良意外接触行尸走肉般的自己，身体与灵魂密切融合，然后昏迷。"
+    - "融合后真实界/主世界：自动驱散身边迷雾，别人会因此发现他；但仍不能按想法改变实体物件。"
+    - "清醒进入梦世界后：才允许有限改变梦境规则，且必须有场景契约说明条件、边界和代价。"
+  reader_exposure:
+    - "前段不出现高级组织、设施说明、处理者或权力层答案；只允许传闻、旧标记、物资收取、禁问名字等低层级信号。"
+    - "聚落的人不知道完整真相，只知道怎么过日子、怎么抵雾、什么时候躲、谁不能惹。"
+    - "读者可见信息必须比作者真相低一层：看见现象、误解、代价和缺口，不直接拿到答案。"
+  relationship_pacing:
+    - "南宫芸儿早期只是同学/熟人关系里的观察者和试探者，不承担恋爱情绪捷径。"
+    - "校园社交必须扩展：至少有舍友、同桌、老师或普通同学承担日常压力和真实感。"
+    - "每个新角色保留条件：改变温良行动、关系压力、信息来源、世界质感或伏笔推进。"
+
+phase_plan:
+  - phase_id: P1-black-mist-hook-and-school-texture
+    chapter_slots:
+      - CHAPTER-0001
+      - CHAPTER-0002
+    world_layer: "梦世界黑雾 + 正常校园日常"
+    function: "建立黑雾脚步声、温良虚弱、正常学校生活和慢热人物网络。"
+    entry_pressure: "温良从黑雾梦里醒来，还要在早读、同桌、舍友和老师面前维持普通学生状态。"
+    decisive_change: "脚步声第一次不再只是梦内噪音，而成为白天也会影响他判断的持续问题。"
+    exit_hook: "南宫芸儿注意到他不对劲，但她不信全部，只留下一个具体疑问。"
+    required_cast:
+      - "温良：虚弱但仍想保持普通。"
+      - "南宫芸儿：轻快、敏锐、会怀疑。"
+      - "一名舍友或同桌：提供日常压力和普通人视角。"
+      - "一名老师：提供考试/迟到/身体状态的现实压力。"
+    foreshadowing:
+      - "脚步声指向真实界游走的身体。"
+      - "童年/家相关记忆空白只给信号，不解释。"
+  - phase_id: P2-dream-only-anomalies-and-slow-trust
+    chapter_slots:
+      - CHAPTER-0003
+      - CHAPTER-0004
+    world_layer: "正常校园为主，梦境压力渗出但不允许现实控物"
+    function: "纠正旧稿控物错误，把异常改为感知、记忆、情绪和梦境规则倾向。"
+    entry_pressure: "温良想验证自己是不是疯了，但白天没有任何物件能被他意念控制。"
+    decisive_change: "他确认异常不是现实物件服从自己，而是梦境记忆、感知错位和别人反应中的缺口。"
+    exit_hook: "南宫芸儿指出一个温良完全记不住的共同旧事，关系从玩笑转为谨慎试探。"
+    required_cast:
+      - "温良：从否认转为主动记录。"
+      - "南宫芸儿：保留信息，不做真相雷达。"
+      - "普通同学：见证温良状态不对，但不给设定答案。"
+    foreshadowing:
+      - "家、童年、共同照顾者只作为关系裂缝出现。"
+      - "梦里脚步声靠近频率增加。"
+  - phase_id: P3-wandering-self-and-fusion
+    chapter_slots:
+      - CHAPTER-0005
+    world_layer: "真实界黑雾梦境交界"
+    function: "重写第一大转折：温良在真实界遇到行尸走肉般行走的自己，触碰融合昏迷。"
+    entry_pressure: "脚步声终于逼到他面前，温良必须决定靠近还是逃开。"
+    decisive_change: "他看见一个和自己一模一样的人在黑雾里行走，意外触碰后身体与灵魂融合。"
+    exit_hook: "昏迷前，黑雾第一次因他自身而退开一圈。"
+    required_cast:
+      - "温良：主动靠近脚步声。"
+      - "行尸走肉般的自己：无对白，承担身体/灵魂融合功能。"
+    foreshadowing:
+      - "脚步声回收。"
+      - "自动驱雾能力首次显影，但不解释机制。"
+  - phase_id: P4-real-world-survival-and-settlement-discovery
+    chapter_slots:
+      - CHAPTER-0006
+      - CHAPTER-0007
+    world_layer: "真实界/主世界"
+    function: "明确真实界衰败面貌、温良身体状态和火光聚落的可见生存逻辑。"
+    entry_pressure: "温良醒在废墟边缘或临时救治点，不是正式医院；他必须判断自己能否活下去。"
+    decisive_change: "他发现自己靠近时黑雾会退，聚落巡夜者因此先发现他。"
+    exit_hook: "聚落愿意暂时收留他，但只把他当危险外来者观察。"
+    required_cast:
+      - "一名巡夜者：发现温良身边雾退的第一人。"
+      - "一名管物资的人：展示聚落利益边界。"
+      - "一名孩子或老人：展示普通人如何把黑雾当日常。"
+    foreshadowing:
+      - "火线、巡夜铃、雾灯或灰墙作为聚落抵雾机制。"
+      - "温良自动驱雾被看见，但没人知道真相。"
+  - phase_id: P5-settlement-rules-and-low-level-clues
+    chapter_slots:
+      - CHAPTER-0008
+      - CHAPTER-0009
+    world_layer: "真实界聚落"
+    function: "用劳动、巡夜、资源、禁忌和误解解释聚落生活，不提前讲组织。"
+    entry_pressure: "温良必须干活、换取住处和信任，同时压住自己想问真相的冲动。"
+    decisive_change: "他通过低层级细节拼出：聚落有人定期收物资、某些旧门/旧井不能碰。"
+    exit_hook: "一个低层级线索指向回梦可能，但代价和来源不明。"
+    required_cast:
+      - "巡夜者：怀疑温良。"
+      - "物资负责人：不讲情面，只看贡献。"
+      - "修炉老人或孩子：提供生存细节与误解。"
+    foreshadowing:
+      - "组织只作为禁问名字、收物资路线或旧标志出现。"
+      - "驱雾不是主动控物，而是温良在压力中被动暴露。"
+  - phase_id: P6-return-route-choice
+    chapter_slots:
+      - CHAPTER-0010
+      - CHAPTER-0011
+    world_layer: "真实界通道边缘 -> 梦世界"
+    function: "把回梦从愿望变成选择；温良通过低层级线索和代价进入梦世界。"
+    entry_pressure: "温良知道梦里还有人和问题，但聚落不愿为他冒险。"
+    decisive_change: "他主动利用一次不稳定通道返回梦世界，而不是被组织直接带去设施。"
+    exit_hook: "梦世界仍然繁华正常，但温良已经知道它不是单纯日常。"
+    required_cast:
+      - "温良：承担回梦代价。"
+      - "聚落引路者或阻拦者：提供冲突，不提供高级答案。"
+      - "梦世界校园角色：重新建立日常反差。"
+    foreshadowing:
+      - "组织线继续作为边缘影子，不正面登场。"
+      - "清醒入梦后才出现有限梦境规则改变。"
+  - phase_id: P7-hospital-wake-as-volume-closure
+    chapter_slots:
+      - CHAPTER-0012
+    world_layer: "梦世界/医院闭环"
+    function: "只在段末正式使用医院醒来，完成第一卷闭环并保留下一阶段压力。"
+    entry_pressure: "温良回梦后必须确认南宫芸儿、校园和自己身体状态是否仍正常。"
+    decisive_change: "医院醒来不再重复前文，而成为前 11 章行动和代价的结果。"
+    exit_hook: "普通日常恢复，但温良保留能验证真实界存在的具体痕迹。"
+    required_cast:
+      - "温良：从被动醒来转为带着记忆醒来。"
+      - "南宫芸儿：关心但仍有保留，不直接解释真相。"
+      - "护士/老师/同学之一：提供普通世界的社会定位。"
+    foreshadowing:
+      - "留下一个可验证但不解释高级真相的低层信号。"
+
+character_roster_policy:
+  - "每章新增人物前先写功能：日常压力、关系反差、信息来源、生存机制、误解来源或情绪阻力。"
+  - "无功能人物合并；只说一句话但承担世界规则说明的人也必须命名或改成环境行为。"
+  - "校园前段至少建立舍友/同桌/老师各一类真实社交接触；聚落段至少建立巡夜者/物资负责人/老人或孩子。"
+  - "南宫芸儿每次出场必须有自己的判断、误判、保留或选择，不能只确认温良异常。"
+
+memory_contract:
+  must_load_ids:
+    - CHRUN-0001
+    - STYLE-0001
+    - RESTRUCT-0001
+    - CHAR-0001
+    - CHAR-0002
+    - RULE-0001
+    - RULE-0002
+    - THREAD-0001
+    - FORESH-0001
+  must_update_after_draft:
+    - "为每章创建或更新 CHRUN-*，写清目标字数、场景、能力边界、读者可见信息和角色状态。"
+    - "为每个正式场景创建 SCN-*，写清世界层级、动机链、出入口状态和伏笔推进。"
+    - "新增可复用角色必须生成 character proposal 或至少进入本章 named_cast_contract。"
+    - "每章写后提取事件、知识、关系、规则、伏笔和读者暴露 proposal；不得自动晋升 Canon。"
+  forbidden_shortcuts:
+    - "不得把旧 12 章按编号直接精修成新 12 章；必须按 phase function 重新拆章。"
+    - "不得用聊天记忆替代 CHRUN、STYLE、RESTRUCT 和场景契约。"
+    - "不得用解释性旁白修补动机缺口；缺动机就回到场景契约补触发、目标、阻力和代价。"
+    - "不得为了字数补无功能角色、无功能意象或重复醒来段落。"
+
+quality_gates:
+  world_layers_separated: true
+  capability_timeline_locked: true
+  reader_exposure_limited: true
+  character_roster_policy_declared: true
+  relationship_pacing_declared: true
+  phase_causality_declared: true
+  prose_profile_linked: true
+
+resume_brief: >-
+  RESTRUCT-0001 is the durable rebuild matrix for NOVEL-0003 volume 1 from the
+  opening to Wen Liang's return to the dream world and the later hospital-wake
+  closure. The existing 12 chapters are treated as flawed source material, not
+  as a direct chapter-by-chapter map. Before drafting, load CHRUN-0001,
+  STYLE-0001, and this file, then create chapter workpacks and scene contracts
+  from the phase plan. The hard priorities are: explicit world layers, corrected
+  capability timing, wandering self fusion, automatic mist clearing after
+  fusion, delayed organization exposure, named functional cast, slow Wen
+  Liang/Nangong Yun'er relationship pacing, and no AI-style explanatory prose.

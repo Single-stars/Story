@@ -1,19 +1,3 @@
----
-schema_version: "0.1.0"
-id: CHAPTER-0005
-document_type: chapter
-novel_id: NOVEL-0003
-title: "旧井边"
-volume: 1
-chapter: 5
-status: revised
-visibility: reader
-summary: "旧井边: 新规则重构版正文，替换旧稿读者入口。"
-content_version: "0.2.0"
-word_count: 2521
-previous_chapter_id: CHAPTER-0004
-next_chapter_id: CHAPTER-0006
----
 # 第五章 旧井边
 
 白天的真实界比夜里更难看。
@@ -227,4 +211,3 @@ next_chapter_id: CHAPTER-0006
 黑暗合上来之前，他听见远处有人敲响巡夜铃。
 
 三短一长。
-

@@ -1,0 +1,79 @@
+# Copy this file into reports/restructure/ before rebuilding a volume or chapter range.
+schema_version: "0.1.0"
+id: RESTRUCT-0001
+record_type: volume_restructure_plan
+owner:
+  novel_id: NOVEL-0001
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+scope:
+  novel_id: NOVEL-0001
+  volume: 1
+  from: "story opening"
+  to: "protagonist returns to the dream world"
+  replaces_chapter_ids:
+    - CHAPTER-0001
+
+source_constraints:
+  world_layers:
+    - "Dream world is prosperous, normal, and socially detailed."
+    - "Real/main world is decayed, black-mist covered, and materially harsh."
+  capability_timeline:
+    - "Before fusion: no object control or physical reality rewriting."
+    - "After fusion in real/main world: automatic mist clearing, no telekinesis."
+    - "Only lucid dream-world entry permits limited dream-rule changes."
+  reader_exposure:
+    - "Early chapters may show low-level traces and survival routines, not high-level organization truth."
+    - "Reader-visible clues must be fair signals, not internal answers."
+  relationship_pacing:
+    - "Main relationship develops slowly through ordinary school contact, disagreement, and earned trust."
+
+phase_plan:
+  - phase_id: P1-opening-dream-and-school
+    chapter_slots:
+      - CHAPTER-0001
+    world_layer: "dream world and school day contrast"
+    function: "Establish Wen Liang's recurring black-mist pressure and normal school social texture."
+    entry_pressure: "Wen Liang wakes from a black-mist dream with residual fear and must still function at school."
+    decisive_change: "He confirms the dream pressure leaves traces in attention, memory, and relationships."
+    exit_hook: "The repeated footsteps become a question he cannot dismiss."
+    required_cast:
+      - "protagonist"
+      - "slow-burn heroine"
+      - "named roommate or classmate"
+    foreshadowing:
+      - "footsteps"
+      - "memory gap"
+
+character_roster_policy:
+  - "Any dialogue or recurring function needs a name, first-look detail, simple personality signal, and relationship position."
+  - "Minor cast must change pressure, reveal social texture, or create choice; otherwise merge or delete."
+
+memory_contract:
+  must_load_ids:
+    - STYLE-0001
+  must_update_after_draft:
+    - "chapter workpack"
+    - "scene contracts"
+    - "character roster proposals"
+    - "foreshadowing ledger proposals"
+  forbidden_shortcuts:
+    - "Do not map old chapter numbers directly to new chapters without checking function."
+    - "Do not use chat memory as the only source for ability timing or reader exposure."
+    - "Do not solve missing motivation with narrator explanation."
+
+quality_gates:
+  world_layers_separated: true
+  capability_timeline_locked: true
+  reader_exposure_limited: true
+  character_roster_policy_declared: true
+  relationship_pacing_declared: true
+  phase_causality_declared: true
+  prose_profile_linked: true
+
+resume_brief: >-
+  Load this restructure plan before rebuilding the chapter range. It is a
+  proposal matrix, not Canon and not final prose. Each phase must later become
+  chapter workpacks and scene contracts before drafting.

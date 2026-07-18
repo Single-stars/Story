@@ -1,0 +1,103 @@
+schema_version: "0.1.0"
+id: STYLE-0001
+record_type: prose_style_profile
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+scope:
+  novel_id: NOVEL-0003
+  applies_to_chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+    - CHAPTER-0007
+    - CHAPTER-0008
+    - CHAPTER-0009
+    - CHAPTER-0010
+    - CHAPTER-0011
+    - CHAPTER-0012
+  source_skill_refs:
+    - novel-line-edit
+    - shuorenhua
+    - novel-chapter
+
+style_contract:
+  positive_targets:
+    - "正文先写当前可见的动作、环境、人物反应、选择和后果，再写必要判断；禁止把章纲句扩写成正文。"
+    - "每个段落都要和前后段形成因果：刺激、感知、反应、选择、行动或后果至少承担一项。"
+    - "梦世界用繁华、正常、具体的校园日常定向；真实界/主世界用衰败、黑雾、资源短缺、身体负担和人群生存方式定向。"
+    - "温良的情绪不由旁白总结，而通过忍住、回避、误判、下意识选择、身体疲惫和与他人的距离变化表现。"
+    - "章末拉力必须来自本章行动后果、关系变化、信息差或代价，不能只写‘更大的东西还在后面’。"
+  protected_items:
+    - "能力时序不得漂移：融合前不能停笔、停灯、停海报、停铁皮或意念改物。"
+    - "真实界/主世界不能意念改物；融合后只自动驱散身边迷雾，并因此被人发现。"
+    - "清醒进入梦世界后，才允许有限改动梦境规则。"
+    - "组织、高级设施、外部处理者和世界真相不能早期明说，只能通过低层级迹象和幸存者误解出现。"
+    - "温良和南宫芸儿关系必须慢热；南宫芸儿不能替作者确认真相。"
+    - "有对白、重复功能或未来复用潜力的人物必须命名，并具备最低可识别描写。"
+  forbidden_patterns:
+    - "禁止“不是 X，而是 Y”“这意味着”“真正的”“不只是……更是……”等假洞见骨架。"
+    - "禁止‘他忽然意识到/他终于明白/世界没有变简单/更大的东西’等替读者总结的旁白惯性。"
+    - "禁止解释先于画面：先说‘这里是真的/正常得像壳’再补细节的段落必须重写。"
+    - "禁止重复醒来、重复病房、重复‘还没结束’作为同质章末钩子。"
+    - "禁止无来源、无作用、无回收计划的装饰意象，例如没有行动意义的水面雾纹。"
+  pov_and_distance:
+    - "默认贴近温良第三人称；同一场景不滑入南宫芸儿、聚落居民或组织人员内心。"
+    - "POV 只允许观察、误解、猜测或记起他当时能接触到的信息；不得提前拥有组织级答案。"
+    - "场景转换后必须重新定向时间、地点、世界层级和身体状态，避免读者分不清梦世界/真实界。"
+  dialogue_rules:
+    - "对白必须服务即时目标：试探、遮掩、逼问、缓和、拒绝、交换资源、确认关系位置或推动行动。"
+    - "南宫芸儿早期对白应短、准、带保留；她可以怀疑和观察，不能负责解释设定。"
+    - "聚落人物对白必须来自生存经验和利益边界，不讲作者知道的世界观答案。"
+    - "新增校园同学、舍友、同桌、老师、聚落居民时，先给功能和关系位置，再决定是否保留。"
+  imagery_rules:
+    - "黑雾、脚步声、火光、废墟、病房只能在改变行动、知识、关系或伏笔状态时出现。"
+    - "脚步声必须指向行尸走肉般游走的真实界自己，并通过意外触碰、融合、昏迷完成回收。"
+    - "医院醒来只在重构段末正式兑现；前文不得提前用病房消耗同一个高潮。"
+
+prose_gates:
+  hard:
+    - "结构、人物或连续性存在 blocker 时，禁止只做语言润色。"
+    - "出现真实界意念改物、融合前控物、组织早暴露、南宫芸儿真相雷达、世界层级含糊时，本段必须退回结构重写。"
+    - "任意无功能意象必须删除或补成行动/知识/关系/伏笔功能；不能保留为氛围装饰。"
+    - "任意新角色有对白或后续复用功能时，必须在角色账本或场景契约中留下姓名、描写、功能和关系位置。"
+  soft:
+    - "同一页内抽象判断、‘忽然意识到’、‘这意味着’类旁白密集时，优先改成动作和反应。"
+    - "连续对白如果去掉人名后听不出角色差异，必须调整目标、语气或潜台词。"
+    - "连续三段都先总结后描写时，至少重排为先画面后判断。"
+
+revision_protocol:
+  order:
+    - "读取 CHRUN、RESTRUCT、STYLE 和本章场景契约。"
+    - "先查世界层级、能力时序、读者可见性和角色知识。"
+    - "再查场景动机链：触发、目标、阻力、选择、代价、后果、下一压力。"
+    - "再查人物关系和新增角色功能。"
+    - "最后处理句式、段落、对白和去 AI 味。"
+    - "做保真回读，再做残留套路回读。"
+  line_edit_strength: standard
+  reread_checks:
+    - "事实、能力、世界层级、人物知识、关系节奏、伏笔披露是否漂移。"
+    - "读者是否能不用作者解释就知道当前在哪个世界、温良想做什么、为什么这样做。"
+    - "是否还残留二元对比、解释性总结、模板化章末、无功能意象和同质对白。"
+
+quality_gates:
+  structure_blockers_cleared: true
+  continuity_blockers_cleared: true
+  protected_items_declared: true
+  forbidden_patterns_declared: true
+  dialogue_voice_rules_declared: true
+  imagery_function_gate_declared: true
+  reread_protocol_declared: true
+
+resume_brief: >-
+  Load STYLE-0001 before any rewrite, continuation, or line edit for NOVEL-0003.
+  It records the project's prose contract: scene-first prose, explicit world
+  orientation, strict capability timing, delayed organization exposure, slow
+  relationship pacing, named functional cast, and deletion of AI-style summary
+  skeletons. This profile is proposal_only and does not approve Canon changes.

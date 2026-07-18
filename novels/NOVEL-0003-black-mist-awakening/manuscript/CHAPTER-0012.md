@@ -6,9 +6,9 @@ novel_id: NOVEL-0003
 title: "医院醒来"
 volume: 1
 chapter: 12
-status: revised
-visibility: reader
-summary: "温良在医院里醒来，现实重新被包装成平静日常，但他已经无法把自己经历的一切当成单纯的梦。"
+status: cut
+visibility: internal
+summary: "旧版正文已从 reader 链路移除，等待按新规则重构。"
 content_version: "0.1.0"
 word_count: 2200
 previous_chapter_id: CHAPTER-0011

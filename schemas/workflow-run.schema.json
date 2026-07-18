@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/workflow-run.schema.json",
+  "title": "Story OS workflow run records",
+  "oneOf": [
+    { "$ref": "#/$defs/chapterWorkpack" },
+    { "$ref": "#/$defs/proseStyleProfile" },
+    { "$ref": "#/$defs/volumeRestructurePlan" }
+  ],
+  "$defs": {
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["novel_id"],
+      "properties": {
+        "novel_id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+        }
+      }
+    },
+    "workflowStatus": {
+      "type": "string",
+      "enum": ["planned", "in_progress", "draft_ready", "reviewed", "accepted", "blocked", "stale"]
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "chapterIdArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+    },
+    "sceneIdArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^SCN-[0-9]{4}$" }
+    },
+    "gateMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "boolean" }
+    },
+    "chapterWorkpack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "record_type",
+        "owner",
+        "status",
+        "visibility",
+        "canon_effect",
+        "chapter_id",
+        "target_word_count",
+        "scene_ids",
+        "required_context",
+        "continuity_contract",
+        "quality_gates",
+        "resume_brief"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^CHRUN-[0-9]{4}$"
+        },
+        "record_type": {
+          "type": "string",
+          "const": "chapter_workpack"
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "status": { "$ref": "#/$defs/workflowStatus" },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "canon_effect": {
+          "type": "string",
+          "const": "proposal_only"
+        },
+        "chapter_id": {
+          "type": "string",
+          "pattern": "^CHAPTER-[0-9]{4}$"
+        },
+        "target_word_count": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "target", "max"],
+          "properties": {
+            "min": { "type": "integer", "minimum": 1, "maximum": 1000000 },
+            "target": { "type": "integer", "minimum": 1, "maximum": 1000000 },
+            "max": { "type": "integer", "minimum": 1, "maximum": 1000000 }
+          }
+        },
+        "scene_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^SCN-[0-9]{4}$" }
+        },
+        "required_context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canon_ids",
+            "narrative_ids",
+            "manuscript_chapter_ids",
+            "decision_ids"
+          ],
+          "properties": {
+            "canon_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$" }
+            },
+            "narrative_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^(EVT|SCN|THREAD|FORESH)-[0-9]{4}$" }
+            },
+            "manuscript_chapter_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+            },
+            "decision_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+            }
+          }
+        },
+        "continuity_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "world_state",
+            "capability_scope",
+            "character_knowledge",
+            "relationship_state",
+            "foreshadowing_plan",
+            "reader_exposure"
+          ],
+          "properties": {
+            "world_state": { "type": "string", "minLength": 1 },
+            "capability_scope": { "type": "string", "minLength": 1 },
+            "character_knowledge": { "type": "string", "minLength": 1 },
+            "relationship_state": { "type": "string", "minLength": 1 },
+            "foreshadowing_plan": { "type": "string", "minLength": 1 },
+            "reader_exposure": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["allowed", "forbidden"],
+              "properties": {
+                "allowed": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "forbidden": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        },
+        "quality_gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "word_count_defined",
+            "scene_contracts_locked",
+            "capability_scope_checked",
+            "character_roster_named",
+            "relationship_changes_motivated",
+            "plot_causality_checked",
+            "foreshadowing_status_checked",
+            "reader_exposure_limited",
+            "prose_quality_review_planned"
+          ],
+          "properties": {
+            "word_count_defined": { "type": "boolean" },
+            "scene_contracts_locked": { "type": "boolean" },
+            "capability_scope_checked": { "type": "boolean" },
+            "character_roster_named": { "type": "boolean" },
+            "relationship_changes_motivated": { "type": "boolean" },
+            "plot_causality_checked": { "type": "boolean" },
+            "foreshadowing_status_checked": { "type": "boolean" },
+            "reader_exposure_limited": { "type": "boolean" },
+            "prose_quality_review_planned": { "type": "boolean" }
+          }
+        },
+        "resume_brief": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      }
+    },
+    "proseStyleProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "record_type",
+        "owner",
+        "status",
+        "visibility",
+        "canon_effect",
+        "scope",
+        "style_contract",
+        "prose_gates",
+        "revision_protocol",
+        "quality_gates",
+        "resume_brief"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^STYLE-[0-9]{4}$"
+        },
+        "record_type": {
+          "type": "string",
+          "const": "prose_style_profile"
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "status": { "$ref": "#/$defs/workflowStatus" },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "canon_effect": {
+          "type": "string",
+          "const": "proposal_only"
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["novel_id", "applies_to_chapter_ids", "source_skill_refs"],
+          "properties": {
+            "novel_id": {
+              "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+            },
+            "applies_to_chapter_ids": { "$ref": "#/$defs/chapterIdArray" },
+            "source_skill_refs": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "style_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "positive_targets",
+            "protected_items",
+            "forbidden_patterns",
+            "pov_and_distance",
+            "dialogue_rules",
+            "imagery_rules"
+          ],
+          "properties": {
+            "positive_targets": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "protected_items": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "forbidden_patterns": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "pov_and_distance": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "dialogue_rules": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "imagery_rules": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "prose_gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hard", "soft"],
+          "properties": {
+            "hard": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "soft": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "revision_protocol": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["order", "line_edit_strength", "reread_checks"],
+          "properties": {
+            "order": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "line_edit_strength": {
+              "type": "string",
+              "enum": ["minimal", "standard", "intensive-local"]
+            },
+            "reread_checks": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "quality_gates": { "$ref": "#/$defs/gateMap" },
+        "resume_brief": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      }
+    },
+    "volumeRestructurePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "id",
+        "record_type",
+        "owner",
+        "status",
+        "visibility",
+        "canon_effect",
+        "scope",
+        "source_constraints",
+        "phase_plan",
+        "character_roster_policy",
+        "memory_contract",
+        "quality_gates",
+        "resume_brief"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^RESTRUCT-[0-9]{4}$"
+        },
+        "record_type": {
+          "type": "string",
+          "const": "volume_restructure_plan"
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "status": { "$ref": "#/$defs/workflowStatus" },
+        "visibility": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+        },
+        "canon_effect": {
+          "type": "string",
+          "const": "proposal_only"
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["novel_id", "volume", "from", "to", "replaces_chapter_ids"],
+          "properties": {
+            "novel_id": {
+              "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+            },
+            "volume": { "type": "integer", "minimum": 1 },
+            "from": { "type": "string", "minLength": 1 },
+            "to": { "type": "string", "minLength": 1 },
+            "replaces_chapter_ids": { "$ref": "#/$defs/chapterIdArray" }
+          }
+        },
+        "source_constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "world_layers",
+            "capability_timeline",
+            "reader_exposure",
+            "relationship_pacing"
+          ],
+          "properties": {
+            "world_layers": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "capability_timeline": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "reader_exposure": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "relationship_pacing": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "phase_plan": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "phase_id",
+              "chapter_slots",
+              "world_layer",
+              "function",
+              "entry_pressure",
+              "decisive_change",
+              "exit_hook",
+              "required_cast",
+              "foreshadowing"
+            ],
+            "properties": {
+              "phase_id": { "type": "string", "minLength": 1 },
+              "chapter_slots": { "$ref": "#/$defs/chapterIdArray" },
+              "world_layer": { "type": "string", "minLength": 1 },
+              "function": { "type": "string", "minLength": 1 },
+              "entry_pressure": { "type": "string", "minLength": 1 },
+              "decisive_change": { "type": "string", "minLength": 1 },
+              "exit_hook": { "type": "string", "minLength": 1 },
+              "required_cast": { "$ref": "#/$defs/nonEmptyStringArray" },
+              "foreshadowing": { "$ref": "#/$defs/nonEmptyStringArray" }
+            }
+          }
+        },
+        "character_roster_policy": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "memory_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["must_load_ids", "must_update_after_draft", "forbidden_shortcuts"],
+          "properties": {
+            "must_load_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^(CHRUN|STYLE|RESTRUCT|CHAPTER|SCN|EVT|THREAD|FORESH|CHAR|LOC|FACTION|ITEM|RULE|FACT|REL|KNOW)-[0-9]{4}$"
+              }
+            },
+            "must_update_after_draft": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "forbidden_shortcuts": { "$ref": "#/$defs/nonEmptyStringArray" }
+          }
+        },
+        "quality_gates": { "$ref": "#/$defs/gateMap" },
+        "resume_brief": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      }
+    }
+  }
+}

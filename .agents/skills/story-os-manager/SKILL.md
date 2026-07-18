@@ -5,6 +5,15 @@ description: 管理 Story OS 工作区与小说会话。用于新建、选择或
 
 # Story OS Manager
 
+## Durable longform memory
+
+- For chapter drafting, rewriting, or continuation, route through `CHRUN-*` records in `reports/workpacks/` before prose work.
+- Use `CHRUN-*` as the resumable chapter memory contract: target word count, approved scene ids, required context ids, capability scope, relationship state, foreshadowing plan, reader exposure limits, quality gates, and resume brief.
+- For large rewrites or longform recovery, also load `STYLE-*` records in `reports/style/` and `RESTRUCT-*` records in `reports/restructure/` when present or referenced. `STYLE-*` is the project prose and de-AI contract; `RESTRUCT-*` is the chapter-range rebuild matrix.
+- Treat `memory_contract.must_load_ids` in workflow records as mandatory context. If validation reports `WORKFLOW_MEMORY_REFERENCE_NOT_FOUND`, stop before prose and create the missing proposal record or correct the reference.
+- A missing or invalid `CHRUN-*` is a workflow blocker for new longform prose. Create a proposal workpack from `templates/workflow/chapter-workpack.yaml`, validate it, and only then route to `novel-chapter`.
+- Treat all workflow records as `proposal_only`; they can constrain drafting but cannot promote Canon or retcon existing facts without `novel-canon-change`.
+
 把本 Skill 当作会话总控和权限门禁，不要用它代替专用创作 Skill。
 
 ## 核心契约
