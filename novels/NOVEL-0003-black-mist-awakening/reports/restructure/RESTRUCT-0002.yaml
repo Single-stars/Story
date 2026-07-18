@@ -1,0 +1,130 @@
+schema_version: "0.1.0"
+id: RESTRUCT-0002
+record_type: volume_restructure_plan
+owner:
+  novel_id: NOVEL-0003
+status: planned
+visibility: internal
+canon_effect: proposal_only
+
+scope:
+  novel_id: NOVEL-0003
+  volume: 1
+  from: "黑雾脚步声与校园日常"
+  to: "温良回到梦境层后在医院醒来，医院线正式展开"
+  replaces_chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+    - CHAPTER-0007
+    - CHAPTER-0008
+    - CHAPTER-0009
+    - CHAPTER-0010
+    - CHAPTER-0011
+    - CHAPTER-0012
+
+source_constraints:
+  world_layers:
+    - "梦境层必须以正常校园、医院、同学、老师、生活压力定向；真实世界必须以废城、黑雾、火线、饥饿、资源账本和聚落秩序定向。"
+    - "主角完全进入真实世界并与自己融合后，才能写真实世界长期探索；医院剧情只能在找到回梦境方法并返回后展开。"
+    - "章节数按阅读节奏动态决定；旧 12 章不是绑定结构，未使用旧稿章节必须 cut/internal，避免读者端出现不可读旧文。"
+  capability_timeline:
+    - "融合前只能写黑雾、脚步声、记忆、感知和梦境压力；不能现实控物、停笔、停灯、停海报或意念改变实体。"
+    - "融合后真实世界中只表现为身边黑雾自动退避，不能按想法重写现实物体。"
+    - "清醒回到梦境层后才允许出现有限梦境规则变化，且必须先由场景契约定义代价和边界。"
+  reader_exposure:
+    - "作者提示词默认是设计输入，进入正文前必须判断可直接出现、只能间接出现、只能作者侧保留或暂不出现。"
+    - "高层组织、设施、处理者、零号权限等只允许以低层迹象或边缘影子出现，不能提前解释。"
+    - "读者应通过角色可见现象、误解、代价和行动后果理解规则，不通过旁白拿答案。"
+  relationship_pacing:
+    - "温良、南宫芸儿、陈安、古晓雨的校园关系必须从普通同学、舍友、同桌和有限怀疑逐步推进。"
+    - "南宫芸儿可以观察和追问，但不能替作者确认真相；古晓雨可以活跃气氛，但不能早期神秘化。"
+    - "聚落人物按生存利益行动，信任只能由劳动、救援、风险和可见代价逐步改变。"
+  motivation_and_concept_gates:
+    - "每章读者可见正文去空白字符后不少于 2000 字；字数服务选择、行动、误解、代价和情绪推进，不用重复解释凑数。"
+    - "能力测试必须有触发、即时目标、假设、风险和停止条件；否则只写感知或失败行动。"
+    - "新概念先写形状、声音、材质、使用痕迹和角色反应，再由角色在有来源后形成暂称。"
+
+phase_plan:
+  - phase_id: P1-footsteps-school
+    chapter_slots: [CHAPTER-0001, CHAPTER-0002]
+    world_layer: "梦境黑雾与正常校园日常"
+    function: "建立黑雾脚步声、温良虚弱、校园人物网络和白天回声。"
+    entry_pressure: "温良醒在高三日常中，必须在老师、同桌和南宫芸儿面前维持正常。"
+    decisive_change: "脚步声从梦里渗到白天，温良开始记录而不是继续否认。"
+    exit_hook: "纸上出现警告，白天的世界不能再完全解释异常。"
+    required_cast: ["温良", "陈安", "南宫芸儿", "古晓雨", "周成海"]
+    foreshadowing: ["FORESH-0001", "FORESH-0002", "FORESH-0011"]
+  - phase_id: P2-wandering-self-fusion
+    chapter_slots: [CHAPTER-0003, CHAPTER-0004]
+    world_layer: "梦境边界到真实世界废城"
+    function: "温良追进雾里，看见行尸走肉般游走的自己，接触后完成融合并醒在废城。"
+    entry_pressure: "温良主动验证脚步声来源，必须决定靠近还是继续逃避。"
+    decisive_change: "两个温良融合，黑雾第一次因他自身存在而退开。"
+    exit_hook: "聚落巡夜者发现他身边雾退，把他当作危险外来者带回火线以内。"
+    required_cast: ["温良", "行尸走肉般的自己", "林照", "聚落巡夜者"]
+    foreshadowing: ["FORESH-0001", "FORESH-0006", "FORESH-0005"]
+  - phase_id: P3-fireline-settlement
+    chapter_slots: [CHAPTER-0005, CHAPTER-0006]
+    world_layer: "真实世界聚落与旧井边界"
+    function: "通过劳动、火线、资源账本、巡夜和旧井禁忌建立真实世界低层规则。"
+    entry_pressure: "温良饥饿、受伤、无信任，只能用劳动和可见选择换取停留资格。"
+    decisive_change: "他发现旧井可能连向梦境，但聚落知道的只是危险和代价，不是完整真相。"
+    exit_hook: "旧井在雾压中醒来，温良获得一个可验证但危险的回梦入口。"
+    required_cast: ["温良", "林照", "秦婶", "刘婆婆", "小果"]
+    foreshadowing: ["FORESH-0005", "FORESH-0007", "FORESH-0009"]
+  - phase_id: P4-return-hospital
+    chapter_slots: [CHAPTER-0007, CHAPTER-0008]
+    world_layer: "真实世界旧井到梦境层医院"
+    function: "温良承担代价通过旧井返回梦境层，医院剧情正式展开。"
+    entry_pressure: "小果发烧、雾压升高、旧井醒来，温良必须决定是否冒险回去。"
+    decisive_change: "温良从旧井回到梦境层医院，真实世界的客观证据大多被洗掉，但保留一张纸片。"
+    exit_hook: "医院里出现灰衣人的低层迹象，提示梦境层也并不安全。"
+    required_cast: ["温良", "林照", "秦婶", "刘婆婆", "南宫芸儿", "陈安", "古晓雨"]
+    foreshadowing: ["FORESH-0007", "FORESH-0009", "FORESH-0010"]
+
+character_roster_policy:
+  - "按需出场，人物必须服务行动、关系压力、信息来源、世界质感或伏笔推进。"
+  - "有对白且可能复用的人物必须命名或绑定现有角色，不写无功能工具人。"
+  - "校园人物承担日常真实感和关系压力；聚落人物承担资源、风险、误解和生存秩序。"
+
+memory_contract:
+  must_load_ids:
+    - BASELINE-0001
+    - CHRUN-0001
+    - STYLE-0001
+    - RESTRUCT-0002
+    - CHAR-0001
+    - CHAR-0002
+    - REL-0015
+    - RULE-0001
+    - RULE-0002
+    - FORESH-0001
+  must_update_after_draft:
+    - "写后提取事件、知识、关系、物品、人物状态和伏笔变化为 proposal，不自动晋升 Canon。"
+    - "如后续继续医院线，需要新建后续 CHRUN 和场景契约，不沿用旧 9-12 章乱码内容。"
+  forbidden_shortcuts:
+    - "不得把旧 12 章逐章润色为新稿；必须按 phase function 重构。"
+    - "不得把作者提示词原样变成人物对白、旁白解释或提前揭示。"
+    - "不得为了字数添加无功能意象、无代价 NPC 或重复醒来桥段。"
+
+quality_gates:
+  dynamic_chapter_count_declared: true
+  minimum_2000_chars_declared: true
+  prompt_visibility_declared: true
+  world_layers_separated: true
+  capability_timeline_locked: true
+  reader_exposure_limited: true
+  hospital_after_return_only: true
+
+resume_brief: >-
+  RESTRUCT-0002 governs the authorized full prose rebuild. It uses 8
+  reader-visible chapters for the current arc: black-mist footsteps, campus
+  anomalies, wandering-self fusion, real-world survival and settlement
+  exploration, old-well return route, and hospital plot opening. Each
+  reader-visible chapter body must be at least 2000 non-whitespace characters.
+  Author prompts are design input and must be classified by visibility before
+  entering prose. Unused legacy chapters are cut/internal.
