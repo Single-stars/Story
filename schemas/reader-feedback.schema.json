@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/reader-feedback.schema.json",
+  "title": "Story OS reader feedback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "record_type",
+    "owner",
+    "status",
+    "visibility",
+    "reader_profile",
+    "submitted_at",
+    "scope",
+    "observations",
+    "evidence_locations",
+    "suggested_actions",
+    "linked_review_ids",
+    "linked_change_request_ids",
+    "processing",
+    "canon_effect"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "id": { "type": "string", "pattern": "^FB-[0-9]{4}$" },
+    "record_type": { "type": "string", "const": "reader_feedback" },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["novel_id"],
+      "properties": {
+        "novel_id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["received", "triaged", "processed", "stale", "rejected"]
+    },
+    "visibility": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+    },
+    "reader_profile": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "submitted_at": { "type": "string", "format": "date-time" },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chapter_ids", "allowed_preceding_chapter_ids", "source_revision"],
+      "properties": {
+        "chapter_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+        },
+        "allowed_preceding_chapter_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
+        },
+        "source_revision": { "type": "string", "minLength": 1, "maxLength": 200 }
+      }
+    },
+    "observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comprehension",
+        "confusion",
+        "interest_loss",
+        "expectations",
+        "emotional_landing",
+        "continue_reading"
+      ],
+      "properties": {
+        "comprehension": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "confusion": { "$ref": "#/$defs/stringArray" },
+        "interest_loss": { "$ref": "#/$defs/stringArray" },
+        "expectations": { "$ref": "#/$defs/stringArray" },
+        "emotional_landing": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "continue_reading": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      }
+    },
+    "evidence_locations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["chapter_id", "block_id", "content_version", "block_content_hash"],
+        "properties": {
+          "chapter_id": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" },
+          "block_id": { "type": "string", "pattern": "^(BLK|p-[a-f0-9]{12})(?:-[0-9]+)?$" },
+          "content_version": {
+            "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+          },
+          "block_content_hash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "suggested_actions": { "$ref": "#/$defs/stringArray" },
+    "linked_review_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^REVIEW-[0-9]{4}$" }
+    },
+    "linked_change_request_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^CR-[0-9]{4}$" }
+    },
+    "processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "author_decision_id", "notes"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "new",
+            "triaged",
+            "accepted",
+            "rejected",
+            "converted_to_review",
+            "converted_to_change_request",
+            "stale"
+          ]
+        },
+        "author_decision_id": {
+          "type": ["string", "null"],
+          "pattern": "^DEC-[0-9]{4}$"
+        },
+        "notes": { "type": "string", "maxLength": 4000 }
+      }
+    },
+    "canon_effect": { "type": "string", "const": "none" }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 2000 }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-018
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "确认真假层不早揭，温良早期保持穿越式误判与摇摆；女主童年曾被温良外婆收留，这条线作为长期童年回声维护，继续只记入临时记忆。"
+
+confirmed_points:
+  - "真假层不要太早揭露。"
+  - "温良早期要保持摇摆、误判，甚至认为自己是穿越了。"
+  - "正文前期不要出现设定型解释。"
+  - "女主小时候曾被温良的外婆收留。"
+  - "这条外婆线要慢慢展开，不一次讲完。"
+  - "温良因为虚弱和遗忘，会逐渐缺失对这段童年关系的认知。"
+  - "长期记忆必须保持层级化、可持续读取。"
+
+maintenance_layers:
+  - "作者确认"
+  - "正文证据"
+  - "AI暂拟"
+  - "待作者确认"
+  - "正文禁区"
+
+source:
+  - "user_message_2026-07-18-11"
+  - "working-memory: NOVEL-0003-working-memory.md#31"

@@ -243,7 +243,47 @@ blocked_by[]
 6. `author_decisions_required`：互斥修复方向与影响。
 7. `stop_point`：审计完成位置、未读取范围、下一步路由和修复后复验命令。
 
-默认在对话中交付，不创建报告文件。用户明确授权报告路径时也只能新增审计报告，仍不得修改被审计源文件；写入后检查文件范围并重新运行相关验证。
+### REVIEW record draft
+
+默认只在对话中交付 `review_record_draft` YAML 块；只有用户明确授权写入精确路径，或明确授权“创建下一条审查记录”时，才写入 `novels/<NOVEL>/reports/reviews/REVIEW-*.yaml`。草稿必须兼容 `templates/workflow/review-record.yaml` 与 `schemas/review-record.schema.json`，使用 `review_type: continuity`、`canon_effect: proposal_only`，记录 `scope`、`source_version.content_hash`、`coverage.gaps`、`findings[].key/severity/status`、`conclusion.verdict`、`author_decision.status` 和 `reverification.status`。仍不得修改被审计源文件；报告落盘也不授权修改 Canon、场景契约或正文。
+
+如果任何门禁必需字段未知，尤其是 `source_version.content_hash`、精确 `chapter_ids` 或版本基线，把缺口写入 `coverage.gaps`，并说明该草稿在补齐前不能用于 `CHRUN.required_reviews`。不要编造 hash、ID、作者决定或批准状态。
+
+```yaml
+review_record_draft:
+  id: REVIEW-0001
+  record_type: review_record
+  owner:
+    novel_id: NOVEL-0001
+  review_type: continuity
+  status: reviewed
+  scope:
+    novel_id: NOVEL-0001
+    chapter_ids: []
+    entity_ids: []
+    manuscript_paths: []
+  source_version:
+    baseline_label: current-working-tree
+    content_hash: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    reviewed_at: "2026-07-18T00:00:00.000Z"
+  coverage:
+    checked: []
+    gaps: []
+  findings:
+    - key: CONT-001
+      severity: note
+      status: open
+      issue: "替换为本次审计发现；无问题时使用空数组。"
+      recommendation: "记录最小修复方向或复验建议。"
+  conclusion:
+    verdict: pass_with_notes
+  author_decision:
+    status: pending
+    decision_id: null
+  reverification:
+    status: not_required
+  resume_brief: "概括审计范围、结论和下一步。"
+```
 
 路由修复：正文交 `novel-chapter`，场景契约交 `novel-scene`，人物/关系/知识交 `novel-character`，规则交 `novel-worldbuilding`，结构交 `novel-outline`，Canon/retcon 交 `novel-canon-change`。每个流程仍须单独取得写入授权，不得由连续性审计直接代为修改。
 

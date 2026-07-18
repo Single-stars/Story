@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-os.local/schemas/outline.schema.json",
+  "title": "Story OS outline document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "owner",
+    "status",
+    "visibility",
+    "title",
+    "scope",
+    "dependencies",
+    "source_refs",
+    "objective",
+    "structure",
+    "causal_spine",
+    "character_arcs",
+    "thread_plan",
+    "foreshadowing_plan",
+    "chapter_plan",
+    "risks",
+    "open_questions",
+    "approval",
+    "validation"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "template_version": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+    },
+    "document_type": {
+      "type": "string",
+      "const": "outline"
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["novel_id"],
+      "properties": {
+        "novel_id": {
+          "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/novelId"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "proposed", "approved", "stale", "rejected"]
+    },
+    "visibility": {
+      "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/visibility"
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "volume", "act", "chapter", "summary"],
+      "properties": {
+        "level": { "type": "string", "enum": ["novel", "volume", "act", "chapter"] },
+        "volume": { "type": ["integer", "null"], "minimum": 1 },
+        "act": { "type": ["integer", "null"], "minimum": 1 },
+        "chapter": { "type": ["integer", "null"], "minimum": 1 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 4000 }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["series_id", "universe_refs"],
+      "properties": {
+        "series_id": {
+          "anyOf": [
+            { "type": "null" },
+            { "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/seriesId" }
+          ]
+        },
+        "universe_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["universe_id", "version"],
+            "properties": {
+              "universe_id": {
+                "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/universeId"
+              },
+              "version": {
+                "$ref": "https://story-os.local/schemas/common.schema.json#/$defs/semanticVersion"
+              }
+            }
+          }
+        }
+      }
+    },
+    "source_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["premise_refs", "canon_ids", "decision_ids", "research_refs"],
+      "properties": {
+        "premise_refs": { "$ref": "#/$defs/stringArray" },
+        "canon_ids": { "$ref": "#/$defs/stringArray" },
+        "decision_ids": { "$ref": "#/$defs/stringArray" },
+        "research_refs": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "story_goal",
+        "reader_promise",
+        "theme_question",
+        "core_conflict",
+        "ending_cost",
+        "success_criteria"
+      ],
+      "properties": {
+        "story_goal": { "type": "string", "minLength": 1 },
+        "reader_promise": { "type": "string", "minLength": 1 },
+        "theme_question": { "type": "string", "minLength": 1 },
+        "core_conflict": { "type": "string", "minLength": 1 },
+        "ending_cost": { "type": "string", "minLength": 1 },
+        "success_criteria": { "$ref": "#/$defs/nonEmptyStringArray" }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lenses",
+        "opening_promise",
+        "first_major_turn",
+        "midpoint_change",
+        "lowest_point",
+        "climax_choice",
+        "resolution"
+      ],
+      "properties": {
+        "lenses": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "opening_promise": { "type": "string", "minLength": 1 },
+        "first_major_turn": { "type": "string", "minLength": 1 },
+        "midpoint_change": { "type": "string", "minLength": 1 },
+        "lowest_point": { "type": "string", "minLength": 1 },
+        "climax_choice": { "type": "string", "minLength": 1 },
+        "resolution": { "type": "string", "minLength": 1 }
+      }
+    },
+    "causal_spine": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/causalBeat" }
+    },
+    "character_arcs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/characterArc" }
+    },
+    "thread_plan": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/threadPlan" }
+    },
+    "foreshadowing_plan": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/foreshadowingPlan" }
+    },
+    "chapter_plan": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/chapterPlan" }
+    },
+    "risks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["continuity", "pacing", "genre_promise", "dependency"],
+      "properties": {
+        "continuity": { "$ref": "#/$defs/stringArray" },
+        "pacing": { "$ref": "#/$defs/stringArray" },
+        "genre_promise": { "$ref": "#/$defs/stringArray" },
+        "dependency": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/openQuestion" }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_approver", "status", "decision_record_id", "decided_at", "notes"],
+      "properties": {
+        "required_approver": { "type": "string", "const": "author" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "decision_record_id": { "type": ["string", "null"], "maxLength": 80 },
+        "decided_at": { "type": ["string", "null"], "format": "date-time" },
+        "notes": { "type": "string", "maxLength": 4000 }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checks", "evidence"],
+      "properties": {
+        "checks": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "evidence": { "$ref": "#/$defs/stringArray" }
+      }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "idArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "causalBeat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "beat_key",
+        "narrative_position",
+        "trigger",
+        "character_drive",
+        "opposition",
+        "choice_or_action",
+        "turning_point",
+        "consequence",
+        "next_pressure",
+        "scene_ids"
+      ],
+      "properties": {
+        "beat_key": { "type": "string", "pattern": "^beat-[0-9]{3}$" },
+        "narrative_position": { "type": "string", "minLength": 1 },
+        "trigger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_ids", "pressure"],
+          "properties": {
+            "source_ids": { "$ref": "#/$defs/idArray" },
+            "pressure": { "type": "string", "minLength": 1 }
+          }
+        },
+        "character_drive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["character_ids", "goal", "motivation"],
+          "properties": {
+            "character_ids": { "$ref": "#/$defs/idArray" },
+            "goal": { "type": "string", "minLength": 1 },
+            "motivation": { "type": "string", "minLength": 1 }
+          }
+        },
+        "opposition": { "type": "string", "minLength": 1 },
+        "choice_or_action": { "type": "string", "minLength": 1 },
+        "turning_point": { "type": "string", "minLength": 1 },
+        "consequence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state_change", "fact_ids", "event_ids"],
+          "properties": {
+            "state_change": { "type": "string", "minLength": 1 },
+            "fact_ids": { "$ref": "#/$defs/idArray" },
+            "event_ids": { "$ref": "#/$defs/idArray" }
+          }
+        },
+        "next_pressure": { "type": "string", "minLength": 1 },
+        "scene_ids": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "characterArc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "character_id",
+        "starting_state",
+        "want",
+        "need",
+        "wound_or_lie_pressure",
+        "irreversible_choice",
+        "ending_state",
+        "beat_keys"
+      ],
+      "properties": {
+        "character_id": { "type": ["string", "null"] },
+        "starting_state": { "type": "string", "minLength": 1 },
+        "want": { "type": "string", "minLength": 1 },
+        "need": { "type": "string", "minLength": 1 },
+        "wound_or_lie_pressure": { "type": "string", "minLength": 1 },
+        "irreversible_choice": { "type": "string", "minLength": 1 },
+        "ending_state": { "type": "string", "minLength": 1 },
+        "beat_keys": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "threadPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "thread_id",
+        "dramatic_question",
+        "opening_state",
+        "escalation_beat_keys",
+        "resolution_beat_key",
+        "intended_resolution"
+      ],
+      "properties": {
+        "thread_id": { "type": ["string", "null"] },
+        "dramatic_question": { "type": "string", "minLength": 1 },
+        "opening_state": { "type": "string", "minLength": 1 },
+        "escalation_beat_keys": { "$ref": "#/$defs/idArray" },
+        "resolution_beat_key": { "type": ["string", "null"] },
+        "intended_resolution": { "type": "string", "minLength": 1 }
+      }
+    },
+    "foreshadowingPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "foreshadowing_id",
+        "plant_beat_key",
+        "reader_sees",
+        "true_meaning",
+        "advance_beat_keys",
+        "payoff_beat_key"
+      ],
+      "properties": {
+        "foreshadowing_id": { "type": ["string", "null"] },
+        "plant_beat_key": { "type": ["string", "null"] },
+        "reader_sees": { "type": "string", "minLength": 1 },
+        "true_meaning": { "type": "string", "minLength": 1 },
+        "advance_beat_keys": { "$ref": "#/$defs/idArray" },
+        "payoff_beat_key": { "type": ["string", "null"] }
+      }
+    },
+    "chapterPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "volume",
+        "chapter",
+        "title",
+        "entry_state",
+        "causal_trigger",
+        "purpose",
+        "conflict",
+        "decisive_change",
+        "exit_hook",
+        "scene_ids",
+        "advances"
+      ],
+      "properties": {
+        "volume": { "type": "integer", "minimum": 1 },
+        "chapter": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "entry_state": { "type": "string", "minLength": 1 },
+        "causal_trigger": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "conflict": { "type": "string", "minLength": 1 },
+        "decisive_change": { "type": "string", "minLength": 1 },
+        "exit_hook": { "type": "string", "minLength": 1 },
+        "scene_ids": { "$ref": "#/$defs/idArray" },
+        "advances": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["thread_ids", "character_ids", "relationship_ids", "foreshadowing_ids"],
+          "properties": {
+            "thread_ids": { "$ref": "#/$defs/idArray" },
+            "character_ids": { "$ref": "#/$defs/idArray" },
+            "relationship_ids": { "$ref": "#/$defs/idArray" },
+            "foreshadowing_ids": { "$ref": "#/$defs/idArray" }
+          }
+        }
+      }
+    },
+    "openQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "why_it_matters", "blocking", "owner", "decision_needed_by"],
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "why_it_matters": { "type": "string", "minLength": 1 },
+        "blocking": { "type": "boolean" },
+        "owner": { "type": "string", "minLength": 1 },
+        "decision_needed_by": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

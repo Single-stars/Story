@@ -238,10 +238,10 @@ function pagedWindowChapters(book: ReaderBookLike, activeChapter: ReaderChapterL
 
 function chapterBlocksContent(chapter: ReaderChapterLike): string {
   return chapter.blocks
-    .map((block) =>
+    .map((block, index) =>
       block.kind === "divider"
-        ? `<p id="${escapeHtml(block.id)}" class="divider">＊</p>`
-        : `<p id="${escapeHtml(block.id)}">${escapeHtml(block.text)}</p>`
+        ? `<p id="${escapeHtml(block.id)}" data-anchor-index="${index}" class="divider">＊</p>`
+        : `<p id="${escapeHtml(block.id)}" data-anchor-index="${index}">${escapeHtml(block.text)}</p>`
     )
     .join("");
 }
@@ -513,7 +513,8 @@ function selectBook(bookId: string): void {
   state.selection = {
     bookId,
     chapterId: chapter?.id ?? "",
-    anchorId: chapter?.blocks[0]?.id ?? ""
+    anchorId: chapter?.blocks[0]?.id ?? "",
+    anchorIndex: chapter?.blocks[0] === undefined ? undefined : 0
   };
   saveSelection(state.selection);
   renderReader();
@@ -528,7 +529,11 @@ function selectChapter(chapterId: string, anchorId?: string, transitionDirection
   state.selection = {
     bookId: book.id,
     chapterId: chapter.id,
-    anchorId: anchorId ?? chapter.blocks[0]?.id ?? ""
+    anchorId: anchorId ?? chapter.blocks[0]?.id ?? "",
+    anchorIndex: Math.max(
+      0,
+      chapter.blocks.findIndex((block) => block.id === (anchorId ?? chapter.blocks[0]?.id))
+    )
   };
   pendingPagedPosition = "start";
   if (state.readingMode === "paged" && transitionDirection === "previous") {
@@ -651,7 +656,8 @@ function syncSelectionFromViewport(): boolean {
   const nextSelection = {
     bookId: selection.bookId,
     chapterId,
-    anchorId: block.id
+    anchorId: block.id,
+    anchorIndex: Number.parseInt(block.dataset.anchorIndex ?? "0", 10)
   };
   if (
     nextSelection.chapterId === selection.chapterId &&
@@ -1172,11 +1178,16 @@ function loadStoredSelection(bookId?: string): ReadingSelection | null {
 }
 
 function saveSelection(selection: ReadingSelection): void {
-  localStorage.setItem(`${storagePrefix}:progress`, JSON.stringify(selection));
-  localStorage.setItem(`${storagePrefix}:progress:${selection.bookId}`, JSON.stringify(selection));
   const book = findBook(requireLibrary(), selection.bookId);
   const chapter = findChapter(book, selection.chapterId);
-  const anchor = chapter.blocks.find((block) => block.id === selection.anchorId) ?? chapter.blocks[0];
+  const anchorIndex = chapter.blocks.findIndex((block) => block.id === selection.anchorId);
+  const storedSelection = {
+    ...selection,
+    anchorIndex: anchorIndex >= 0 ? anchorIndex : selection.anchorIndex
+  };
+  localStorage.setItem(`${storagePrefix}:progress`, JSON.stringify(storedSelection));
+  localStorage.setItem(`${storagePrefix}:progress:${selection.bookId}`, JSON.stringify(storedSelection));
+  const anchor = chapter.blocks[anchorIndex] ?? chapter.blocks[0];
   const url = buildShareUrl(window.location.href, book.slug, chapter.id, anchor?.id ?? "");
   window.history.replaceState(null, "", url);
 }

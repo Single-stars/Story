@@ -115,6 +115,7 @@ entry_state
 ```
 
 - `goal`：POV 此刻想取得的具体、可观察结果，不写抽象主题。
+- 任何能力测试都必须在 `goal` 或 `conflict` 中写出触发、待验证假设、可承受风险和停止条件；缺一项就不能进入节拍方案。
 - `conflict`：有行动能力的对手、环境、规则或内部压力，以及它为何此刻生效。
 - `turning_point`：让原计划失效、改变风险或重新定义目标的新事实、行动或代价。
 - `crisis`：两个都带真实代价的选择，并写清拖延或拒绝选择的后果。
@@ -122,6 +123,7 @@ entry_state
 - `resolution`：高潮行动直接造成的成功、失败、代价和价值变化。
 - `exit_state`：精确列出地点、时间、伤势、资源、物品、知识、关系、承诺和风险的新状态。
 - `exit_hook`：由本场结果产生、会迫使下一场行动的具体问题、威胁、承诺或决定；不要用无因果的新消息截断章节。
+- 新概念只能在本场提供现象证据、行动影响或竞争解释；名称不得直接承诺用途、真义或通道功能。
 
 用 Five Commandments 复核重要场景：Inciting Incident 对应触发压力，Progressive Complication / Turning Point 对应升级与转折，Crisis 对应代价选择，Climax 对应人物行动，Resolution 对应结果。五项必须属于同一因果链，但不要求每个短过渡场景拥有相同体量。
 
@@ -130,6 +132,7 @@ entry_state
 ### 因果事件
 
 - 复用已存在且语义相同的 `EVT-*`；不要为同一世界事实创建重复事件。
+- NPC 提供信息、路线、保护或权限前，必须记录其独立目标、收益和风险；不得把配角写成主角需要时才出现的答案接口。
 - 新世界内行动需要独立引用时，复制 event 模板并保持 `status: proposed`。
 - 填写 `story_time`、`participants`、`location_id`、`caused_by_event_ids`、`consequence_event_ids` 和 `facts_established`。
 - 用事件 ID 表达因果，不用时间相邻或叙事相邻代替原因。

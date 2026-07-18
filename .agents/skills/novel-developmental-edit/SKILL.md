@@ -79,6 +79,7 @@ description: 对 Story OS 小说进行从全书、卷幕到章节的结构编辑
 - 主角行动是否造成后果，后果是否生成下一压力；巧合可以制造麻烦，不能持续解决核心问题。
 - 转折是否改变目标、策略、关系、资源、信息或代价。
 - 主线是否存在缺失前因、无成本捷径、反派失去行动能力或高潮前临时规则。
+- 新能力或新概念是否由当前目标触发；没有目标、假设、风险和停止条件的能力测试，视为规范泄漏而非人物行动。
 - 场景与章节删除后，核心因果是否毫无损失；无损则考虑合并、压缩或删除。
 
 ### 3.3 主角能动性与人物弧
@@ -103,6 +104,7 @@ description: 对 Story OS 小说进行从全书、卷幕到章节的结构编辑
 - 每个主要问题何时打开、部分回答、重新定义和回收；回答是否产生更具体的新问题。
 - 信息隐瞒是否来自 POV、权限、误解或现实阻力，而非角色故意不想必然会想到的事。
 - 线索是否公平支持答案，同时保留竞争解释；反转后前文能否重新解释。
+- 新概念是否先以现象、材质、使用痕迹和人物反应显影，名称是否被错误地写成官方答案或功能指示。
 - 人物是否依据尚未学会的知识行动，读者是否提前看到高于当前权限的真相。
 - 悬念是否转化为选择与代价，而不是无限拖延答案。
 
@@ -113,6 +115,7 @@ description: 对 Story OS 小说进行从全书、卷幕到章节的结构编辑
 - 支线是否拥有明确 dramatic question、升级和解决/放弃状态。
 - 删除支线后主线是否更清楚且无损；若是，考虑删除或融合。
 - 支线高潮是否抢走主角的主线选择，或在结局前留下未处理的读者承诺。
+- 角色的作者侧职责是否被误写成对白标签；正常对白不能为了凸显敏锐、神秘或观察力而替角色自我说明。
 
 ### 3.7 节奏与重复
 
@@ -224,7 +227,47 @@ blocked_by[]
 
 ## 8. 输出与停点
 
-默认在对话中交付，不创建报告文件。用户明确授权报告路径时，也只能新增审查 proposal，仍不得修改被审查源文件。
+### REVIEW record draft
+
+默认只在对话中交付 `review_record_draft` YAML 块；只有用户明确授权写入精确路径，或明确授权“创建下一条审查记录”时，才写入 `novels/<NOVEL>/reports/reviews/REVIEW-*.yaml`。草稿必须兼容 `templates/workflow/review-record.yaml` 与 `schemas/review-record.schema.json`，使用 `review_type: developmental_edit`、`canon_effect: proposal_only`，记录 `scope`、`source_version.content_hash`、`coverage.gaps`、`findings[].key/severity/status`、`conclusion.verdict`、`author_decision.status`、`reverification.status`、修订顺序和作者待决项。仍不得修改被审查源文件；报告落盘也不授权修改大纲、场景、章节或 Canon。
+
+如果任何门禁必需字段未知，尤其是 `source_version.content_hash`、精确 `chapter_ids` 或版本基线，把缺口写入 `coverage.gaps`，并说明该草稿在补齐前不能用于 `CHRUN.required_reviews`。不要编造 hash、ID、作者决定或批准状态。
+
+```yaml
+review_record_draft:
+  id: REVIEW-0001
+  record_type: review_record
+  owner:
+    novel_id: NOVEL-0001
+  review_type: developmental_edit
+  status: reviewed
+  scope:
+    novel_id: NOVEL-0001
+    chapter_ids: []
+    entity_ids: []
+    manuscript_paths: []
+  source_version:
+    baseline_label: current-working-tree
+    content_hash: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    reviewed_at: "2026-07-18T00:00:00.000Z"
+  coverage:
+    checked: []
+    gaps: []
+  findings:
+    - key: DEV-001
+      severity: note
+      status: open
+      issue: "替换为本次结构审查发现；无问题时使用空数组。"
+      recommendation: "记录结构修订顺序、取舍或复验建议。"
+  conclusion:
+    verdict: pass_with_notes
+  author_decision:
+    status: pending
+    decision_id: null
+  reverification:
+    status: not_required
+  resume_brief: "概括审查范围、主链结论、修订顺序和下一步。"
+```
 
 按顺序输出：
 

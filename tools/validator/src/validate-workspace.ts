@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
@@ -57,6 +58,7 @@ interface NovelManifest {
     canon: string;
     narrative: string;
     manuscript: string;
+    feedback?: string;
     reports?: string;
   };
 }
@@ -67,6 +69,13 @@ interface EntityRecord {
   owner?: {
     novel_id?: string;
     universe_id?: string;
+  };
+}
+
+interface OutlineDocument {
+  document_type: "outline";
+  owner?: {
+    novel_id?: string | null;
   };
 }
 
@@ -89,6 +98,8 @@ interface StoredChapter {
   data: ChapterRecord;
   filePath: string;
   novelId: string;
+  contentHash: string;
+  body: string;
 }
 
 interface ChapterWorkpackRecord {
@@ -106,12 +117,24 @@ interface ChapterWorkpackRecord {
   };
   scene_ids: string[];
   required_context: {
+    style_profile_ids: string[];
     canon_ids: string[];
     narrative_ids: string[];
     manuscript_chapter_ids: string[];
     decision_ids: string[];
   };
+  required_reviews: {
+    continuity: RequiredReviewGate;
+    developmental_edit: RequiredReviewGate;
+    reader_test: RequiredReviewGate;
+    line_edit: RequiredReviewGate;
+  };
   quality_gates: Record<string, boolean>;
+}
+
+interface RequiredReviewGate {
+  required: boolean;
+  review_ids: string[];
 }
 
 interface StoredWorkpack {
@@ -136,6 +159,41 @@ interface StoredWorkflowRecord {
   novelId: string;
 }
 
+interface ReviewRecord extends WorkflowRecord {
+  record_type: "review_record";
+  review_type: string;
+  scope: {
+    novel_id: string;
+    chapter_ids: string[];
+  };
+  source_version: {
+    content_hash: string;
+  };
+  conclusion: {
+    verdict: string;
+  };
+  author_decision: {
+    status: string;
+  };
+  reverification: {
+    status: string;
+  };
+}
+
+interface StoredReviewRecord {
+  data: ReviewRecord;
+  filePath: string;
+  novelId: string;
+}
+
+interface ReaderFeedbackRecord {
+  id: string;
+  record_type: "reader_feedback";
+  owner?: {
+    novel_id?: string;
+  };
+}
+
 interface Validators {
   workspace: ValidateFunction;
   novel: ValidateFunction;
@@ -143,6 +201,9 @@ interface Validators {
   narrative: ValidateFunction;
   manuscript: ValidateFunction;
   workflow: ValidateFunction;
+  review: ValidateFunction;
+  feedback: ValidateFunction;
+  outline: ValidateFunction;
 }
 
 const ENTITY_EXTENSIONS = new Set([".yaml", ".yml", ".md"]);
@@ -182,6 +243,10 @@ function isEntityRecord(value: unknown): value is EntityRecord {
   );
 }
 
+function isOutlineDocument(value: unknown): value is OutlineDocument {
+  return isRecord(value) && value.document_type === "outline";
+}
+
 function isChapterRecord(value: unknown): value is ChapterRecord {
   return (
     isRecord(value) &&
@@ -207,11 +272,25 @@ function isChapterWorkpackRecord(value: unknown): value is ChapterWorkpackRecord
     typeof value.target_word_count.max === "number" &&
     Array.isArray(value.scene_ids) &&
     isRecord(value.required_context) &&
+    Array.isArray(value.required_context.style_profile_ids) &&
     Array.isArray(value.required_context.canon_ids) &&
     Array.isArray(value.required_context.narrative_ids) &&
     Array.isArray(value.required_context.manuscript_chapter_ids) &&
     Array.isArray(value.required_context.decision_ids) &&
+    isRecord(value.required_reviews) &&
+    isRequiredReviewGate(value.required_reviews.continuity) &&
+    isRequiredReviewGate(value.required_reviews.developmental_edit) &&
+    isRequiredReviewGate(value.required_reviews.reader_test) &&
+    isRequiredReviewGate(value.required_reviews.line_edit) &&
     isRecord(value.quality_gates)
+  );
+}
+
+function isRequiredReviewGate(value: unknown): value is RequiredReviewGate {
+  return (
+    isRecord(value) &&
+    typeof value.required === "boolean" &&
+    Array.isArray(value.review_ids)
   );
 }
 
@@ -221,6 +300,88 @@ function isWorkflowRecord(value: unknown): value is WorkflowRecord {
     typeof value.id === "string" &&
     typeof value.record_type === "string"
   );
+}
+
+function isReviewRecord(value: unknown): value is ReviewRecord {
+  const record = isRecord(value) ? value : null;
+  const scope = record === null ? null : recordValue(record, "scope");
+  const conclusion = record === null ? null : recordValue(record, "conclusion");
+  const authorDecision = record === null ? null : recordValue(record, "author_decision");
+  const reverification = record === null ? null : recordValue(record, "reverification");
+  return (
+    isWorkflowRecord(value) &&
+    value.record_type === "review_record" &&
+    record !== null &&
+    typeof record.review_type === "string" &&
+    scope !== null &&
+    typeof scope.novel_id === "string" &&
+    Array.isArray(scope.chapter_ids) &&
+    isRecord(record.source_version) &&
+    typeof record.source_version.content_hash === "string" &&
+    conclusion !== null &&
+    typeof conclusion.verdict === "string" &&
+    authorDecision !== null &&
+    typeof authorDecision.status === "string" &&
+    reverification !== null &&
+    typeof reverification.status === "string"
+  );
+}
+
+function isReaderFeedbackRecord(value: unknown): value is ReaderFeedbackRecord {
+  return (
+    isRecord(value) &&
+    typeof value.id === "string" &&
+    value.record_type === "reader_feedback"
+  );
+}
+
+function sha256(content: string): string {
+  return `sha256:${createHash("sha256").update(content).digest("hex")}`;
+}
+
+function proseHardGateFindings(content: string): string[] {
+  const findings: string[] = [];
+  const paragraphs = content
+    .split(/\r?\n\s*\r?\n/)
+    .map((paragraph) => paragraph.replace(/\s+/g, " ").trim())
+    .filter((paragraph) => paragraph.length >= 20);
+  const seenParagraphs = new Set<string>();
+  for (const paragraph of paragraphs) {
+    if (seenParagraphs.has(paragraph)) {
+      findings.push("repeated paragraph");
+      break;
+    }
+    seenParagraphs.add(paragraph);
+  }
+
+  const sentences = content
+    .split(/[。！？!?]\s*/)
+    .map((sentence) => sentence.replace(/\s+/g, " ").trim())
+    .filter((sentence) => sentence.length >= 20);
+  const seenSentences = new Set<string>();
+  for (const sentence of sentences) {
+    if (seenSentences.has(sentence)) {
+      findings.push("repeated sentence");
+      break;
+    }
+    seenSentences.add(sentence);
+  }
+
+  const aiResiduePatterns = [
+    /这意味着[^。！？!?]{0,80}不只是[^。！？!?]{0,80}更是/u,
+    /真正的问题/u,
+    /更大的东西/u,
+    /某种意义上/u,
+    /这并不(?:只|是)/u
+  ];
+  for (const pattern of aiResiduePatterns) {
+    if (pattern.test(content)) {
+      findings.push("ai residue pattern");
+      break;
+    }
+  }
+
+  return findings;
 }
 
 async function loadJson(filePath: string): Promise<AnySchema> {
@@ -255,6 +416,15 @@ async function createValidators(root: string): Promise<Validators> {
     ),
     workflow: ajv.compile(
       await loadJson(path.join(schemaRoot, "workflow-run.schema.json"))
+    ),
+    review: ajv.compile(
+      await loadJson(path.join(schemaRoot, "review-record.schema.json"))
+    ),
+    feedback: ajv.compile(
+      await loadJson(path.join(schemaRoot, "reader-feedback.schema.json"))
+    ),
+    outline: ajv.compile(
+      await loadJson(path.join(schemaRoot, "outline.schema.json"))
     )
   };
 }
@@ -513,8 +683,10 @@ function validateSemanticContinuity(
 
 function validateChapterWorkpacks(
   workpacks: StoredWorkpack[],
+  workflowRecords: StoredWorkflowRecord[],
   entities: StoredEntity[],
   chapters: StoredChapter[],
+  reviews: StoredReviewRecord[],
   errors: ValidationIssue[]
 ): void {
   const entityIndex = new Map<string, StoredEntity>();
@@ -522,9 +694,17 @@ function validateChapterWorkpacks(
     entityIndex.set(`${entity.novelId}:${entity.data.id}`, entity);
   }
 
-  const chapterIndex = new Set(
-    chapters.map((chapter) => `${chapter.novelId}:${chapter.data.id}`)
+  const chapterIndex = new Map(
+    chapters.map((chapter) => [`${chapter.novelId}:${chapter.data.id}`, chapter])
   );
+  const workflowIndex = new Map(
+    workflowRecords.map((record) => [`${record.novelId}:${record.data.id}`, record])
+  );
+  const reviewIndex = new Map<string, StoredReviewRecord>();
+  for (const review of reviews) {
+    reviewIndex.set(`${review.novelId}:${review.data.id}`, review);
+  }
+
   for (const workpack of workpacks) {
     const { data } = workpack;
     const wordCount = data.target_word_count;
@@ -572,6 +752,34 @@ function validateChapterWorkpacks(
       }
     }
 
+    for (const styleProfileId of data.required_context.style_profile_ids) {
+      const styleProfile = workflowIndex.get(`${workpack.novelId}:${styleProfileId}`);
+      if (styleProfile === undefined) {
+        errors.push({
+          code: "WORKPACK_STYLE_PROFILE_NOT_FOUND",
+          message: `Chapter workpack requires missing style profile ${styleProfileId}.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: { reference: styleProfileId }
+        });
+        continue;
+      }
+      if (styleProfile.data.record_type !== "prose_style_profile") {
+        errors.push({
+          code: "WORKPACK_STYLE_PROFILE_TYPE_MISMATCH",
+          message: `Chapter workpack style profile reference ${styleProfileId} must be a prose_style_profile.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: {
+            reference: styleProfileId,
+            actualRecordType: styleProfile.data.record_type
+          }
+        });
+      }
+    }
+
     const contextNarrativeIds = new Set(data.required_context.narrative_ids);
     for (const sceneId of data.scene_ids) {
       if (!contextNarrativeIds.has(sceneId)) {
@@ -600,6 +808,24 @@ function validateChapterWorkpacks(
       });
     }
 
+    const currentChapter = chapterIndex.get(`${workpack.novelId}:${data.chapter_id}`);
+    if (["draft_ready", "reviewed", "accepted"].includes(data.status) && currentChapter !== undefined) {
+      const findings = proseHardGateFindings(currentChapter.body);
+      if (findings.length > 0) {
+        errors.push({
+          code: "WORKPACK_PROSE_HARD_GATE_FAILED",
+          message: `Chapter workpack ${data.id} cannot be ${data.status} while ${data.chapter_id} has obvious prose hard-gate issues.`,
+          path: workpack.filePath,
+          entityId: data.id,
+          novelId: workpack.novelId,
+          details: {
+            chapterId: data.chapter_id,
+            findings: [...new Set(findings)]
+          }
+        });
+      }
+    }
+
     for (const chapterId of data.required_context.manuscript_chapter_ids) {
       if (!chapterIndex.has(`${workpack.novelId}:${chapterId}`)) {
         errors.push({
@@ -610,6 +836,220 @@ function validateChapterWorkpacks(
           novelId: workpack.novelId,
           details: { chapterId }
         });
+      }
+    }
+
+    if (["reviewed", "accepted"].includes(data.status)) {
+      const requiredReviewGroups = [
+        {
+          field: "continuity",
+          expectedReviewType: "continuity",
+          gate: data.required_reviews.continuity
+        },
+        {
+          field: "developmental_edit",
+          expectedReviewType: "developmental_edit",
+          gate: data.required_reviews.developmental_edit
+        },
+        {
+          field: "reader_test",
+          expectedReviewType: "reader_test",
+          gate: data.required_reviews.reader_test
+        },
+        {
+          field: "line_edit",
+          expectedReviewType: "line_edit",
+          gate: data.required_reviews.line_edit
+        }
+      ];
+
+      for (const group of requiredReviewGroups) {
+        if (!group.gate.required) {
+          errors.push({
+            code: "WORKPACK_REQUIRED_REVIEW_GATE_DISABLED",
+            message: `Chapter workpack must require ${group.expectedReviewType} review before it can be ${data.status}.`,
+            path: workpack.filePath,
+            entityId: data.id,
+            novelId: workpack.novelId,
+            details: { field: group.field, status: data.status }
+          });
+        }
+
+        if (group.gate.required && group.gate.review_ids.length === 0) {
+          errors.push({
+            code: "WORKPACK_REQUIRED_REVIEW_MISSING",
+            message: `Chapter workpack requires at least one ${group.expectedReviewType} review before it can be ${data.status}.`,
+            path: workpack.filePath,
+            entityId: data.id,
+            novelId: workpack.novelId,
+            details: { field: group.field, status: data.status }
+          });
+        }
+
+        for (const reviewId of group.gate.review_ids) {
+          const review = reviewIndex.get(`${workpack.novelId}:${reviewId}`);
+          if (review === undefined) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_NOT_FOUND",
+              message: `Chapter workpack requires missing review ${reviewId}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: { reference: reviewId, field: group.field }
+            });
+            continue;
+          }
+
+          if (review.data.review_type !== group.expectedReviewType) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_TYPE_MISMATCH",
+              message: `Chapter workpack review ${reviewId} must be ${group.expectedReviewType}, not ${review.data.review_type}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                field: group.field,
+                expectedReviewType: group.expectedReviewType,
+                actualReviewType: review.data.review_type
+              }
+            });
+          }
+
+          if (!["reviewed", "accepted"].includes(review.data.status ?? "")) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_NOT_COMPLETE",
+              message: `Chapter workpack review ${reviewId} must be reviewed or accepted before the workpack can be ${data.status}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                reviewStatus: review.data.status,
+                status: data.status
+              }
+            });
+          }
+
+          if (
+            review.data.scope.novel_id !== workpack.novelId ||
+            !review.data.scope.chapter_ids.includes(data.chapter_id)
+          ) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_SCOPE_MISMATCH",
+              message: `Chapter workpack review ${reviewId} must cover ${data.chapter_id} in ${workpack.novelId}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                chapterId: data.chapter_id,
+                reviewNovelId: review.data.scope.novel_id,
+                reviewChapterIds: review.data.scope.chapter_ids
+              }
+            });
+          }
+
+          const chapter = chapterIndex.get(`${workpack.novelId}:${data.chapter_id}`);
+          if (
+            chapter !== undefined &&
+            review.data.source_version.content_hash !== chapter.contentHash
+          ) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_STALE",
+              message: `Chapter workpack review ${reviewId} was created for ${review.data.source_version.content_hash}, but ${data.chapter_id} is currently ${chapter.contentHash}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                chapterId: data.chapter_id,
+                reviewContentHash: review.data.source_version.content_hash,
+                currentContentHash: chapter.contentHash
+              }
+            });
+          }
+
+          if (review.data.conclusion.verdict === "blocked") {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_BLOCKED",
+              message: `Chapter workpack cannot be ${data.status} while review ${reviewId} is blocked.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: { reference: reviewId, status: data.status }
+            });
+          }
+
+          if (review.data.conclusion.verdict === "inconclusive") {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_VERDICT_NOT_SATISFIED",
+              message: `Chapter workpack review ${reviewId} must have a conclusive pass verdict before the workpack can be ${data.status}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                verdict: review.data.conclusion.verdict,
+                status: data.status
+              }
+            });
+          }
+
+          if (!["pass", "pass_with_notes"].includes(review.data.conclusion.verdict)) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_VERDICT_NOT_SATISFIED",
+              message: `Chapter workpack review ${reviewId} must pass before the workpack can be ${data.status}.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                verdict: review.data.conclusion.verdict,
+                status: data.status
+              }
+            });
+          }
+
+          if (review.data.reverification.status === "required") {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_REVERIFICATION_REQUIRED",
+              message: `Chapter workpack cannot be ${data.status} while review ${reviewId} still requires reverification.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: { reference: reviewId, status: data.status }
+            });
+          }
+
+          if (review.data.reverification.status === "failed") {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_REVERIFICATION_FAILED",
+              message: `Chapter workpack cannot be ${data.status} while review ${reviewId} has failed reverification.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: { reference: reviewId, status: data.status }
+            });
+          }
+
+          if (
+            data.status === "accepted" &&
+            review.data.author_decision.status !== "accepted"
+          ) {
+            errors.push({
+              code: "WORKPACK_REQUIRED_REVIEW_AUTHOR_DECISION_NOT_ACCEPTED",
+              message: `Chapter workpack cannot be accepted until the author accepts review ${reviewId} handling.`,
+              path: workpack.filePath,
+              entityId: data.id,
+              novelId: workpack.novelId,
+              details: {
+                reference: reviewId,
+                authorDecisionStatus: review.data.author_decision.status
+              }
+            });
+          }
+        }
       }
     }
   }
@@ -690,6 +1130,7 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
   const storedChapters: StoredChapter[] = [];
   const storedWorkpacks: StoredWorkpack[] = [];
   const storedWorkflowRecords: StoredWorkflowRecord[] = [];
+  const storedReviews: StoredReviewRecord[] = [];
   let validators: Validators;
 
   try {
@@ -837,6 +1278,37 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
         }
 
         if (!isEntityRecord(entity)) {
+          if (entityRoot.kind === "narrative" && isRecord(entity) && "document_type" in entity) {
+            if (isOutlineDocument(entity)) {
+              if (!validators.outline(entity)) {
+                errors.push(
+                  ...schemaIssues("OUTLINE_SCHEMA_INVALID", filePath, validators.outline.errors).map(
+                    (issue) => ({ ...issue, novelId: registration.id })
+                  )
+                );
+                continue;
+              }
+              if (entity.owner?.novel_id !== registration.id) {
+                errors.push({
+                  code: "DOCUMENT_OWNER_MISMATCH",
+                  message: `Outline owner must be ${registration.id} inside this novel.`,
+                  path: filePath,
+                  novelId: registration.id
+                });
+              }
+              continue;
+            }
+
+            errors.push({
+              code: "DOCUMENT_TYPE_UNKNOWN",
+              message: `Narrative document_type ${String(entity.document_type)} is not recognized.`,
+              path: filePath,
+              novelId: registration.id,
+              details: { documentType: entity.document_type }
+            });
+            continue;
+          }
+
           warnings.push({
             code: "ENTITY_RECORD_SKIPPED",
             message: "File has no entity id/entity_type and was not schema-validated.",
@@ -894,8 +1366,13 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
     const chapterPositions = new Map<string, string>();
     for (const filePath of chapterFiles) {
       let chapter: unknown;
+      let rawChapterContent = "";
+      let chapterBody = "";
       try {
-        chapter = matter(await readFile(filePath, "utf8")).data as unknown;
+        rawChapterContent = await readFile(filePath, "utf8");
+        const parsedChapter = matter(rawChapterContent);
+        chapter = parsedChapter.data as unknown;
+        chapterBody = parsedChapter.content;
       } catch (error) {
         errors.push({
           code: "CHAPTER_READ_FAILED",
@@ -924,7 +1401,13 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
       }
 
       stats.chapters += 1;
-      storedChapters.push({ data: chapter, filePath, novelId: registration.id });
+      storedChapters.push({
+        data: chapter,
+        filePath,
+        novelId: registration.id,
+        contentHash: sha256(rawChapterContent),
+        body: chapterBody
+      });
       if (chapter.novel_id !== registration.id) {
         errors.push({
           code: "CHAPTER_NOVEL_MISMATCH",
@@ -1031,6 +1514,102 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
           });
         }
       }
+
+      const reviewRoot = path.join(novelRoot, novelManifest.paths.reports, "reviews");
+      const reviewFiles = (await listEntityFiles(reviewRoot)).filter((filePath) =>
+        [".yaml", ".yml"].includes(path.extname(filePath).toLowerCase())
+      );
+      for (const filePath of reviewFiles) {
+        let reviewRecord: unknown;
+        try {
+          reviewRecord = await loadYaml(filePath);
+        } catch (error) {
+          errors.push({
+            code: "REVIEW_READ_FAILED",
+            message: error instanceof Error ? error.message : String(error),
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+
+        if (!validators.review(reviewRecord)) {
+          errors.push(
+            ...schemaIssues("REVIEW_SCHEMA_INVALID", filePath, validators.review.errors).map(
+              (issue) => ({ ...issue, novelId: registration.id })
+            )
+          );
+          continue;
+        }
+        if (!isWorkflowRecord(reviewRecord)) {
+          errors.push({
+            code: "REVIEW_RECORD_INVALID",
+            message: "Review record has an unexpected runtime shape.",
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+
+        storedWorkflowRecords.push({
+          data: reviewRecord,
+          filePath,
+          novelId: registration.id
+        });
+        if (isReviewRecord(reviewRecord)) {
+          storedReviews.push({
+            data: reviewRecord,
+            filePath,
+            novelId: registration.id
+          });
+        }
+      }
+
+      const feedbackRoot = path.join(novelRoot, novelManifest.paths.feedback ?? "feedback");
+      const feedbackFiles = (await listEntityFiles(feedbackRoot)).filter((filePath) =>
+        [".yaml", ".yml"].includes(path.extname(filePath).toLowerCase())
+      );
+      for (const filePath of feedbackFiles) {
+        let feedbackRecord: unknown;
+        try {
+          feedbackRecord = await loadYaml(filePath);
+        } catch (error) {
+          errors.push({
+            code: "FEEDBACK_READ_FAILED",
+            message: error instanceof Error ? error.message : String(error),
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+
+        if (!validators.feedback(feedbackRecord)) {
+          errors.push(
+            ...schemaIssues("FEEDBACK_SCHEMA_INVALID", filePath, validators.feedback.errors).map(
+              (issue) => ({ ...issue, novelId: registration.id })
+            )
+          );
+          continue;
+        }
+        if (!isReaderFeedbackRecord(feedbackRecord)) {
+          errors.push({
+            code: "FEEDBACK_RECORD_INVALID",
+            message: "Reader feedback record has an unexpected runtime shape.",
+            path: filePath,
+            novelId: registration.id
+          });
+          continue;
+        }
+        if (feedbackRecord.owner?.novel_id !== registration.id) {
+          errors.push({
+            code: "FEEDBACK_OWNER_MISMATCH",
+            message: `Reader feedback owner must be ${registration.id} inside this novel.`,
+            path: filePath,
+            entityId: feedbackRecord.id,
+            novelId: registration.id
+          });
+        }
+      }
     }
   }
 
@@ -1057,7 +1636,14 @@ export async function validateWorkspace(rootPath: string): Promise<ValidationRep
     }
   }
 
-  validateChapterWorkpacks(storedWorkpacks, storedEntities, storedChapters, errors);
+  validateChapterWorkpacks(
+    storedWorkpacks,
+    storedWorkflowRecords,
+    storedEntities,
+    storedChapters,
+    storedReviews,
+    errors
+  );
   validateWorkflowRecords(storedWorkflowRecords, storedEntities, storedChapters, errors);
 
   return { ok: errors.length === 0, errors, warnings, stats };

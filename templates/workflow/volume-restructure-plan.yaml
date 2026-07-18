@@ -12,33 +12,38 @@ scope:
   novel_id: NOVEL-0001
   volume: 1
   from: "story opening"
-  to: "protagonist returns to the dream world"
+  to: "the protagonist reaches the next irreversible turn"
   replaces_chapter_ids:
     - CHAPTER-0001
 
 source_constraints:
   world_layers:
-    - "Dream world is prosperous, normal, and socially detailed."
-    - "Real/main world is decayed, black-mist covered, and materially harsh."
+    - "Each active world, timeline, or social layer must have distinct visible texture."
+    - "Layer changes must be signaled by environment, character behavior, cost, or rule pressure."
   capability_timeline:
     - "Before fusion: no object control or physical reality rewriting."
-    - "After fusion in real/main world: automatic mist clearing, no telekinesis."
-    - "Only lucid dream-world entry permits limited dream-rule changes."
+    - "After a threshold change: only explicitly approved effects may appear."
+    - "Special-rule spaces may permit limited effects only when the scene contract says so."
   reader_exposure:
     - "Early chapters may show low-level traces and survival routines, not high-level organization truth."
     - "Reader-visible clues must be fair signals, not internal answers."
   relationship_pacing:
     - "Main relationship develops slowly through ordinary school contact, disagreement, and earned trust."
+  motivation_and_concept_gates:
+    - "Ability tests require a trigger, immediate goal, hypothesis, risk, and stopping condition."
+    - "New concepts begin as visible phenomena and consequences; labels cannot reveal function or truth."
+    - "NPCs must have independent goals, knowledge limits, and costs before supplying routes or answers."
+    - "Cross-world transitions must track people, items, injuries, and elapsed time without silent duplication."
 
 phase_plan:
-  - phase_id: P1-opening-dream-and-school
+  - phase_id: P1-opening-pressure-and-social-texture
     chapter_slots:
       - CHAPTER-0001
-    world_layer: "dream world and school day contrast"
-    function: "Establish Wen Liang's recurring black-mist pressure and normal school social texture."
-    entry_pressure: "Wen Liang wakes from a black-mist dream with residual fear and must still function at school."
-    decisive_change: "He confirms the dream pressure leaves traces in attention, memory, and relationships."
-    exit_hook: "The repeated footsteps become a question he cannot dismiss."
+    world_layer: "primary layer and contrasting daily texture"
+    function: "Establish the protagonist's recurring pressure and ordinary social context."
+    entry_pressure: "The protagonist enters the day carrying a private disturbance but must still act normally."
+    decisive_change: "The disturbance leaves a concrete trace in attention, memory, relationship, or choice."
+    exit_hook: "A repeated signal becomes a question the protagonist cannot dismiss."
     required_cast:
       - "protagonist"
       - "slow-burn heroine"

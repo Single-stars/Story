@@ -1,0 +1,56 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-022
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "维护可重复读取的空间职责；梦境空间保持都市校园日常，真实空间只保留聚落、火线、旧井和聚落外废墟四个核心单位。"
+
+dream_spaces:
+  - name: "教室与校园日常"
+    narrative_function: "展示温良的虚弱、南宫芸儿的观察、陈安的照顾、姚瑶的压力和普通人对异常的自然化反应。"
+    texture: "明亮、拥挤、熟悉、琐碎；异常只通过人物感受和行为偏差进入。"
+    forbidden_use: "不得在课堂或走廊用旁白讲解入梦计划、系统、零号或双界真相。"
+  - name: "学校宿舍"
+    narrative_function: "温良与陈安的两人生活空间；陈舟隔壁房间的空床形成不解释的日常缺口。"
+    fixed_state: "温良与陈安同住；陈舟住隔壁双人间，目前因赵思远被以生病为由带走而单住。"
+  - name: "医务室与医院"
+    narrative_function: "医务室负责日常身体问题；医院只在确有事件需要时出现，不作为万能解释场。"
+    evidence_rule: "医院不能替温良保留真实世界的物证、录音、印记或系统性证据。"
+  - name: "食堂、失物招领处、操场"
+    narrative_function: "承载人物关系、流言、排斥、偶遇和具体行动，不单独承担设定说明。"
+  - name: "出租屋"
+    narrative_function: "温良的周末/备用住所和现实感据点；钥匙、生活物品和房东的照顾通过行动保留。"
+    gate: "它可以成为异常发生的日常入口，但不能被写成解释世界的说明室。"
+
+real_spaces:
+  - name: "聚落"
+    narrative_function: "提供临时生存秩序、劳动交换、人物冲突与有限保护。"
+    fixed_elements: "居住、物资、医疗和工作可以存在，但不拆成一串必须背诵的功能房间。"
+    social_constraint: "所有接纳、食物、工具和信息都要对应劳动、风险或关系代价。"
+  - name: "火线"
+    narrative_function: "某种燃料持续燃烧形成的抗雾防线，也是聚落分配劳动、安排巡守和判断安全的核心。"
+    fixed_rule: "统一使用‘火线’称呼；巡守是围绕火线进行的工作，不另设‘巡守区’。"
+    visible_consequence: "火势下降时黑雾逼近，火势恢复时雾退开；燃料消耗和人员疲劳必须持续存在。"
+  - name: "旧井"
+    narrative_function: "当前已知的危险传送点；承载返程欲望、规则缺口和不可重复使用的后果。"
+    constraint: "旧井不是稳定入口，温良使用后该点失效或坍塌；具体触发和失败代价不提前解释。"
+  - name: "聚落外废墟"
+    narrative_function: "承载黑雾、资源搜索、路线判断、救援和温良主动探索。"
+    texture: "视线短、声音被雾吞没、地面不可靠、资源稀缺；空间限制必须改变人物选择。"
+
+space_quality_gates:
+  - "每次进入空间前先明确人物此刻要做什么、谁阻止他、行动改变了什么。"
+  - "空间感官细节必须同时承担行动限制、关系暴露、资源压力或信息误导。"
+  - "梦境空间不得用‘正常’代替具体生活，真实空间不得用‘末世’代替具体劳动。"
+  - "作者侧空间标签和深层术语不进入正文；人物只能使用当下自然会说的地点称呼。"
+  - "不为尚未承担事件职责的地点新增分区、机关或规则。"
+
+source:
+  - "DECISION-WORKING-019"
+  - "DECISION-WORKING-021"
+  - "author_setting_corrections_2026-07-18"
+  - "author_write_gate_confirmation_2026-07-18"

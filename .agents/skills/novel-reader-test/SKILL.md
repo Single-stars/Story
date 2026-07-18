@@ -124,7 +124,48 @@ revision_question
 9. `author_review_required`：反馈仅供作者判断，不构成 Canon、事实确认或自动修订授权。
 10. `stop_point`：测试结束位置、最后获准章节和禁止继续读取的边界。
 
-默认在对话中交付。只有用户明确授权精确路径时才写入报告文件；报告必须位于目标小说的 feedback/report 范围并标明 `novel_id`、基准、`status: audit|feedback` 和非 Canon 声明。不得顺带修改任何被测文件。
+### REVIEW record draft
+
+默认只在对话中交付 `review_record_draft` YAML 块；只有用户明确授权写入精确路径，或明确授权“创建下一条审查记录”时，才写入 `novels/<NOVEL>/reports/reviews/REVIEW-*.yaml`。草稿必须兼容 `templates/workflow/review-record.yaml` 与 `schemas/review-record.schema.json`，使用 `review_type: reader_test`、`canon_effect: proposal_only`，只记录白名单正文 `scope`、`source_version.content_hash`、隔离声明、`coverage.gaps`、`findings[].key/severity/status`、`conclusion.verdict`、`author_decision.status` 和 `reverification.status`。不得顺带修改任何被测文件；不得把盲测反馈写入 Canon、proposal 或正文。
+
+`coverage.gaps` 必须显式说明隐藏 Canon、大纲、未来章节和其他非白名单材料没有读取。盲测结论通常使用 `pass_with_notes` 或 `inconclusive`；只有被授权正文自身造成严重理解失败时才使用 `blocked`。如果任何门禁必需字段未知，尤其是 `source_version.content_hash`、精确 `chapter_ids` 或版本基线，把缺口写入 `coverage.gaps`，并说明该草稿在补齐前不能用于 `CHRUN.required_reviews`。不要编造 hash、ID、作者决定或批准状态。
+
+```yaml
+review_record_draft:
+  id: REVIEW-0001
+  record_type: review_record
+  owner:
+    novel_id: NOVEL-0001
+  review_type: reader_test
+  status: reviewed
+  scope:
+    novel_id: NOVEL-0001
+    chapter_ids: []
+    entity_ids: []
+    manuscript_paths: []
+  source_version:
+    baseline_label: current-working-tree
+    content_hash: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    reviewed_at: "2026-07-18T00:00:00.000Z"
+  coverage:
+    checked: []
+    gaps:
+      - "未读取隐藏 Canon、大纲、未来章节或非白名单材料。"
+  findings:
+    - key: RT-001
+      severity: note
+      status: open
+      issue: "替换为本次盲测反馈；无问题时使用空数组。"
+      recommendation: "记录需要作者判断或后续审查的最小动作。"
+  conclusion:
+    verdict: pass_with_notes
+  author_decision:
+    status: pending
+    decision_id: null
+  reverification:
+    status: not_required
+  resume_brief: "概括白名单范围、新读者理解、误解风险和下一步。"
+```
 
 ### Gate B：交付前泄密审计
 

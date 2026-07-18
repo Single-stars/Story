@@ -1,0 +1,63 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-024
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "为《雾醒时分》提供按任务最小读取的工作流入口，并把正文术语隔离、作者侧真相与人物知识边界设为共同门禁。"
+
+confirmed_points:
+  - "DECISION-WORKING-019 是总确认层，承载作者侧宏观共识、类型对照和全局披露规则。"
+  - "DECISION-WORKING-020 负责人物职责、主动目标、方向性关系和人物知识边界。"
+  - "DECISION-WORKING-021 负责双界规则、黑雾、火线、灵魂能力、传送限制和术语隔离。"
+  - "DECISION-WORKING-022 负责梦境校园空间、聚落、火线、旧井和废墟的场景职责。"
+  - "DECISION-WORKING-023 负责事件链、主动选择、伏笔、披露阶段和撤销的旧钩子。"
+  - "第一卷结构与终点暂不锁定；需要结构设计时另行路由 novel-outline。"
+  - "后续新信息必须先分类，再写入对应入口；不得把完整讨论复制进所有文件。"
+
+read_order:
+  - id: "DECISION-WORKING-019"
+    role: "总确认、类型对照、术语总门禁"
+  - id: "DECISION-WORKING-020"
+    role: "人物与关系"
+  - id: "DECISION-WORKING-021"
+    role: "世界规则、能力与可见性"
+  - id: "DECISION-WORKING-022"
+    role: "场景与空间"
+  - id: "DECISION-WORKING-023"
+    role: "事件、伏笔与披露"
+  - id: "DECISION-WORKING-025"
+    role: "短版执行规程"
+
+task_routing:
+  character: "先读 019、020；涉及能力或知识再读 021。"
+  worldbuilding: "先读 019、021；涉及地点再读 022，涉及事件披露再读 023。"
+  scene: "先读 019、022；按人物和规则依赖补读 020、021。"
+  event_or_foreshadowing: "先读 019、023；按行动者和规则补读 020、021。"
+  continuity: "先读 024，再按审计范围读取 019-023；不得默认扫描正文或其他小说。"
+  chapter_or_prose: "先完成对应 CHRUN/场景契约和连续性门禁；正文不得直接读取全部作者侧设定。"
+
+term_exposure_gate:
+  before_reveal: "正文只能使用人物当下自然会说的抽象称呼和可观察现象。"
+  reveal_event_required: "具体术语必须在对应事件中被发现、命名或公开后才可进入后续正文。"
+  forbidden_shortcut: "不得把工作流字段名、作者侧标签或括号解释复制到旁白、对白、章节摘要或读者包。"
+  evidence_boundary: "跨界经历不能通过手机、录音、物品、红印、灯光或其他可独立验证证据留在梦境。"
+
+write_policy:
+  - "所有本入口记录保持 status: working、visibility: internal、canon_effect: proposal_only。"
+  - "修改超过三个文件时拆批；每批先解析，再运行任务相关验证。"
+  - "发现与正文或已有 Canon 冲突时停在 proposal，并路由到对应专用 Skill。"
+  - "不以聊天记忆补齐未声明的人物、事件、规则、知识或伏笔 ID。"
+
+source:
+  - "DECISION-WORKING-019"
+  - "DECISION-WORKING-020"
+  - "DECISION-WORKING-021"
+  - "DECISION-WORKING-022"
+  - "DECISION-WORKING-023"
+  - "DECISION-WORKING-025"
+  - "author_setting_corrections_2026-07-18"
+  - "author_write_gate_confirmation_2026-07-18"

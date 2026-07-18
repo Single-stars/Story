@@ -21,6 +21,8 @@ scene_ids:
 
 # Load these records before writing. Do not rely on chat memory.
 required_context:
+  style_profile_ids:
+    - STYLE-0001
   canon_ids:
     - CHAR-0001
     - LOC-0001
@@ -33,6 +35,27 @@ required_context:
     - CHAPTER-0000
   decision_ids:
     - DEC-0001
+
+# Reviews that must be satisfied before this workpack can be treated as reviewed
+# or accepted. Review records are audit/proposal evidence, not Canon approval.
+# Keep arrays empty while the chapter is still being planned.
+required_reviews:
+  continuity:
+    required: true
+    review_ids: []
+    notes: "Continuity review must cover this chapter before reviewed/accepted status."
+  developmental_edit:
+    required: true
+    review_ids: []
+    notes: "Structure and chapter-function review must cover this chapter before reviewed/accepted status."
+  reader_test:
+    required: true
+    review_ids: []
+    notes: "Fresh-reader test must use only authorized manuscript scope; it must not read hidden Canon."
+  line_edit:
+    required: true
+    review_ids: []
+    notes: "Line edit review must cover clarity, repetition, AI residue, POV distance, action logic, and prose fidelity before reviewed/accepted status."
 
 continuity_contract:
   world_state: >-
@@ -50,6 +73,18 @@ continuity_contract:
   foreshadowing_plan: >-
     State which foreshadowing is planted, advanced, paid off, or withheld. The
     reader-visible clue must not reveal the hidden answer too early.
+  motivation_gate: >-
+    Before any ability test, record trigger, immediate goal, hypothesis, risk,
+    and stopping condition. Without all five, do not test or narrate a capability checklist.
+  concept_exposure_gate: >-
+    New concepts begin as visible phenomenon, material trace, use, or reaction.
+    Names must have a source and cannot reveal function, purpose, or hidden truth.
+  npc_independence_gate: >-
+    An NPC who supplies information, access, protection, or a route must have an
+    independent goal and a cost; do not make dialogue announce the NPC's role.
+  cross_layer_state_gate: >-
+    Track people, items, bodies, injuries, and elapsed time across every world or
+    dream transition. No silent duplication or transfer.
   reader_exposure:
     allowed:
       - The reader may see only facts earned by the approved scenes.
@@ -66,6 +101,10 @@ quality_gates:
   foreshadowing_status_checked: true
   reader_exposure_limited: true
   prose_quality_review_planned: true
+  motivation_gate_checked: true
+  concept_exposure_checked: true
+  npc_independence_checked: true
+  cross_layer_state_checked: true
 
 resume_brief: >-
   One paragraph that lets a new agent resume the chapter without reading the

@@ -1,0 +1,87 @@
+schema_version: "0.1.0"
+id: REVIEW-0003
+record_type: review_record
+owner:
+  novel_id: NOVEL-0003
+status: reviewed
+visibility: internal
+canon_effect: proposal_only
+review_type: continuity
+scope:
+  novel_id: NOVEL-0003
+  chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+  entity_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - REL-0001
+    - FACT-0001
+    - EVT-0001
+    - SCN-0001
+    - THREAD-0001
+    - FORESH-0001
+  manuscript_paths:
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0001.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0002.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0003.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0004.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0006.md"
+source_version:
+  baseline_label: "current-working-tree-after-local-loophole-fixes"
+  content_hash: "sha256:db068af7d7b94e71928415074df917ba7209ad907a66e53c5acf4bc41fa7b696"
+  reviewed_at: "2026-07-18T16:04:45+08:00"
+coverage:
+  checked:
+    - "章节前后章链接、reader 链路边界与 frontmatter"
+    - "温良跨梦/雾外/医院的地点、身体、手机和时间承接"
+    - "人物知识边界、能力时序、旧井线索与读者可见性"
+  gaps:
+    - "正文尚无 ITEM/EVT 结构化记录，手机链当前以正文桥接，需后续结构化"
+    - "CHAPTER-0002 至 CHAPTER-0006 缺少独立场景契约"
+    - "未读取或审计第 7 章正文；其 frontmatter 为 status: cut，故 CHAPTER-0006 next_chapter_id: null 视为有意 reader 边界"
+findings:
+  - key: CONT-001
+    severity: major
+    status: fixed
+    location: "CHAPTER-0006:43-49, 91-97, 145-157"
+    issue: "医院发现温良与手机来源曾互相冲突。"
+    recommendation: "已补明后门发现、手机由护士交给赵砚，并让温良只写下当前能确认的观察。"
+  - key: CONT-002
+    severity: minor
+    status: open
+    location: "CHAPTER-0003/0005/0006"
+    issue: "跨界人物、手机、火绳和伤势尚未有 EVT/ITEM 级迁移记录。"
+    recommendation: "为井下返回场景建立事件和 item_changes，再复核故事时间与物品状态。"
+  - key: CONT-003
+    severity: note
+    status: verified
+    location: "CHAPTER-0006 frontmatter / CHAPTER-0007 frontmatter"
+    issue: "CHAPTER-0006 next_chapter_id 为 null，但 CHAPTER-0007 存在。"
+    recommendation: "CHAPTER-0007 status 为 cut 且 previous_chapter_id 指向 CHAPTER-0006；当前 null 是 reader 链路的有意边界，保留。"
+  - key: CONT-004
+    severity: minor
+    status: open
+    location: "CHAPTER-0005:177-215"
+    issue: "刘婆婆和林照提供旧井接近条件的场景仍需验证各自独立目标与知识来源。"
+    recommendation: "建立 SCN/EVT proposal，写清看门时间、风险和未知道路，不把帮助当作身份证明。"
+conclusion:
+  verdict: pass_with_notes
+  summary: "医院/手机的可见矛盾已修复，reader 链边界已确认；结构化事件、物品和场景记录仍需下一轮补齐。"
+  blockers: []
+author_decision:
+  status: accepted
+  decision_id: DEC-0001
+  notes: "作者授权修复确定性连续性漏洞；未授权自动把 proposal 晋升为 Canon。"
+reverification:
+  status: required
+  required_review_ids:
+    - REVIEW-0001
+    - REVIEW-0002
+  notes: "SCN/EVT/ITEM proposal 完成后复核 CONT-002 和 CONT-004。"
+resume_brief: "已修复医院手机桥接并确认 CHAPTER-0006 reader 边界；下一步是为跨界返回和旧井场景建立结构化记录。"

@@ -1,0 +1,80 @@
+schema_version: "0.1.0"
+id: REVIEW-0002
+record_type: review_record
+owner:
+  novel_id: NOVEL-0003
+status: reviewed
+visibility: internal
+canon_effect: proposal_only
+review_type: line_edit
+scope:
+  novel_id: NOVEL-0003
+  chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+  entity_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - REL-0001
+  manuscript_paths:
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0001.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0002.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0003.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0004.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0006.md"
+source_version:
+  baseline_label: "current-working-tree-after-local-loophole-fixes"
+  content_hash: "sha256:db068af7d7b94e71928415074df917ba7209ad907a66e53c5acf4bc41fa7b696"
+  reviewed_at: "2026-07-18T16:04:45+08:00"
+coverage:
+  checked:
+    - "自然对白与作者侧角色功能泄漏"
+    - "无动机能力验收清单、概念功能指向和解释性收尾"
+    - "POV、动作顺序、信息边界与未授权事实漂移"
+  gaps:
+    - "未进行逐句全稿 line-edit 重写；本记录覆盖本批确定性漏洞和代表性模式"
+    - "作者仍可在 Gate 中保留有意的口语、含混或重复"
+findings:
+  - key: LINE-001
+    severity: major
+    status: fixed
+    location: "CHAPTER-0002:137-139"
+    issue: "南宫芸儿对白用职责宣言替代正常交流。"
+    recommendation: "已改为‘先录下来……至少有东西可听’，保留她的怀疑与实际目标，不宣布人物功能。"
+  - key: LINE-002
+    severity: major
+    status: fixed
+    location: "CHAPTER-0001/0002/0004/0006"
+    issue: "反复写控物失败，把流程约束暴露成角色思维。"
+    recommendation: "已改为记录脚步、检查门链、观察雾和一次有明确目的的病房测试。"
+  - key: LINE-003
+    severity: minor
+    status: fixed
+    location: "CHAPTER-0004/0005/0006"
+    issue: "‘真实界/梦世界/回梦井’等名称或旁白曾提前指向功能。"
+    recommendation: "已改为学校那边、雾外、旧井和可见刻痕；保留读者问题，不直接给答案。"
+  - key: LINE-004
+    severity: minor
+    status: open
+    location: "CHAPTER-0003/0005/0006"
+    issue: "局部仍存在较高密度的转场与世界信息，需要在场景契约锁定后再做节奏压缩。"
+    recommendation: "先完成 SCN/CHRUN，再进行 standard line edit；不要用行文抛光掩盖结构选择。"
+conclusion:
+  verdict: pass_with_notes
+  summary: "本批指定的自然对白、动机测试和概念指向问题已修复；剩余密度问题依赖场景重排。"
+  blockers: []
+author_decision:
+  status: accepted
+  decision_id: DEC-0001
+  notes: "作者已授权本批修订；未授权把可选审美偏好强制改成统一 voice。"
+reverification:
+  status: required
+  required_review_ids:
+    - REVIEW-0003
+  notes: "结构与连续性门禁通过后再做下一轮 line edit。"
+resume_brief: "已完成前 6 章确定性 AI 味和功能标签修复，保留结构密度问题到场景流程处理。"

@@ -5,6 +5,7 @@ export interface ReaderBlockLike {
   id: string;
   kind: "paragraph" | "divider";
   text: string;
+  contentHash?: string;
 }
 
 export interface ReaderChapterLike {
@@ -34,6 +35,8 @@ export interface ReadingSelection {
   bookId: string;
   chapterId: string;
   anchorId: string;
+  anchorIndex?: number;
+  anchorStatus?: "missing_fallback";
 }
 
 export interface ReaderSettings {
@@ -49,16 +52,50 @@ export interface FeedbackExportInput {
   chapter: string;
   anchor: string | null;
   contentVersion: string;
+  blockContentHash?: string;
   category: string;
   body: string;
   blocker: boolean;
   createdAt: string;
 }
 
-export interface FeedbackExport extends FeedbackExportInput {
-  recordType: "reader_feedback";
-  status: "draft";
-  canonEffect: "none";
+export interface FeedbackExport {
+  schema_version: "0.1.0";
+  id: "FB-0000";
+  record_type: "reader_feedback";
+  owner: { novel_id: string };
+  status: "received";
+  visibility: "internal";
+  reader_profile: "reader";
+  submitted_at: string;
+  scope: {
+    chapter_ids: string[];
+    allowed_preceding_chapter_ids: string[];
+    source_revision: "reader-export";
+  };
+  observations: {
+    comprehension: string;
+    confusion: string[];
+    interest_loss: string[];
+    expectations: string[];
+    emotional_landing: string;
+    continue_reading: string;
+  };
+  evidence_locations: Array<{
+    chapter_id: string;
+    block_id: string;
+    content_version: string;
+    block_content_hash: string;
+  }>;
+  suggested_actions: string[];
+  linked_review_ids: string[];
+  linked_change_request_ids: string[];
+  processing: {
+    status: "new";
+    author_decision_id: null;
+    notes: string;
+  };
+  canon_effect: "none";
 }
 
 export interface SearchResult {
@@ -88,7 +125,8 @@ function validSelection(
   library: ReaderLibraryLike,
   bookIdOrSlug: string | undefined,
   chapterId: string | undefined,
-  anchorId: string | undefined
+  anchorId: string | undefined,
+  anchorIndex?: number
 ): ReadingSelection | null {
   if (bookIdOrSlug === undefined || chapterId === undefined) {
     return null;
@@ -100,12 +138,26 @@ function validSelection(
   if (book === undefined || chapter === undefined || chapter.blocks.length === 0) {
     return null;
   }
-  const anchor = chapter.blocks.find((candidate) => candidate.id === anchorId);
-  return {
+  const exactIndex = chapter.blocks.findIndex((candidate) => candidate.id === anchorId);
+  const fallbackIndex =
+    exactIndex >= 0
+      ? exactIndex
+      : typeof anchorIndex === "number"
+        ? clamp(Math.trunc(anchorIndex), 0, chapter.blocks.length - 1)
+        : 0;
+  const anchor = chapter.blocks[fallbackIndex];
+  const selection: ReadingSelection = {
     bookId: book.id,
     chapterId: chapter.id,
-    anchorId: anchor?.id ?? chapter.blocks[0]?.id ?? ""
+    anchorId: anchor?.id ?? ""
   };
+  if (exactIndex < 0 && typeof anchorIndex === "number") {
+    selection.anchorIndex = fallbackIndex;
+  }
+  if (exactIndex < 0 && anchorId !== undefined) {
+    selection.anchorStatus = "missing_fallback";
+  }
+  return selection;
 }
 
 export function resolveSelection(
@@ -124,7 +176,8 @@ export function resolveSelection(
     library,
     stored?.bookId,
     stored?.chapterId,
-    stored?.anchorId
+    stored?.anchorId,
+    stored?.anchorIndex
   );
   return fromStorage ?? firstSelection(library);
 }
@@ -208,18 +261,46 @@ export function normalizeSettings(input: {
 }
 
 export function buildFeedbackExport(input: FeedbackExportInput): FeedbackExport {
+  const fallbackHash = "sha256:0000000000000000000000000000000000000000000000000000000000000000";
   return {
-    recordType: "reader_feedback",
-    novel: input.novel,
-    chapter: input.chapter,
-    anchor: input.anchor,
-    contentVersion: input.contentVersion,
-    category: input.category,
-    body: input.body,
-    blocker: input.blocker,
-    createdAt: input.createdAt,
-    status: "draft",
-    canonEffect: "none"
+    schema_version: "0.1.0",
+    id: "FB-0000",
+    record_type: "reader_feedback",
+    owner: { novel_id: input.novel },
+    status: "received",
+    visibility: "internal",
+    reader_profile: "reader",
+    submitted_at: input.createdAt,
+    scope: {
+      chapter_ids: [input.chapter],
+      allowed_preceding_chapter_ids: [],
+      source_revision: "reader-export"
+    },
+    observations: {
+      comprehension: `Reader submitted localized ${input.category} feedback.`,
+      confusion: [input.body],
+      interest_loss: input.blocker ? [input.body] : [],
+      expectations: [],
+      emotional_landing: "Not captured in quick reader export.",
+      continue_reading: "Not captured in quick reader export."
+    },
+    evidence_locations: [
+      {
+        chapter_id: input.chapter,
+        block_id: input.anchor ?? "",
+        content_version: input.contentVersion,
+        block_content_hash: input.blockContentHash ?? fallbackHash
+      }
+    ],
+    suggested_actions: [],
+    linked_review_ids: [],
+    linked_change_request_ids: [],
+    processing: {
+      status: "new",
+      author_decision_id: null,
+      notes: ""
+    },
+    canon_effect: "none"
   };
 }
 

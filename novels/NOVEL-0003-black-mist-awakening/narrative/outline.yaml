@@ -24,7 +24,14 @@ source_refs:
   premise_refs:
     - "NOVEL-0003-INTAKE-01"
   canon_ids: []
-  decision_ids: []
+  decision_ids:
+    - DECISION-WORKING-019
+    - DECISION-WORKING-020
+    - DECISION-WORKING-021
+    - DECISION-WORKING-022
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
   research_refs: []
 
 objective:

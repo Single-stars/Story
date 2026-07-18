@@ -32,6 +32,21 @@
       "uniqueItems": true,
       "items": { "type": "string", "pattern": "^CHAPTER-[0-9]{4}$" }
     },
+    "reviewIdArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^REVIEW-[0-9]{4}$" }
+    },
+    "reviewGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "review_ids"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "review_ids": { "$ref": "#/$defs/reviewIdArray" },
+        "notes": { "type": "string", "maxLength": 2000 }
+      }
+    },
     "sceneIdArray": {
       "type": "array",
       "uniqueItems": true,
@@ -57,6 +72,7 @@
         "target_word_count",
         "scene_ids",
         "required_context",
+        "required_reviews",
         "continuity_contract",
         "quality_gates",
         "resume_brief"
@@ -106,12 +122,19 @@
           "type": "object",
           "additionalProperties": false,
           "required": [
+            "style_profile_ids",
             "canon_ids",
             "narrative_ids",
             "manuscript_chapter_ids",
             "decision_ids"
           ],
           "properties": {
+            "style_profile_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^STYLE-[0-9]{4}$" }
+            },
             "canon_ids": {
               "type": "array",
               "uniqueItems": true,
@@ -134,6 +157,22 @@
             }
           }
         },
+        "required_reviews": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "continuity",
+            "developmental_edit",
+            "reader_test",
+            "line_edit"
+          ],
+          "properties": {
+            "continuity": { "$ref": "#/$defs/reviewGate" },
+            "developmental_edit": { "$ref": "#/$defs/reviewGate" },
+            "reader_test": { "$ref": "#/$defs/reviewGate" },
+            "line_edit": { "$ref": "#/$defs/reviewGate" }
+          }
+        },
         "continuity_contract": {
           "type": "object",
           "additionalProperties": false,
@@ -143,7 +182,11 @@
             "character_knowledge",
             "relationship_state",
             "foreshadowing_plan",
-            "reader_exposure"
+            "reader_exposure",
+            "motivation_gate",
+            "concept_exposure_gate",
+            "npc_independence_gate",
+            "cross_layer_state_gate"
           ],
           "properties": {
             "world_state": { "type": "string", "minLength": 1 },
@@ -151,6 +194,10 @@
             "character_knowledge": { "type": "string", "minLength": 1 },
             "relationship_state": { "type": "string", "minLength": 1 },
             "foreshadowing_plan": { "type": "string", "minLength": 1 },
+            "motivation_gate": { "type": "string", "minLength": 1 },
+            "concept_exposure_gate": { "type": "string", "minLength": 1 },
+            "npc_independence_gate": { "type": "string", "minLength": 1 },
+            "cross_layer_state_gate": { "type": "string", "minLength": 1 },
             "reader_exposure": {
               "type": "object",
               "additionalProperties": false,
@@ -182,7 +229,11 @@
             "plot_causality_checked",
             "foreshadowing_status_checked",
             "reader_exposure_limited",
-            "prose_quality_review_planned"
+            "prose_quality_review_planned",
+            "motivation_gate_checked",
+            "concept_exposure_checked",
+            "npc_independence_checked",
+            "cross_layer_state_checked"
           ],
           "properties": {
             "word_count_defined": { "type": "boolean" },
@@ -193,7 +244,11 @@
             "plot_causality_checked": { "type": "boolean" },
             "foreshadowing_status_checked": { "type": "boolean" },
             "reader_exposure_limited": { "type": "boolean" },
-            "prose_quality_review_planned": { "type": "boolean" }
+            "prose_quality_review_planned": { "type": "boolean" },
+            "motivation_gate_checked": { "type": "boolean" },
+            "concept_exposure_checked": { "type": "boolean" },
+            "npc_independence_checked": { "type": "boolean" },
+            "cross_layer_state_checked": { "type": "boolean" }
           }
         },
         "resume_brief": {
@@ -365,13 +420,15 @@
             "world_layers",
             "capability_timeline",
             "reader_exposure",
-            "relationship_pacing"
+            "relationship_pacing",
+            "motivation_and_concept_gates"
           ],
           "properties": {
             "world_layers": { "$ref": "#/$defs/nonEmptyStringArray" },
             "capability_timeline": { "$ref": "#/$defs/nonEmptyStringArray" },
             "reader_exposure": { "$ref": "#/$defs/nonEmptyStringArray" },
-            "relationship_pacing": { "$ref": "#/$defs/nonEmptyStringArray" }
+            "relationship_pacing": { "$ref": "#/$defs/nonEmptyStringArray" },
+            "motivation_and_concept_gates": { "$ref": "#/$defs/nonEmptyStringArray" }
           }
         },
         "phase_plan": {

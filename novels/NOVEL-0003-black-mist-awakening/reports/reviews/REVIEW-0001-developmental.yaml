@@ -1,0 +1,92 @@
+schema_version: "0.1.0"
+id: REVIEW-0001
+record_type: review_record
+owner:
+  novel_id: NOVEL-0003
+status: reviewed
+visibility: internal
+canon_effect: proposal_only
+review_type: developmental_edit
+scope:
+  novel_id: NOVEL-0003
+  chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+  entity_ids:
+    - CHAR-0001
+    - CHAR-0002
+    - REL-0001
+    - FACT-0001
+    - EVT-0001
+    - SCN-0001
+    - THREAD-0001
+    - FORESH-0001
+  manuscript_paths:
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0001.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0002.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0003.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0004.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0006.md"
+source_version:
+  baseline_label: "current-working-tree-after-local-loophole-fixes"
+  content_hash: "sha256:db068af7d7b94e71928415074df917ba7209ad907a66e53c5acf4bc41fa7b696"
+  reviewed_at: "2026-07-18T16:04:45+08:00"
+coverage:
+  checked:
+    - "前 6 章正文逐章目标、选择、决定性变化、章末拉力和因果承接"
+    - "STYLE-0001、CHRUN-0001、RESTRUCT-0001 与对应 workflow schema"
+    - "自然对白、能力测试动机、概念功能指向、NPC 独立目标和跨界状态链"
+  gaps:
+    - "CHAPTER-0002 至 CHAPTER-0006 尚无独立 SCN-* 场景契约"
+    - "第一卷 12 章 phase plan 与当前 6 章 reader-entry draft 的最终取舍仍待作者决定"
+    - "本记录不是 fresh-reader test，也没有读取隐藏 Canon 冒充盲测"
+findings:
+  - key: DEV-001
+    severity: major
+    status: open
+    location: "RESTRUCT-0001 phase plan / CHAPTER-0003 至 CHAPTER-0006"
+    issue: "当前 6 章仍比 planned phase 快速兑现融合、聚落、返梦和医院；本轮只修复局部漏洞，没有越权重排整卷。"
+    recommendation: "在独立 SCN/CHRUN 完成后，由作者选择保留六章入口弧或按 RESTRUCT-0001 展开卷级重构。"
+  - key: DEV-002
+    severity: major
+    status: fixed
+    location: "CHAPTER-0006 hospital return"
+    issue: "手机和温良到达医院的直接叙述链曾不闭合。"
+    recommendation: "已补为后门发现温良、手机由护士交给赵砚，并保留结构化 continuity 复核要求。"
+  - key: DEV-003
+    severity: major
+    status: fixed
+    location: "CHAPTER-0001/0002/0004/0006"
+    issue: "角色职责、能力限制和世界层级曾被写成作者侧验收说明。"
+    recommendation: "已改为记录异常、有限观察和普通对白，并将动机/概念门禁写入 skill、template、schema 和 workpack。"
+  - key: DEV-004
+    severity: minor
+    status: fixed
+    location: "CHAPTER-0005 old-well access"
+    issue: "NPC 直接递送路线和通道用途，主角选择缺少清晰代价。"
+    recommendation: "已移除白灯路线和功能性井名，加入有限看门时间与警铃取舍；后续场景契约仍需验证 NPC 独立目标。"
+  - key: DEV-005
+    severity: minor
+    status: fixed
+    location: "chapter summaries and chapter hooks"
+    issue: "编辑流程元话语、抽象收束和功能性命名削弱读者可见层。"
+    recommendation: "已将 summary 改为 reader-facing 摘要，并把章末落点改为具体证据、风险或选择。"
+conclusion:
+  verdict: pass_with_notes
+  summary: "局部人物、概念呈现、能力动机、NPC 代价和手机桥接漏洞已修复；卷级章节分配仍需独立结构决策。"
+  blockers: []
+author_decision:
+  status: accepted
+  decision_id: DEC-0001
+  notes: "作者授权本批修复；DEV-001 保留为卷级结构选择，不由本轮静默决定。"
+reverification:
+  status: required
+  required_review_ids:
+    - REVIEW-0003
+  notes: "后续完成 SCN/CHRUN 后复核卷级结构和每章因果。"
+resume_brief: "已完成前 6 章发展性局部修复并固化流程门禁；下一步是 continuity 复核、人物候选决策和卷级章节结构选择。"

@@ -66,6 +66,38 @@ describe("mobile reader core", () => {
     ).toEqual({ bookId: "NOVEL-0003", chapterId: "CHAPTER-0001", anchorId: "p-a" });
   });
 
+  test("falls back near the stored block index when an old anchor no longer exists", () => {
+    expect(
+      resolveSelection(library, {}, {
+        bookId: "NOVEL-0003",
+        chapterId: "CHAPTER-0001",
+        anchorId: "p-old-after-text-edit",
+        anchorIndex: 1
+      })
+    ).toEqual({
+      bookId: "NOVEL-0003",
+      chapterId: "CHAPTER-0001",
+      anchorId: "p-b",
+      anchorIndex: 1,
+      anchorStatus: "missing_fallback"
+    });
+  });
+
+  test("marks stale stored anchors when falling back to the first block", () => {
+    expect(
+      resolveSelection(library, {}, {
+        bookId: "NOVEL-0003",
+        chapterId: "CHAPTER-0001",
+        anchorId: "p-deleted"
+      })
+    ).toEqual({
+      bookId: "NOVEL-0003",
+      chapterId: "CHAPTER-0001",
+      anchorId: "p-a",
+      anchorStatus: "missing_fallback"
+    });
+  });
+
   test("searches titles, summaries, and body text across books", () => {
     const results = searchLibrary(library, "讲台");
 
@@ -128,6 +160,7 @@ describe("mobile reader core", () => {
       chapter: "CHAPTER-0002",
       anchor: "p-c",
       contentVersion: "0.1.0",
+      blockContentHash: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
       category: "continuity",
       body: "The transition into this paragraph was hard to follow.",
       blocker: false,
@@ -135,17 +168,44 @@ describe("mobile reader core", () => {
     });
 
     expect(feedback).toEqual({
-      recordType: "reader_feedback",
-      novel: "NOVEL-0003",
-      chapter: "CHAPTER-0002",
-      anchor: "p-c",
-      contentVersion: "0.1.0",
-      category: "continuity",
-      body: "The transition into this paragraph was hard to follow.",
-      blocker: false,
-      createdAt: "2026-07-16T09:30:00.000Z",
-      status: "draft",
-      canonEffect: "none"
+      schema_version: "0.1.0",
+      id: "FB-0000",
+      record_type: "reader_feedback",
+      owner: { novel_id: "NOVEL-0003" },
+      status: "received",
+      visibility: "internal",
+      reader_profile: "reader",
+      submitted_at: "2026-07-16T09:30:00.000Z",
+      scope: {
+        chapter_ids: ["CHAPTER-0002"],
+        allowed_preceding_chapter_ids: [],
+        source_revision: "reader-export"
+      },
+      observations: {
+        comprehension: "Reader submitted localized continuity feedback.",
+        confusion: ["The transition into this paragraph was hard to follow."],
+        interest_loss: [],
+        expectations: [],
+        emotional_landing: "Not captured in quick reader export.",
+        continue_reading: "Not captured in quick reader export."
+      },
+      evidence_locations: [
+        {
+          chapter_id: "CHAPTER-0002",
+          block_id: "p-c",
+          content_version: "0.1.0",
+          block_content_hash: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ],
+      suggested_actions: [],
+      linked_review_ids: [],
+      linked_change_request_ids: [],
+      processing: {
+        status: "new",
+        author_decision_id: null,
+        notes: ""
+      },
+      canon_effect: "none"
     });
     expect(feedback).not.toHaveProperty("text");
     expect(feedback).not.toHaveProperty("content");

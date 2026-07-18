@@ -1,0 +1,158 @@
+schema_version: "0.1.0"
+template_version: "0.1.0"
+document_type: canon_change_request
+
+id: CR-0001
+owner:
+  novel_id: NOVEL-0003
+
+status: proposed
+visibility: internal
+title: "评估刘婆婆是否承接温良外婆线"
+summary: "把刘婆婆与温良外婆、南宫芸儿童年线的潜在关系整理为可审计候选，不在作者决定前改写 Canon。"
+reason: "正文中刘婆婆关于孙女梦见学校的叙述与温良的童年失忆形成了可疑回声，需要先保留多种解释，避免把相似感静默写成身份事实。"
+requested_by: "author-feedback-2026-07-18"
+requested_at: "2026-07-18T16:04:45+08:00"
+
+scope:
+  change_type: add
+  affected_projects:
+    novel_ids:
+      - NOVEL-0003
+    universe_ids: []
+    series_ids: []
+  cross_project_reason: null
+
+current_state:
+  entity_ids: []
+  canon_status: proposed
+  statement: "当前没有已批准事实证明刘婆婆就是温良外婆，也没有证明她的孙女就是南宫芸儿。"
+  source_refs:
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md:177-187"
+    - "novels/NOVEL-0003-black-mist-awakening/canon/characters/CHAR-0001.yaml"
+    - "novels/NOVEL-0003-black-mist-awakening/canon/characters/CHAR-0002.yaml"
+
+proposed_state:
+  proposal_status: proposed
+  requested_final_status: canon
+  entity_ids: []
+  statement: "候选方向 A：刘婆婆与温良外婆有直接或近亲关系；候选方向 B：两人无血缘，仅共享照顾习惯和失去经历。"
+  supersedes_ids: []
+  replacement_ids: []
+  assumptions:
+    - "候选方向未选定前，不新增人物身份事实。"
+    - "若选择方向 A，需要先核对童年时间线与南宫芸儿关系，不得直接把相似线索当作证明。"
+
+alternatives:
+  - option: keep_current
+    description: "不建立亲属关系，只保留刘婆婆孙女梦见学校的独立聚落传闻。"
+    benefits:
+      - "不增加时间线和人物知识迁移。"
+    costs:
+      - "童年线与真实界的情感回声较弱。"
+    rejected_reason: null
+  - option: option_a
+    description: "建立刘婆婆/外婆候选关系，并通过行动、物件和误认逐步显影。"
+    benefits:
+      - "强化失忆、照顾与失而复得主题。"
+    costs:
+      - "高影响人物历史变更，需要新的 CHAR/REL/FACT/KNOW/FORESH 影响审计。"
+    rejected_reason: null
+  - option: option_b
+    description: "保留相似行为但否定血缘，形成主题回声而非身份揭示。"
+    benefits:
+      - "维持信息差和多重解释。"
+    costs:
+      - "需要后续场景承担独立的童年线推进。"
+    rejected_reason: null
+
+impact:
+  canon_ids: []
+  event_ids: []
+  scene_ids:
+    - SCN-0001
+  thread_ids:
+    - THREAD-0001
+  foreshadowing_ids:
+    - FORESH-0001
+  character_knowledge_ids: []
+  relationship_ids:
+    - REL-0001
+  item_ids: []
+  manuscript_paths:
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0002.md"
+    - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md"
+  decision_ids: []
+  timeline:
+    affected: true
+    analysis: "若选择方向 A，必须补齐共同抚养、失忆发生时间和刘婆婆当前年龄/位置；当前不假定任何时间值。"
+  knowledge:
+    affected: true
+    analysis: "需要分别记录刘婆婆、温良、南宫芸儿和读者何时知道/怀疑/误信该关系。"
+  relationships:
+    affected: true
+    analysis: "需要更新温良与南宫芸儿、温良与刘婆婆的方向性关系，不能把帮助直接等同于亲情。"
+  foreshadowing:
+    affected: true
+    analysis: "只能把当前段落标为候选推进，不能把它标成已回收。"
+  sharing:
+    affected: false
+    highest_visibility_reviewed: internal
+    analysis: "无共享世界依赖。"
+
+migration:
+  prerequisites:
+    - "作者明确批准 CR-0001 的具体选项。"
+    - "完成 novel-character 与 novel-continuity 影响审计。"
+  steps:
+    - order: 1
+      action: "创建或更新人物、关系、知识和伏笔 proposal。"
+      target_paths: []
+      expected_result: "所有新增事实保持 proposed，引用和知识边界可验证。"
+    - order: 2
+      action: "按批准范围修订场景契约和正文。"
+      target_paths: []
+      expected_result: "正文只展示获准层级的信息，不提前揭示身份。"
+
+validation:
+  required_checks:
+    - YAML and Markdown parse successfully
+    - IDs, ownership, and references remain valid
+    - timeline, knowledge, relationship, and foreshadowing impacts are reviewed
+    - visibility contains no unauthorized identity reveal
+  commands:
+    - "npm.cmd run validate:story"
+  expected_results:
+    - "PASS with no owner/reference/schema errors"
+  evidence: []
+
+rollback:
+  triggers:
+    - "候选关系破坏既有童年时间线或人物知识边界。"
+  restore_refs:
+    - "保留当前无亲属确认的状态。"
+  steps:
+    - order: 1
+      action: "拒绝或撤回候选 proposal，不改变已有 CHAR/REL/FACT。"
+      expected_result: "正文回到无身份确认的多重解释状态。"
+  validation_commands:
+    - "npm.cmd run validate:story"
+  evidence: []
+
+approval:
+  required_approver: author
+  status: pending
+  decision: null
+  decision_record_id: null
+  decided_by: null
+  decided_at: null
+  rationale: ""
+
+application:
+  may_apply_before_approval: false
+  applied: false
+  applied_by: null
+  applied_at: null
+  source_commit: null
+  resulting_entity_ids: []
+  verification_evidence: []

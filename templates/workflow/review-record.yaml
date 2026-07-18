@@ -1,0 +1,60 @@
+# Story OS review record template.
+# Copy this file into reports/reviews/ after continuity, developmental, or reader-test review.
+schema_version: "0.1.0"
+id: REVIEW-0001
+record_type: review_record
+owner:
+  novel_id: NOVEL-0001
+status: reviewed # planned | in_progress | reviewed | accepted | blocked | stale
+visibility: internal
+canon_effect: proposal_only
+
+review_type: continuity # continuity | developmental_edit | reader_test | line_edit | character | worldbuilding | outline | custom
+
+scope:
+  novel_id: NOVEL-0001
+  chapter_ids:
+    - CHAPTER-0001
+  entity_ids:
+    - SCN-0001
+  manuscript_paths:
+    - manuscript/chapter-0001.md
+
+source_version:
+  baseline_label: "draft-YYYY-MM-DD"
+  content_hash: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  reviewed_at: "2026-07-18T10:00:00+08:00"
+
+coverage:
+  checked:
+    - "What was actually reviewed."
+  gaps:
+    - "What was not reviewed and must not be inferred from this record."
+
+findings:
+  - key: CONT-001
+    severity: minor # blocker | major | minor | note
+    status: open # open | accepted | rejected | fixed | verified
+    location: CHAPTER-0001
+    issue: "Concrete, source-located problem."
+    recommendation: "Concrete change, question, or follow-up review needed."
+
+conclusion:
+  verdict: pass_with_notes # pass | pass_with_notes | blocked | inconclusive
+  summary: "Short conclusion for future agents."
+  blockers: []
+
+author_decision:
+  status: pending # pending | accepted | rejected | partially_accepted
+  decision_id: null
+  notes: "Only the author can accept, reject, or partially accept review handling."
+
+reverification:
+  status: not_required # not_required | required | passed | failed
+  required_review_ids: []
+  notes: "Name any follow-up review needed after edits."
+
+resume_brief: >-
+  One paragraph that lets a future agent understand the review type, source
+  version, covered scope, remaining gaps, open blockers, author decision state,
+  and whether re-verification is required.

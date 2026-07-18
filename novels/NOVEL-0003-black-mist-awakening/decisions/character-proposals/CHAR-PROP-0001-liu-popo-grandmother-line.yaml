@@ -1,0 +1,52 @@
+schema_version: "0.1.0"
+record_type: character_proposal
+id: CHAR-PROP-0001
+owner:
+  novel_id: NOVEL-0003
+status: proposed
+visibility: internal
+canon_effect: proposal_only
+
+title: "刘婆婆与温良外婆线的候选关系"
+source_refs:
+  - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0005.md:177-187"
+  - "novels/NOVEL-0003-black-mist-awakening/manuscript/CHAPTER-0002.md:93-119"
+
+observation: >-
+  刘婆婆知道有人梦见学校并再也没有回来；温良又恰好缺失外婆与童年的记忆。
+  两条线目前只构成可疑的回声，不足以证明刘婆婆就是温良外婆，或刘婆婆的孙女就是南宫芸儿。
+
+role_contract:
+  narrative_job: "让聚落生存经验与温良的童年记忆产生可疑但不确定的重叠。"
+  plot_pressure: "她能决定是否给温良短暂接近旧井的机会，但帮助会增加她自己的看守、燃料或关系风险。"
+  relationship_job: "让温良在接受陌生人的帮助时，面对‘被照顾’与‘不敢相信记忆’的冲突。"
+  independent_stake: "她要保护聚落炉火和一段不愿被再次解释的家庭记忆，即使温良不在场也会做取舍。"
+  replaceability_test: "若换成无名线人，聚落路线仍可成立，但童年情感回声和温良对照顾行为的反应会减弱。"
+
+candidate_variants:
+  - id: OPTION-A
+    description: "刘婆婆与温良外婆确有同一人或近亲关系，但前期只通过习惯、物件和反应留下不完整证据。"
+    benefits:
+      - "加强失忆、照顾与失而复得主题。"
+      - "让刘婆婆的帮助具有私人代价，而不只是功能递送。"
+    costs:
+      - "需要核对温良童年时间线、共同抚养事实和南宫芸儿关系。"
+      - "容易把刘婆婆过早变成真相钥匙。"
+  - id: OPTION-B
+    description: "刘婆婆与外婆无直接血缘，只共享相似的照顾习惯和失去经历。"
+    benefits:
+      - "保留情感回声，不提前确认伏笔答案。"
+      - "避免聚落配角被绑定成主线亲属。"
+    costs:
+      - "童年线的结构回收力度较弱。"
+
+knowledge_and_reveal_limits:
+  - "前 6 章不得让刘婆婆确认温良身份，也不得让南宫芸儿确认刘婆婆身份。"
+  - "读者只能看到可观察的习惯、物件、用词、回避和代价，不能直接看到亲属结论。"
+  - "任何正式身份变更必须另建 CR-*，审计人物知识、关系、时间与伏笔影响。"
+
+author_decision:
+  status: pending
+  selected_option: null
+  decision_id: null
+  notes: "当前只保留候选关系，不修改 CHAR-0001、CHAR-0002、REL-0001 或 Canon。"

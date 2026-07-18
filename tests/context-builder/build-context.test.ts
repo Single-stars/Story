@@ -147,10 +147,17 @@ async function writeWorkpack(novelRoot: string, novelId: string) {
       target_word_count: { min: 3000, target: 3500, max: 4200 },
       scene_ids: ["SCN-0001"],
       required_context: {
+        style_profile_ids: ["STYLE-0001"],
         canon_ids: [],
         narrative_ids: ["SCN-0001"],
         manuscript_chapter_ids: [],
         decision_ids: []
+      },
+      required_reviews: {
+        continuity: { required: false, review_ids: [] },
+        developmental_edit: { required: false, review_ids: [] },
+        reader_test: { required: false, review_ids: [] },
+        line_edit: { required: false, review_ids: [] }
       },
       continuity_contract: {
         world_state: "Context builder must load this workpack by id.",
@@ -175,6 +182,236 @@ async function writeWorkpack(novelRoot: string, novelId: string) {
         prose_quality_review_planned: true
       },
       resume_brief: "Resume from the durable workpack, not chat memory."
+    }),
+    "utf8"
+  );
+}
+
+async function writeScene(novelRoot: string, novelId: string) {
+  const directory = path.join(novelRoot, "narrative", "scenes");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "SCN-0001.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "SCN-0001",
+      entity_type: "scene",
+      owner: { novel_id: novelId },
+      status: "approved",
+      visibility: "internal",
+      title: "Context scene",
+      summary: "Scene dependency must be available to the context builder."
+    }),
+    "utf8"
+  );
+}
+
+async function writeWorkpackWithDependencies(novelRoot: string, novelId: string) {
+  const directory = path.join(novelRoot, "reports", "workpacks");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "CHRUN-0002.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "CHRUN-0002",
+      record_type: "chapter_workpack",
+      owner: { novel_id: novelId },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      chapter_id: "CHAPTER-0001",
+      required_context: {
+        style_profile_ids: ["STYLE-0001"],
+        canon_ids: [],
+        narrative_ids: [],
+        manuscript_chapter_ids: ["CHAPTER-0001"],
+        decision_ids: ["DEC-0001"]
+      },
+      required_reviews: {
+        continuity: { required: true, review_ids: ["REVIEW-0001"] },
+        developmental_edit: { required: false, review_ids: [] },
+        reader_test: { required: false, review_ids: [] },
+        line_edit: { required: false, review_ids: [] }
+      },
+      memory_contract: {
+        must_load_ids: ["STYLE-0001"],
+        must_update_after_draft: [],
+        forbidden_shortcuts: []
+      },
+      resume_brief: "Dependent workpack must pull durable context."
+    }),
+    "utf8"
+  );
+}
+
+async function writeChapter(novelRoot: string, novelId: string) {
+  const directory = path.join(novelRoot, "manuscript");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "CHAPTER-0001.md"),
+    [
+      "---",
+      "schema_version: 0.1.0",
+      "id: CHAPTER-0001",
+      `novel_id: ${novelId}`,
+      "title: Context Chapter",
+      "---",
+      "",
+      "Manuscript body must be loaded from the workpack dependency."
+    ].join("\n"),
+    "utf8"
+  );
+}
+
+async function writeDecision(novelRoot: string) {
+  const directory = path.join(novelRoot, "decisions");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "DEC-0001.yaml"),
+    stringify({
+      id: "DEC-0001",
+      decision: "The drafting baseline depends on this author decision."
+    }),
+    "utf8"
+  );
+}
+
+async function writeReview(novelRoot: string, novelId: string) {
+  const directory = path.join(novelRoot, "reports", "reviews");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "REVIEW-0001.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "REVIEW-0001",
+      record_type: "review_record",
+      owner: { novel_id: novelId },
+      status: "reviewed",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      review_type: "continuity",
+      scope: {
+        novel_id: novelId,
+        chapter_ids: ["CHAPTER-0001"],
+        entity_ids: [],
+        manuscript_paths: ["manuscript/CHAPTER-0001.md"]
+      },
+      source_version: {
+        baseline_label: "fixture",
+        content_hash: "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+        reviewed_at: "2026-07-18T00:00:00.000Z"
+      },
+      coverage: { checked: ["chapter"], gaps: [] },
+      findings: [],
+      conclusion: { verdict: "pass", summary: "Continuity dependency loaded.", blockers: [] },
+      author_decision: { status: "accepted", decided_by: "author", decided_at: null, notes: "" },
+      reverification: { status: "not_required", review_id: null, notes: "" },
+      resume_brief: "Review dependency must be loaded."
+    }),
+    "utf8"
+  );
+}
+
+async function writeWorkpackWithReviewGate(
+  novelRoot: string,
+  novelId: string,
+  gate: {
+    required: boolean;
+    reviewIds: string[];
+    reviewType?: "continuity" | "developmental_edit" | "reader_test" | "line_edit";
+  }
+) {
+  const directory = path.join(novelRoot, "reports", "workpacks");
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    path.join(directory, "CHRUN-0003.yaml"),
+    stringify({
+      schema_version: "0.1.0",
+      id: "CHRUN-0003",
+      record_type: "chapter_workpack",
+      owner: { novel_id: novelId },
+      status: "planned",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      chapter_id: "CHAPTER-0001",
+      required_context: {
+        style_profile_ids: ["STYLE-0001"],
+        canon_ids: [],
+        narrative_ids: [],
+        manuscript_chapter_ids: [],
+        decision_ids: []
+      },
+      required_reviews: {
+        continuity: {
+          required: gate.reviewType === undefined || gate.reviewType === "continuity"
+            ? gate.required
+            : false,
+          review_ids:
+            gate.reviewType === undefined || gate.reviewType === "continuity"
+              ? gate.reviewIds
+              : []
+        },
+        developmental_edit: {
+          required: gate.reviewType === "developmental_edit" ? gate.required : false,
+          review_ids: gate.reviewType === "developmental_edit" ? gate.reviewIds : []
+        },
+        reader_test: {
+          required: gate.reviewType === "reader_test" ? gate.required : false,
+          review_ids: gate.reviewType === "reader_test" ? gate.reviewIds : []
+        },
+        line_edit: {
+          required: gate.reviewType === "line_edit" ? gate.required : false,
+          review_ids: gate.reviewType === "line_edit" ? gate.reviewIds : []
+        }
+      },
+      resume_brief: "Review gate fixture."
+    }),
+    "utf8"
+  );
+}
+
+async function writeReviewVariant(
+  novelRoot: string,
+  novelId: string,
+  options: {
+    id?: string;
+    ownerNovelId?: string;
+    scopeNovelId?: string;
+    chapterIds?: string[];
+    reviewType?: "continuity" | "developmental_edit" | "reader_test" | "line_edit";
+  } = {}
+) {
+  const directory = path.join(novelRoot, "reports", "reviews");
+  await mkdir(directory, { recursive: true });
+  const id = options.id ?? "REVIEW-0001";
+  await writeFile(
+    path.join(directory, `${id}.yaml`),
+    stringify({
+      schema_version: "0.1.0",
+      id,
+      record_type: "review_record",
+      owner: { novel_id: options.ownerNovelId ?? novelId },
+      status: "reviewed",
+      visibility: "internal",
+      canon_effect: "proposal_only",
+      review_type: options.reviewType ?? "continuity",
+      scope: {
+        novel_id: options.scopeNovelId ?? novelId,
+        chapter_ids: options.chapterIds ?? ["CHAPTER-0001"],
+        entity_ids: [],
+        manuscript_paths: ["manuscript/CHAPTER-0001.md"]
+      },
+      source_version: {
+        baseline_label: "fixture",
+        content_hash: "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        reviewed_at: "2026-07-18T00:00:00.000Z"
+      },
+      coverage: { checked: ["chapter"], gaps: [] },
+      findings: [],
+      conclusion: { verdict: "pass", summary: "Review variant loaded.", blockers: [] },
+      author_decision: { status: "pending", decision_id: null, notes: "" },
+      reverification: { status: "not_required", required_review_ids: [], notes: "" },
+      resume_brief: "Review variant must be loaded."
     }),
     "utf8"
   );
@@ -316,6 +553,8 @@ describe("buildContext", () => {
   test("loads chapter workpacks by id for resumable drafting context", async () => {
     const { root, firstRoot } = await fixture();
     await writeWorkpack(firstRoot, "NOVEL-0001");
+    await writeScene(firstRoot, "NOVEL-0001");
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
 
     const result = await buildContext(root, {
       novelId: "NOVEL-0001",
@@ -325,7 +564,117 @@ describe("buildContext", () => {
 
     expect(result.content).toContain("chapter_workpack");
     expect(result.content).toContain("Resume from the durable workpack");
+    expect(result.content).toContain("Style memory must load before rewrite");
     expect(result.missingEntityIds).toEqual([]);
+  });
+
+  test("recursively loads required context from chapter workpacks", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithDependencies(firstRoot, "NOVEL-0001");
+    await writeChapter(firstRoot, "NOVEL-0001");
+    await writeDecision(firstRoot);
+    await writeReview(firstRoot, "NOVEL-0001");
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["CHRUN-0002"],
+      maxChars: 30000
+    });
+
+    expect(result.content).toContain("Dependent workpack must pull durable context");
+    expect(result.content).toContain("Manuscript body must be loaded");
+    expect(result.content).toContain("author decision");
+    expect(result.content).toContain("Review dependency must be loaded");
+    expect(result.content).toContain("Style memory must load before rewrite");
+    expect(result.missingEntityIds).toEqual([]);
+    expect(result.sourceDetails.map((source) => source.status)).toEqual(
+      expect.arrayContaining(["complete"])
+    );
+    expect(
+      result.sourceDetails.every((source) => source.sha256.startsWith("sha256:"))
+    ).toBe(true);
+  });
+
+  test("fails when a required review gate has no review ids", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: []
+    });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_MISSING" });
+  });
+
+  test("fails when a required review id is missing from the selected novel", async () => {
+    const { root, firstRoot, secondRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"]
+    });
+    await writeReviewVariant(secondRoot, "NOVEL-0002", { id: "REVIEW-0001" });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_NOT_FOUND" });
+  });
+
+  test("fails when a required review does not match the gate and chapter scope", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: true,
+      reviewIds: ["REVIEW-0001"]
+    });
+    await writeReviewVariant(firstRoot, "NOVEL-0001", {
+      id: "REVIEW-0001",
+      reviewType: "reader_test",
+      chapterIds: ["CHAPTER-0002"]
+    });
+
+    await expect(
+      buildContext(root, {
+        novelId: "NOVEL-0001",
+        entityIds: ["CHRUN-0003"],
+        maxChars: 12000
+      })
+    ).rejects.toMatchObject({ code: "REQUIRED_REVIEW_TYPE_MISMATCH" });
+  });
+
+  test("degrades instead of failing when an optional review id is missing", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeStyleProfile(firstRoot, "NOVEL-0001");
+    await writeWorkpackWithReviewGate(firstRoot, "NOVEL-0001", {
+      required: false,
+      reviewType: "line_edit",
+      reviewIds: ["REVIEW-9999"]
+    });
+
+    const result = await buildContext(root, {
+      novelId: "NOVEL-0001",
+      entityIds: ["CHRUN-0003"],
+      maxChars: 12000
+    });
+
+    expect(result.content).toContain("Review gate fixture");
+    expect(result.missingEntityIds).toEqual([]);
+    expect(result.warnings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "OPTIONAL_REVIEW_NOT_FOUND",
+          id: "REVIEW-9999"
+        })
+      ])
+    );
   });
 
   test("loads style profiles and restructure plans by id", async () => {
@@ -373,5 +722,7 @@ describe("buildContext", () => {
     expect(first).toEqual(second);
     expect(first.content.length).toBeLessThanOrEqual(options.maxChars);
     expect(first.truncated).toBe(true);
+    expect(first.content).not.toContain("x".repeat(100));
+    expect(first.sourceDetails.some((source) => source.status === "truncated")).toBe(true);
   });
 });

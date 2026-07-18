@@ -1,0 +1,33 @@
+schema_version: "0.1.0"
+record_type: author_decision
+id: DEC-0001
+owner:
+  novel_id: NOVEL-0003
+status: confirmed
+visibility: internal
+canon_effect: proposal_only
+
+decision: "授权将前 6 章审查发现的自然对白、能力验证动机、概念现象优先、NPC 独立代价和跨界连续性门禁纳入整套流程，并修订正文中的确定性漏洞。"
+scope:
+  manuscript_chapter_ids:
+    - CHAPTER-0001
+    - CHAPTER-0002
+    - CHAPTER-0003
+    - CHAPTER-0004
+    - CHAPTER-0005
+    - CHAPTER-0006
+  workflow_paths:
+    - ".agents/skills"
+    - "schemas/workflow-run.schema.json"
+    - "templates/workflow"
+    - "novels/NOVEL-0003-black-mist-awakening/reports/style/STYLE-0001.yaml"
+    - "novels/NOVEL-0003-black-mist-awakening/reports/restructure/RESTRUCT-0001.yaml"
+    - "novels/NOVEL-0003-black-mist-awakening/reports/workpacks/CHRUN-0001.yaml"
+  proposal_only:
+    - "刘婆婆与温良外婆线的关系候选"
+    - "任何新增人物身份、关系、事实、规则或伏笔真义"
+
+author_decision:
+  decided_by: author
+  decided_at: "2026-07-18T16:04:45+08:00"
+  rationale: "要求全部完成修复，并确保问题纳入长期流程以避免再次发生。"

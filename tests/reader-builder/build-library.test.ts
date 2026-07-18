@@ -161,9 +161,75 @@ describe("buildReaderLibrary", () => {
       "Second Book"
     ]);
     expect(library.books[0]?.chapters[0]?.blocks).toEqual([
-      expect.objectContaining({ id: expect.stringMatching(/^p-[a-f0-9]{12}$/), text: "First paragraph." }),
-      expect.objectContaining({ id: expect.stringMatching(/^p-[a-f0-9]{12}$/), text: "Second paragraph." })
+      expect.objectContaining({
+        id: expect.stringMatching(/^p-[a-f0-9]{12}$/),
+        text: "First paragraph.",
+        contentHash: expect.stringMatching(/^sha256:[a-f0-9]{64}$/)
+      }),
+      expect.objectContaining({
+        id: expect.stringMatching(/^p-[a-f0-9]{12}$/),
+        text: "Second paragraph.",
+        contentHash: expect.stringMatching(/^sha256:[a-f0-9]{64}$/)
+      })
     ]);
+  });
+
+  test("keeps paragraph anchors stable when a new paragraph is inserted before them", async () => {
+    const { root, firstRoot } = await fixture();
+    const metadata = frontmatter("NOVEL-0001", "CHAPTER-0001", 1, "reader");
+    await writeChapter(firstRoot, metadata, ["First paragraph.", "Second paragraph."]);
+    const before = await buildReaderLibrary(root, { profile: "reader" });
+
+    await writeChapter(firstRoot, metadata, [
+      "Inserted paragraph.",
+      "First paragraph.",
+      "Second paragraph."
+    ]);
+    const after = await buildReaderLibrary(root, { profile: "reader" });
+
+    const beforeByText = new Map(
+      before.books[0]?.chapters[0]?.blocks.map((block) => [block.text, block.id])
+    );
+    const afterByText = new Map(
+      after.books[0]?.chapters[0]?.blocks.map((block) => [block.text, block.id])
+    );
+    expect(afterByText.get("First paragraph.")).toBe(beforeByText.get("First paragraph."));
+    expect(afterByText.get("Second paragraph.")).toBe(beforeByText.get("Second paragraph."));
+  });
+
+  test("uses explicit manuscript block ids as stable anchors across text edits", async () => {
+    const { root, firstRoot } = await fixture();
+    const metadata = frontmatter("NOVEL-0001", "CHAPTER-0001", 1, "reader");
+    await writeChapter(firstRoot, metadata, [
+      "<!-- block: BLK-0001 -->\nFirst paragraph.",
+      "<!-- block: BLK-0002 -->\nSecond paragraph."
+    ]);
+    const before = await buildReaderLibrary(root, { profile: "reader" });
+
+    await writeChapter(firstRoot, metadata, [
+      "<!-- block: BLK-0001 -->\nFirst paragraph, revised.",
+      "<!-- block: BLK-0002 -->\nSecond paragraph."
+    ]);
+    const after = await buildReaderLibrary(root, { profile: "reader" });
+
+    const beforeBlocks = before.books[0]?.chapters[0]?.blocks ?? [];
+    const afterBlocks = after.books[0]?.chapters[0]?.blocks ?? [];
+    expect(beforeBlocks.map((block) => block.id)).toEqual(["BLK-0001", "BLK-0002"]);
+    expect(afterBlocks.map((block) => block.id)).toEqual(["BLK-0001", "BLK-0002"]);
+    expect(afterBlocks[0]?.contentHash).not.toBe(beforeBlocks[0]?.contentHash);
+    expect(afterBlocks[1]?.contentHash).toBe(beforeBlocks[1]?.contentHash);
+  });
+
+  test("rejects duplicate explicit manuscript block ids", async () => {
+    const { root, firstRoot } = await fixture();
+    await writeChapter(firstRoot, frontmatter("NOVEL-0001", "CHAPTER-0001", 1, "reader"), [
+      "<!-- block: BLK-0001 -->\nFirst paragraph.",
+      "<!-- block: BLK-0001 -->\nSecond paragraph."
+    ]);
+
+    await expect(buildReaderLibrary(root, { profile: "reader" })).rejects.toMatchObject({
+      code: "DUPLICATE_BLOCK_ID"
+    });
   });
 
   test("removes higher-sensitivity chapters from reader and public bundles", async () => {

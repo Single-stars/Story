@@ -14,7 +14,7 @@ genre:
   promises:
     - 前期以校园日常和微弱异常慢慢积累黑雾压迫感，不急着掀开全部真相。
     - 梦境与真实界双线互相牵引，能力成长遵循严格边界与代价，不靠无脑碾压。
-    - 温良会从虚弱、误判和失去中重新建立主动性，最终在医院醒来形成第一卷闭环。
+    - 温良会从虚弱、误判和失去中重新建立主动性，并通过自己的观察、选择和承担推动双界故事。
   content_notes: []
 premise:
   status: proposed
@@ -36,7 +36,7 @@ current_focus:
   volume: 1
   chapter: 1
   scene_id: null
-  note: 先完成第一卷全书骨架，再进入章节正文；第一卷终点锁定为温良在医院醒来。
+  note: 先完成基础设定、人物关系、事件因果和信息披露门禁整合；第一卷结构与终点暂不锁定。
 paths:
   canon: canon
   narrative: narrative

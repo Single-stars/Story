@@ -17,6 +17,8 @@ scene_ids:
   - SCN-0001
 
 required_context:
+  style_profile_ids:
+    - STYLE-0001
   canon_ids:
     - CHAR-0001
     - CHAR-0002
@@ -49,6 +51,34 @@ required_context:
     - author-2026-07-18-world-clarity
     - author-2026-07-18-organization-delay
     - author-2026-07-18-character-roster
+    - DECISION-WORKING-019
+    - DECISION-WORKING-020
+    - DECISION-WORKING-021
+    - DECISION-WORKING-022
+    - DECISION-WORKING-023
+    - DECISION-WORKING-024
+    - DECISION-WORKING-025
+
+required_reviews:
+  continuity:
+    required: true
+    review_ids:
+      - REVIEW-0003
+    notes: "Continuity review must cover CHAPTER-0001 before this workpack can move to reviewed or accepted."
+  developmental_edit:
+    required: true
+    review_ids:
+      - REVIEW-0001
+    notes: "Developmental review must cover CHAPTER-0001 before this workpack can move to reviewed or accepted."
+  reader_test:
+    required: true
+    review_ids: []
+    notes: "Fresh-reader test must cover CHAPTER-0001 from authorized manuscript only before this workpack can move to reviewed or accepted."
+  line_edit:
+    required: true
+    review_ids:
+      - REVIEW-0002
+    notes: "Line edit review must cover clarity, repetition, AI residue, POV distance, action logic, and prose fidelity before reviewed/accepted status."
 
 continuity_contract:
   world_state: >-
@@ -97,6 +127,22 @@ continuity_contract:
       - Do not imply real/main world telekinesis or physical reality rewriting.
       - Do not make Nangong Yun'er a truth radar or emotional shortcut.
       - Do not rely on vague dream/real wording that leaves the reader unsure where the scene is.
+  motivation_gate: >-
+    Any ability test must name the immediate trigger, observable goal, hypothesis,
+    tolerable risk, and stopping condition. If the protagonist has no reason to
+    test an ability, render perception or failed action instead of a capability checklist.
+  concept_exposure_gate: >-
+    Introduce new concepts through shape, material, sound, trace, use, and other
+    visible consequences. A name may be provisional only after a source exists;
+    signs, labels, riddles, and narrator summaries must not reveal function or truth.
+  npc_independence_gate: >-
+    Every NPC who supplies information, access, protection, or a route must have
+    an independent goal and pay or risk something. Character function belongs in
+    the workpack, not in polished self-descriptive dialogue.
+  cross_layer_state_gate: >-
+    Track each cross-layer person's location, body state, item holder/location,
+    and elapsed time from departure to arrival. Do not leave phones, bodies, or
+    evidence duplicated or silently transferred.
 
 quality_gates:
   word_count_defined: true
@@ -108,6 +154,10 @@ quality_gates:
   foreshadowing_status_checked: true
   reader_exposure_limited: true
   prose_quality_review_planned: true
+  motivation_gate_checked: true
+  concept_exposure_checked: true
+  npc_independence_checked: true
+  cross_layer_state_checked: true
 
 resume_brief: >-
   This is the durable entry point for restructuring NOVEL-0003 volume 1. Before
@@ -117,4 +167,6 @@ resume_brief: >-
   priorities: enforce ability timing, make each world visually unambiguous,
   delay organization exposure, add named social cast, slow Wen Liang/Nangong
   Yun'er, explain settlement survival through visible routines, and remove
-  decorative clues that do not affect action or knowledge.
+  decorative clues that do not affect action or knowledge. Also load the
+  character, world, scene, event, entry-map, and short-rule index decisions so later chapter work
+  starts from the same readable memory stack.

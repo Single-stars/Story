@@ -1,0 +1,45 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-025
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "《雾醒时分》短版执行规程：让 AI 每次只读该读的层，不把流程做成大杂烩。"
+
+confirmed_points:
+  - "先读 DECISION-WORKING-024，再按任务类型读 019-023；没有任务相关性就不要展开其它文件。"
+  - "写作前先确认当前任务属于人物、世界、场景、事件、结构、连续性还是正文，不跨层乱读。"
+  - "正文前只写表层现象、压力、行动和代价，不写设定型讲解，不替角色宣布规则。"
+  - "遇到冲突先停在 proposal / decision 层，不静默改 Canon，不用聊天记忆替代文件。"
+  - "写完一个批次后只回填该批次真正新增的事实、关系、伏笔或规则，不把整轮讨论重新复制进所有入口。"
+
+execution_steps:
+  - step: "入口地图"
+    rule: "先读 024，判断本轮只需要哪几份索引。"
+  - step: "按需读取"
+    rule: "人物读 020，世界读 021，场景读 022，事件读 023，正文执行再读 RESTRUCT / CHRUN。"
+  - step: "最小上下文"
+    rule: "只带当前任务相关的文件，不全量灌入。"
+  - step: "冲突处理"
+    rule: "发现设定冲突或缺口，先记 proposal / change request，不直接改 Canon。"
+  - step: "回填规则"
+    rule: "新增内容分类回填到对应索引，保持一处事实、多处读取。"
+
+do_not_do:
+  - "不要把 019-025 全部默认展开给正文模型。"
+  - "不要把 intake、工作决策、重构计划和正文要求混成一个大文件。"
+  - "不要为了省事把设定直接写进角色台词。"
+  - "不要在没有任务需求时主动翻旧章节全文。"
+
+source:
+  - "DECISION-WORKING-024"
+  - "DECISION-WORKING-019"
+  - "DECISION-WORKING-020"
+  - "DECISION-WORKING-021"
+  - "DECISION-WORKING-022"
+  - "DECISION-WORKING-023"
+  - "working-memory: NOVEL-0003-working-memory.md#34"
+

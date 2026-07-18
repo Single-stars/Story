@@ -13,6 +13,7 @@ export interface ReaderBlock {
   id: string;
   kind: "paragraph" | "divider";
   text: string;
+  contentHash: string;
 }
 
 export interface ReaderChapter {
@@ -42,11 +43,11 @@ export interface ReaderLibrary {
 }
 
 export class ReaderBuildError extends Error {
-  readonly code: "STORY_VALIDATION_FAILED" | "INVALID_READER_PROFILE";
+  readonly code: "STORY_VALIDATION_FAILED" | "INVALID_READER_PROFILE" | "DUPLICATE_BLOCK_ID";
   readonly details?: unknown;
 
   constructor(
-    code: "STORY_VALIDATION_FAILED" | "INVALID_READER_PROFILE",
+    code: "STORY_VALIDATION_FAILED" | "INVALID_READER_PROFILE" | "DUPLICATE_BLOCK_ID",
     message: string,
     details?: unknown
   ) {
@@ -164,24 +165,46 @@ function includeChapter(chapter: ChapterFrontmatter, profile: ReaderProfile): bo
   return ["draft", "revised", "locked", "published"].includes(chapter.status);
 }
 
+function sha256(content: string): string {
+  return `sha256:${createHash("sha256").update(content).digest("hex")}`;
+}
+
 function blocks(novelId: string, chapterId: string, content: string): ReaderBlock[] {
+  const explicitBlockPattern = /^<!--\s*block:\s*(BLK-[0-9]{4})\s*-->\s*/u;
   const chunks = content
     .replace(/\r\n/g, "\n")
     .split(/\n\s*\n/u)
     .map((chunk) => chunk.trim())
     .filter((chunk) => chunk.length > 0 && !/^#{1,6}\s+/u.test(chunk));
 
-  return chunks.map((text, index) => {
-    const divider = /^(?:\*\s*\*\s*\*|-\s*-\s*-|_)$/u.test(text);
-    const normalizedText = divider ? "*" : text.replace(/\n+/g, " ");
-    const id = createHash("sha256")
-      .update(`${novelId}\u0000${chapterId}\u0000${index}\u0000${normalizedText}`)
-      .digest("hex")
-      .slice(0, 12);
+  const seenAnchors = new Map<string, number>();
+  return chunks.map((text) => {
+    const explicitMatch = explicitBlockPattern.exec(text);
+    const explicitId = explicitMatch?.[1] ?? null;
+    const bodyText = explicitId === null ? text : text.slice(explicitMatch?.[0].length ?? 0).trim();
+    if (explicitId !== null && seenAnchors.has(explicitId)) {
+      throw new ReaderBuildError(
+        "DUPLICATE_BLOCK_ID",
+        `Duplicate block id ${explicitId} in ${chapterId}.`
+      );
+    }
+    const divider = /^(?:\*\s*\*\s*\*|-\s*-\s*-|_)$/u.test(bodyText);
+    const normalizedText = divider ? "*" : bodyText.replace(/\n+/g, " ");
+    const hash = sha256(normalizedText);
+    const baseId =
+      explicitId ??
+      createHash("sha256")
+        .update(`${novelId}\u0000${chapterId}\u0000${normalizedText}`)
+        .digest("hex")
+        .slice(0, 12);
+    const occurrence = seenAnchors.get(baseId) ?? 0;
+    seenAnchors.set(baseId, occurrence + 1);
+    const id = explicitId ?? (occurrence === 0 ? `p-${baseId}` : `p-${baseId}-${occurrence + 1}`);
     return {
-      id: `p-${id}`,
+      id,
       kind: divider ? "divider" : "paragraph",
-      text: normalizedText
+      text: normalizedText,
+      contentHash: hash
     };
   });
 }

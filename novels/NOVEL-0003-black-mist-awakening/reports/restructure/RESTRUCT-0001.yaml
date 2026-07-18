@@ -45,6 +45,12 @@ source_constraints:
     - "南宫芸儿早期只是同学/熟人关系里的观察者和试探者，不承担恋爱情绪捷径。"
     - "校园社交必须扩展：至少有舍友、同桌、老师或普通同学承担日常压力和真实感。"
     - "每个新角色保留条件：改变温良行动、关系压力、信息来源、世界质感或伏笔推进。"
+  motivation_and_concept_gates:
+    - "能力验证必须由当前欲望或现实阻力触发，并写清目标、假设、风险和停止条件；没有动机时只记录感知，不测试。"
+    - "新概念先以形状、材质、声音、痕迹和人物反应出现；名称不得直接暗示功能、真义或通道用途。"
+    - "人物职责、敏锐、保留和神秘感只保留在作者侧契约；对白不得替角色宣布这些标签。"
+    - "NPC 只提供符合自身利益和知识边界的信息；任何路线、保护或答案都必须改变 NPC 的风险、资源或关系。"
+    - "跨界移动必须列出人物、物品、伤势和时间的转移链；缺一项就停在连续性预检。"
 
 phase_plan:
   - phase_id: P1-black-mist-hook-and-school-texture
@@ -199,8 +205,10 @@ resume_brief: >-
   opening to Wen Liang's return to the dream world and the later hospital-wake
   closure. The existing 12 chapters are treated as flawed source material, not
   as a direct chapter-by-chapter map. Before drafting, load CHRUN-0001,
-  STYLE-0001, and this file, then create chapter workpacks and scene contracts
-  from the phase plan. The hard priorities are: explicit world layers, corrected
-  capability timing, wandering self fusion, automatic mist clearing after
-  fusion, delayed organization exposure, named functional cast, slow Wen
-  Liang/Nangong Yun'er relationship pacing, and no AI-style explanatory prose.
+  STYLE-0001, DECISION-WORKING-019 to DECISION-WORKING-025, and this file,
+  then create chapter workpacks and scene contracts from the phase plan. The
+  hard priorities are: explicit world layers, corrected capability timing,
+  wandering self fusion, automatic mist clearing after fusion, delayed
+  organization exposure, named functional cast, slow Wen Liang/Nangong Yun'er
+  relationship pacing, clear dream-vs-real uncertainty in early chapters, and
+  no AI-style explanatory prose.

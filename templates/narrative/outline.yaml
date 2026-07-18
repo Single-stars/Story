@@ -5,18 +5,18 @@ template_version: "0.1.0"
 document_type: outline
 
 owner:
-  novel_id: null
+  novel_id: NOVEL-0001
 
 status: proposed
 visibility: internal
-title: ""
+title: "Working outline title"
 
 scope:
   level: novel
   volume: null
   act: null
   chapter: null
-  summary: ""
+  summary: "One-paragraph summary of the outline scope."
 
 dependencies:
   series_id: null
@@ -31,79 +31,82 @@ source_refs:
   research_refs: []
 
 objective:
-  story_goal: ""
-  reader_promise: ""
-  theme_question: ""
-  core_conflict: ""
-  ending_cost: ""
-  success_criteria: []
+  story_goal: "What irreversible story movement this outline must create."
+  reader_promise: "What experience, genre promise, and question the reader should expect."
+  theme_question: "The human question tested by the plot."
+  core_conflict: "The main pressure that forces choices instead of events merely happening."
+  ending_cost: "What success will cost by the end of this outline scope."
+  success_criteria:
+    - "Each major beat has a trigger, choice, change, and next pressure."
 
 structure:
-  lenses: []
-  opening_promise: ""
-  first_major_turn: ""
-  midpoint_change: ""
-  lowest_point: ""
-  climax_choice: ""
-  resolution: ""
+  lenses:
+    - scene-sequel
+  opening_promise: "The first visible promise made to the reader."
+  first_major_turn: "The first irreversible change in pressure, knowledge, or commitment."
+  midpoint_change: "The turn that changes the protagonist's understanding or available strategy."
+  lowest_point: "The moment where the old approach fails hardest."
+  climax_choice: "The decisive choice that resolves the core causal chain."
+  resolution: "The new state after the climax and the next open pressure."
 
 # Each beat must state why it happens, what changes, and what pressure causes the next beat.
 causal_spine:
   - beat_key: beat-001
-    narrative_position: ""
+    narrative_position: "opening"
     trigger:
       source_ids: []
-      pressure: ""
+      pressure: "The concrete pressure that starts this beat."
     character_drive:
-      character_ids: []
-      goal: ""
-      motivation: ""
-    opposition: ""
-    choice_or_action: ""
-    turning_point: ""
+      character_ids:
+        - CHAR-0001
+      goal: "What the active character wants in this beat."
+      motivation: "Why this goal matters now."
+    opposition: "What resists the goal."
+    choice_or_action: "The choice or action taken under pressure."
+    turning_point: "The moment that changes the beat."
     consequence:
-      state_change: ""
+      state_change: "What is different after the beat."
       fact_ids: []
       event_ids: []
-    next_pressure: ""
+    next_pressure: "The pressure that pushes the next beat."
     scene_ids: []
 
 character_arcs:
   - character_id: null
-    starting_state: ""
-    want: ""
-    need: ""
-    wound_or_lie_pressure: ""
-    irreversible_choice: ""
-    ending_state: ""
+    starting_state: "Where the character begins emotionally, socially, or practically."
+    want: "External goal."
+    need: "Internal change or truth."
+    wound_or_lie_pressure: "The pressure from wound, lie, value, or fear."
+    irreversible_choice: "The choice that proves change or refusal."
+    ending_state: "Where the character ends in this outline scope."
     beat_keys: []
 
 thread_plan:
   - thread_id: null
-    dramatic_question: ""
-    opening_state: ""
+    dramatic_question: "The reader-facing question this thread asks."
+    opening_state: "How the thread begins."
     escalation_beat_keys: []
     resolution_beat_key: null
-    intended_resolution: ""
+    intended_resolution: "How the thread should resolve or transform."
 
 foreshadowing_plan:
   - foreshadowing_id: null
     plant_beat_key: null
-    reader_sees: ""
-    true_meaning: ""
+    reader_sees: "The visible clue or pattern."
+    true_meaning: "What the clue will mean after payoff."
     advance_beat_keys: []
     payoff_beat_key: null
 
 chapter_plan:
   - volume: 1
     chapter: 1
-    title: ""
-    entry_state: ""
-    causal_trigger: ""
-    purpose: ""
-    conflict: ""
-    decisive_change: ""
-    exit_hook: ""
+    title: "Chapter working title"
+    entry_state: "The state at chapter entry."
+    causal_trigger: "The pressure or event that starts the chapter movement."
+    purpose: "What this chapter must accomplish in the whole structure."
+    conflict: "The central resistance or dilemma."
+    decisive_change: "What changes by the end of the chapter."
+    exit_hook: "The unresolved pressure that pulls forward."
     scene_ids: []
     advances:
       thread_ids: []
@@ -118,11 +121,11 @@ risks:
   dependency: []
 
 open_questions:
-  - question: ""
-    why_it_matters: ""
+  - question: "What author decision is still needed?"
+    why_it_matters: "Why this answer affects structure, continuity, or drafting."
     blocking: false
     owner: author
-    decision_needed_by: ""
+    decision_needed_by: "Before scene contract approval."
 
 approval:
   required_approver: author

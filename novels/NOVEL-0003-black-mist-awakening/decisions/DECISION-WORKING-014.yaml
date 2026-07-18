@@ -1,0 +1,50 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-014
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "确认当前阶段停止追问细节，转向宏观人物、关系网、场景系统、世界事件类型和披露规则；所有内容继续维护在临时记忆文件，暂不落正式 proposal。"
+
+correction:
+  issue: "上一轮继续追问奖学金具体形态、纠缠者命名和借钱金额，偏离作者当前目标。"
+  cause: "把后续场景需要清晰误处理为当前必须补齐道具和金额细节。"
+  prevention: "当前阶段只追问会改变人物弧、关系网、场景职责、世界规则或信息披露层级的宏观问题。"
+
+confirmed_points:
+  - "新人物名字优先使用常见字，笔画不要太多。"
+  - "姚瑶奖学金问题不必现在细化，关键是被针对且非自然丢失。"
+  - "姚瑶家庭差但学习优秀，核心尊严冲突是不想被施舍。"
+  - "姚瑶面对帮助会礼貌拒绝并尽量还回去。"
+  - "后续接触姚瑶应曲线推进，避免强硬帮助。"
+  - "纠缠姚瑶的富家同学暂名沈明。"
+  - "沈明暂时不需要和陈安家庭线成年人坏人有关联，但后续坏人网络可联合。"
+  - "陈安缺钱先通过吃饭节省等平淡异常表现，不追具体金额。"
+  - "陈舟空床表层理由统一为因为生病被带走，不具体说流感。"
+  - "暂时不落正式人物/关系 proposal，继续维护临时记忆文件。"
+
+working_names:
+  rich_student_targeting_yaoyao: "沈明"
+
+maintenance_policy:
+  current_focus:
+    - "人物性格设定"
+    - "人物弧"
+    - "方向性关系网"
+    - "场景系统"
+    - "世界事件类型"
+    - "伏笔与披露边界"
+  defer_until_scene_stage:
+    - "具体奖学金形态"
+    - "具体借钱金额"
+    - "单场动作"
+    - "台词细节"
+    - "小道具来源和去向"
+
+source:
+  - "user_message_2026-07-18-6"
+  - "user_message_2026-07-18-7"
+  - "working-memory: NOVEL-0003-working-memory.md#23"

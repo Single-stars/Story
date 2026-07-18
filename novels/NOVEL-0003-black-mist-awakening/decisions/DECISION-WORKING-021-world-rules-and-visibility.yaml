@@ -1,0 +1,137 @@
+schema_version: "0.1.0"
+record_type: working_decision
+id: DECISION-WORKING-021
+owner:
+  novel_id: NOVEL-0003
+status: working
+visibility: internal
+canon_effect: proposal_only
+
+summary: "维护双界、黑雾、灵魂、火线、传送、能力与信息披露边界；所有深层名称均为作者侧标签，未到揭晓节点不得直接进入正文。"
+
+genre_and_layer_contract:
+  dream_layer:
+    author_label: "梦境世界"
+    story_function: "承载都市校园、生活细节、人际关系与常识修正下的渐进异常。"
+    early_prose_labels: ["梦里", "那场梦", "那些异常", "说不清的地方"]
+  real_layer:
+    author_label: "真实世界"
+    story_function: "承载末世灾难、生存劳动、资源压力、黑雾威胁与未知区域探索。"
+    early_prose_labels: ["雾里", "废墟", "这里", "另一边", "那个地方"]
+  time_relation: "两层时间固定一比一。"
+
+internal_world_truth:
+  world_structure:
+    origin: "作者侧暂定原本只有一个世界。"
+    split: "约十一年前，入梦计划与黑雾灾变使人类长期分处梦境层和真实层。"
+    dream_layer: "承载被送入其中的意识与日常生活；具体建造、维护和实验机制尚未锁定。"
+    real_layer: "保留原有物理世界的疼痛、生存消耗、废墟和黑雾灾害。"
+    causality_limit: "入梦计划、黑雾出现和世界分离之间的完整因果暂不决定，不能在正文或工作记录中擅自补齐。"
+  hidden_project:
+    author_term: "入梦计划"
+    former_term: "晨曦计划（废止）"
+    current_truth: "被送入梦境层的人承担多种尚未公开的实验用途，属于可能随时出现异常的实验对象。"
+    unresolved: ["计划最终目的", "实验用途清单", "组织与维护者", "真实身体的完整处置方式"]
+  subject_zero:
+    author_term: "零号"
+    former_term: "初号机（废止）"
+    current_truth: "温良与计划存在首个实验对象层面的特殊关系；具体实验过程和权限来源继续保持后期真相。"
+  correction_system:
+    statement: "梦境层会自动修正常识冲突，使未意识到异常的人忽略、合理化或遗忘异常。"
+    awareness_threshold: "只有已经意识到或正在形成异常认知的人，才可能持续发现被修正的痕迹。"
+    escalation: "持续追查会提高被压制、治疗、隔离、带走或消失的风险；具体执行主体尚不公开。"
+    limitation: "修正不能把已形成强烈认知的人无限重置，否则人物选择和悬疑调查将失去意义。"
+  dream_suppression:
+    public_explanation: "以抽象的脑波调节、睡眠改善或精神健康措施解释居民不做梦。"
+    actual_rule: "系统主动关闭普通人的梦境能力。"
+    exception: "温良及其他不稳定实验对象可能出现异常梦境，但普通人不会因此立刻理解双界真相。"
+
+black_mist_rules:
+  nature: "黑雾属于真实世界的核心灾害；更深来源暂不确定。"
+  exposure_chain:
+    - "活人接触黑雾后出现黑色痕迹。"
+    - "侵蚀加深会影响身体、记忆、意识和自主行动。"
+    - "侵蚀完成后肉体彻底成为空壳，灵魂化入浓雾。"
+  fire_countermeasure: "某种燃料持续燃烧形成火线，可以迫退黑雾并保护聚落；燃料名称、来源和效率尚未确定。"
+  soul_countermeasure: "人类可以通过隐秘手段锻炼灵魂，从而增强抗雾、驱雾或相关能力；方法、代价和传承者尚未确定。"
+  recovery_boundary: "温良可以缓解或治愈尚不严重的黑斑；严重阶段、失败风险和不可逆阈值仍需后续设计。"
+
+real_world_social_order:
+  settlement:
+    role: "以劳动、物资交换和火线维持本地生存；接纳外来者必须承担可见成本。"
+    name_rule: "本地据点只称聚落，不使用余烬聚落等专名。"
+  gray_clad_group:
+    status: "保留的工作提案，细节未锁定。"
+    visible_role: "具备跨聚落行动和交换药品、工具、燃料或消息的能力。"
+    hidden_direction: "可能收集与异常梦境、返程者或双界有关的信息，但具体手段和目的尚未确认。"
+    unresolved: ["组织结构", "抗雾技术来源", "是否带走特殊个体", "与入梦计划的关系", "内部立场"]
+    disclosure_rule: "只有在角色实际见到其成员、交易或行动，并由当地人给出称呼后，正文才能使用灰衣人这一名称。"
+
+wenliang_capability_boundary:
+  real_layer:
+    innate_state: "温良天生具备驱散周围黑雾的基础状态，具体范围不固定，也不是世界上唯一可能的驱雾者。"
+    early_uses: ["保护自身", "在火线压力下开出短暂空间", "缓解或治愈轻度黑斑"]
+    limitations:
+      - "不能永久净化大面积区域。"
+      - "不能无条件逆转已经完成的空壳化。"
+      - "持续时间、环境雾压、灵魂状态和保护人数都必须限制效果。"
+      - "公开使用会改变聚落、训练者和其他势力对他的判断。"
+  dream_layer:
+    foundation: "可影响程度由灵魂强度与权限共同决定。"
+    early_state: "前期只能在关键压力下造成小范围、短时间且不稳定的影响。"
+    growth_rule: "造物、财富、他人行为、伤害和底层结构等更大改变不是永久绝对禁区，但必须要求显著更强灵魂、更高权限与真实代价。"
+    anti_convenience_rule: "任何新权限都必须先有来源、试错、限制和后果，不能临场出现解决当前难题。"
+
+crossing_rules:
+  statement: "两个世界之间存在极少数危险传送点，但不是稳定、公开或可随意往返的门户。"
+  known_point: "旧井是当前已知传送点之一。"
+  single_point_limit: "同一个传送点在温良使用后会失效或坍塌，温良不能重复使用同一点。"
+  unknown_costs: ["触发条件", "方向限制", "身体与灵魂损伤", "迷失或失败后果", "寻找下一个点的方法"]
+  later_anchor: "温良肉身的锚点作用只在他后续需要返回真实世界时逐步显现；此前不以术语解释。"
+  evidence_isolation:
+    rule: "跨层后不能保留可被他人独立验证的物证、数字记录、录音或对应伤痕。"
+    protagonist_effect: "温良可以尝试取证，但只能得到空白、失效或无法证明来源的结果。"
+    remaining_state: "主观记忆和由经历造成的选择变化可以保留，但不等于客观证据。"
+
+disclosure_firewall:
+  background_only_terms:
+    - "入梦计划"
+    - "零号"
+    - "梦境世界"
+    - "真实世界"
+    - "系统"
+    - "修正机制"
+    - "权限"
+    - "灵魂锚点"
+    - "传送点"
+    - "灵魂训练体系"
+    - "灰衣人的未公开组织结构与真实目的"
+  early_prose_rule: "正文只能写 POV 当下可观察的现象、身体感受、误判、行动、关系反应和代价，不得复述本文件的解释。"
+  term_release_rule: "具体名称必须先在事件中被发现、由有知识权限的人命名或正式公开；启用前，旁白和对白均使用角色自然会说的抽象称呼。"
+  knowledge_rule: "人物不能因为设定文件存在就知道规则；每项知识必须有学习、怀疑、验证或误信过程。"
+  exposition_rule: "即使术语已公开，也只解释当前选择需要的最少部分，不一次交代完整背景。"
+
+loophole_controls:
+  - risk: "温良成为可无限移动的安全区。"
+    control: "用雾压、持续时间、灵魂状态、人数和暴露后果限制；火线仍是聚落稳定生存基础。"
+  - risk: "轻度黑斑治疗使黑雾失去威胁。"
+    control: "只覆盖早期侵蚀并要求条件；错过阈值或连续侵蚀仍可能不可逆。"
+  - risk: "灵魂训练成为人人随时可学的通用解法。"
+    control: "保持方法隐秘、训练困难、代价未知，未获得来源前不得让角色自行悟出完整体系。"
+  - risk: "梦境权限按剧情需要无限升级。"
+    control: "每次提升必须记录来源、可做与不可做、失败条件、代价和对手反制。"
+  - risk: "传送点让双界切换失去重量。"
+    control: "同点失效、条件未知、失败严重且无证据可带回；每次往返都必须服务不可替代的目标。"
+
+open_questions:
+  - "火线所用燃料的名称、来源、消耗速度和管理方式。"
+  - "灵魂训练的具体方法、代价、掌握群体和保密原因。"
+  - "轻度黑斑可治的判定方式与不可逆阈值。"
+  - "传送失败的具体后果及温良后续返回真实世界的触发条件。"
+  - "入梦计划的目的、实验用途、维护者和零号权限来源。"
+  - "灰衣人的组织结构、资源来源、行动边界及其是否掌握双界信息。"
+
+source:
+  - "DECISION-WORKING-019"
+  - "author_setting_corrections_2026-07-18"
+  - "author_write_gate_confirmation_2026-07-18"
