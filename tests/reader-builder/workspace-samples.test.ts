@@ -7,14 +7,10 @@ import { buildReaderLibrary } from "../../tools/reader-builder/src/build-library
 const repositoryRoot = path.resolve(import.meta.dirname, "../..");
 
 describe("workspace reader samples", () => {
-  test("builds all registered novels for the reader-visible launch bundle", async () => {
+  test("builds the registered novel for the reader-visible launch bundle", async () => {
     const library = await buildReaderLibrary(repositoryRoot, { profile: "reader" });
 
-    expect(library.books.map((book) => book.id)).toEqual([
-      "NOVEL-0001",
-      "NOVEL-0002",
-      "NOVEL-0003"
-    ]);
+    expect(library.books.map((book) => book.id)).toEqual(["NOVEL-0003"]);
     expect(
       library.books.map((book) => ({
         id: book.id,
@@ -26,22 +22,6 @@ describe("workspace reader samples", () => {
         }))
       }))
     ).toEqual([
-      {
-        id: "NOVEL-0001",
-        chapters: [
-          { id: "CHAPTER-0001", previous: null, next: "CHAPTER-0002", blocks: expect.any(Number) },
-          { id: "CHAPTER-0002", previous: "CHAPTER-0001", next: "CHAPTER-0003", blocks: expect.any(Number) },
-          { id: "CHAPTER-0003", previous: "CHAPTER-0002", next: null, blocks: expect.any(Number) }
-        ]
-      },
-      {
-        id: "NOVEL-0002",
-        chapters: [
-          { id: "CHAPTER-0001", previous: null, next: "CHAPTER-0002", blocks: expect.any(Number) },
-          { id: "CHAPTER-0002", previous: "CHAPTER-0001", next: "CHAPTER-0003", blocks: expect.any(Number) },
-          { id: "CHAPTER-0003", previous: "CHAPTER-0002", next: null, blocks: expect.any(Number) }
-        ]
-      },
       {
         id: "NOVEL-0003",
         chapters: [

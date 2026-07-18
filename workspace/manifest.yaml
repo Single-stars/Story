@@ -27,14 +27,6 @@ defaults:
     - story-grid-five-commandments
 active_novel_id: NOVEL-0003
 novels:
-  - id: NOVEL-0001
-    title: 姝讳骸璐︽埛
-    path: novels/NOVEL-0001-death-account
-    status: planning
-  - id: NOVEL-0002
-    title: 鍏櫨閲屽椹?
-    path: novels/NOVEL-0002-six-hundred-li-night-relay
-    status: planning
   - id: NOVEL-0003
     title: 雾醒时分
     path: novels/NOVEL-0003-black-mist-awakening

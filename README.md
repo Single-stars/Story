@@ -107,7 +107,7 @@ site/*        阅读器
 ## Current Sample Reader State
 
 - GitHub `main` 已完成初始提交与推送；当前工作分支为 `codex/story-os-reader-samples`。
-- `NOVEL-0001`《死亡账户》与 `NOVEL-0002`《六百里夜驿》各有 3 章 `revised` / `reader` 示例稿，可进入 reader profile。
-- 示例正文用于验证 Story OS 写作和阅读器切书、切章流程；正文事实仍属于 manuscript/proposal 层，不自动晋升 Canon。
-- `npm.cmd run validate:story` 当前应识别 `2 novels / 0 entities / 6 chapters`。
-- `npm.cmd run build:reader-app` 会生成 `.generated/mobile-reader`，其中 `library.json` 含 2 本书、每本 3 章。
+- 工作区当前只保留 `NOVEL-0003`《雾醒时分》作为正式小说项目。
+- 早期 reader 示例小说内容已移除；模板和测试中的 `NOVEL-*` 占位仅作为 fixture 使用，不代表工作区注册小说。
+- `npm.cmd run validate:story` 当前应识别 `1 novel / 12 entity records / 12 chapters`。
+- `npm.cmd run build:reader-app` 会生成 `.generated/mobile-reader`，其中 `library.json` 含《雾醒时分》的 reader 可见章节。
